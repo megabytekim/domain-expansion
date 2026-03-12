@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>타이베이 4박 5일 (5/1-5/5)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  #map { width: 100%; height: 100vh; z-index: 1; }
+
+  /* Filter bar */
+  .filter-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff; border-top: 1px solid #ddd;
+    display: flex; overflow-x: auto; padding: 8px 4px;
+    gap: 6px; -webkit-overflow-scrolling: touch;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  }
+  .filter-btn {
+    flex-shrink: 0; border: none; border-radius: 20px;
+    padding: 8px 14px; font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    color: #fff; opacity: 0.5;
+  }
+  .filter-btn.active { opacity: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+  .filter-btn[data-day="all"] { background: #333; }
+  .filter-btn[data-day="1"] { background: #4285F4; }
+  .filter-btn[data-day="2"] { background: #34A853; }
+  .filter-btn[data-day="3"] { background: #FBBC04; color: #333; }
+  .filter-btn[data-day="4"] { background: #EA4335; }
+  .filter-btn[data-day="5"] { background: #9C27B0; }
+  .filter-btn[data-day="opt"] { background: #FF9800; }
+  .filter-btn[data-day="shop"] { background: #E91E63; }
+
+  /* Popup */
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px !important; padding: 0 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+  }
+  .leaflet-popup-content { margin: 0 !important; min-width: 220px; }
+  .popup-inner { padding: 14px 16px; }
+  .popup-inner h3 { font-size: 15px; margin-bottom: 6px; color: #1a1a1a; }
+  .popup-inner .cn-name { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .popup-inner .desc { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 10px; }
+  .popup-inner .time-tag {
+    display: inline-block; background: #f0f0f0; border-radius: 4px;
+    padding: 2px 8px; font-size: 11px; color: #666; margin-bottom: 8px;
+  }
+  .gmaps-btn {
+    display: block; width: 100%; padding: 10px; border: none;
+    background: #4285F4; color: #fff; border-radius: 8px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    text-align: center; text-decoration: none;
+  }
+  .gmaps-btn:hover { background: #3367D6; }
+
+  /* Title overlay */
+  .title-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    padding: 12px 16px; border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .title-bar h1 { font-size: 16px; color: #1a1a1a; }
+  .title-bar p { font-size: 11px; color: #888; margin-top: 2px; }
+
+  /* Day route line legend */
+  .day-badge {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; margin-right: 4px; vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>타이베이 4박 5일 (5/1-5/5) 9명</h1>
+  <p>핀을 눌러 상세 정보 확인 / 하단 버튼으로 일자별 필터</p>
+</div>
+
+<div id="map"></div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-day="all" onclick="filterDay('all')">전체</button>
+  <button class="filter-btn" data-day="1" onclick="filterDay('1')">5/1 단수이</button>
+  <button class="filter-btn" data-day="2" onclick="filterDay('2')">5/2 중산</button>
+  <button class="filter-btn" data-day="3" onclick="filterDay('3')">5/3 투어</button>
+  <button class="filter-btn" data-day="4" onclick="filterDay('4')">5/4 우라이</button>
+  <button class="filter-btn" data-day="5" onclick="filterDay('5')">5/5 귀국</button>
+  <button class="filter-btn" data-day="opt" onclick="filterDay('opt')">추천</button>
+  <button class="filter-btn" data-day="shop" onclick="filterDay('shop')">쇼핑</button>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map', { zoomControl: false }).setView([25.05, 121.55], 11);
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap',
+  maxZoom: 19
+}).addTo(map);
+
+// Colored circle markers
+function makeIcon(color) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:28px;height:28px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16]
+  });
+}
+
+const colors = {
+  '1': '#4285F4', '2': '#34A853', '3': '#FBBC04',
+  '4': '#EA4335', '5': '#9C27B0', 'opt': '#FF9800', 'shop': '#E91E63'
+};
+
+const places = [
+  // === DAY 1 ===
+  { day:'1', name:'타오위안 국제공항', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
+    time:'10:55 / 13:35 도착', desc:'SIM, 이지카드, 환전', q:'Taoyuan International Airport' },
+  { day:'1', name:'홍마오청', cn:'紅毛城 Fort San Domingo', lat:25.1753, lng:121.4327,
+    time:'14:00', desc:'스페인 건설 → 네덜란드 재건 → 영국 영사관. 단수이 랜드마크', q:'Fort San Domingo Tamsui' },
+  { day:'1', name:'소백궁', cn:'小白宮', lat:25.1742, lng:121.4312,
+    time:'14:40', desc:'하얀 서양식 건물, 포토존', q:'Little White Palace Tamsui' },
+  { day:'1', name:'진리대학', cn:'真理大學', lat:25.1760, lng:121.4300,
+    time:'15:10', desc:'캠퍼스 산책. 17-18시 폐장 주의', q:'Aletheia University Tamsui' },
+  { day:'1', name:'흑전반점', cn:'黑殿飯店', lat:25.1693, lng:121.4408,
+    time:'15:30', desc:'돼지갈비덮밥 맛집. 약 100TWD. 11:00-20:00', q:'黑殿飯店 淡水' },
+  { day:'1', name:'단수이 페리 선착장', cn:'淡水渡船頭', lat:25.1710, lng:121.4385,
+    time:'16:30', desc:'빠리행 페리. 편도 23TWD, 약 10분', q:'Tamsui Ferry Wharf' },
+  { day:'1', name:'빠리 좌안', cn:'八里左岸', lat:25.1717, lng:121.4137,
+    time:'17:00', desc:'자전거 라이딩 + 노을 감상', q:'Bali Left Bank Taipei' },
+  { day:'1', name:'닝샤야시장', cn:'寧夏夜市', lat:25.0555, lng:121.5153,
+    time:'19:30', desc:'위엔환볜(圓環邊) 미슐랭 굴전 필수! MRT 중산역 도보 10분', q:'Ningxia Night Market Taipei' },
+
+  // === DAY 2 ===
+  { day:'2', name:'라뜰리에 루터스', cn:"L'Atelier de Nougat", lat:25.0327, lng:121.5293,
+    time:'08:00 오픈런', desc:'누가크래커. 09시 오픈, 10시 전 품절. 현금만. 1인 10박스 제한', q:"L'atelier de nougat Yongkang" },
+  { day:'2', name:'중정기념당', cn:'中正紀念堂', lat:25.0350, lng:121.5219,
+    time:'09:30', desc:'10시 위병교대식 관람', q:'Chiang Kai-shek Memorial Hall' },
+  { day:'2', name:'중산 카페거리', cn:'中山站咖啡街', lat:25.0531, lng:121.5225,
+    time:'11:00', desc:'성수/연남 느낌. 독립 카페, 소품샵, 중산지하서가, 청핀서점', q:'Zhongshan Station Taipei cafe' },
+  { day:'2', name:'시먼딩', cn:'西門町 Ximending', lat:25.0424, lng:121.5081,
+    time:'14:00', desc:'아종면선, 지파이, 무지개 횡단보도, 팝마트, 리얼58도', q:'Ximending Taipei' },
+  { day:'2', name:'아종면선', cn:'阿宗麵線', lat:25.0425, lng:121.5065,
+    time:'', desc:'곱창국수. 소 65TWD / 대 120TWD. 서서 먹는 곳', q:'阿宗麵線 西門' },
+  { day:'2', name:'까르푸 구이린점', cn:'家樂福 桂林店', lat:25.0380, lng:121.5050,
+    time:'21:00', desc:'기념품 쇼핑. NT$2,000 이상 세금환급 5%', q:'Carrefour Guilin Taipei' },
+
+  // === DAY 3 ===
+  { day:'3', name:'예류 지질공원', cn:'野柳地質公園', lat:25.2058, lng:121.6918,
+    time:'오전', desc:'여왕머리바위. 바람 강함, 겉옷 챙기기', q:'Yehliu Geopark' },
+  { day:'3', name:'스펀', cn:'十分', lat:25.0565, lng:121.7770,
+    time:'오후', desc:'철길 천등 날리기. 1등 200TWD(단색)/250TWD(4색)', q:'Shifen Old Street' },
+  { day:'3', name:'허우통 고양이마을', cn:'猴硐貓村', lat:25.0868, lng:121.8266,
+    time:'오후', desc:'30분이면 충분', q:'Houtong Cat Village' },
+  { day:'3', name:'지우펀', cn:'九份', lat:25.1092, lng:121.8449,
+    time:'저녁', desc:'홍등 야경. 위위차관(芋圓) 55TWD 필수', q:'Jiufen Old Street' },
+  { day:'3', name:'라오허제 야시장', cn:'饒河街夜市', lat:25.0506, lng:121.5774,
+    time:'20:00', desc:'후추떡, 약선배골탕', q:'Raohe Night Market Taipei' },
+
+  // === DAY 4 ===
+  { day:'4', name:'청도반단', cn:'青島飯糰', lat:25.0440, lng:121.5270,
+    time:'07:30', desc:'주먹밥 아침', q:'青島飯糰 台北' },
+  { day:'4', name:'우라이', cn:'烏來', lat:24.8653, lng:121.5516,
+    time:'09:20', desc:'폭포, 꼬마열차(50TWD), 온천, 원주민 요리', q:'Wulai Taipei' },
+  { day:'4', name:'우라이 폭포', cn:'烏來瀑布', lat:24.8560, lng:121.5500,
+    time:'09:30', desc:'꼬마열차 편도 50TWD', q:'Wulai Waterfall' },
+  { day:'4', name:'융캉제', cn:'永康街', lat:25.0330, lng:121.5293,
+    time:'16:00-18:00', desc:'딘타이펑/까오지, 망고빙수, 소품샵', q:'Yongkang Street Taipei' },
+  { day:'4', name:'딘타이펑 신생점', cn:'鼎泰豐 新生店', lat:25.0340, lng:121.5310,
+    time:'', desc:'샤오룽바오 10개 250TWD. 본점보다 대기 짧음', q:'Din Tai Fung Xinsheng Taipei' },
+  { day:'4', name:'까오지 본점', cn:'高記 本店', lat:25.0335, lng:121.5300,
+    time:'', desc:'생전포 10개 200TWD. 신생남로 1단 167호', q:'高記 永康街' },
+  { day:'4', name:'용산사', cn:'龍山寺 Longshan Temple', lat:25.0372, lng:121.4999,
+    time:'19:00', desc:'야경. 마지막 밤 마무리', q:'Longshan Temple Taipei' },
+
+  // === DAY 5 ===
+  { day:'5', name:'타이베이 식물원', cn:'台北植物園', lat:25.0315, lng:121.5105,
+    time:'08:30', desc:'여유 조 아침 산책', q:'Taipei Botanical Garden' },
+  { day:'5', name:'타오위안 공항 (출발)', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
+    time:'11:55 / 15:15', desc:'출발', q:'Taoyuan International Airport' },
+
+  // === OPTIONAL ===
+  { day:'opt', name:'국립고궁박물원', cn:'國立故宮博物院', lat:25.1024, lng:121.5485,
+    time:'', desc:'입장 350TWD. 일/월 휴무. 취옥백채/육형석 필수', q:'National Palace Museum Taipei' },
+  { day:'opt', name:'타이베이 101', cn:'台北101', lat:25.0340, lng:121.5645,
+    time:'', desc:'전망대 입장 600TWD', q:'Taipei 101' },
+  { day:'opt', name:'카발란 증류소', cn:'噶瑪蘭威士忌酒廠', lat:24.7568, lng:121.7517,
+    time:'', desc:'이란현. 기차 1.5시간 + 택시 20분. 09:00-18:00', q:'Kavalan Whisky Distillery' },
+  { day:'opt', name:'보장암 예술촌', cn:'寶藏巖國際藝術村', lat:25.0112, lng:121.5340,
+    time:'', desc:'MRT 공관역 도보 10분. 벽화, 설치미술. 화요일 휴무', q:'Treasure Hill Artist Village' },
+  { day:'opt', name:'화산1914', cn:'華山1914文化創意產業園區', lat:25.0440, lng:121.5295,
+    time:'', desc:'전시, 카페, 플리마켓. MRT 중효신생역 도보 5분', q:'Huashan 1914 Creative Park' },
+  { day:'opt', name:'송산문창원구', cn:'松山文創園區', lat:25.0443, lng:121.5607,
+    time:'', desc:'갤러리, 디자인숍. 청핀생활관 옆. MRT 국부기념관역', q:'Songshan Cultural Creative Park' },
+  { day:'opt', name:'대도정/디화제', cn:'大稻埕/迪化街', lat:25.0570, lng:121.5100,
+    time:'', desc:'전통 무역거리. 차 도매상, 레트로 카페. MRT 베이먼역', q:'Dihua Street Taipei' },
+  { day:'opt', name:'상산 (象山)', cn:'象山步道', lat:25.0270, lng:121.5710,
+    time:'', desc:'101 야경 베스트 포토스팟. 왕복 1시간. 일몰 30분 전 출발', q:'Elephant Mountain Taipei' },
+  { day:'opt', name:'마오콩 곤돌라', cn:'貓空纜車', lat:24.9983, lng:121.5764,
+    time:'', desc:'차밭+야경. 편도 120TWD. 크리스탈 캐빈. 월요일 휴무', q:'Maokong Gondola' },
+  { day:'opt', name:'북투 온천', cn:'北投溫泉', lat:25.1370, lng:121.5068,
+    time:'', desc:'온천박물관, 지열곡, 북투도서관. MRT 신베이투역. 월요일 휴관', q:'Beitou Hot Spring Taipei' },
+  { day:'opt', name:'남기장 야시장', cn:'南機場夜市', lat:25.0310, lng:121.5068,
+    time:'', desc:'미슐랭 빕 구르망. 현지인 95%. MRT 용산사역 도보 15분', q:'Nanjichang Night Market' },
+
+  // === SHOPPING ===
+  { day:'shop', name:'린화타이차항', cn:'林華泰茶行', lat:25.0591, lng:121.5100,
+    time:'', desc:'동방미인차 가성비 최고. 1883년 창립. 150g 약 545TWD부터', q:'林華泰茶行 台北' },
+  { day:'shop', name:'유기명차', cn:'有記名茶', lat:25.0580, lng:121.5098,
+    time:'', desc:'1890년 5대째 운영. 시음 체험. Wangtea Lab 카페', q:'有記名茶 台北' },
+  { day:'shop', name:'리얼 58도', cn:'Real 58度', lat:25.0430, lng:121.5070,
+    time:'', desc:'시먼딩 위스키 전문점', q:'Real 58度 西門' },
+  { day:'shop', name:'카발란 공관 전시판매센터', cn:'噶瑪蘭威士忌 公館展售中心', lat:25.0187, lng:121.5295,
+    time:'', desc:'직영. 12:00-20:30. 한정판 구매 가능', q:'噶瑪蘭威士忌 公館' },
+  { day:'shop', name:'카발란 충효 전시판매센터', cn:'噶瑪蘭威士忌 忠孝展售中心', lat:25.0420, lng:121.5510,
+    time:'', desc:'직영. 12:00-21:00', q:'噶瑪蘭威士忌 忠孝' },
+  { day:'shop', name:'에버리치 면세점', cn:'昇恆昌免稅店', lat:25.0797, lng:121.2342,
+    time:'', desc:'카발란 가장 저렴! everrich.com 사전 예약 → 출국장에서 수령', q:'Ever Rich Duty Free Taoyuan Airport' },
+];
+
+// Create markers
+const markers = [];
+const dayGroups = {};
+
+places.forEach(p => {
+  const icon = makeIcon(colors[p.day]);
+  const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
+
+  let timeHtml = p.time ? `<div class="time-tag">${p.time}</div>` : '';
+  let popup = `
+    <div class="popup-inner">
+      <h3>${p.name}</h3>
+      <div class="cn-name">${p.cn}</div>
+      ${timeHtml}
+      <div class="desc">${p.desc}</div>
+      <a href="${gmapsUrl}" target="_blank" class="gmaps-btn">Google Maps에서 열기</a>
+    </div>
+  `;
+
+  const marker = L.marker([p.lat, p.lng], { icon }).bindPopup(popup);
+  marker._dayTag = p.day;
+  marker.addTo(map);
+  markers.push(marker);
+
+  if (!dayGroups[p.day]) dayGroups[p.day] = [];
+  dayGroups[p.day].push([p.lat, p.lng]);
+});
+
+// Draw route lines per day
+const routeLines = {};
+const lineColors = { '1':'#4285F4','2':'#34A853','3':'#FBBC04','4':'#EA4335','5':'#9C27B0' };
+Object.keys(lineColors).forEach(day => {
+  if (dayGroups[day]) {
+    routeLines[day] = L.polyline(dayGroups[day], {
+      color: lineColors[day], weight: 3, opacity: 0.5, dashArray: '8,8'
+    }).addTo(map);
+  }
+});
+
+// Filter
+function filterDay(day) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.filter-btn[data-day="${day}"]`).classList.add('active');
+
+  markers.forEach(m => {
+    if (day === 'all' || m._dayTag === day) {
+      m.addTo(map);
+    } else {
+      map.removeLayer(m);
+    }
+  });
+
+  Object.keys(routeLines).forEach(d => {
+    if (day === 'all' || d === day) {
+      routeLines[d].addTo(map);
+    } else {
+      map.removeLayer(routeLines[d]);
+    }
+  });
+
+  // Zoom to filtered markers
+  if (day !== 'all' && dayGroups[day]) {
+    map.fitBounds(dayGroups[day], { padding: [60, 60] });
+  } else if (day === 'all') {
+    map.setView([25.05, 121.55], 11);
+  }
+}
+</script>
+</body>
+</html>
