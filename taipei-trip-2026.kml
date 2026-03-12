@@ -352,5 +352,45 @@
     </Placemark>
   </Folder>
 
+  <Folder>
+    <name>인생네컷</name>
+    <Placemark>
+      <name>Plan.B Studio 시먼딩</name>
+      <description>엘리베이터/지하철/빨래방 세트장. 단체 촬영. 약 300TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5077,25.0445,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>SerendiPIC 시먼</name>
+      <description>구 THE FILM Seoul. 감성 프레임. 약 250TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5070,25.0446,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Photoism 중효둔화</name>
+      <description>한국 인기 브랜드 대만 직영. 약 200TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5526,25.0424,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Snapshot 중산</name>
+      <description>대만 로컬 브랜드, 한국 스타일. 중산 카페거리 옆. 약 200TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5202,25.0519,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Plan.B Studio 중산</name>
+      <description>세트장 콘셉트 촬영. 약 300TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5200,25.0530,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Plan.B Studio 동구</name>
+      <description>동구 쇼핑 동선에 편리. 약 300TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5512,25.0436,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
 </Document>
 </kml>

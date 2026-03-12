@@ -50,6 +50,7 @@
   .filter-btn[data-day="5"] { background: #9C27B0; }
   .filter-btn[data-day="opt"] { background: #FF9800; }
   .filter-btn[data-day="shop"] { background: #E91E63; }
+  .filter-btn[data-day="photo"] { background: #00BCD4; }
 
   .maplibregl-popup-content {
     border-radius: 12px !important; padding: 0 !important;
@@ -98,6 +99,7 @@
   <button class="filter-btn" data-day="5" onclick="filterDay('5')">5/5 귀국</button>
   <button class="filter-btn" data-day="opt" onclick="filterDay('opt')">추천</button>
   <button class="filter-btn" data-day="shop" onclick="filterDay('shop')">쇼핑</button>
+  <button class="filter-btn" data-day="photo" onclick="filterDay('photo')">인생네컷</button>
 </div>
 
 <script>
@@ -130,7 +132,7 @@ function switchLang(lang) {
 
 const colors = {
   '1':'#4285F4','2':'#34A853','3':'#FBBC04',
-  '4':'#EA4335','5':'#9C27B0','opt':'#FF9800','shop':'#E91E63'
+  '4':'#EA4335','5':'#9C27B0','opt':'#FF9800','shop':'#E91E63','photo':'#00BCD4'
 };
 
 const places = [
@@ -186,6 +188,13 @@ const places = [
   {day:'shop',name:'카발란 공관점',cn:'噶瑪蘭 公館',lat:25.0187,lng:121.5295,time:'',desc:'직영. 12:00-20:30',q:'噶瑪蘭威士忌 公館'},
   {day:'shop',name:'카발란 충효점',cn:'噶瑪蘭 忠孝',lat:25.0420,lng:121.5510,time:'',desc:'직영. 12:00-21:00',q:'噶瑪蘭威士忌 忠孝'},
   {day:'shop',name:'에버리치 면세점',cn:'昇恆昌',lat:25.0797,lng:121.2342,time:'',desc:'카발란 가장 저렴! 출국장에서 수령',q:'Ever Rich Duty Free Taoyuan Airport'},
+  // PHOTO BOOTH
+  {day:'photo',o:1,name:'Plan.B Studio 시먼딩',cn:'PlanB Studio 旗艦店',lat:25.0445,lng:121.5077,time:'',desc:'엘리베이터/지하철/빨래방 세트장. 단체 촬영 가능. 약 300TWD',q:'PlanB Studio 플랜비스튜디오 旗艦店 西門'},
+  {day:'photo',o:2,name:'SerendiPIC 시먼',cn:'SerendiPIC 西門町店',lat:25.0446,lng:121.5070,time:'',desc:'구 THE FILM Seoul. 감성 프레임+필터. 약 250TWD',q:'SerendiPIC 西門町店'},
+  {day:'photo',o:3,name:'Photoism 중효둔화',cn:'Photoism 忠孝敦化店',lat:25.0424,lng:121.5526,time:'',desc:'한국 인기 브랜드 대만 직영. 약 200TWD',q:'Photoism 忠孝敦化 台北'},
+  {day:'photo',o:4,name:'Snapshot 중산',cn:'妞拍貼 中山創始店',lat:25.0519,lng:121.5202,time:'',desc:'대만 로컬 브랜드, 한국 스타일. 중산 카페거리 옆. 약 200TWD',q:'Snapshot 妞拍貼 中山 台北'},
+  {day:'photo',o:5,name:'Plan.B Studio 중산',cn:'PlanB Studio 中山店',lat:25.0530,lng:121.5200,time:'',desc:'세트장 콘셉트 촬영. 약 300TWD',q:'PlanB Studio 中山店 台北'},
+  {day:'photo',o:6,name:'Plan.B Studio 동구',cn:'PlanB Studio 東區店',lat:25.0436,lng:121.5512,time:'',desc:'동구 쇼핑 동선에 편리. 약 300TWD',q:'PlanB Studio 東區店 台北'},
 ];
 
 // Marker & line management
