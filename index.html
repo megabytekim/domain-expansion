@@ -103,14 +103,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(map);
 
-// Colored circle markers
-function makeIcon(color) {
+// Colored circle markers with number
+function makeIcon(color, num) {
+  const label = num ? num : '';
+  const fontSize = num > 9 ? '11px' : '12px';
   return L.divIcon({
     className: '',
-    html: `<div style="width:28px;height:28px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
-    popupAnchor: [0, -16]
+    html: `<div style="position:relative;width:30px;height:30px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:${fontSize};font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,0.3);">${label}</span></div>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -17]
   });
 }
 
@@ -120,73 +122,73 @@ const colors = {
 };
 
 const places = [
-  // === DAY 1 ===
-  { day:'1', name:'타오위안 국제공항', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
+  // === DAY 1 (방문순서 1-8) ===
+  { day:'1', o:1, name:'타오위안 국제공항', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
     time:'10:55 / 13:35 도착', desc:'SIM, 이지카드, 환전', q:'Taoyuan International Airport' },
-  { day:'1', name:'홍마오청', cn:'紅毛城 Fort San Domingo', lat:25.1753, lng:121.4327,
+  { day:'1', o:2, name:'홍마오청', cn:'紅毛城 Fort San Domingo', lat:25.1753, lng:121.4327,
     time:'14:00', desc:'스페인 건설 → 네덜란드 재건 → 영국 영사관. 단수이 랜드마크', q:'Fort San Domingo Tamsui' },
-  { day:'1', name:'소백궁', cn:'小白宮', lat:25.1742, lng:121.4312,
+  { day:'1', o:3, name:'소백궁', cn:'小白宮', lat:25.1742, lng:121.4312,
     time:'14:40', desc:'하얀 서양식 건물, 포토존', q:'Little White Palace Tamsui' },
-  { day:'1', name:'진리대학', cn:'真理大學', lat:25.1760, lng:121.4300,
+  { day:'1', o:4, name:'진리대학', cn:'真理大學', lat:25.1760, lng:121.4300,
     time:'15:10', desc:'캠퍼스 산책. 17-18시 폐장 주의', q:'Aletheia University Tamsui' },
-  { day:'1', name:'흑전반점', cn:'黑殿飯店', lat:25.1693, lng:121.4408,
+  { day:'1', o:5, name:'흑전반점', cn:'黑殿飯店', lat:25.1693, lng:121.4408,
     time:'15:30', desc:'돼지갈비덮밥 맛집. 약 100TWD. 11:00-20:00', q:'黑殿飯店 淡水' },
-  { day:'1', name:'단수이 페리 선착장', cn:'淡水渡船頭', lat:25.1710, lng:121.4385,
+  { day:'1', o:6, name:'단수이 페리 선착장', cn:'淡水渡船頭', lat:25.1710, lng:121.4385,
     time:'16:30', desc:'빠리행 페리. 편도 23TWD, 약 10분', q:'Tamsui Ferry Wharf' },
-  { day:'1', name:'빠리 좌안', cn:'八里左岸', lat:25.1717, lng:121.4137,
+  { day:'1', o:7, name:'빠리 좌안', cn:'八里左岸', lat:25.1717, lng:121.4137,
     time:'17:00', desc:'자전거 라이딩 + 노을 감상', q:'Bali Left Bank Taipei' },
-  { day:'1', name:'닝샤야시장', cn:'寧夏夜市', lat:25.0555, lng:121.5153,
+  { day:'1', o:8, name:'닝샤야시장', cn:'寧夏夜市', lat:25.0555, lng:121.5153,
     time:'19:30', desc:'위엔환볜(圓環邊) 미슐랭 굴전 필수! MRT 중산역 도보 10분', q:'Ningxia Night Market Taipei' },
 
-  // === DAY 2 ===
-  { day:'2', name:'라뜰리에 루터스', cn:"L'Atelier de Nougat", lat:25.0327, lng:121.5293,
+  // === DAY 2 (방문순서 1-6) ===
+  { day:'2', o:1, name:'라뜰리에 루터스', cn:"L'Atelier de Nougat", lat:25.0327, lng:121.5293,
     time:'08:00 오픈런', desc:'누가크래커. 09시 오픈, 10시 전 품절. 현금만. 1인 10박스 제한', q:"L'atelier de nougat Yongkang" },
-  { day:'2', name:'중정기념당', cn:'中正紀念堂', lat:25.0350, lng:121.5219,
+  { day:'2', o:2, name:'중정기념당', cn:'中正紀念堂', lat:25.0350, lng:121.5219,
     time:'09:30', desc:'10시 위병교대식 관람', q:'Chiang Kai-shek Memorial Hall' },
-  { day:'2', name:'중산 카페거리', cn:'中山站咖啡街', lat:25.0531, lng:121.5225,
+  { day:'2', o:3, name:'중산 카페거리', cn:'中山站咖啡街', lat:25.0531, lng:121.5225,
     time:'11:00', desc:'성수/연남 느낌. 독립 카페, 소품샵, 중산지하서가, 청핀서점', q:'Zhongshan Station Taipei cafe' },
-  { day:'2', name:'시먼딩', cn:'西門町 Ximending', lat:25.0424, lng:121.5081,
+  { day:'2', o:4, name:'시먼딩', cn:'西門町 Ximending', lat:25.0424, lng:121.5081,
     time:'14:00', desc:'아종면선, 지파이, 무지개 횡단보도, 팝마트, 리얼58도', q:'Ximending Taipei' },
-  { day:'2', name:'아종면선', cn:'阿宗麵線', lat:25.0425, lng:121.5065,
+  { day:'2', o:5, name:'아종면선', cn:'阿宗麵線', lat:25.0425, lng:121.5065,
     time:'', desc:'곱창국수. 소 65TWD / 대 120TWD. 서서 먹는 곳', q:'阿宗麵線 西門' },
-  { day:'2', name:'까르푸 구이린점', cn:'家樂福 桂林店', lat:25.0380, lng:121.5050,
+  { day:'2', o:6, name:'까르푸 구이린점', cn:'家樂福 桂林店', lat:25.0380, lng:121.5050,
     time:'21:00', desc:'기념품 쇼핑. NT$2,000 이상 세금환급 5%', q:'Carrefour Guilin Taipei' },
 
-  // === DAY 3 ===
-  { day:'3', name:'예류 지질공원', cn:'野柳地質公園', lat:25.2058, lng:121.6918,
+  // === DAY 3 (방문순서 1-5) ===
+  { day:'3', o:1, name:'예류 지질공원', cn:'野柳地質公園', lat:25.2058, lng:121.6918,
     time:'오전', desc:'여왕머리바위. 바람 강함, 겉옷 챙기기', q:'Yehliu Geopark' },
-  { day:'3', name:'스펀', cn:'十分', lat:25.0565, lng:121.7770,
+  { day:'3', o:2, name:'스펀', cn:'十分', lat:25.0565, lng:121.7770,
     time:'오후', desc:'철길 천등 날리기. 1등 200TWD(단색)/250TWD(4색)', q:'Shifen Old Street' },
-  { day:'3', name:'허우통 고양이마을', cn:'猴硐貓村', lat:25.0868, lng:121.8266,
+  { day:'3', o:3, name:'허우통 고양이마을', cn:'猴硐貓村', lat:25.0868, lng:121.8266,
     time:'오후', desc:'30분이면 충분', q:'Houtong Cat Village' },
-  { day:'3', name:'지우펀', cn:'九份', lat:25.1092, lng:121.8449,
+  { day:'3', o:4, name:'지우펀', cn:'九份', lat:25.1092, lng:121.8449,
     time:'저녁', desc:'홍등 야경. 위위차관(芋圓) 55TWD 필수', q:'Jiufen Old Street' },
-  { day:'3', name:'라오허제 야시장', cn:'饒河街夜市', lat:25.0506, lng:121.5774,
+  { day:'3', o:5, name:'라오허제 야시장', cn:'饒河街夜市', lat:25.0506, lng:121.5774,
     time:'20:00', desc:'후추떡, 약선배골탕', q:'Raohe Night Market Taipei' },
 
-  // === DAY 4 ===
-  { day:'4', name:'청도반단', cn:'青島飯糰', lat:25.0440, lng:121.5270,
+  // === DAY 4 (방문순서 1-7) ===
+  { day:'4', o:1, name:'청도반단', cn:'青島飯糰', lat:25.0440, lng:121.5270,
     time:'07:30', desc:'주먹밥 아침', q:'青島飯糰 台北' },
-  { day:'4', name:'우라이', cn:'烏來', lat:24.8653, lng:121.5516,
+  { day:'4', o:2, name:'우라이', cn:'烏來', lat:24.8653, lng:121.5516,
     time:'09:20', desc:'폭포, 꼬마열차(50TWD), 온천, 원주민 요리', q:'Wulai Taipei' },
-  { day:'4', name:'우라이 폭포', cn:'烏來瀑布', lat:24.8560, lng:121.5500,
+  { day:'4', o:3, name:'우라이 폭포', cn:'烏來瀑布', lat:24.8560, lng:121.5500,
     time:'09:30', desc:'꼬마열차 편도 50TWD', q:'Wulai Waterfall' },
-  { day:'4', name:'융캉제', cn:'永康街', lat:25.0330, lng:121.5293,
+  { day:'4', o:4, name:'융캉제', cn:'永康街', lat:25.0330, lng:121.5293,
     time:'16:00-18:00', desc:'딘타이펑/까오지, 망고빙수, 소품샵', q:'Yongkang Street Taipei' },
-  { day:'4', name:'딘타이펑 신생점', cn:'鼎泰豐 新生店', lat:25.0340, lng:121.5310,
+  { day:'4', o:5, name:'딘타이펑 신생점', cn:'鼎泰豐 新生店', lat:25.0340, lng:121.5310,
     time:'', desc:'샤오룽바오 10개 250TWD. 본점보다 대기 짧음', q:'Din Tai Fung Xinsheng Taipei' },
-  { day:'4', name:'까오지 본점', cn:'高記 本店', lat:25.0335, lng:121.5300,
+  { day:'4', o:6, name:'까오지 본점', cn:'高記 本店', lat:25.0335, lng:121.5300,
     time:'', desc:'생전포 10개 200TWD. 신생남로 1단 167호', q:'高記 永康街' },
-  { day:'4', name:'용산사', cn:'龍山寺 Longshan Temple', lat:25.0372, lng:121.4999,
+  { day:'4', o:7, name:'용산사', cn:'龍山寺 Longshan Temple', lat:25.0372, lng:121.4999,
     time:'19:00', desc:'야경. 마지막 밤 마무리', q:'Longshan Temple Taipei' },
 
-  // === DAY 5 ===
-  { day:'5', name:'타이베이 식물원', cn:'台北植物園', lat:25.0315, lng:121.5105,
+  // === DAY 5 (방문순서 1-2) ===
+  { day:'5', o:1, name:'타이베이 식물원', cn:'台北植物園', lat:25.0315, lng:121.5105,
     time:'08:30', desc:'여유 조 아침 산책', q:'Taipei Botanical Garden' },
-  { day:'5', name:'타오위안 공항 (출발)', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
+  { day:'5', o:2, name:'타오위안 공항 (출발)', cn:'桃園國際機場', lat:25.0797, lng:121.2342,
     time:'11:55 / 15:15', desc:'출발', q:'Taoyuan International Airport' },
 
-  // === OPTIONAL ===
+  // === OPTIONAL (번호 없음) ===
   { day:'opt', name:'국립고궁박물원', cn:'國立故宮博物院', lat:25.1024, lng:121.5485,
     time:'', desc:'입장 350TWD. 일/월 휴무. 취옥백채/육형석 필수', q:'National Palace Museum Taipei' },
   { day:'opt', name:'타이베이 101', cn:'台北101', lat:25.0340, lng:121.5645,
@@ -210,7 +212,7 @@ const places = [
   { day:'opt', name:'남기장 야시장', cn:'南機場夜市', lat:25.0310, lng:121.5068,
     time:'', desc:'미슐랭 빕 구르망. 현지인 95%. MRT 용산사역 도보 15분', q:'Nanjichang Night Market' },
 
-  // === SHOPPING ===
+  // === SHOPPING (번호 없음) ===
   { day:'shop', name:'린화타이차항', cn:'林華泰茶行', lat:25.0591, lng:121.5100,
     time:'', desc:'동방미인차 가성비 최고. 1883년 창립. 150g 약 545TWD부터', q:'林華泰茶行 台北' },
   { day:'shop', name:'유기명차', cn:'有記名茶', lat:25.0580, lng:121.5098,
@@ -230,7 +232,7 @@ const markers = [];
 const dayGroups = {};
 
 places.forEach(p => {
-  const icon = makeIcon(colors[p.day]);
+  const icon = makeIcon(colors[p.day], p.o);
   const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
 
   let timeHtml = p.time ? `<div class="time-tag">${p.time}</div>` : '';
