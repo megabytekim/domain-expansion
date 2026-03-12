@@ -51,6 +51,7 @@
   .filter-btn[data-day="opt"] { background: #FF9800; }
   .filter-btn[data-day="shop"] { background: #E91E63; }
   .filter-btn[data-day="photo"] { background: #00BCD4; }
+  .filter-btn[data-day="bib"] { background: #FF6F00; }
 
   .maplibregl-popup-content {
     border-radius: 12px !important; padding: 0 !important;
@@ -100,6 +101,7 @@
   <button class="filter-btn" data-day="opt" onclick="filterDay('opt')">추천</button>
   <button class="filter-btn" data-day="shop" onclick="filterDay('shop')">쇼핑</button>
   <button class="filter-btn" data-day="photo" onclick="filterDay('photo')">인생네컷</button>
+  <button class="filter-btn" data-day="bib" onclick="filterDay('bib')">빕구르망</button>
 </div>
 
 <script>
@@ -132,7 +134,7 @@ function switchLang(lang) {
 
 const colors = {
   '1':'#4285F4','2':'#34A853','3':'#FBBC04',
-  '4':'#EA4335','5':'#9C27B0','opt':'#FF9800','shop':'#E91E63','photo':'#00BCD4'
+  '4':'#EA4335','5':'#9C27B0','opt':'#FF9800','shop':'#E91E63','photo':'#00BCD4','bib':'#FF6F00'
 };
 
 const places = [
@@ -195,6 +197,19 @@ const places = [
   {day:'photo',o:4,name:'Snapshot 중산',cn:'妞拍貼 中山創始店',lat:25.0519,lng:121.5202,time:'',desc:'대만 로컬 브랜드, 한국 스타일. 중산 카페거리 옆. 약 200TWD',q:'Snapshot 妞拍貼 中山 台北'},
   {day:'photo',o:5,name:'Plan.B Studio 중산',cn:'PlanB Studio 中山店',lat:25.0530,lng:121.5200,time:'',desc:'세트장 콘셉트 촬영. 약 300TWD',q:'PlanB Studio 中山店 台北'},
   {day:'photo',o:6,name:'Plan.B Studio 동구',cn:'PlanB Studio 東區店',lat:25.0436,lng:121.5512,time:'',desc:'동구 쇼핑 동선에 편리. 약 300TWD',q:'PlanB Studio 東區店 台北'},
+  // BIB GOURMAND
+  {day:'bib',o:1,name:'라오산둥 우육면',cn:'老山東牛肉麵',lat:25.0425,lng:121.5065,time:'',desc:'완녠빌딩 B1. 76년 전통 우육면. 약 200TWD',q:'老山東牛肉家常麵店 西門 台北'},
+  {day:'bib',o:2,name:'위안팡 과바오',cn:'源芳刈包',lat:25.0374,lng:121.4997,time:'',desc:'대만식 햄버거. 과바오 70TWD. 월요일 휴무',q:'源芳刈包 華西街 台北'},
+  {day:'bib',o:3,name:'이자쯔',cn:'一甲子餐飲',lat:25.0396,lng:121.5015,time:'',desc:'꽁러우판 80TWD, 과바오 45TWD. 월요일 휴무',q:'一甲子餐飲 萬華 台北'},
+  {day:'bib',o:4,name:'황지루러우판',cn:'黃記魯肉飯',lat:25.0628,lng:121.5234,time:'',desc:'필수! 루러우판 가성비 최고. 월요일 휴무. 현금만',q:'黃記魯肉飯 中山北路 台北'},
+  {day:'bib',o:5,name:'지자좡',cn:'雞家莊',lat:25.0529,lng:121.5226,time:'',desc:'50년 전통 치킨. 9명 단체석 가능. 삼미지 추천',q:'雞家莊 長春路 台北'},
+  {day:'bib',o:6,name:'런허위안',cn:'人和園餐廳',lat:25.0568,lng:121.5228,time:'',desc:'유일한 윈난요리 빕구르망. 60년. 예약 필수',q:'人和園雲南餐廳 中山 台北'},
+  {day:'bib',o:7,name:'항저우샤오롱탕바오',cn:'杭州小籠湯包',lat:25.0315,lng:121.5243,time:'',desc:'딘타이펑 1/3 가격! 8년 연속 선정. 줄 각오',q:'杭州小籠湯包 杭州南路 台北'},
+  {day:'bib',o:8,name:'솽위에스핀셔',cn:'雙月食品社',lat:25.0406,lng:121.5256,time:'',desc:'하마둔지탕 190TWD. 8년 연속. 예약 불가',q:'雙月食品社 青島東路 台北'},
+  {day:'bib',o:9,name:'쮜이펑위안',cn:'醉楓園小館',lat:25.0487,lng:121.5510,time:'',desc:'광동요리. 8년 연속. 위니샹수야 필수. 월요일 휴무',q:'醉楓園小館 八德路 台北'},
+  {day:'bib',o:10,name:'다차오터우 미가오',cn:'大橋頭米糕',lat:25.0651,lng:121.5115,time:'',desc:'통쯔미가오 35TWD! 초저가 아침. 화요일 휴무',q:'大橋頭米糕 延平北路 台北'},
+  {day:'bib',o:11,name:'마이멘옌쯔',cn:'賣麵炎仔',lat:25.0633,lng:121.5096,time:'',desc:'80년 3대째. 대만 최초 빕구르망. 7:00-14:30만',q:'賣麵炎仔 安西街 台北'},
+  {day:'bib',o:12,name:'신차오판뎬',cn:'心潮飯店',lat:25.0408,lng:121.5687,time:'',desc:'미풍신의 2F. 간베이우위쯔차오판 580TWD',q:'心潮飯店 忠孝東路 微風信義 台北'},
 ];
 
 // Marker & line management

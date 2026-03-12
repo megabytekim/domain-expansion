@@ -392,5 +392,81 @@
     </Placemark>
   </Folder>
 
+  <Folder>
+    <name>빕구르망</name>
+    <Placemark>
+      <name>라오산둥 우육면</name>
+      <description>완녠빌딩 B1. 76년 전통 우육면. 약 200TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5065,25.0425,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>위안팡 과바오</name>
+      <description>대만식 햄버거. 과바오 70TWD. 월요일 휴무</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.4997,25.0374,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>이자쯔</name>
+      <description>꽁러우판 80TWD, 과바오 45TWD. 월요일 휴무</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5015,25.0396,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>황지루러우판</name>
+      <description>필수! 루러우판 가성비 최고. 월요일 휴무. 현금만</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5234,25.0628,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>지자좡</name>
+      <description>50년 전통 치킨. 9명 단체석 가능. 삼미지 추천</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5226,25.0529,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>런허위안</name>
+      <description>유일한 윈난요리 빕구르망. 60년. 예약 필수</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5228,25.0568,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>항저우샤오롱탕바오</name>
+      <description>딘타이펑 1/3 가격! 8년 연속 선정</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5243,25.0315,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>솽위에스핀셔</name>
+      <description>하마둔지탕 190TWD. 8년 연속. 예약 불가</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5256,25.0406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>쮜이펑위안</name>
+      <description>광동요리. 8년 연속. 위니샹수야 필수</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5510,25.0487,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>다차오터우 미가오</name>
+      <description>통쯔미가오 35TWD! 초저가 아침. 화요일 휴무</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5115,25.0651,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>마이멘옌쯔</name>
+      <description>80년 3대째. 대만 최초 빕구르망. 7:00-14:30만</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5096,25.0633,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>신차오판뎬</name>
+      <description>미풍신의 2F. 간베이우위쯔차오판 580TWD</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5687,25.0408,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
 </Document>
 </kml>
