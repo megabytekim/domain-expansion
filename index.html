@@ -91,8 +91,9 @@
     <p>핀을 눌러 상세 정보 확인 / 하단 버튼으로 일자별 필터</p>
   </div>
   <div class="lang-toggle">
+    <button class="lang-btn active" onclick="switchMap('ko')">한국어</button>
+    <button class="lang-btn" onclick="switchMap('en')">EN</button>
     <button class="lang-btn" onclick="switchMap('cn')">中文</button>
-    <button class="lang-btn active" onclick="switchMap('en')">EN</button>
     <button class="lang-btn" onclick="switchMap('simple')">심플</button>
   </div>
 </div>
@@ -115,9 +116,13 @@
 const map = L.map('map', { zoomControl: false }).setView([25.05, 121.55], 11);
 L.control.zoom({ position: 'topright' }).addTo(map);
 
+const mtKey = 'Jae74EBLEJXQSqcHSf8x';
 const tiles = {
-  en: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+  ko: L.tileLayer(`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${mtKey}&language=ko`, {
+    attribution: '&copy; MapTiler &copy; OpenStreetMap', maxZoom: 19, tileSize: 512, zoomOffset: -1
+  }),
+  en: L.tileLayer(`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${mtKey}&language=en`, {
+    attribution: '&copy; MapTiler &copy; OpenStreetMap', maxZoom: 19, tileSize: 512, zoomOffset: -1
   }),
   cn: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap', maxZoom: 19
@@ -126,7 +131,7 @@ const tiles = {
     attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
   })
 };
-let currentTile = tiles.en;
+let currentTile = tiles.ko;
 currentTile.addTo(map);
 
 function switchMap(style) {
