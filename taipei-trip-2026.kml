@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>타이베이 4박 5일 (5/1-5/5)</name>
+  <description>9명 타이베이 여행 일정 지도</description>
+
+  <!-- Day 1: Blue -->
+  <Style id="day1">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/blue-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Day 2: Green -->
+  <Style id="day2">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/green-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Day 3: Yellow -->
+  <Style id="day3">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/yellow-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Day 4: Red -->
+  <Style id="day4">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/red-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Day 5: Purple -->
+  <Style id="day5">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/purple-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Optional: Orange -->
+  <Style id="optional">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/orange-dot.png</href></Icon></IconStyle>
+  </Style>
+  <!-- Shopping: Pink -->
+  <Style id="shopping">
+    <IconStyle><Icon><href>http://maps.google.com/mapfiles/ms/icons/pink-dot.png</href></Icon></IconStyle>
+  </Style>
+
+  <!-- ==================== -->
+  <!-- DAY 1 (5/1) - Blue   -->
+  <!-- ==================== -->
+  <Folder>
+    <name>5/1 (금) 도착 + 단수이</name>
+    <Placemark>
+      <name>타오위안 국제공항</name>
+      <description>도착: 10:55 (지수/희주/우영/영진), 13:35 (원상/현상)</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.2342,25.0797,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>홍마오청 (紅毛城)</name>
+      <description>14:00 - 스페인 건설, 네덜란드 재건, 영국 영사관. 단수이 랜드마크</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4327,25.1753,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>소백궁 (小白宮)</name>
+      <description>14:40 - 하얀 서양식 건물, 포토존</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4312,25.1742,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>진리대학 (真理大學)</name>
+      <description>15:10 - 캠퍼스 산책. 17-18시 폐장 주의</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4300,25.1760,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>흑전반점 (黑殿飯店)</name>
+      <description>15:30 - 돼지갈비덮밥 맛집. 약 100TWD. 11:00-20:00</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4408,25.1693,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>단수이 페리 선착장</name>
+      <description>16:30 - 빠리행 페리 탑승. 편도 23TWD, 약 10분</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4385,25.1710,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>빠리 좌안 (八里左岸)</name>
+      <description>17:00 - 자전거 라이딩 + 노을 감상</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.4137,25.1717,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>닝샤야시장 (寧夏夜市)</name>
+      <description>19:30 - MRT 중산역 도보 10분. 위엔환볜 미슐랭 굴전 필수</description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.5153,25.0555,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ==================== -->
+  <!-- DAY 2 (5/2) - Green  -->
+  <!-- ==================== -->
+  <Folder>
+    <name>5/2 (토) 누가크래커 + 중산 + 시먼딩</name>
+    <Placemark>
+      <name>라뜰리에 루터스 (L'Atelier de Nougat)</name>
+      <description>08:00 오픈런 - 누가크래커. 09시 오픈, 10시 전 품절. 현금만. 1인 10박스 제한</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5293,25.0327,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>중정기념당 (中正紀念堂)</name>
+      <description>09:30 - 10시 위병교대식 관람</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5219,25.0350,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>중산 카페거리 / 중산지하서가</name>
+      <description>11:00 - 성수/연남 느낌. 독립 카페, 소품샵, 청핀서점</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5225,25.0531,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>시먼딩 (西門町)</name>
+      <description>14:00 - 아종면선, 지파이, 리얼58도, 무지개 횡단보도</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5081,25.0424,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>아종면선 (阿宗麵線)</name>
+      <description>곱창국수 - 소 65TWD / 대 120TWD. 서서 먹는 곳</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5065,25.0425,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>까르푸 (Carrefour) 구이린점</name>
+      <description>21:00 - 기념품 쇼핑. NT$2,000 이상 세금환급 5%</description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5050,25.0380,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ==================== -->
+  <!-- DAY 3 (5/3) - Yellow -->
+  <!-- ==================== -->
+  <Folder>
+    <name>5/3 (일) 예스허지 투어</name>
+    <Placemark>
+      <name>예류 지질공원 (野柳地質公園)</name>
+      <description>오전 - 여왕머리바위. 바람 강함, 겉옷 챙기기</description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.6918,25.2058,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>스펀 (十分)</name>
+      <description>오후 - 철길 천등 날리기. 1등 200TWD(단색)/250TWD(4색)</description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.7770,25.0565,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>허우통 고양이마을 (猴硐)</name>
+      <description>오후 - 30분이면 충분</description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.8266,25.0868,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>지우펀 (九份)</name>
+      <description>저녁 - 홍등 야경. 위위차관(芋圓) 55TWD 필수</description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.8449,25.1092,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>라오허제 야시장 (饒河街夜市)</name>
+      <description>20:00 - 후추떡, 약선배골탕</description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.5774,25.0506,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ==================== -->
+  <!-- DAY 4 (5/4) - Red    -->
+  <!-- ==================== -->
+  <Folder>
+    <name>5/4 (월) 우라이 + 융캉제 + 용산사</name>
+    <Placemark>
+      <name>청도반단 (青島飯糰)</name>
+      <description>07:30 - 주먹밥 아침</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5270,25.0440,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>우라이 (烏來)</name>
+      <description>09:20 도착 - 폭포, 꼬마열차, 온천, 원주민 요리</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5516,24.8653,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>우라이 폭포 (烏來瀑布)</name>
+      <description>09:30 - 꼬마열차 편도 50TWD</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5500,24.8560,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>융캉제 (永康街)</name>
+      <description>16:00-18:00 - 딘타이펑/까오지, 망고빙수, 소품샵</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5293,25.0330,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>딘타이펑 신생점 (鼎泰豐)</name>
+      <description>샤오룽바오 10개 250TWD. 본점보다 대기 짧음</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5310,25.0340,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>까오지 본점 (高記)</name>
+      <description>생전포 10개 200TWD. 신생남로 1단 167호</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.5300,25.0340,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>용산사 (龍山寺)</name>
+      <description>19:00 - 야경. 마지막 밤 마무리</description>
+      <styleUrl>#day4</styleUrl>
+      <Point><coordinates>121.4999,25.0372,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ==================== -->
+  <!-- DAY 5 (5/5) - Purple -->
+  <!-- ==================== -->
+  <Folder>
+    <name>5/5 (화) 귀국</name>
+    <Placemark>
+      <name>타이베이 식물원 (台北植物園)</name>
+      <description>08:30 - 여유 조 아침 산책</description>
+      <styleUrl>#day5</styleUrl>
+      <Point><coordinates>121.5105,25.0315,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>타오위안 국제공항 (출발)</name>
+      <description>11:55 (1조), 15:15-30 (2조) 출발</description>
+      <styleUrl>#day5</styleUrl>
+      <Point><coordinates>121.2342,25.0797,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ======================== -->
+  <!-- OPTIONAL - Orange        -->
+  <!-- ======================== -->
+  <Folder>
+    <name>선택/추천 여행지</name>
+    <Placemark>
+      <name>국립고궁박물원 (國立故宮博物院)</name>
+      <description>입장 350TWD. 일/월 휴무. 취옥백채/육형석 필수</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5485,25.1024,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>타이베이 101 (台北101)</name>
+      <description>전망대 입장 600TWD</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5645,25.0340,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>카발란 증류소 (噶瑪蘭威士忌酒廠)</name>
+      <description>이란현. 타이베이역에서 기차 1.5시간 + 택시 20분. 09:00-18:00 연중무휴</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.7517,24.7568,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>보장암 예술촌 (寶藏巖)</name>
+      <description>MRT 공관역 도보 10분. 벽화, 설치미술. 화요일 휴무</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5340,25.0112,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>화산1914 (華山1914)</name>
+      <description>MRT 중효신생역 도보 5분. 전시, 카페, 플리마켓</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5295,25.0440,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>송산문창원구 (松山文創園區)</name>
+      <description>MRT 국부기념관역 도보 10분. 청핀생활관(誠品) 옆</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5607,25.0443,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>대도정/디화제 (大稻埕/迪化街)</name>
+      <description>MRT 베이먼역 도보 10분. 전통차 도매상, 레트로 카페</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5100,25.0570,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>상산 (象山)</name>
+      <description>타이베이 101 야경 베스트 포토스팟. MRT 상산역. 왕복 1시간</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5710,25.0270,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>마오콩 곤돌라 (貓空纜車)</name>
+      <description>MRT 동물원역. 곤돌라 편도 120TWD. 차밭+야경. 월요일 휴무</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5764,24.9983,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>북투 온천 (北投溫泉)</name>
+      <description>MRT 신베이투역. 온천박물관, 지열곡, 북투도서관. 월요일 휴관</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5068,25.1370,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>남기장 야시장 (南機場夜市)</name>
+      <description>미슐랭 빕 구르망 다수. 현지인 95%. MRT 용산사역 도보 15분</description>
+      <styleUrl>#optional</styleUrl>
+      <Point><coordinates>121.5068,25.0310,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ======================== -->
+  <!-- SHOPPING - Pink          -->
+  <!-- ======================== -->
+  <Folder>
+    <name>쇼핑/구매처</name>
+    <Placemark>
+      <name>린화타이차항 (林華泰茶行)</name>
+      <description>동방미인차 가성비 최고. 1883년 창립. 충칭북로2단 36호</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5100,25.0591,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>유기명차 (有記名茶)</name>
+      <description>1890년 5대째 운영. 시음 체험. 충칭북로2단 64항 26호</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5098,25.0580,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>리얼 58도 (Real 58度)</name>
+      <description>시먼딩 위스키 전문점. 카발란 등 다양한 라인업</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5070,25.0430,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>카발란 공관 전시판매센터</name>
+      <description>직영. 12:00-20:30. 한정판 구매 가능. MRT 타이뎬따러우역</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5295,25.0187,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>카발란 충효 전시판매센터</name>
+      <description>직영. 12:00-21:00. 돈화남로1단 212호</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.5510,25.0420,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>에버리치 면세점 (타오위안공항)</name>
+      <description>카발란 가장 저렴! everrich.com 사전 예약 → 공항 수령</description>
+      <styleUrl>#shopping</styleUrl>
+      <Point><coordinates>121.2342,25.0797,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+</Document>
+</kml>
