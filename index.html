@@ -104,25 +104,23 @@
 const MT_KEY = 'Jae74EBLEJXQSqcHSf8x';
 let currentLang = 'ko';
 
+function getStyleUrl(lang) {
+  return `https://api.maptiler.com/maps/streets-v2/style.json?key=${MT_KEY}&language=${lang}`;
+}
+
 const map = new maplibregl.Map({
   container: 'map',
-  style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${MT_KEY}`,
+  style: getStyleUrl('ko'),
   center: [121.55, 25.05],
-  zoom: 10,
-  language: 'ko'
+  zoom: 10
 });
 
 map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
 function switchLang(lang) {
   currentLang = lang;
-  map.setStyle(`https://api.maptiler.com/maps/streets-v2/style.json?key=${MT_KEY}`);
-  map.once('styledata', () => {
-    map.getStyle().layers.forEach(layer => {
-      if (layer.layout && layer.layout['text-field']) {
-        map.setLayoutProperty(layer.id, 'text-field', ['coalesce', ['get', 'name:' + lang], ['get', 'name:latin'], ['get', 'name']]);
-      }
-    });
+  map.setStyle(getStyleUrl(lang));
+  map.once('style.load', () => {
     addAllMarkers();
     addAllLines();
     applyCurrentFilter();
