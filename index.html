@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>타이베이 4박 5일 (5/1-5/5)</title>
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
@@ -99,32 +100,30 @@
   <button class="filter-btn" data-day="shop" onclick="filterDay('shop')">쇼핑</button>
 </div>
 
-<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
-const MT_KEY = 'Jae74EBLEJXQSqcHSf8x';
+maptilersdk.config.apiKey = 'Jae74EBLEJXQSqcHSf8x';
 let currentLang = 'ko';
 
-function getStyleUrl(lang) {
-  return `https://api.maptiler.com/maps/streets-v2/style.json?key=${MT_KEY}&language=${lang}`;
-}
-
-const map = new maplibregl.Map({
+const map = new maptilersdk.Map({
   container: 'map',
-  style: getStyleUrl('ko'),
+  style: maptilersdk.MapStyle.STREETS,
   center: [121.55, 25.05],
-  zoom: 10
+  zoom: 10,
+  language: maptilersdk.Language.KOREAN
 });
 
-map.addControl(new maplibregl.NavigationControl(), 'top-right');
+map.addControl(new maptilersdk.NavigationControl(), 'top-right');
+
+const langMap = {
+  ko: maptilersdk.Language.KOREAN,
+  en: maptilersdk.Language.ENGLISH,
+  zh: maptilersdk.Language.CHINESE,
+  ja: maptilersdk.Language.JAPANESE
+};
 
 function switchLang(lang) {
   currentLang = lang;
-  map.setStyle(getStyleUrl(lang));
-  map.once('style.load', () => {
-    addAllMarkers();
-    addAllLines();
-    applyCurrentFilter();
-  });
+  map.setLanguage(langMap[lang]);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
 }
@@ -219,9 +218,9 @@ function addAllMarkers() {
     const timeHtml = p.time ? `<div class="time-tag">${p.time}</div>` : '';
     const popupHtml = `<div class="popup-inner"><h3>${p.name}</h3><div class="cn-name">${p.cn}</div>${timeHtml}<div class="desc">${p.desc}</div><a href="${gmapsUrl}" target="_blank" class="gmaps-btn">Google Maps에서 열기</a></div>`;
 
-    const marker = new maplibregl.Marker({ element: el })
+    const marker = new maptilersdk.Marker({ element: el })
       .setLngLat([p.lng, p.lat])
-      .setPopup(new maplibregl.Popup({ offset: 18, maxWidth: '280px' }).setHTML(popupHtml))
+      .setPopup(new maptilersdk.Popup({ offset: 18, maxWidth: '280px' }).setHTML(popupHtml))
       .addTo(map);
 
     markerObjs.push({ marker, day: p.day });
@@ -261,7 +260,7 @@ function filterDay(day) {
   });
 
   if (day !== 'all' && dayCoords[day]) {
-    const bounds = new maplibregl.LngLatBounds();
+    const bounds = new maptilersdk.LngLatBounds();
     dayCoords[day].forEach(c => bounds.extend(c));
     map.fitBounds(bounds, { padding: 80 });
   } else if (day === 'all') {
@@ -270,12 +269,6 @@ function filterDay(day) {
 }
 
 map.on('load', () => {
-  // Set Korean labels
-  map.getStyle().layers.forEach(layer => {
-    if (layer.layout && layer.layout['text-field']) {
-      map.setLayoutProperty(layer.id, 'text-field', ['coalesce', ['get', 'name:ko'], ['get', 'name:latin'], ['get', 'name']]);
-    }
-  });
   addAllMarkers();
   addAllLines();
 });
