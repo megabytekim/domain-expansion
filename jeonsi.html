@@ -217,6 +217,12 @@
     letter-spacing: 0.2em;
     margin-bottom: 2rem;
   }
+
+  .yt-wrap {
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
@@ -235,6 +241,12 @@
   <p class="subtitle">4월 옥션 번개</p>
 
   <div class="divider"></div>
+
+  <div class="yt-wrap" id="ytWrap">
+    <iframe id="ytPlayer" width="100%" height="200" style="border-radius:4px; opacity:0.9;"
+      src="" frameborder="0"
+      allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
   <div class="equalizer" id="eq">
     <div class="eq-bar" style="height:4px"></div>
@@ -272,92 +284,22 @@
 </div>
 
 <script>
-// ── 샹젤리제 멜로디 (Web Audio API) ──
-const NOTES = {
-  C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00,
-  A4:440.00, B4:493.88, C5:523.25, D5:587.33, E5:659.25,
-  F5:698.46, G5:783.99
-};
-
-// "Aux Champs-Élysées" chorus melody (simplified)
-const melody = [
-  // "Je m'ba-la-dais sur l'a-ve-nue"
-  ['E4',0.25],['E4',0.25],['G4',0.25],['A4',0.25],['B4',0.5],['A4',0.25],['G4',0.25],
-  // "le coeur ou-vert à l'in-con-nu"
-  ['A4',0.25],['G4',0.25],['E4',0.25],['D4',0.25],['E4',0.75],[null,0.25],
-  // "j'a-vais en-vie de dire bon-jour"
-  ['E4',0.25],['E4',0.25],['G4',0.25],['A4',0.25],['B4',0.5],['A4',0.25],['G4',0.25],
-  // "à n'im-porte qui"
-  ['A4',0.25],['B4',0.25],['C5',0.5],['B4',0.5],[null,0.25],
-
-  // "Aux Champs-É-ly-sé-es"
-  ['E5',0.4],['D5',0.3],['C5',0.3],['B4',0.3],['C5',0.6],[null,0.2],
-  // "Aux Champs-É-ly-sé-es"
-  ['D5',0.4],['C5',0.3],['B4',0.3],['A4',0.3],['B4',0.6],[null,0.2],
-  // "Au so-leil, sous la pluie"
-  ['C5',0.3],['B4',0.3],['A4',0.3],['G4',0.3],['A4',0.6],[null,0.2],
-  // "à mi-di ou à mi-nuit"
-  ['B4',0.3],['A4',0.3],['G4',0.3],['E4',0.3],['G4',0.8],[null,0.3],
-
-  // repeat chorus
-  ['E5',0.4],['D5',0.3],['C5',0.3],['B4',0.3],['C5',0.6],[null,0.2],
-  ['D5',0.4],['C5',0.3],['B4',0.3],['A4',0.3],['B4',0.6],[null,0.2],
-  ['C5',0.4],['B4',0.3],['A4',0.3],['G4',0.3],
-  ['A4',0.3],['B4',0.3],['C5',0.3],['B4',0.3],['A4',0.3],['G4',1.0],
-];
-
-let audioCtx = null;
-let isPlaying = false;
 const eqBars = document.querySelectorAll('.eq-bar');
 let eqInterval = null;
 
-function playNote(ctx, freq, startTime, duration) {
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-
-  osc.type = 'triangle';
-  osc.frequency.value = freq;
-
-  gain.gain.setValueAtTime(0, startTime);
-  gain.gain.linearRampToValueAtTime(0.18, startTime + 0.04);
-  gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-
-  osc.start(startTime);
-  osc.stop(startTime + duration);
-}
-
-function playMelody() {
-  if (isPlaying) return;
-  isPlaying = true;
-
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  let t = audioCtx.currentTime + 0.1;
-
-  const tempo = 0.28; // seconds per beat unit
-
-  melody.forEach(([note, dur]) => {
-    if (note && NOTES[note]) {
-      playNote(audioCtx, NOTES[note], t, dur * tempo * 2);
-    }
-    t += dur * tempo;
-  });
-
-  // 이퀄라이저 애니메이션
+function startEq() {
+  if (eqInterval) return;
   eqInterval = setInterval(() => {
     eqBars.forEach(bar => {
       bar.style.height = (4 + Math.random() * 22) + 'px';
     });
   }, 120);
+}
 
-  const totalDuration = melody.reduce((s, [, d]) => s + d, 0) * tempo;
-  setTimeout(() => {
-    isPlaying = false;
-    clearInterval(eqInterval);
-    eqBars.forEach(bar => bar.style.height = '4px');
-  }, totalDuration * 1000 + 500);
+function stopEq() {
+  clearInterval(eqInterval);
+  eqInterval = null;
+  eqBars.forEach(bar => bar.style.height = '4px');
 }
 
 // 음표 파티클
@@ -375,7 +317,7 @@ function spawnNotes() {
   }
 }
 
-// 클릭 이벤트
+// 클릭 → 유튜브 자동재생 시작
 let started = false;
 document.getElementById('overlay').addEventListener('click', () => {
   if (started) return;
@@ -385,16 +327,12 @@ document.getElementById('overlay').addEventListener('click', () => {
   document.getElementById('card').classList.add('visible');
 
   setTimeout(() => {
-    playMelody();
+    // 유튜브 iframe src 설정 (autoplay)
+    document.getElementById('ytPlayer').src =
+      'https://www.youtube.com/embed/bb-DKKRN4o8?autoplay=1&start=0';
+    startEq();
     spawnNotes();
   }, 600);
-});
-
-// 카드 재클릭시 다시 재생
-document.getElementById('card').addEventListener('click', (e) => {
-  if (e.target.closest('.gallery-card')) return;
-  playMelody();
-  spawnNotes();
 });
 </script>
 </body>
