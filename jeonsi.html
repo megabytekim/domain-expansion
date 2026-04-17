@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전시번개</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #0a0a0a;
+    color: #f5f0e8;
+    font-family: 'Noto Serif KR', serif;
+    overflow-x: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 클릭 전 오버레이 */
+  .click-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: #0a0a0a;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  .click-overlay.hidden {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .click-overlay .prompt {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: #f5f0e8;
+    letter-spacing: 0.3em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .click-overlay .emoji {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* 메인 카드 */
+  .invitation {
+    max-width: 560px;
+    width: 90%;
+    padding: 3rem 2.5rem;
+    background: linear-gradient(145deg, #1a1714, #0f0d0b);
+    border: 1px solid #3a3530;
+    border-radius: 2px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+  }
+  .invitation.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  .invitation::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px solid #2a2520;
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .date-line {
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: #8a7e6e;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', 'Noto Serif KR', serif;
+    font-size: clamp(2.5rem, 7vw, 3.8rem);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f5f0e8, #c4a76c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #c4a76c;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: #c4a76c;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* 갤러리 카드 */
+  .galleries {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .gallery-card {
+    display: block;
+    padding: 1.4rem 1.6rem;
+    background: rgba(196, 167, 108, 0.06);
+    border: 1px solid #2a2520;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #f5f0e8;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .gallery-card:hover {
+    border-color: #c4a76c;
+    background: rgba(196, 167, 108, 0.12);
+    transform: translateX(4px);
+  }
+  .gallery-card::after {
+    content: '\2197';
+    position: absolute;
+    right: 1.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #c4a76c;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-card:hover::after { opacity: 1; }
+
+  .gallery-card .num {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #c4a76c;
+    margin-bottom: 0.4rem;
+  }
+  .gallery-card .name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .gallery-card .desc {
+    font-size: 0.82rem;
+    color: #8a7e6e;
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #5a5347;
+    line-height: 1.8;
+  }
+
+  /* 음표 파티클 */
+  .note {
+    position: fixed;
+    font-size: 1.6rem;
+    pointer-events: none;
+    z-index: 50;
+    animation: float-up 3s ease-out forwards;
+  }
+  @keyframes float-up {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(-300px) rotate(360deg); }
+  }
+
+  /* 이퀄라이저 */
+  .equalizer {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    height: 30px;
+    align-items: flex-end;
+  }
+  .eq-bar {
+    width: 4px;
+    background: #c4a76c;
+    border-radius: 2px;
+    transition: height 0.1s;
+  }
+
+  .music-label {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #5a5347;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- 클릭 유도 -->
+<div class="click-overlay" id="overlay">
+  <div class="emoji">🖼️</div>
+  <div class="prompt">아무 데나 누르세요</div>
+</div>
+
+<!-- 초대장 -->
+<div class="invitation" id="card">
+  <div class="date-line">2025. 4. 25. SAT &middot; 압구정</div>
+
+  <h1>전시번개</h1>
+  <p class="subtitle">4월 옥션 번개</p>
+
+  <div class="divider"></div>
+
+  <div class="equalizer" id="eq">
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+    <div class="eq-bar" style="height:4px"></div>
+  </div>
+  <div class="music-label" id="musicLabel">Joe Dassin — Les Champs-Elysees</div>
+
+  <div class="galleries">
+    <a class="gallery-card" href="https://www.k-auction.com/" target="_blank" rel="noopener">
+      <div class="num">STOP 01</div>
+      <div class="name">K옥션 프리뷰</div>
+      <div class="desc">압구정 &middot; 4/18 - 4/29 프리뷰 기간</div>
+    </a>
+    <a class="gallery-card" href="https://www.perrotin.com/en" target="_blank" rel="noopener">
+      <div class="num">STOP 02</div>
+      <div class="name">페로탕 서울 10주년</div>
+      <div class="desc">박서보, 무라카미 다카시 등 소속 작가 총출동 &middot; 10th Anniversary</div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer-note">
+    관람 전후로 프랑스 식 식사 한 끼<br>
+    그림 보고 밥 먹자<br>
+    <span style="font-size:1.2rem">🥂</span>
+  </div>
+</div>
+
+<script>
+// ── 샹젤리제 멜로디 (Web Audio API) ──
+const NOTES = {
+  C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00,
+  A4:440.00, B4:493.88, C5:523.25, D5:587.33, E5:659.25,
+  F5:698.46, G5:783.99
+};
+
+// "Aux Champs-Élysées" chorus melody (simplified)
+const melody = [
+  // "Je m'ba-la-dais sur l'a-ve-nue"
+  ['E4',0.25],['E4',0.25],['G4',0.25],['A4',0.25],['B4',0.5],['A4',0.25],['G4',0.25],
+  // "le coeur ou-vert à l'in-con-nu"
+  ['A4',0.25],['G4',0.25],['E4',0.25],['D4',0.25],['E4',0.75],[null,0.25],
+  // "j'a-vais en-vie de dire bon-jour"
+  ['E4',0.25],['E4',0.25],['G4',0.25],['A4',0.25],['B4',0.5],['A4',0.25],['G4',0.25],
+  // "à n'im-porte qui"
+  ['A4',0.25],['B4',0.25],['C5',0.5],['B4',0.5],[null,0.25],
+
+  // "Aux Champs-É-ly-sé-es"
+  ['E5',0.4],['D5',0.3],['C5',0.3],['B4',0.3],['C5',0.6],[null,0.2],
+  // "Aux Champs-É-ly-sé-es"
+  ['D5',0.4],['C5',0.3],['B4',0.3],['A4',0.3],['B4',0.6],[null,0.2],
+  // "Au so-leil, sous la pluie"
+  ['C5',0.3],['B4',0.3],['A4',0.3],['G4',0.3],['A4',0.6],[null,0.2],
+  // "à mi-di ou à mi-nuit"
+  ['B4',0.3],['A4',0.3],['G4',0.3],['E4',0.3],['G4',0.8],[null,0.3],
+
+  // repeat chorus
+  ['E5',0.4],['D5',0.3],['C5',0.3],['B4',0.3],['C5',0.6],[null,0.2],
+  ['D5',0.4],['C5',0.3],['B4',0.3],['A4',0.3],['B4',0.6],[null,0.2],
+  ['C5',0.4],['B4',0.3],['A4',0.3],['G4',0.3],
+  ['A4',0.3],['B4',0.3],['C5',0.3],['B4',0.3],['A4',0.3],['G4',1.0],
+];
+
+let audioCtx = null;
+let isPlaying = false;
+const eqBars = document.querySelectorAll('.eq-bar');
+let eqInterval = null;
+
+function playNote(ctx, freq, startTime, duration) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = 'triangle';
+  osc.frequency.value = freq;
+
+  gain.gain.setValueAtTime(0, startTime);
+  gain.gain.linearRampToValueAtTime(0.18, startTime + 0.04);
+  gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(startTime);
+  osc.stop(startTime + duration);
+}
+
+function playMelody() {
+  if (isPlaying) return;
+  isPlaying = true;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let t = audioCtx.currentTime + 0.1;
+
+  const tempo = 0.28; // seconds per beat unit
+
+  melody.forEach(([note, dur]) => {
+    if (note && NOTES[note]) {
+      playNote(audioCtx, NOTES[note], t, dur * tempo * 2);
+    }
+    t += dur * tempo;
+  });
+
+  // 이퀄라이저 애니메이션
+  eqInterval = setInterval(() => {
+    eqBars.forEach(bar => {
+      bar.style.height = (4 + Math.random() * 22) + 'px';
+    });
+  }, 120);
+
+  const totalDuration = melody.reduce((s, [, d]) => s + d, 0) * tempo;
+  setTimeout(() => {
+    isPlaying = false;
+    clearInterval(eqInterval);
+    eqBars.forEach(bar => bar.style.height = '4px');
+  }, totalDuration * 1000 + 500);
+}
+
+// 음표 파티클
+function spawnNotes() {
+  const symbols = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+  for (let i = 0; i < 8; i++) {
+    const el = document.createElement('div');
+    el.className = 'note';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = (10 + Math.random() * 80) + 'vw';
+    el.style.top = (50 + Math.random() * 40) + 'vh';
+    el.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+// 클릭 이벤트
+let started = false;
+document.getElementById('overlay').addEventListener('click', () => {
+  if (started) return;
+  started = true;
+
+  document.getElementById('overlay').classList.add('hidden');
+  document.getElementById('card').classList.add('visible');
+
+  setTimeout(() => {
+    playMelody();
+    spawnNotes();
+  }, 600);
+});
+
+// 카드 재클릭시 다시 재생
+document.getElementById('card').addEventListener('click', (e) => {
+  if (e.target.closest('.gallery-card')) return;
+  playMelody();
+  spawnNotes();
+});
+</script>
+</body>
+</html>
