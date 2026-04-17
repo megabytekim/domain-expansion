@@ -218,11 +218,6 @@
     margin-bottom: 2rem;
   }
 
-  .spotify-wrap {
-    margin-bottom: 1.5rem;
-    border-radius: 12px;
-    overflow: hidden;
-  }
 </style>
 </head>
 <body>
@@ -241,13 +236,6 @@
   <p class="subtitle">4월 옥션 번개</p>
 
   <div class="divider"></div>
-
-  <div class="spotify-wrap" id="spotifyWrap">
-    <iframe id="spotifyPlayer" style="border-radius:12px; width:100%; height:152px;"
-      src="" frameBorder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"></iframe>
-  </div>
 
   <div class="equalizer" id="eq">
     <div class="eq-bar" style="height:4px"></div>
@@ -285,6 +273,191 @@
 </div>
 
 <script>
+// ── Les Champs-Élysées — warm synth (Key: G major) ──
+// Reference: chord progression G-E7-Em-G7-C-G-A7-D7 (verse), G-B7-Em-G7-C-G-D7-G (chorus)
+
+const F = {
+  G3:196.00, A3:220.00, B3:246.94, C4:261.63, D4:293.66, E4:329.63,
+  F4:349.23, Fs4:369.99, G4:392.00, A4:440.00, B4:493.88,
+  C5:523.25, D5:587.33, E5:659.25, Fs5:739.99, G5:783.99
+};
+
+// Chord voicings (root + intervals)
+const CHORDS = {
+  G:  [F.G3, F.B3, F.D4],
+  E7: [F.E4, F.Gs4=415.30, F.B4],
+  Em: [F.E4, F.G4, F.B4],
+  G7: [F.G3, F.B3, F.F4],
+  C:  [F.C4, F.E4, F.G4],
+  A7: [F.A3, F.Cs4=277.18, F.E4],
+  D7: [F.D4, F.Fs4, F.A4],
+  B7: [F.B3, F.Ds4=311.13, F.Fs4],
+};
+
+// Melody: verse + chorus (note, duration in beats)
+// Tempo: ~100 BPM → beat = 0.6s (느리게)
+const BEAT = 0.48;
+
+const verse = [
+  // "Je m'ba-la-dais sur l'a-ve-nue" (G)
+  [F.B4,1],[F.B4,0.5],[F.D5,0.5],[F.E5,0.5],[F.Fs5,1],[F.E5,0.5],[F.D5,1],
+  // "le cœur ou-vert à l'in-con-nu" (E7 → Em)
+  [null,0.5],[F.E5,0.5],[F.D5,0.5],[F.B4,0.5],[F.A4,0.5],[F.B4,1.5],
+  [null,0.5],
+  // "j'a-vais en-vie de dire bon-jour" (G7 → C)
+  [F.B4,1],[F.B4,0.5],[F.D5,0.5],[F.E5,0.5],[F.Fs5,1],[F.E5,0.5],[F.D5,1],
+  // "à n'im-por-te qui" (A7 → D7)
+  [null,0.5],[F.E5,0.5],[F.Fs5,0.5],[F.G5,1],[F.Fs5,1.5],
+  [null,1],
+];
+
+const chorus = [
+  // "Aux Champs-É-ly-sé-es" (G → B7)
+  [F.G5,0.8],[F.Fs5,0.6],[F.E5,0.6],[F.D5,0.6],[F.E5,1.4],[null,0.5],
+  // "aux Champs-É-ly-sé-es" (Em → G7)
+  [F.Fs5,0.8],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.D5,1.4],[null,0.5],
+  // "Au so-leil, sous la pluie" (C → G)
+  [F.E5,0.8],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.C5,1.4],[null,0.5],
+  // "à mi-di ou à mi-nuit" (D7 → G)
+  [F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.A4,0.6],[F.B4,1.8],[null,0.8],
+
+  // Repeat chorus
+  [F.G5,0.8],[F.Fs5,0.6],[F.E5,0.6],[F.D5,0.6],[F.E5,1.4],[null,0.5],
+  [F.Fs5,0.8],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.D5,1.4],[null,0.5],
+  [F.E5,0.8],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],
+  [F.C5,0.6],[F.D5,0.6],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.G4,2.0],
+];
+
+const fullMelody = [...verse, ...chorus];
+
+// Chord schedule (beat position, chord name, duration in beats)
+const chordSchedule = [
+  // Verse
+  [0, 'G', 4.5],
+  [4.5, 'E7', 2.5], [7, 'Em', 2.5],
+  [9.5, 'G7', 2.5], [12, 'C', 4],
+  [16, 'A7', 2], [18, 'D7', 3],
+  // Chorus
+  [21, 'G', 3], [24, 'B7', 3.5],
+  [27.5, 'Em', 3], [30.5, 'G7', 3.5],
+  [34, 'C', 3], [37, 'G', 3.5],
+  [40.5, 'D7', 3], [43.5, 'G', 4],
+  // Chorus repeat
+  [47.5, 'G', 3], [50.5, 'B7', 3.5],
+  [54, 'Em', 3], [57, 'G7', 3.5],
+  [60.5, 'C', 3], [63.5, 'G', 2],
+  [65.5, 'D7', 3], [68.5, 'G', 3],
+];
+
+let audioCtx = null;
+let isPlaying = false;
+
+function createReverb(ctx) {
+  const convolver = ctx.createConvolver();
+  const rate = ctx.sampleRate;
+  const length = rate * 1.5;
+  const impulse = ctx.createBuffer(2, length, rate);
+  for (let ch = 0; ch < 2; ch++) {
+    const data = impulse.getChannelData(ch);
+    for (let i = 0; i < length; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.5);
+    }
+  }
+  convolver.buffer = impulse;
+  return convolver;
+}
+
+function playMelodyNote(ctx, dest, freq, startTime, dur) {
+  // Warm tone: sine + quiet triangle an octave up
+  const osc1 = ctx.createOscillator();
+  const osc2 = ctx.createOscillator();
+  const gain1 = ctx.createGain();
+  const gain2 = ctx.createGain();
+
+  osc1.type = 'sine';
+  osc1.frequency.value = freq;
+  osc2.type = 'triangle';
+  osc2.frequency.value = freq * 2;
+
+  const d = dur * BEAT;
+  // Main voice
+  gain1.gain.setValueAtTime(0, startTime);
+  gain1.gain.linearRampToValueAtTime(0.18, startTime + 0.05);
+  gain1.gain.setValueAtTime(0.18, startTime + d * 0.6);
+  gain1.gain.exponentialRampToValueAtTime(0.001, startTime + d);
+  // Harmonic shimmer
+  gain2.gain.setValueAtTime(0, startTime);
+  gain2.gain.linearRampToValueAtTime(0.04, startTime + 0.05);
+  gain2.gain.exponentialRampToValueAtTime(0.001, startTime + d);
+
+  osc1.connect(gain1); gain1.connect(dest);
+  osc2.connect(gain2); gain2.connect(dest);
+  osc1.start(startTime); osc1.stop(startTime + d + 0.1);
+  osc2.start(startTime); osc2.stop(startTime + d + 0.1);
+}
+
+function playChord(ctx, dest, freqs, startTime, dur) {
+  const d = dur * BEAT;
+  freqs.forEach(freq => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(0.045, startTime + 0.1);
+    gain.gain.setValueAtTime(0.045, startTime + d * 0.7);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + d);
+    osc.connect(gain); gain.connect(dest);
+    osc.start(startTime); osc.stop(startTime + d + 0.1);
+  });
+}
+
+function playMusic() {
+  if (isPlaying) return;
+  isPlaying = true;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Reverb chain
+  const reverb = createReverb(audioCtx);
+  const dryGain = audioCtx.createGain();
+  const wetGain = audioCtx.createGain();
+  dryGain.gain.value = 0.8;
+  wetGain.gain.value = 0.3;
+  dryGain.connect(audioCtx.destination);
+  reverb.connect(wetGain);
+  wetGain.connect(audioCtx.destination);
+
+  // Mix node
+  const mix = audioCtx.createGain();
+  mix.connect(dryGain);
+  mix.connect(reverb);
+
+  const t0 = audioCtx.currentTime + 0.2;
+
+  // Schedule melody
+  let beatPos = 0;
+  fullMelody.forEach(([note, dur]) => {
+    if (note) playMelodyNote(audioCtx, mix, note, t0 + beatPos * BEAT, dur);
+    beatPos += dur;
+  });
+
+  // Schedule chords
+  chordSchedule.forEach(([beat, name, dur]) => {
+    const ch = CHORDS[name];
+    if (ch) playChord(audioCtx, mix, ch, t0 + beat * BEAT, dur);
+  });
+
+  // EQ animation
+  startEq();
+  const totalBeats = beatPos;
+  setTimeout(() => {
+    isPlaying = false;
+    stopEq();
+  }, totalBeats * BEAT * 1000 + 1000);
+}
+
+// ── UI ──
 const eqBars = document.querySelectorAll('.eq-bar');
 let eqInterval = null;
 
@@ -296,14 +469,12 @@ function startEq() {
     });
   }, 120);
 }
-
 function stopEq() {
   clearInterval(eqInterval);
   eqInterval = null;
   eqBars.forEach(bar => bar.style.height = '4px');
 }
 
-// 음표 파티클
 function spawnNotes() {
   const symbols = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
   for (let i = 0; i < 8; i++) {
@@ -318,22 +489,19 @@ function spawnNotes() {
   }
 }
 
-// 클릭 → 유튜브 자동재생 시작
 let started = false;
 document.getElementById('overlay').addEventListener('click', () => {
   if (started) return;
   started = true;
-
   document.getElementById('overlay').classList.add('hidden');
   document.getElementById('card').classList.add('visible');
+  setTimeout(() => { playMusic(); spawnNotes(); }, 600);
+});
 
-  setTimeout(() => {
-    // Spotify 임베드 로드
-    document.getElementById('spotifyPlayer').src =
-      'https://open.spotify.com/embed/track/4VWbPQUPvLes814r6T11Jz?utm_source=generator&theme=0';
-    startEq();
-    spawnNotes();
-  }, 600);
+document.getElementById('card').addEventListener('click', (e) => {
+  if (e.target.closest('.gallery-card')) return;
+  playMusic();
+  spawnNotes();
 });
 </script>
 </body>
