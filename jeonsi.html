@@ -273,80 +273,94 @@
 </div>
 
 <script>
-// ── Les Champs-Élysées — warm synth (Key: G major) ──
-// Reference: chord progression G-E7-Em-G7-C-G-A7-D7 (verse), G-B7-Em-G7-C-G-D7-G (chorus)
+// ── Les Champs-Élysées — Key: F major, ~90 BPM ──
+// Melody from MIDI (bitmidi.com/les-champs-elysees-mid, clarinet track)
+// Bass/chords from MIDI bass + piano tracks
+// Descending bass: F-E-D-C-Bb-A-G-C
 
-const F = {
-  G3:196.00, A3:220.00, B3:246.94, C4:261.63, D4:293.66, E4:329.63,
-  F4:349.23, Fs4:369.99, G4:392.00, A4:440.00, B4:493.88,
-  C5:523.25, D5:587.33, E5:659.25, Fs5:739.99, G5:783.99
+const N = {
+  // Octave 2-3 (bass)
+  F2:87.31, G2:98.00, A2:110.00, Bb2:116.54, C3:130.81, D3:146.83, E3:164.81, F3:174.61,
+  // Octave 3-4
+  G3:196.00, A3:220.00, Bb3:233.08, C4:261.63, Cs4:277.18, D4:293.66,
+  Eb4:311.13, E4:329.63, F4:349.23, G4:392.00, Gs4:415.30, A4:440.00, Bb4:466.16,
+  // Octave 5
+  C5:523.25, D5:587.33, E5:659.25, F5:698.46, G5:783.99, A5:880.00, Bb5:932.33, C6:1046.50
 };
 
-// Chord voicings (root + intervals)
+// Chord voicings
 const CHORDS = {
-  G:  [F.G3, F.B3, F.D4],
-  E7: [F.E4, F.Gs4=415.30, F.B4],
-  Em: [F.E4, F.G4, F.B4],
-  G7: [F.G3, F.B3, F.F4],
-  C:  [F.C4, F.E4, F.G4],
-  A7: [F.A3, F.Cs4=277.18, F.E4],
-  D7: [F.D4, F.Fs4, F.A4],
-  B7: [F.B3, F.Ds4=311.13, F.Fs4],
+  F:   [N.F3, N.A3, N.C4],
+  CE:  [N.E3, N.C4, N.G4],     // C/E
+  Dm:  [N.D3, N.F3, N.A3],
+  F7C: [N.C3, N.Eb4, N.A3],    // F7/C
+  Bb:  [N.Bb2, N.D4, N.F4],
+  FA:  [N.A2, N.C4, N.F4],     // F/A
+  G7:  [N.G2, N.B3=246.94, N.D4, N.F4],
+  C7:  [N.C3, N.E3, N.Bb3],
 };
 
-// Melody: verse + chorus (note, duration in beats)
-// Tempo: ~100 BPM → beat = 0.6s (느리게)
-const BEAT = 0.48;
+const BEAT = 0.55; // ~109 BPM, 느리게
 
+// ── Verse melody (F major, ascending-descending pattern) ──
 const verse = [
-  // "Je m'ba-la-dais sur l'a-ve-nue" (G)
-  [F.B4,1],[F.B4,0.5],[F.D5,0.5],[F.E5,0.5],[F.Fs5,1],[F.E5,0.5],[F.D5,1],
-  // "le cœur ou-vert à l'in-con-nu" (E7 → Em)
-  [null,0.5],[F.E5,0.5],[F.D5,0.5],[F.B4,0.5],[F.A4,0.5],[F.B4,1.5],
+  // "Je m'ba-la-dais sur l'a-ve-nue" (F → C/E)
+  [N.C4,0.5],[N.C4,0.5],[N.D4,0.5],[N.E4,0.5],[N.F4,1],[N.E4,0.5],[N.D4,0.5],
+  // "le cœur ou-vert à l'in-con-nu" (Dm → F7/C)
+  [N.E4,0.5],[N.D4,0.5],[N.C4,0.5],[N.Bb3,0.5],[N.C4,1.5],
   [null,0.5],
-  // "j'a-vais en-vie de dire bon-jour" (G7 → C)
-  [F.B4,1],[F.B4,0.5],[F.D5,0.5],[F.E5,0.5],[F.Fs5,1],[F.E5,0.5],[F.D5,1],
-  // "à n'im-por-te qui" (A7 → D7)
-  [null,0.5],[F.E5,0.5],[F.Fs5,0.5],[F.G5,1],[F.Fs5,1.5],
+  // "j'a-vais en-vie de dire bon-jour" (Bb → F/A)
+  [N.C4,0.5],[N.C4,0.5],[N.D4,0.5],[N.E4,0.5],[N.F4,1],[N.E4,0.5],[N.D4,0.5],
+  // "à n'im-por-te qui" (G7 → C7)
+  [N.E4,0.5],[N.F4,0.5],[N.G4,0.5],[N.F4,1.5],
   [null,1],
 ];
 
+// ── Chorus melody (from MIDI clarinet track — confirmed) ──
 const chorus = [
-  // "Aux Champs-É-ly-sé-es" (G → B7)
-  [F.G5,0.8],[F.Fs5,0.6],[F.E5,0.6],[F.D5,0.6],[F.E5,1.4],[null,0.5],
-  // "aux Champs-É-ly-sé-es" (Em → G7)
-  [F.Fs5,0.8],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.D5,1.4],[null,0.5],
-  // "Au so-leil, sous la pluie" (C → G)
-  [F.E5,0.8],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.C5,1.4],[null,0.5],
-  // "à mi-di ou à mi-nuit" (D7 → G)
-  [F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.A4,0.6],[F.B4,1.8],[null,0.8],
+  // "Aux Champs-É-ly-sé-es" → Bb Bb Bb Bb A G
+  [N.Bb4,0.5],[N.Bb4,0.3],[N.Bb4,0.5],[N.Bb4,0.5],[N.A4,0.6],[N.G4,1.2],
+  [null,0.4],
+  // "Au so-leil, sous la pluie" → A C A F
+  [N.A4,0.6],[N.C5,0.5],[N.A4,0.6],[N.F4,1.5],
+  [null,0.4],
+  // "Aux Champs-É-ly-sé-es" → Bb Bb Bb Bb A F G F
+  [N.Bb4,0.5],[N.Bb4,0.3],[N.Bb4,0.5],[N.Bb4,0.3],[N.A4,0.6],[N.F4,0.3],[N.G4,0.6],[N.F4,1.0],
+  [null,1],
 
-  // Repeat chorus
-  [F.G5,0.8],[F.Fs5,0.6],[F.E5,0.6],[F.D5,0.6],[F.E5,1.4],[null,0.5],
-  [F.Fs5,0.8],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.D5,1.4],[null,0.5],
-  [F.E5,0.8],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],
-  [F.C5,0.6],[F.D5,0.6],[F.E5,0.6],[F.D5,0.6],[F.C5,0.6],[F.B4,0.6],[F.G4,2.0],
+  // Repeat chorus (octave higher, from MIDI beat 168+)
+  [N.Bb5,0.5],[N.Bb5,0.3],[N.Bb5,0.5],[N.Bb5,0.3],[N.A5,0.7],[N.G5,1.3],
+  [null,0.4],
+  [N.A5,0.6],[N.C6,0.3],[N.A5,0.6],[N.F5,1.8],
+  [null,0.4],
+  [N.Bb5,0.5],[N.Bb5,0.3],[N.Bb5,0.5],[N.Bb5,0.3],[N.A5,0.6],[N.F5,0.4],[N.G5,0.7],[N.F5,1.2],
 ];
 
 const fullMelody = [...verse, ...chorus];
 
-// Chord schedule (beat position, chord name, duration in beats)
+// Chord schedule (beat, chord, duration)
 const chordSchedule = [
-  // Verse
-  [0, 'G', 4.5],
-  [4.5, 'E7', 2.5], [7, 'Em', 2.5],
-  [9.5, 'G7', 2.5], [12, 'C', 4],
-  [16, 'A7', 2], [18, 'D7', 3],
+  // Verse (descending bass: F-E-D-C-Bb-A-G-C)
+  [0, 'F', 3.5],
+  [3.5, 'CE', 3],
+  [6.5, 'Dm', 3],
+  [9.5, 'F7C', 2.5],
+  [12, 'Bb', 3],
+  [15, 'FA', 2.5],
+  [17.5, 'G7', 2],
+  [19.5, 'C7', 2],
   // Chorus
-  [21, 'G', 3], [24, 'B7', 3.5],
-  [27.5, 'Em', 3], [30.5, 'G7', 3.5],
-  [34, 'C', 3], [37, 'G', 3.5],
-  [40.5, 'D7', 3], [43.5, 'G', 4],
+  [21.5, 'Dm', 3],
+  [24.5, 'G7', 3],
+  [27.5, 'C7', 3],
+  [30.5, 'F', 3.5],
   // Chorus repeat
-  [47.5, 'G', 3], [50.5, 'B7', 3.5],
-  [54, 'Em', 3], [57, 'G7', 3.5],
-  [60.5, 'C', 3], [63.5, 'G', 2],
-  [65.5, 'D7', 3], [68.5, 'G', 3],
+  [34, 'Bb', 3],
+  [37, 'FA', 2.5],
+  [39.5, 'Dm', 3],
+  [42.5, 'G7', 3],
+  [45.5, 'C7', 3],
+  [48.5, 'F', 4],
 ];
 
 let audioCtx = null;
