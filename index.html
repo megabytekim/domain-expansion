@@ -2,163 +2,666 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>타이베이 4박 5일 (5/1-5/5)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAIPEI TRIP MONITOR — 2026.05.01-05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
-<link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-  #map { width: 100%; height: 100vh; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-  .title-bar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-    padding: 12px 16px; border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .title-bar h1 { font-size: 16px; color: #1a1a1a; }
-  .title-bar p { font-size: 11px; color: #888; margin-top: 2px; }
-  .lang-toggle { display: flex; gap: 4px; flex-shrink: 0; }
-  .lang-btn {
-    border: 1px solid #ddd; background: #fff; border-radius: 6px;
-    padding: 6px 10px; font-size: 11px; cursor: pointer;
-    color: #666; transition: all 0.2s;
-  }
-  .lang-btn.active { background: #333; color: #fff; border-color: #333; }
+body {
+  font-family:'JetBrains Mono','Courier New',monospace;
+  background:#080808; color:#c8c8c8;
+  display:flex; flex-direction:column;
+  height:100vh; overflow:hidden;
+}
 
-  .filter-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
-    background: #fff; border-top: 1px solid #ddd;
-    display: flex; overflow-x: auto; padding: 8px 4px;
-    gap: 6px; -webkit-overflow-scrolling: touch;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  }
-  .filter-btn {
-    flex-shrink: 0; border: none; border-radius: 20px;
-    padding: 8px 14px; font-size: 13px; font-weight: 600;
-    cursor: pointer; white-space: nowrap; transition: all 0.2s;
-    color: #fff; opacity: 0.5;
-  }
-  .filter-btn.active { opacity: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
-  .filter-btn[data-day="all"] { background: #333; }
-  .filter-btn[data-day="1"] { background: #4285F4; }
-  .filter-btn[data-day="2"] { background: #34A853; }
-  .filter-btn[data-day="3"] { background: #FBBC04; color: #333; }
-  .filter-btn[data-day="4"] { background: #EA4335; }
-  .filter-btn[data-day="5"] { background: #9C27B0; }
-  .filter-btn[data-day="opt"] { background: #FF9800; }
-  .filter-btn[data-day="shop"] { background: #E91E63; }
-  .filter-btn[data-day="photo"] { background: #00BCD4; }
-  .filter-btn[data-day="bib"] { background: #FF6F00; }
+/* ── TOP BAR ── */
+#topbar {
+  height:50px; background:#0c0c0c;
+  border-bottom:1px solid #1c1c1c;
+  display:flex; align-items:center;
+  padding:0 14px; gap:10px; flex-shrink:0; z-index:100;
+}
+.tb-logo {
+  display:flex; align-items:center; gap:7px;
+  font-size:13px; font-weight:700; color:#fff;
+  letter-spacing:.08em; white-space:nowrap;
+}
+.tb-div { width:1px; height:22px; background:#1e1e1e; }
+.tb-badge {
+  display:inline-flex; align-items:center;
+  padding:3px 8px; border-radius:3px;
+  font-size:11px; font-weight:600; letter-spacing:.04em; white-space:nowrap;
+}
+.tb-badge.blue  { background:#0a1929; color:#40a0ff; border:1px solid #1a4080; }
+.tb-badge.green { background:#021a0e; color:#00c853; border:1px solid #004d20; }
+.tb-badge.dim   { background:#111; color:#666; border:1px solid #1e1e1e; }
+.tb-clock { font-size:12px; color:#00ff88; font-weight:600; white-space:nowrap; }
+.tb-right { margin-left:auto; display:flex; align-items:center; gap:6px; }
+.lang-btn {
+  background:#111; border:1px solid #222; color:#666;
+  border-radius:3px; padding:3px 7px; font-size:10px;
+  font-family:inherit; cursor:pointer; transition:all .15s;
+}
+.lang-btn:hover { border-color:#444; color:#bbb; }
+.lang-btn.active { background:#0a180d; border-color:#00c853; color:#00c853; }
 
-  .maplibregl-popup-content {
-    border-radius: 12px !important; padding: 0 !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+/* ── LAYOUT ── */
+#main { display:flex; flex:1; overflow:hidden; }
+
+/* ── SIDEBAR ── */
+#sidebar {
+  width:214px; background:#0a0a0a;
+  border-right:1px solid #181818;
+  display:flex; flex-direction:column; flex-shrink:0; overflow:hidden;
+}
+.sb-head { padding:10px 10px 0; border-bottom:1px solid #181818; padding-bottom:10px; }
+.sb-search {
+  width:100%; background:#0f0f0f; border:1px solid #1e1e1e;
+  color:#bbb; border-radius:3px; padding:6px 10px;
+  font-size:11px; font-family:inherit; outline:none;
+}
+.sb-search::placeholder { color:#383838; }
+.sb-search:focus { border-color:#2a2a2a; }
+.sb-all {
+  display:block; width:calc(100% - 20px); margin:8px 10px 0;
+  background:#0f0f0f; border:1px solid #1e1e1e; color:#555;
+  border-radius:3px; padding:5px 9px; font-size:11px;
+  font-family:inherit; cursor:pointer; text-align:left; transition:all .15s;
+}
+.sb-all:hover { border-color:#333; color:#aaa; }
+.sb-all.active { border-color:#00c853; color:#00c853; background:#021a0e; }
+.sb-section {
+  padding:10px 10px 4px; font-size:9px; color:#383838;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+.sb-layers { flex:1; overflow-y:auto; padding-bottom:8px; }
+.sb-layers::-webkit-scrollbar { width:3px; }
+.sb-layers::-webkit-scrollbar-thumb { background:#1e1e1e; }
+
+.layer-item {
+  display:flex; align-items:center; padding:6px 10px;
+  cursor:pointer; transition:background .1s; gap:7px;
+}
+.layer-item:hover { background:#0f0f0f; }
+.layer-cb {
+  width:13px; height:13px; border:1px solid #2a2a2a;
+  border-radius:2px; display:flex; align-items:center;
+  justify-content:center; flex-shrink:0; font-size:9px;
+  color:#fff; transition:all .15s;
+}
+.layer-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.layer-label { font-size:11px; color:#666; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.layer-count { font-size:10px; color:#333; flex-shrink:0; }
+.layer-item.on .layer-label { color:#bbb; }
+
+/* ── RIGHT COLUMN ── */
+#right { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+
+/* ── MAP AREA ── */
+#map-wrap { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+#map { flex:1; min-height:0; }
+
+/* ── INFO PANEL (absolute overlay) ── */
+#info {
+  position:absolute; bottom:0; left:0; right:0;
+  height:0; background:rgba(12,12,12,.92); backdrop-filter:blur(10px);
+  border-top:1px solid #181818;
+  overflow:hidden; transition:height .25s ease;
+  display:flex; z-index:10;
+}
+#info.open { height:182px; }
+
+/* ── BOTTOM PANEL ── */
+#bottom {
+  height:340px; flex-shrink:0; display:flex;
+  background:#080808; border-top:1px solid #181818;
+}
+#wx-panel {
+  width:232px; flex-shrink:0; border-right:1px solid #181818;
+  padding:10px 10px; display:flex; flex-direction:column;
+}
+.wx-head {
+  font-size:9px; color:#383838; letter-spacing:.14em;
+  text-transform:uppercase; margin-bottom:8px; flex-shrink:0;
+}
+.wx-days { display:flex; gap:5px; flex:1; min-height:0; }
+.wx-day {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  padding:7px 3px; background:#0c0c0c; border:1px solid #181818;
+  border-radius:4px; gap:2px;
+}
+.wx-date { font-size:8px; color:#444; letter-spacing:.04em; text-align:center; }
+.wx-icon { font-size:18px; line-height:1.1; }
+.wx-hi { font-size:12px; color:#f97316; font-weight:700; }
+.wx-lo { font-size:10px; color:#60a5fa; }
+.wx-rain { font-size:8px; color:#7dd3fc; }
+.wx-desc { font-size:8px; color:#383838; text-align:center; line-height:1.2; }
+.wx-loading { color:#333; font-size:11px; padding:20px 0; text-align:center; width:100%; }
+
+/* PANELS GRID */
+#panels-scroll {
+  flex:1; display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: 200px;
+  overflow-y:auto; overflow-x:hidden;
+  scrollbar-width:thin; scrollbar-color:#1e1e1e #000;
+  align-content:start;
+}
+#panels-scroll::-webkit-scrollbar { width:4px; }
+#panels-scroll::-webkit-scrollbar-thumb { background:#2a2a2a; border-radius:2px; }
+#panels-scroll { scrollbar-gutter: stable; }
+.bp { display:flex; flex-direction:column; border-right:1px solid #181818; border-bottom:1px solid #181818; overflow:hidden; min-width:0; min-height:0; }
+.bp-head {
+  display:flex; align-items:center; gap:5px; padding:6px 10px;
+  border-bottom:1px solid #181818; flex-shrink:0;
+  font-size:11px; color:#e8e8e8; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;
+}
+.bp-body { flex:1; overflow-y:auto; padding:5px 10px; min-height:0; }
+.bp-body::-webkit-scrollbar { width:3px; }
+.bp-body::-webkit-scrollbar-thumb { background:#1e1e1e; }
+.bp-body p { font-size:10px; color:#aaa; line-height:1.7; margin-bottom:5px; }
+.bp-body strong { color:#e0e0e0; font-weight:600; }
+.bp-body blockquote {
+  border-left:2px solid #2a2a2a; padding:2px 0 2px 8px;
+  margin:4px 0; color:#888; font-size:10px; line-height:1.6;
+}
+.bp-body h5 {
+  font-size:9px; color:#555; letter-spacing:.1em;
+  text-transform:uppercase; margin:6px 0 3px;
+}
+.doc-table { width:100%; border-collapse:collapse; font-size:10px; }
+.doc-table th {
+  text-align:left; color:#666; font-weight:600; letter-spacing:.06em;
+  padding:3px 8px 3px 0; border-bottom:1px solid #222; white-space:nowrap;
+}
+.doc-table td {
+  padding:3px 8px 3px 0; color:#999;
+  border-bottom:1px solid #141414; vertical-align:top;
+}
+.doc-table td:first-child { color:#ccc; white-space:nowrap; }
+.dtag {
+  display:inline-block; padding:1px 5px; border-radius:2px;
+  font-size:9px; font-weight:600; white-space:nowrap;
+}
+.dtag-b { background:#0a1929; color:#40a0ff; border:1px solid #1a4080; }
+.dtag-g { background:#021a0e; color:#00c853; border:1px solid #004d20; }
+.dtag-y { background:#1a1200; color:#ffc107; border:1px solid #3d2e00; }
+.dtag-r { background:#1a0505; color:#ef5350; border:1px solid #4a0000; }
+.dtag-p { background:#0f0018; color:#9c27b0; border:1px solid #3a0060; }
+
+.info-main {
+  flex:1; padding:14px 16px 12px; overflow:hidden;
+  border-right:1px solid #181818;
+}
+.info-name { font-size:14px; font-weight:700; color:#fff; margin-bottom:2px; }
+.info-cn { font-size:11px; color:#444; margin-bottom:7px; }
+.info-time {
+  display:inline-block; background:#111; border:1px solid #222;
+  border-radius:2px; padding:2px 7px; font-size:11px; color:#666; margin-bottom:7px;
+}
+.info-desc { font-size:11px; color:#888; line-height:1.65; margin-bottom:10px; }
+.info-gmaps {
+  display:inline-block; background:#0a1929; border:1px solid #1a4080;
+  color:#40a0ff; border-radius:3px; padding:5px 12px;
+  font-size:11px; font-family:inherit; text-decoration:none; transition:all .15s;
+}
+.info-gmaps:hover { background:#0f2540; }
+.info-close {
+  position:absolute; right:8px; top:8px; background:none;
+  border:none; color:#333; font-size:13px; cursor:pointer; padding:4px;
+  font-family:inherit;
+}
+.info-close:hover { color:#777; }
+
+.info-sched { width:320px; padding:10px 14px; overflow-y:auto; flex-shrink:0; }
+.info-sched::-webkit-scrollbar { width:3px; }
+.info-sched::-webkit-scrollbar-thumb { background:#1e1e1e; }
+.sched-title { font-size:9px; color:#383838; letter-spacing:.12em; text-transform:uppercase; margin-bottom:7px; }
+.sched-row {
+  display:flex; gap:8px; padding:3px 0;
+  border-bottom:1px solid #111; font-size:10px;
+}
+.sched-time { color:#00c853; width:48px; flex-shrink:0; }
+.sched-desc { color:#777; line-height:1.5; }
+
+/* ── MAP UI OVERRIDES ── */
+.maplibregl-ctrl-group { background:#111 !important; border:1px solid #1e1e1e !important; }
+.maplibregl-ctrl-group button { background:#111 !important; border-bottom:1px solid #1e1e1e !important; }
+.maplibregl-ctrl-group button:hover { background:#1a1a1a !important; }
+.maplibregl-ctrl-icon { filter:invert(.7); }
+.maplibregl-ctrl-attrib { background:rgba(0,0,0,.7) !important; font-size:10px !important; }
+.maplibregl-ctrl-attrib a { color:#444 !important; }
+
+#coords {
+  position:absolute; bottom:5px; left:8px;
+  font-size:10px; color:#383838; pointer-events:none; z-index:1;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  #topbar { padding:0 10px; gap:8px; }
+  #topbar-right { gap:6px; }
+  .lang-btn { display:none; }
+
+  #main { flex-direction:column; }
+
+  #sidebar { display:none; }
+
+  #right { flex-direction:column; height:auto; }
+
+  #map-wrap { height:45vh; min-height:220px; }
+
+  #bottom {
+    height:auto; flex-direction:column;
+    overflow:visible;
   }
-  .popup-inner { padding: 14px 16px; min-width: 220px; }
-  .popup-inner h3 { font-size: 15px; margin-bottom: 4px; color: #1a1a1a; }
-  .popup-inner .cn-name { font-size: 12px; color: #888; margin-bottom: 8px; }
-  .popup-inner .desc { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 10px; }
-  .popup-inner .time-tag {
-    display: inline-block; background: #f0f0f0; border-radius: 4px;
-    padding: 2px 8px; font-size: 11px; color: #666; margin-bottom: 8px;
+
+  #wx-panel {
+    width:100%; border-right:none; border-bottom:1px solid #181818;
+    flex-direction:row; flex-wrap:wrap; padding:8px 10px; gap:0;
   }
-  .gmaps-btn {
-    display: block; width: 100%; padding: 10px; border: none;
-    background: #4285F4; color: #fff; border-radius: 8px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    text-align: center; text-decoration: none;
+  .wx-head { width:100%; margin-bottom:4px; }
+  .wx-days { flex-direction:row; gap:0; width:100%; }
+  .wx-day { flex:1; padding:4px 2px; }
+
+  #panels-scroll {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-auto-rows: 180px;
+    max-height: 55vh;
+    overflow-y: auto;
   }
-  .gmaps-btn:hover { background: #3367D6; }
+}
 </style>
 </head>
 <body>
 
-<div class="title-bar">
-  <div>
-    <h1>타이베이 4박 5일 (5/1-5/5) 9명</h1>
-    <p>핀을 눌러 상세 정보 확인 / 하단 버튼으로 일자별 필터</p>
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <span>🗺</span><span>TAIPEI TRIP MONITOR</span>
   </div>
-  <div class="lang-toggle">
-    <button class="lang-btn active" data-lang="ko" onclick="switchLang('ko')">한국어</button>
+  <div class="tb-div"></div>
+  <span class="tb-badge blue">2026.05.01–05</span>
+  <span class="tb-badge green">10명</span>
+  <span class="tb-badge dim">D-<span id="ddays">?</span></span>
+  <div class="tb-div"></div>
+  <span class="tb-clock" id="clock">--:--:-- KST</span>
+  <div class="tb-right">
+    <button class="lang-btn active" data-lang="ko" onclick="switchLang('ko')">KO</button>
     <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
-    <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">中文</button>
-    <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">日本語</button>
+    <button class="lang-btn" data-lang="zh" onclick="switchLang('zh')">ZH</button>
+    <button class="lang-btn" data-lang="ja" onclick="switchLang('ja')">JA</button>
   </div>
 </div>
 
-<div id="map"></div>
+<!-- MAIN -->
+<div id="main">
 
-<div class="filter-bar">
-  <button class="filter-btn active" data-day="all" onclick="filterDay('all')">전체</button>
-  <button class="filter-btn" data-day="1" onclick="filterDay('1')">5/1 단수이</button>
-  <button class="filter-btn" data-day="2" onclick="filterDay('2')">5/2 중산</button>
-  <button class="filter-btn" data-day="3" onclick="filterDay('3')">5/3 투어</button>
-  <button class="filter-btn" data-day="4" onclick="filterDay('4')">5/4 우라이</button>
-  <button class="filter-btn" data-day="5" onclick="filterDay('5')">5/5 귀국</button>
-  <button class="filter-btn" data-day="opt" onclick="filterDay('opt')">추천</button>
-  <button class="filter-btn" data-day="shop" onclick="filterDay('shop')">쇼핑</button>
-  <button class="filter-btn" data-day="photo" onclick="filterDay('photo')">인생네컷</button>
-  <button class="filter-btn" data-day="bib" onclick="filterDay('bib')">빕구르망</button>
-</div>
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sb-head">
+      <input class="sb-search" id="sb-search" type="text" placeholder="레이어 검색..." oninput="filterSb()">
+    </div>
+    <button class="sb-all active" id="sb-all" onclick="toggleAll()">전체 보기</button>
+    <div class="sb-layers">
+      <div class="sb-section">— 일정</div>
+      <div id="layer-list"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div id="right">
+    <!-- MAP AREA -->
+    <div id="map-wrap">
+      <div id="map"></div>
+      <div id="coords"></div>
+
+      <!-- INFO PANEL (absolute overlay) -->
+      <div id="info">
+        <button class="info-close" onclick="closeInfo()">✕</button>
+        <div class="info-main">
+          <div class="info-name" id="i-name">—</div>
+          <div class="info-cn" id="i-cn"></div>
+          <span class="info-time" id="i-time" style="display:none"></span>
+          <div class="info-desc" id="i-desc"></div>
+          <a class="info-gmaps" id="i-gmaps" href="#" target="_blank" rel="noopener">🗺 Google Maps</a>
+        </div>
+        <div class="info-sched">
+          <div class="sched-title" id="s-title">일정</div>
+          <div id="s-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM PANEL -->
+    <div id="bottom">
+
+      <!-- WEATHER -->
+      <div id="wx-panel">
+        <div class="wx-head">— 타이베이 날씨 · 2026.05.01-05</div>
+        <div class="wx-days" id="wx-days">
+          <div class="wx-loading">날씨 로딩 중...</div>
+        </div>
+      </div>
+
+      <!-- PANELS SCROLL -->
+      <div id="panels-scroll">
+
+        <div class="bp">
+          <div class="bp-head">📋 일정</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>날짜</th><th>일정</th><th>포인트</th></tr>
+            <tr><td><span class="dtag dtag-b">5/1 금</span></td><td>단수이 — 홍마오청·페리·빠리</td><td>닝샤야시장 굴전</td></tr>
+            <tr><td><span class="dtag dtag-g">5/2 토</span></td><td>중정기념당 → 중산 → 시먼딩</td><td>루터스 오픈런</td></tr>
+            <tr><td><span class="dtag dtag-y">5/3 일</span></td><td>예스허지 — 예류·스펀·허우통·지우펀</td><td>천등·홍등 야경</td></tr>
+            <tr><td><span class="dtag dtag-r">5/4 월</span></td><td>우라이 온천 → 융캉제 → 용산사</td><td>딘타이펑·야경</td></tr>
+            <tr><td><span class="dtag dtag-p">5/5 화</span></td><td>식물원 → 귀국</td><td>제주 11:55 / 에바 15:15</td></tr>
+          </table></div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">✈️ 항공편</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>날짜</th><th>편명</th><th>탑승자</th><th>시간</th></tr>
+            <tr><td><span class="dtag dtag-b">5/1</span></td><td>7C 2803</td><td>지수·희주·우영·영진</td><td>09:05→10:55</td></tr>
+            <tr><td><span class="dtag dtag-b">5/1</span></td><td>BR 171</td><td>원상·현상</td><td>12:00→13:35</td></tr>
+            <tr><td><span class="dtag dtag-g">5/2</span></td><td>7C 2803</td><td>민영·채한·진우</td><td>09:05→10:55</td></tr>
+            <tr><td><span class="dtag dtag-p">5/5</span></td><td>7C 2804</td><td>지수·희주·우영·영진·민영·채한·진우</td><td>11:55→15:25</td></tr>
+            <tr><td><span class="dtag dtag-p">5/5</span></td><td>BR 172</td><td>원상·현상</td><td>15:15→18:45</td></tr>
+            <tr><td><span class="dtag dtag-p">5/5</span></td><td>CI 161</td><td>영우</td><td>15:30→19:05</td></tr>
+          </table></div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🏨 숙소</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>숙소</th><th>투숙객</th><th>기간</th></tr>
+            <tr><td>타이베이가든호텔</td><td>지수·희주·우영</td><td>5/1–5</td></tr>
+            <tr><td>이스트드래곤</td><td>영진·채한·민영</td><td>5/1–5</td></tr>
+            <tr><td>시저 메트로 타이베이</td><td>영우·원상·진우(5/4~)</td><td>5/1–5</td></tr>
+            <tr><td>시티인 호텔 플러스 시먼딩</td><td>현상</td><td>5/1–5</td></tr>
+            <tr><td>베이먼 바우 포시텔</td><td>진우</td><td>5/2–3</td></tr>
+            <tr><td>시티즌M 북문 (타이베이)</td><td>영우</td><td>4/30</td></tr>
+            <tr><td>지엘시티호텔 인천공항</td><td>영진·희주·우영</td><td>4/30</td></tr>
+          </table></div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">✅ 준비사항</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>항목</th><th>기한</th><th>내용</th></tr>
+            <tr><td>✈️ 항공권</td><td>완료</td><td>제주·에바·중화 확보</td></tr>
+            <tr><td>🏨 숙소</td><td>완료</td><td>전원 예약 완료</td></tr>
+            <tr><td>🎫 예스허지 투어</td><td>출발 전</td><td>booking.com 예약</td></tr>
+            <tr><td>📋 입국신고서</td><td>출발 3일 전</td><td>customs.gov.tw</td></tr>
+            <tr><td>📱 eSIM</td><td>출발 전</td><td style="color:#ef5350">미신청 → 요청 필요!</td></tr>
+            <tr><td>💴 환전</td><td>출발 전</td><td>TWD 현금</td></tr>
+            <tr><td>🛍 에버리치</td><td>출발 전</td><td>카발란 면세 저렴</td></tr>
+          </table></div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">💰 물가</div>
+          <div class="bp-body">
+            <blockquote>1TWD ≈ 47원 · 100TWD ≈ 4,700원</blockquote>
+            <table class="doc-table">
+            <tr><th>품목</th><th>TWD</th><th>원화</th></tr>
+            <tr><td>편의점 생수</td><td>20</td><td>940원</td></tr>
+            <tr><td>편의점 도시락</td><td>65–80</td><td>3,100–3,800원</td></tr>
+            <tr><td>야시장 먹거리</td><td>40–70</td><td>1,900–3,300원</td></tr>
+            <tr><td>루러우판+탕</td><td>80–120</td><td>3,800–5,600원</td></tr>
+            <tr><td>딘타이펑 샤오룽바오 10개</td><td>250</td><td>11,800원</td></tr>
+            <tr><td>버블티</td><td>50–70</td><td>2,400–3,300원</td></tr>
+            <tr><td>MRT 1회</td><td>20–65</td><td>940–3,100원</td></tr>
+            <tr><td>택시 기본요금</td><td>85</td><td>4,000원</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🍜 맛집</div>
+          <div class="bp-body">
+            <h5>단수이 5/1</h5>
+            <table class="doc-table">
+            <tr><td>흑전반점</td><td>돼지갈비덮밥 ~100TWD</td></tr>
+            <tr><td>위엔환볜</td><td>미슐랭 굴전 70–80TWD</td></tr>
+            </table>
+            <h5>시먼딩 5/2</h5>
+            <table class="doc-table">
+            <tr><td>아종면선</td><td>곱창국수 65/120TWD</td></tr>
+            <tr><td>몽가/투팩</td><td>지파이 70–85TWD</td></tr>
+            </table>
+            <h5>융캉제 5/4</h5>
+            <table class="doc-table">
+            <tr><td>딘타이펑 신생점</td><td>샤오룽바오 250TWD</td></tr>
+            <tr><td>까오지 본점</td><td>생전포 200TWD</td></tr>
+            </table>
+            <h5>루터스 오픈런</h5>
+            <table class="doc-table">
+            <tr><td>오픈</td><td>09:00 · 10시 전 품절</td></tr>
+            <tr><td>도착</td><td>08:00–08:30 추천</td></tr>
+            <tr><td>가격</td><td>22개입 580TWD</td></tr>
+            <tr><td>주의</td><td>1인 10박스 · 현금만</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🥃 카발란</div>
+          <div class="bp-body">
+            <p><strong>대만 최초의 위스키 증류소</strong> (2005, 이란현). 2015 WWA <strong>"World's Best Single Malt"</strong> 수상, 2025 IWC 3관왕. 아열대 기후로 스코틀랜드 대비 숙성이 빠름.</p>
+            <h5>구매처</h5>
+            <table class="doc-table">
+            <tr><td>공항 면세점</td><td>가장 저렴 · 사전 예약 수령</td></tr>
+            <tr><td>공관 직영점</td><td>12:00–20:30 · 한정판</td></tr>
+            <tr><td>리얼 58도</td><td>시먼딩 · 다양한 라인업</td></tr>
+            </table>
+            <h5>라인업 (700ml)</h5>
+            <table class="doc-table">
+            <tr><td>Classic Single Malt</td><td>40%</td><td>~1,900TWD</td></tr>
+            <tr><td>King Car Conductor</td><td>46%</td><td>~2,300TWD</td></tr>
+            <tr><td>Solist Vinho (WWA)</td><td>~56%</td><td>~3,300TWD</td></tr>
+            <tr><td>Solist Fino (IWC)</td><td>~57%</td><td>3,500+TWD</td></tr>
+            </table>
+            <blockquote>한국 대비 30–50% 저렴. 면세 추가 10–15% 할인.</blockquote>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🍵 동방미인차</div>
+          <div class="bp-body">
+            <p><strong>중발효 우롱차</strong> (발효도 60–85%). <strong>소록엽선(小綠葉蟬)</strong>이라는 매미충이 찻잎을 물어야만 만들어지는 특유의 <strong>꿀향(蜜香)</strong>. 농약 미사용, 연 1회(5–6월) 한정 수확. 별칭: 백호우롱·Oriental Beauty.</p>
+            <h5>구매처</h5>
+            <table class="doc-table">
+            <tr><td>린화타이 林華泰</td><td>1883년 · 가성비 최고</td></tr>
+            <tr><td>유기명차 有記</td><td>1890년 · 시음 체험</td></tr>
+            <tr><td>왕더촨 王德傳</td><td>선물 포장 · 프리미엄</td></tr>
+            <tr><td>톈런 天仁</td><td>시내 곳곳 · 100g 400TWD~</td></tr>
+            </table>
+            <blockquote>5색(백·녹·황·홍·갈) 고르게 섞이고 백호 많은 것이 고급.</blockquote>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🌧 우천 대비</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>일정</th><th>대안</th></tr>
+            <tr><td><span class="dtag dtag-b">5/1</span> 단수이</td><td>페리·자전거 취소 → 라오제 실내 + 야시장 일찍</td></tr>
+            <tr><td><span class="dtag dtag-g">5/2</span> 중산</td><td>실내 카페·서점 위주 → 영향 없음</td></tr>
+            <tr><td><span class="dtag dtag-y">5/3</span> 투어</td><td>진행 (예류 미끄럼 주의). 지우펀은 비 와도 좋음</td></tr>
+            <tr><td><span class="dtag dtag-r">5/4</span> 우라이</td><td>폭포 OK · 온천 오히려 운치 · 심하면 시내로</td></tr>
+          </table>
+          <blockquote>5월은 우기 초입. 접이식 우산 필수.</blockquote>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🧳 짐</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>필수</th><th>선택</th></tr>
+            <tr><td>여권 + 사본</td><td>수영복 (우라이 노천탕)</td></tr>
+            <tr><td>접이식 우산</td><td>슬리퍼 (온천/숙소)</td></tr>
+            <tr><td>충전기 + 보조배터리</td><td>선크림 (5월 자외선↑)</td></tr>
+            <tr><td>편한 운동화 (5/3 많이 걸음)</td><td>겉옷 (실내 냉방 강함)</td></tr>
+            <tr><td>현금 TWD + 카드</td><td>멀미약 (5/3 산길)</td></tr>
+          </table>
+          <blockquote>비상: 경찰 110 · 구급 119 · 한국대표부 +886-2-2758-8320</blockquote>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">🗣 중국어</div>
+          <div class="bp-body"><table class="doc-table">
+            <tr><th>상황</th><th>중국어</th><th>발음</th></tr>
+            <tr><td>감사합니다</td><td>謝謝</td><td>씨에씨에</td></tr>
+            <tr><td>얼마예요?</td><td>多少錢？</td><td>뚜오샤오치엔?</td></tr>
+            <tr><td>이거 주세요</td><td>我要這個</td><td>워야오쩌거</td></tr>
+            <tr><td>맵지 않게</td><td>不要辣</td><td>뿌야오라</td></tr>
+            <tr><td>봉투 필요없어요</td><td>不用袋子</td><td>뿌용따이쯔</td></tr>
+            <tr><td>화장실 어디?</td><td>廁所在哪裡？</td><td>츠쒀짜이나리?</td></tr>
+            <tr><td>10명이에요</td><td>我們十個人</td><td>워먼스거런</td></tr>
+            <tr><td>계산이요</td><td>買單</td><td>마이단</td></tr>
+            <tr><td>고수 빼주세요</td><td>不要香菜</td><td>뿌야오씨앙차이</td></tr>
+            <tr><td>포장이요</td><td>外帶</td><td>와이따이</td></tr>
+          </table></div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">👥 단체 팁</div>
+          <div class="bp-body">
+            <p>① <strong>소그룹 분리</strong> — 매번 10명 함께 안 움직여도 됨. 오전 같이 → 오후 소그룹 → 저녁 합류</p>
+            <p>② <strong>집합장소</strong> — MRT역 출구 번호로 지정 (예: "동먼역 5번 출구 12시")</p>
+            <p>③ <strong>택시</strong> — 10명 = 3–4대. 앞차에 목적지 보여주고 뒷차들 따라가기</p>
+            <p>④ <strong>식당 예약</strong> — 10명은 사전 예약 or 11:30 전 도착</p>
+            <p>⑤ <strong>결제</strong> — 대표 결제 후 Toss/카카오페이 정산</p>
+            <p>⑥ <strong>이지카드 잔액</strong> — 공항 편의점 소진 or MRT 환불 (수수료 20TWD)</p>
+          </div>
+        </div>
+
+        <div class="bp">
+          <div class="bp-head">⭐ 빕구르망</div>
+          <div class="bp-body">
+            <h5>시먼딩/만화</h5>
+            <table class="doc-table">
+            <tr><td>라오산둥 우육면</td><td>~200TWD · 완녠빌딩 B1</td></tr>
+            <tr><td>위안팡 과바오</td><td>70TWD · 월 휴무</td></tr>
+            </table>
+            <h5>중산</h5>
+            <table class="doc-table">
+            <tr><td>황지루러우판</td><td>~120TWD · 현금 · 월 휴무</td></tr>
+            <tr><td>지자좡 雞家莊</td><td>400–800TWD · 단체석 가능</td></tr>
+            <tr><td>런허위안</td><td>300–600TWD · 예약 필수</td></tr>
+            </table>
+            <h5>동먼/대안</h5>
+            <table class="doc-table">
+            <tr><td>항저우샤오롱탕바오</td><td>딘타이펑 1/3 가격</td></tr>
+            <tr><td>솽위에스핀셔</td><td>하마둔지탕 190TWD</td></tr>
+            </table>
+            <blockquote>소규모 많음 → 2–3팀 시간차 방문 추천</blockquote>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /#bottom -->
+  </div><!-- /#right -->
+</div><!-- /#main -->
 
 <script>
+// ── CONFIG ──────────────────────────────────────────────────
 maptilersdk.config.apiKey = 'Jae74EBLEJXQSqcHSf8x';
-let currentLang = 'ko';
 
-const map = new maptilersdk.Map({
-  container: 'map',
-  style: maptilersdk.MapStyle.STREETS,
-  center: [121.55, 25.05],
-  zoom: 10,
-  language: maptilersdk.Language.KOREAN
-});
+// ── LAYERS ──────────────────────────────────────────────────
+const LAYERS = [
+  {id:'1',    color:'#4a9eed', label:'5/1 (금) 단수이',        sec:'일정'},
+  {id:'2',    color:'#4caf50', label:'5/2 (토) 중산·시먼딩',   sec:'일정'},
+  {id:'3',    color:'#ffc107', label:'5/3 (일) 예스허지 투어',  sec:'일정'},
+  {id:'4',    color:'#ef5350', label:'5/4 (월) 우라이·융캉제',  sec:'일정'},
+  {id:'5',    color:'#9c27b0', label:'5/5 (화) 귀국',           sec:'일정'},
+  {id:'opt',  color:'#ff9800', label:'선택 여행지',              sec:'추천'},
+  {id:'shop', color:'#e91e63', label:'쇼핑·구매처',              sec:'추천'},
+  {id:'photo',color:'#00bcd4', label:'인생네컷',                 sec:'추천'},
+  {id:'bib',  color:'#ff6f00', label:'빕구르망',                 sec:'추천'},
+];
 
-map.addControl(new maptilersdk.NavigationControl(), 'top-right');
-
-const langMap = {
-  ko: maptilersdk.Language.KOREAN,
-  en: maptilersdk.Language.ENGLISH,
-  zh: maptilersdk.Language.CHINESE,
-  ja: maptilersdk.Language.JAPANESE
+// ── SCHEDULES ────────────────────────────────────────────────
+const SCHED = {
+  '1':[
+    {t:'10:55',d:'공항 도착 — 지수/희주/우영/영진 (제주항공)'},
+    {t:'13:35',d:'공항 도착 — 원상/현상 (에바항공)'},
+    {t:'14:00',d:'홍마오청 (紅毛城)'},
+    {t:'14:40',d:'소백궁 (小白宮)'},
+    {t:'15:10',d:'진리대학 캠퍼스 산책'},
+    {t:'15:30',d:'흑전반점 — 돼지갈비덮밥 100TWD'},
+    {t:'16:30',d:'페리 → 빠리 좌안 (자전거+노을)'},
+    {t:'19:30',d:'닝샤야시장 — 위엔환볜 굴전 필수'},
+  ],
+  '2':[
+    {t:'08:00',d:'라뜰리에 루터스 오픈런 (누가크래커)'},
+    {t:'09:30',d:'중정기념당 — 10시 위병교대식'},
+    {t:'10:55',d:'민영·채한·진우 도착 (제주항공)'},
+    {t:'11:00',d:'중산 카페거리·청핀서점'},
+    {t:'12:30',d:'점심 — 전원 합류'},
+    {t:'14:00',d:'시먼딩 — 아종면선·지파이·리얼58도'},
+    {t:'21:00',d:'까르푸 쇼핑 (2,000TWD↑ 세금환급 5%)'},
+  ],
+  '3':[
+    {t:'10:30',d:'예스허지 투어 출발 (10분전 집합)'},
+    {t:'오전',  d:'예류 지질공원 — 여왕머리바위'},
+    {t:'점심',  d:'스펀 or 이동 중 (현금 필요)'},
+    {t:'오후',  d:'스펀 천등 — 200/250TWD'},
+    {t:'오후',  d:'허우통 고양이마을'},
+    {t:'저녁',  d:'지우펀 홍등 야경 — 위위차관 55TWD'},
+    {t:'20:00', d:'라오허제 야시장 (후추떡·약선배골탕)'},
+  ],
+  '4':[
+    {t:'07:30',d:'청도반단 주먹밥 아침'},
+    {t:'08:00',d:'MRT 신뎬역 → 849번 버스 (40분)'},
+    {t:'09:30',d:'우라이 폭포 — 꼬마열차 50TWD'},
+    {t:'10:30',d:'케이블카 → 운선낙원 보트'},
+    {t:'12:00',d:'점심 — 죽통밥·산돼지고기'},
+    {t:'13:00',d:'우라이 온천'},
+    {t:'16:00',d:'융캉제 — 딘타이펑·까오지·망고빙수'},
+    {t:'19:00',d:'용산사 야경 — 마지막 밤'},
+  ],
+  '5':[
+    {t:'07:30',d:'기상·짐 정리'},
+    {t:'08:30',d:'식물원 조 — 타이베이 식물원 산책'},
+    {t:'08:30',d:'공항 조 — 체크아웃·공항 출발'},
+    {t:'09:55',d:'공항 도착 → 체크인 (11:55 출발 조)'},
+    {t:'11:55',d:'제주항공 출발 — 지수/희주/우영/영진/민영/채한/진우'},
+    {t:'13:15',d:'에바·중화 조 공항 도착'},
+    {t:'15:15',d:'에바항공 출발 — 원상/현상'},
+    {t:'15:30',d:'중화항공 출발 — 영우'},
+  ],
 };
 
-function switchLang(lang) {
-  currentLang = lang;
-  map.setLanguage(langMap[lang]);
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
-}
-
-const colors = {
-  '1':'#4285F4','2':'#34A853','3':'#FBBC04',
-  '4':'#EA4335','5':'#9C27B0','opt':'#FF9800','shop':'#E91E63','photo':'#00BCD4','bib':'#FF6F00'
-};
-
+// ── PLACES ───────────────────────────────────────────────────
 const places = [
   // DAY 1
-  {day:'1',o:1,name:'타오위안 국제공항',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'10:55 / 13:35 도착',desc:'SIM, 이지카드, 환전',q:'Taoyuan International Airport'},
-  {day:'1',o:2,name:'홍마오청',cn:'紅毛城',lat:25.1753,lng:121.4327,time:'14:00',desc:'스페인 건설 → 네덜란드 재건 → 영국 영사관',q:'Fort San Domingo Tamsui'},
+  {day:'1',o:1,name:'타오위안 국제공항',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'10:55 / 13:35 도착',desc:'제주항공 09:05→10:55 (지수/희주/우영/영진) | 에바항공 12:00→13:35 (원상/현상)',q:'Taoyuan International Airport'},
+  {day:'1',o:2,name:'홍마오청',cn:'紅毛城',lat:25.1753,lng:121.4327,time:'14:00',desc:'스페인 건설 → 네덜란드 재건 → 영국 영사관. 단수이 랜드마크',q:'Fort San Domingo Tamsui'},
   {day:'1',o:3,name:'소백궁',cn:'小白宮',lat:25.1742,lng:121.4312,time:'14:40',desc:'하얀 서양식 건물, 포토존',q:'Little White Palace Tamsui'},
   {day:'1',o:4,name:'진리대학',cn:'真理大學',lat:25.1760,lng:121.4300,time:'15:10',desc:'캠퍼스 산책. 17-18시 폐장 주의',q:'Aletheia University Tamsui'},
-  {day:'1',o:5,name:'흑전반점',cn:'黑殿飯店',lat:25.1693,lng:121.4408,time:'15:30',desc:'돼지갈비덮밥 맛집. 약 100TWD',q:'黑殿飯店 淡水'},
-  {day:'1',o:6,name:'단수이 페리',cn:'淡水渡船頭',lat:25.1710,lng:121.4385,time:'16:30',desc:'빠리행 페리. 편도 23TWD',q:'Tamsui Ferry Wharf'},
+  {day:'1',o:5,name:'흑전반점',cn:'黑殿飯店',lat:25.1693,lng:121.4408,time:'15:30',desc:'돼지갈비덮밥 맛집. 약 100TWD. 11:00-20:00',q:'黑殿飯店 淡水'},
+  {day:'1',o:6,name:'단수이 페리',cn:'淡水渡船頭',lat:25.1710,lng:121.4385,time:'16:30',desc:'빠리행 페리. 편도 23TWD, 약 10분',q:'Tamsui Ferry Wharf'},
   {day:'1',o:7,name:'빠리 좌안',cn:'八里左岸',lat:25.1717,lng:121.4137,time:'17:00',desc:'자전거 라이딩 + 노을',q:'Bali Left Bank Taipei'},
   {day:'1',o:8,name:'닝샤야시장',cn:'寧夏夜市',lat:25.0555,lng:121.5153,time:'19:30',desc:'위엔환볜 미슐랭 굴전 필수!',q:'Ningxia Night Market Taipei'},
   // DAY 2
-  {day:'2',o:1,name:'라뜰리에 루터스',cn:"L'Atelier de Nougat",lat:25.0327,lng:121.5293,time:'08:00 오픈런',desc:'누가크래커. 09시 오픈, 10시 전 품절. 현금만',q:"L'atelier de nougat Yongkang"},
+  {day:'2',o:1,name:'라뜰리에 루터스',cn:"L'Atelier de Nougat",lat:25.0327,lng:121.5293,time:'08:00 오픈런',desc:'누가크래커. 09시 오픈, 10시 전 품절. 현금만. 1인 10박스 제한',q:"L'atelier de nougat Yongkang"},
   {day:'2',o:2,name:'중정기념당',cn:'中正紀念堂',lat:25.0350,lng:121.5219,time:'09:30',desc:'10시 위병교대식 관람',q:'Chiang Kai-shek Memorial Hall'},
   {day:'2',o:3,name:'중산 카페거리',cn:'中山咖啡街',lat:25.0531,lng:121.5225,time:'11:00',desc:'독립 카페, 중산지하서가, 청핀서점',q:'Zhongshan Station Taipei'},
-  {day:'2',o:4,name:'시먼딩',cn:'西門町',lat:25.0424,lng:121.5081,time:'14:00',desc:'아종면선, 지파이, 무지개 횡단보도',q:'Ximending Taipei'},
-  {day:'2',o:5,name:'아종면선',cn:'阿宗麵線',lat:25.0425,lng:121.5065,time:'',desc:'곱창국수. 소 65 / 대 120TWD',q:'阿宗麵線 西門'},
-  {day:'2',o:6,name:'까르푸',cn:'家樂福 桂林店',lat:25.0380,lng:121.5050,time:'21:00',desc:'기념품 쇼핑. NT$2,000 이상 세금환급 5%',q:'Carrefour Guilin Taipei'},
+  {day:'2',o:4,name:'시먼딩',cn:'西門町',lat:25.0424,lng:121.5081,time:'14:00',desc:'아종면선, 지파이, 무지개 횡단보도, 리얼58도',q:'Ximending Taipei'},
+  {day:'2',o:5,name:'아종면선',cn:'阿宗麵線',lat:25.0425,lng:121.5065,time:'',desc:'곱창국수. 소 65 / 대 120TWD. 서서 먹는 곳',q:'阿宗麵線 西門'},
+  {day:'2',o:6,name:'까르푸 구이린점',cn:'家樂福 桂林店',lat:25.0380,lng:121.5050,time:'21:00',desc:'기념품 쇼핑. NT$2,000 이상 세금환급 5%',q:'Carrefour Guilin Taipei'},
   // DAY 3
-  {day:'3',o:1,name:'예류 지질공원',cn:'野柳地質公園',lat:25.2058,lng:121.6918,time:'오전',desc:'여왕머리바위. 바람 강함',q:'Yehliu Geopark'},
-  {day:'3',o:2,name:'스펀',cn:'十分',lat:25.0565,lng:121.7770,time:'오후',desc:'철길 천등 날리기. 200-250TWD',q:'Shifen Old Street'},
+  {day:'3',o:1,name:'예류 지질공원',cn:'野柳地質公園',lat:25.2058,lng:121.6918,time:'오전',desc:'여왕머리바위. 바람 강함, 겉옷 챙기기',q:'Yehliu Geopark'},
+  {day:'3',o:2,name:'스펀',cn:'十分',lat:25.0565,lng:121.7770,time:'오후',desc:'철길 천등 날리기. 200TWD(단색)/250TWD(4색)',q:'Shifen Old Street'},
   {day:'3',o:3,name:'허우통',cn:'猴硐貓村',lat:25.0868,lng:121.8266,time:'오후',desc:'고양이 마을. 30분이면 충분',q:'Houtong Cat Village'},
-  {day:'3',o:4,name:'지우펀',cn:'九份',lat:25.1092,lng:121.8449,time:'저녁',desc:'홍등 야경. 위위차관 55TWD 필수',q:'Jiufen Old Street'},
+  {day:'3',o:4,name:'지우펀',cn:'九份',lat:25.1092,lng:121.8449,time:'저녁',desc:'홍등 야경. 위위차관(芋圓) 55TWD 필수',q:'Jiufen Old Street'},
   {day:'3',o:5,name:'라오허제 야시장',cn:'饒河街夜市',lat:25.0506,lng:121.5774,time:'20:00',desc:'후추떡, 약선배골탕',q:'Raohe Night Market Taipei'},
   // DAY 4
   {day:'4',o:1,name:'청도반단',cn:'青島飯糰',lat:25.0440,lng:121.5270,time:'07:30',desc:'주먹밥 아침',q:'青島飯糰 台北'},
@@ -166,135 +669,558 @@ const places = [
   {day:'4',o:3,name:'우라이 폭포',cn:'烏來瀑布',lat:24.8560,lng:121.5500,time:'09:30',desc:'꼬마열차 편도 50TWD',q:'Wulai Waterfall'},
   {day:'4',o:4,name:'융캉제',cn:'永康街',lat:25.0330,lng:121.5293,time:'16:00-18:00',desc:'딘타이펑/까오지, 망고빙수, 소품샵',q:'Yongkang Street Taipei'},
   {day:'4',o:5,name:'딘타이펑 신생점',cn:'鼎泰豐 新生店',lat:25.0340,lng:121.5310,time:'',desc:'샤오룽바오 10개 250TWD',q:'Din Tai Fung Xinsheng Taipei'},
-  {day:'4',o:6,name:'까오지 본점',cn:'高記',lat:25.0335,lng:121.5300,time:'',desc:'생전포 10개 200TWD',q:'高記 永康街'},
+  {day:'4',o:6,name:'까오지 본점',cn:'高記',lat:25.0335,lng:121.5300,time:'',desc:'생전포 10개 200TWD. 신생남로 1단 167호',q:'高記 永康街'},
   {day:'4',o:7,name:'용산사',cn:'龍山寺',lat:25.0372,lng:121.4999,time:'19:00',desc:'야경. 마지막 밤 마무리',q:'Longshan Temple Taipei'},
   // DAY 5
   {day:'5',o:1,name:'타이베이 식물원',cn:'台北植物園',lat:25.0315,lng:121.5105,time:'08:30',desc:'여유 조 아침 산책',q:'Taipei Botanical Garden'},
-  {day:'5',o:2,name:'타오위안 공항',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'11:55 / 15:15',desc:'출발',q:'Taoyuan International Airport'},
+  {day:'5',o:2,name:'타오위안 공항 (출발)',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'11:55 / 15:15 / 15:30',desc:'제주항공 11:55 (7명) | 에바항공 15:15 (원상/현상) | 중화항공 15:30 (영우)',q:'Taoyuan International Airport'},
   // OPTIONAL
-  {day:'opt',name:'국립고궁박물원',cn:'國立故宮博物院',lat:25.1024,lng:121.5485,time:'',desc:'입장 350TWD. 일/월 휴무',q:'National Palace Museum Taipei'},
-  {day:'opt',name:'타이베이 101',cn:'台北101',lat:25.0340,lng:121.5645,time:'',desc:'전망대 입장 600TWD',q:'Taipei 101'},
-  {day:'opt',name:'카발란 증류소',cn:'噶瑪蘭威士忌酒廠',lat:24.7568,lng:121.7517,time:'',desc:'이란현. 기차 1.5h + 택시 20분',q:'Kavalan Whisky Distillery'},
-  {day:'opt',name:'보장암 예술촌',cn:'寶藏巖',lat:25.0112,lng:121.5340,time:'',desc:'MRT 공관역 도보 10분. 화요일 휴무',q:'Treasure Hill Artist Village'},
-  {day:'opt',name:'화산1914',cn:'華山1914',lat:25.0440,lng:121.5295,time:'',desc:'전시, 카페, 플리마켓',q:'Huashan 1914 Creative Park'},
-  {day:'opt',name:'송산문창원구',cn:'松山文創園區',lat:25.0443,lng:121.5607,time:'',desc:'갤러리, 디자인숍. 청핀생활관 옆',q:'Songshan Cultural Creative Park'},
-  {day:'opt',name:'대도정/디화제',cn:'大稻埕/迪化街',lat:25.0570,lng:121.5100,time:'',desc:'전통 무역거리. 차 도매상',q:'Dihua Street Taipei'},
-  {day:'opt',name:'상산',cn:'象山',lat:25.0270,lng:121.5710,time:'',desc:'101 야경 베스트. 왕복 1시간',q:'Elephant Mountain Taipei'},
-  {day:'opt',name:'마오콩 곤돌라',cn:'貓空纜車',lat:24.9983,lng:121.5764,time:'',desc:'차밭+야경. 120TWD. 월요일 휴무',q:'Maokong Gondola'},
-  {day:'opt',name:'북투 온천',cn:'北投溫泉',lat:25.1370,lng:121.5068,time:'',desc:'온천박물관, 지열곡, 북투도서관',q:'Beitou Hot Spring Taipei'},
-  {day:'opt',name:'남기장 야시장',cn:'南機場夜市',lat:25.0310,lng:121.5068,time:'',desc:'미슐랭 빕 구르망. 현지인 95%',q:'Nanjichang Night Market'},
+  {day:'opt',name:'국립고궁박물원',cn:'國立故宮博物院',lat:25.1024,lng:121.5485,desc:'입장 350TWD. 일/월 휴무',q:'National Palace Museum Taipei'},
+  {day:'opt',name:'타이베이 101',cn:'台北101',lat:25.0340,lng:121.5645,desc:'전망대 입장 600TWD',q:'Taipei 101'},
+  {day:'opt',name:'카발란 증류소',cn:'噶瑪蘭威士忌酒廠',lat:24.7568,lng:121.7517,desc:'이란현. 기차 1.5h + 택시 20분',q:'Kavalan Whisky Distillery'},
+  {day:'opt',name:'보장암 예술촌',cn:'寶藏巖',lat:25.0112,lng:121.5340,desc:'MRT 공관역 도보 10분. 화요일 휴무',q:'Treasure Hill Artist Village'},
+  {day:'opt',name:'화산1914',cn:'華山1914',lat:25.0440,lng:121.5295,desc:'전시, 카페, 플리마켓',q:'Huashan 1914 Creative Park'},
+  {day:'opt',name:'송산문창원구',cn:'松山文創園區',lat:25.0443,lng:121.5607,desc:'갤러리, 디자인숍. 청핀생활관 옆',q:'Songshan Cultural Creative Park'},
+  {day:'opt',name:'대도정·디화제',cn:'大稻埕/迪化街',lat:25.0570,lng:121.5100,desc:'전통 무역거리. 차 도매상 밀집',q:'Dihua Street Taipei'},
+  {day:'opt',name:'상산',cn:'象山',lat:25.0270,lng:121.5710,desc:'101 야경 베스트 포토스팟. 왕복 1시간',q:'Elephant Mountain Taipei'},
+  {day:'opt',name:'마오콩 곤돌라',cn:'貓空纜車',lat:24.9983,lng:121.5764,desc:'차밭+야경. 편도 120TWD. 월요일 휴무',q:'Maokong Gondola'},
+  {day:'opt',name:'북투 온천',cn:'北投溫泉',lat:25.1370,lng:121.5068,desc:'온천박물관, 지열곡, 북투도서관. 월요일 휴관',q:'Beitou Hot Spring Taipei'},
+  {day:'opt',name:'남기장 야시장',cn:'南機場夜市',lat:25.0310,lng:121.5068,desc:'미슐랭 빕 구르망. 현지인 95%',q:'Nanjichang Night Market'},
   // SHOPPING
-  {day:'shop',name:'린화타이차항',cn:'林華泰茶行',lat:25.0591,lng:121.5100,time:'',desc:'동방미인차 가성비 최고. 1883년',q:'林華泰茶行 台北'},
-  {day:'shop',name:'유기명차',cn:'有記名茶',lat:25.0580,lng:121.5098,time:'',desc:'1890년 5대째. 시음 체험',q:'有記名茶 台北'},
-  {day:'shop',name:'리얼 58도',cn:'Real 58度',lat:25.0430,lng:121.5070,time:'',desc:'시먼딩 위스키 전문점',q:'Real 58度 西門'},
-  {day:'shop',name:'카발란 공관점',cn:'噶瑪蘭 公館',lat:25.0187,lng:121.5295,time:'',desc:'직영. 12:00-20:30',q:'噶瑪蘭威士忌 公館'},
-  {day:'shop',name:'카발란 충효점',cn:'噶瑪蘭 忠孝',lat:25.0420,lng:121.5510,time:'',desc:'직영. 12:00-21:00',q:'噶瑪蘭威士忌 忠孝'},
-  {day:'shop',name:'에버리치 면세점',cn:'昇恆昌',lat:25.0797,lng:121.2342,time:'',desc:'카발란 가장 저렴! 출국장에서 수령',q:'Ever Rich Duty Free Taoyuan Airport'},
-  // PHOTO BOOTH
-  {day:'photo',name:'Plan.B Studio 시먼딩',cn:'PlanB Studio 旗艦店',lat:25.0445,lng:121.5077,time:'',desc:'엘리베이터/지하철/빨래방 세트장. 단체 촬영 가능. 약 300TWD',q:'PlanB Studio 플랜비스튜디오 旗艦店 西門'},
-  {day:'photo',name:'SerendiPIC 시먼',cn:'SerendiPIC 西門町店',lat:25.0446,lng:121.5070,time:'',desc:'구 THE FILM Seoul. 감성 프레임+필터. 약 250TWD',q:'SerendiPIC 西門町店'},
-  {day:'photo',name:'Photoism 중효둔화',cn:'Photoism 忠孝敦化店',lat:25.0424,lng:121.5526,time:'',desc:'한국 인기 브랜드 대만 직영. 약 200TWD',q:'Photoism 忠孝敦化 台北'},
-  {day:'photo',name:'Snapshot 중산',cn:'妞拍貼 中山創始店',lat:25.0519,lng:121.5202,time:'',desc:'대만 로컬 브랜드, 한국 스타일. 중산 카페거리 옆. 약 200TWD',q:'Snapshot 妞拍貼 中山 台北'},
-  {day:'photo',name:'Plan.B Studio 중산',cn:'PlanB Studio 中山店',lat:25.0530,lng:121.5200,time:'',desc:'세트장 콘셉트 촬영. 약 300TWD',q:'PlanB Studio 中山店 台北'},
-  {day:'photo',name:'Plan.B Studio 동구',cn:'PlanB Studio 東區店',lat:25.0436,lng:121.5512,time:'',desc:'동구 쇼핑 동선에 편리. 약 300TWD',q:'PlanB Studio 東區店 台北'},
+  {day:'shop',name:'린화타이차항',cn:'林華泰茶行',lat:25.0591,lng:121.5100,desc:'동방미인차 가성비 최고. 1883년 창립',q:'林華泰茶行 台北'},
+  {day:'shop',name:'유기명차',cn:'有記名茶',lat:25.0580,lng:121.5098,desc:'1890년 5대째. 시음 체험 가능',q:'有記名茶 台北'},
+  {day:'shop',name:'리얼 58도',cn:'Real 58度',lat:25.0430,lng:121.5070,desc:'시먼딩 위스키 전문점. 카발란 등',q:'Real 58度 西門'},
+  {day:'shop',name:'카발란 공관점',cn:'噶瑪蘭 公館',lat:25.0187,lng:121.5295,desc:'직영. 12:00-20:30. 한정판 구매 가능',q:'噶瑪蘭威士忌 公館'},
+  {day:'shop',name:'카발란 충효점',cn:'噶瑪蘭 忠孝',lat:25.0420,lng:121.5510,desc:'직영. 12:00-21:00',q:'噶瑪蘭威士忌 忠孝'},
+  {day:'shop',name:'에버리치 면세점',cn:'昇恆昌',lat:25.0797,lng:121.2342,desc:'카발란 가장 저렴! everrich.com 사전 예약 → 공항 수령',q:'Ever Rich Duty Free Taoyuan Airport'},
+  // PHOTO
+  {day:'photo',name:'Plan.B Studio 시먼딩',cn:'PlanB Studio 旗艦店',lat:25.0445,lng:121.5077,desc:'엘리베이터/지하철/빨래방 세트장. 단체 촬영 가능. ~300TWD',q:'PlanB Studio 旗艦店 西門'},
+  {day:'photo',name:'SerendiPIC 시먼',cn:'SerendiPIC 西門町店',lat:25.0446,lng:121.5070,desc:'구 THE FILM Seoul. 감성 프레임. ~250TWD',q:'SerendiPIC 西門町店'},
+  {day:'photo',name:'Photoism 중효둔화',cn:'Photoism 忠孝敦化店',lat:25.0424,lng:121.5526,desc:'한국 인기 브랜드 대만 직영. ~200TWD',q:'Photoism 忠孝敦化 台北'},
+  {day:'photo',name:'Snapshot 중산',cn:'妞拍貼 中山創始店',lat:25.0519,lng:121.5202,desc:'대만 로컬 한국 스타일. ~200TWD',q:'Snapshot 妞拍貼 中山 台北'},
+  {day:'photo',name:'Plan.B Studio 중산',cn:'PlanB Studio 中山店',lat:25.0530,lng:121.5200,desc:'세트장 콘셉트. ~300TWD',q:'PlanB Studio 中山店 台北'},
+  {day:'photo',name:'Plan.B Studio 동구',cn:'PlanB Studio 東區店',lat:25.0436,lng:121.5512,desc:'동구 쇼핑 동선에 편리. ~300TWD',q:'PlanB Studio 東區店 台北'},
   // BIB GOURMAND
-  {day:'bib',name:'라오산둥 우육면',cn:'老山東牛肉麵',lat:25.0425,lng:121.5065,time:'',desc:'완녠빌딩 B1. 76년 전통 우육면. 약 200TWD',q:'老山東牛肉家常麵店 西門 台北'},
-  {day:'bib',name:'위안팡 과바오',cn:'源芳刈包',lat:25.0374,lng:121.4997,time:'',desc:'대만식 햄버거. 과바오 70TWD. 월요일 휴무',q:'源芳刈包 華西街 台北'},
-  {day:'bib',name:'이자쯔',cn:'一甲子餐飲',lat:25.0396,lng:121.5015,time:'',desc:'꽁러우판 80TWD, 과바오 45TWD. 월요일 휴무',q:'一甲子餐飲 萬華 台北'},
-  {day:'bib',name:'황지루러우판',cn:'黃記魯肉飯',lat:25.0628,lng:121.5234,time:'',desc:'필수! 루러우판 가성비 최고. 월요일 휴무. 현금만',q:'黃記魯肉飯 中山北路 台北'},
-  {day:'bib',name:'지자좡',cn:'雞家莊',lat:25.0529,lng:121.5226,time:'',desc:'50년 전통 치킨. 9명 단체석 가능. 삼미지 추천',q:'雞家莊 長春路 台北'},
-  {day:'bib',name:'런허위안',cn:'人和園餐廳',lat:25.0568,lng:121.5228,time:'',desc:'유일한 윈난요리 빕구르망. 60년. 예약 필수',q:'人和園雲南餐廳 中山 台北'},
-  {day:'bib',name:'항저우샤오롱탕바오',cn:'杭州小籠湯包',lat:25.0315,lng:121.5243,time:'',desc:'딘타이펑 1/3 가격! 8년 연속 선정. 줄 각오',q:'杭州小籠湯包 杭州南路 台北'},
-  {day:'bib',name:'솽위에스핀셔',cn:'雙月食品社',lat:25.0406,lng:121.5256,time:'',desc:'하마둔지탕 190TWD. 8년 연속. 예약 불가',q:'雙月食品社 青島東路 台北'},
-  {day:'bib',name:'쮜이펑위안',cn:'醉楓園小館',lat:25.0487,lng:121.5510,time:'',desc:'광동요리. 8년 연속. 위니샹수야 필수. 월요일 휴무',q:'醉楓園小館 八德路 台北'},
-  {day:'bib',name:'다차오터우 미가오',cn:'大橋頭米糕',lat:25.0651,lng:121.5115,time:'',desc:'통쯔미가오 35TWD! 초저가 아침. 화요일 휴무',q:'大橋頭米糕 延平北路 台北'},
-  {day:'bib',name:'마이멘옌쯔',cn:'賣麵炎仔',lat:25.0633,lng:121.5096,time:'',desc:'80년 3대째. 대만 최초 빕구르망. 7:00-14:30만',q:'賣麵炎仔 安西街 台北'},
-  {day:'bib',name:'신차오판뎬',cn:'心潮飯店',lat:25.0408,lng:121.5687,time:'',desc:'미풍신의 2F. 간베이우위쯔차오판 580TWD',q:'心潮飯店 忠孝東路 微風信義 台北'},
+  {day:'bib',name:'라오산둥 우육면',cn:'老山東牛肉麵',lat:25.0425,lng:121.5065,desc:'완녠빌딩 B1. 76년 전통. ~200TWD',q:'老山東牛肉家常麵店 西門 台北'},
+  {day:'bib',name:'위안팡 과바오',cn:'源芳刈包',lat:25.0374,lng:121.4997,desc:'대만식 햄버거. 70TWD. 월요일 휴무',q:'源芳刈包 華西街 台北'},
+  {day:'bib',name:'이자쯔',cn:'一甲子餐飲',lat:25.0396,lng:121.5015,desc:'꽁러우판 80TWD. 월요일 휴무',q:'一甲子餐飲 萬華 台北'},
+  {day:'bib',name:'황지루러우판',cn:'黃記魯肉飯',lat:25.0628,lng:121.5234,desc:'루러우판 가성비 최고. 월요일 휴무. 현금만',q:'黃記魯肉飯 中山北路 台北'},
+  {day:'bib',name:'지자좡',cn:'雞家莊',lat:25.0529,lng:121.5226,desc:'50년 전통 치킨. 단체석 가능(10명 확인 권장). 삼미지 추천',q:'雞家莊 長春路 台北'},
+  {day:'bib',name:'런허위안',cn:'人和園餐廳',lat:25.0568,lng:121.5228,desc:'유일한 윈난요리 빕구르망. 60년. 예약 필수',q:'人和園雲南餐廳 中山 台北'},
+  {day:'bib',name:'항저우샤오롱탕바오',cn:'杭州小籠湯包',lat:25.0315,lng:121.5243,desc:'딘타이펑 1/3 가격! 8년 연속 선정',q:'杭州小籠湯包 杭州南路 台北'},
+  {day:'bib',name:'솽위에스핀셔',cn:'雙月食品社',lat:25.0406,lng:121.5256,desc:'하마둔지탕 190TWD. 8년 연속. 예약 불가',q:'雙月食品社 青島東路 台北'},
+  {day:'bib',name:'쮜이펑위안',cn:'醉楓園小館',lat:25.0487,lng:121.5510,desc:'광동요리. 8년 연속. 위니샹수야 필수. 월요일 휴무',q:'醉楓園小館 八德路 台北'},
+  {day:'bib',name:'다차오터우 미가오',cn:'大橋頭米糕',lat:25.0651,lng:121.5115,desc:'통쯔미가오 35TWD. 초저가 아침. 화요일 휴무',q:'大橋頭米糕 延平北路 台北'},
+  {day:'bib',name:'마이멘옌쯔',cn:'賣麵炎仔',lat:25.0633,lng:121.5096,desc:'80년 3대째. 대만 최초 빕구르망. 07:00-14:30만',q:'賣麵炎仔 安西街 台北'},
+  {day:'bib',name:'신차오판뎬',cn:'心潮飯店',lat:25.0408,lng:121.5687,desc:'미풍신의 2F. 간베이우위쯔차오판 580TWD',q:'心潮飯店 忠孝東路 台北'},
 ];
 
-// Marker & line management
-let markerObjs = [];
-let lineIds = [];
-let currentFilter = 'all';
-const dayCoords = {};
+// ── STATE ────────────────────────────────────────────────────
+let active = new Set(LAYERS.map(l => l.id));
+let markers = [];
 
-function createMarkerEl(color, num) {
-  const el = document.createElement('div');
-  const size = 30;
-  el.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;cursor:pointer;`;
-  if (num) {
-    const span = document.createElement('span');
-    span.textContent = num;
-    span.style.cssText = `color:#fff;font-size:${num>9?'11':'12'}px;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,0.3);`;
-    el.appendChild(span);
+// ── CLOCK + D-DAYS ───────────────────────────────────────────
+function tick() {
+  const now = new Date();
+  const kst = new Date(now.toLocaleString('en-US',{timeZone:'Asia/Seoul'}));
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('clock').textContent =
+    `${pad(kst.getHours())}:${pad(kst.getMinutes())}:${pad(kst.getSeconds())} KST`;
+  const diff = Math.ceil((new Date('2026-05-01T00:00:00+09:00') - now) / 86400000);
+  document.getElementById('ddays').textContent = Math.max(0, diff);
+}
+setInterval(tick, 1000); tick();
+
+// ── MAP ──────────────────────────────────────────────────────
+const map = new maptilersdk.Map({
+  container: 'map',
+  style: `https://api.maptiler.com/maps/streets-v2-dark/style.json?key=Jae74EBLEJXQSqcHSf8x`,
+  center: [121.55, 25.05],
+  zoom: 10.5,
+  language: maptilersdk.Language.KOREAN,
+});
+map.addControl(new maptilersdk.NavigationControl(), 'top-right');
+
+const LANG_MAP = {
+  ko: maptilersdk.Language.KOREAN,
+  en: maptilersdk.Language.ENGLISH,
+  zh: maptilersdk.Language.CHINESE,
+  ja: maptilersdk.Language.JAPANESE,
+};
+function switchLang(lang) {
+  map.setLanguage(LANG_MAP[lang]);
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang));
+}
+
+// ── SIDEBAR BUILD ────────────────────────────────────────────
+function getLayerColor(id) { return LAYERS.find(l => l.id === id)?.color || '#888'; }
+
+function buildSidebar() {
+  const list = document.getElementById('layer-list');
+  let lastSec = null;
+
+  LAYERS.forEach(l => {
+    if (l.sec !== lastSec) {
+      if (lastSec) {
+        const sep = document.createElement('div');
+        sep.className = 'sb-section'; sep.textContent = `— ${l.sec}`;
+        list.appendChild(sep);
+      }
+      lastSec = l.sec;
+    }
+    const cnt = places.filter(p => p.day === l.id).length;
+    const item = document.createElement('div');
+    item.className = 'layer-item on'; item.dataset.lid = l.id;
+    item.innerHTML = `
+      <div class="layer-cb" style="background:${l.color}20;border-color:${l.color}">✓</div>
+      <div class="layer-dot" style="background:${l.color}"></div>
+      <div class="layer-label">${l.label}</div>
+      <div class="layer-count">${cnt}</div>`;
+    item.addEventListener('click', () => toggleLayer(l.id, item, l.color));
+    list.appendChild(item);
+  });
+}
+
+function toggleLayer(id, item, color) {
+  const on = active.has(id);
+  if (on) {
+    active.delete(id);
+    item.classList.remove('on');
+    const cb = item.querySelector('.layer-cb');
+    cb.textContent = ''; cb.style.background = ''; cb.style.borderColor = '#2a2a2a';
+  } else {
+    active.add(id);
+    item.classList.add('on');
+    const cb = item.querySelector('.layer-cb');
+    cb.textContent = '✓'; cb.style.background = `${color}20`; cb.style.borderColor = color;
   }
+  rebuildMarkers();
+  document.getElementById('sb-all').classList.toggle('active', active.size === LAYERS.length);
+}
+
+function toggleAll() {
+  const allOn = active.size === LAYERS.length;
+  if (allOn) {
+    active.clear();
+    document.querySelectorAll('.layer-item').forEach(item => {
+      item.classList.remove('on');
+      const cb = item.querySelector('.layer-cb');
+      cb.textContent = ''; cb.style.background = ''; cb.style.borderColor = '#2a2a2a';
+    });
+  } else {
+    LAYERS.forEach(l => {
+      active.add(l.id);
+      const item = document.querySelector(`.layer-item[data-lid="${l.id}"]`);
+      if (item) {
+        item.classList.add('on');
+        const cb = item.querySelector('.layer-cb');
+        cb.textContent = '✓'; cb.style.background = `${l.color}20`; cb.style.borderColor = l.color;
+      }
+    });
+  }
+  document.getElementById('sb-all').classList.toggle('active', !allOn);
+  rebuildMarkers();
+}
+
+function filterSb() {
+  const q = document.getElementById('sb-search').value.toLowerCase();
+  document.querySelectorAll('.layer-item').forEach(item => {
+    item.style.display = item.querySelector('.layer-label').textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ── MARKERS ──────────────────────────────────────────────────
+function mkEl(color, num) {
+  // Outer: MapLibre positions this via transform — we must NOT apply transforms to it
+  const el = document.createElement('div');
+  Object.assign(el.style, { width:'26px', height:'26px', cursor:'pointer' });
+
+  // Inner: the visible circle — hover scale goes here
+  const inner = document.createElement('div');
+  Object.assign(inner.style, {
+    width:'26px', height:'26px', borderRadius:'50%',
+    background: `${color}bb`, border: `2px solid ${color}`,
+    boxShadow: `0 0 10px ${color}55, 0 2px 6px rgba(0,0,0,.7)`,
+    display:'flex', alignItems:'center', justifyContent:'center',
+    transition:'transform .15s, box-shadow .15s',
+  });
+  if (num) {
+    const s = document.createElement('span');
+    s.textContent = num;
+    s.style.cssText = `color:#fff;font-size:${num>9?'9':'11'}px;font-weight:700;font-family:'JetBrains Mono',monospace;`;
+    inner.appendChild(s);
+  }
+  el.onmouseenter = () => {
+    inner.style.transform = 'scale(1.25)';
+    inner.style.boxShadow = `0 0 16px ${color}99, 0 2px 10px rgba(0,0,0,.9)`;
+  };
+  el.onmouseleave = () => {
+    inner.style.transform = '';
+    inner.style.boxShadow = `0 0 10px ${color}55, 0 2px 6px rgba(0,0,0,.7)`;
+  };
+  el.appendChild(inner);
   return el;
 }
 
-function addAllMarkers() {
-  markerObjs.forEach(m => m.marker.remove());
-  markerObjs = [];
-  Object.keys(dayCoords).forEach(k => delete dayCoords[k]);
+function rebuildMarkers() {
+  markers.forEach(m => m.remove());
+  markers = [];
+  const isDayLayer = id => ['1','2','3','4','5'].includes(id);
 
   places.forEach(p => {
-    const el = createMarkerEl(colors[p.day], p.o);
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`;
-    const timeHtml = p.time ? `<div class="time-tag">${p.time}</div>` : '';
-    const popupHtml = `<div class="popup-inner"><h3>${p.name}</h3><div class="cn-name">${p.cn}</div>${timeHtml}<div class="desc">${p.desc}</div><a href="${gmapsUrl}" target="_blank" class="gmaps-btn">Google Maps에서 열기</a></div>`;
-
-    const marker = new maptilersdk.Marker({ element: el })
+    if (!active.has(p.day)) return;
+    const color = getLayerColor(p.day);
+    const el = mkEl(color, isDayLayer(p.day) ? (p.o || null) : null);
+    const m = new maptilersdk.Marker({ element: el })
       .setLngLat([p.lng, p.lat])
-      .setPopup(new maptilersdk.Popup({ offset: 18, maxWidth: '280px' }).setHTML(popupHtml))
       .addTo(map);
+    el.addEventListener('click', () => showInfo(p));
+    markers.push(m);
+  });
+  updateLines();
+}
 
-    markerObjs.push({ marker, day: p.day });
-    if (!dayCoords[p.day]) dayCoords[p.day] = [];
-    dayCoords[p.day].push([p.lng, p.lat]);
+// ── ROUTE LINES ───────────────────────────────────────────────
+const ROUTE_DAYS = ['1','2','3','4','5'];
+
+function routeCoords(dayId) {
+  return places
+    .filter(p => p.day === dayId && p.o)
+    .sort((a, b) => a.o - b.o)
+    .map(p => [p.lng, p.lat]);
+}
+
+function initLines() {
+  ROUTE_DAYS.forEach(dayId => {
+    const color = getLayerColor(dayId);
+    const coords = routeCoords(dayId);
+
+    map.addSource(`route-${dayId}`, {
+      type: 'geojson',
+      data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: coords } }
+    });
+
+    // Glow layer (thicker, more transparent)
+    map.addLayer({
+      id: `route-${dayId}-glow`,
+      type: 'line',
+      source: `route-${dayId}`,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': color, 'line-width': 5, 'line-opacity': 0.15 }
+    });
+
+    // Main dashed line
+    map.addLayer({
+      id: `route-${dayId}`,
+      type: 'line',
+      source: `route-${dayId}`,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': color, 'line-width': 1.5, 'line-opacity': 0.6, 'line-dasharray': [4, 3] }
+    });
   });
 }
 
-function addAllLines() {
-  lineIds.forEach(id => { if (map.getLayer(id)) map.removeLayer(id); if (map.getSource(id)) map.removeSource(id); });
-  lineIds = [];
-  const lineColors = {'1':'#4285F4','2':'#34A853','3':'#FBBC04','4':'#EA4335','5':'#9C27B0'};
-  Object.keys(lineColors).forEach(day => {
-    if (!dayCoords[day]) return;
-    const id = 'route-' + day;
-    map.addSource(id, { type: 'geojson', data: { type: 'Feature', geometry: { type: 'LineString', coordinates: dayCoords[day] } } });
-    map.addLayer({ id, type: 'line', source: id, paint: { 'line-color': lineColors[day], 'line-width': 3, 'line-opacity': 0.5, 'line-dasharray': [4, 4] } });
-    lineIds.push(id);
+function updateLines() {
+  if (!map.getSource('route-1')) return; // not initialized yet
+  ROUTE_DAYS.forEach(dayId => {
+    const vis = active.has(dayId) ? 'visible' : 'none';
+    map.setLayoutProperty(`route-${dayId}`, 'visibility', vis);
+    map.setLayoutProperty(`route-${dayId}-glow`, 'visibility', vis);
   });
 }
 
-function applyCurrentFilter() { filterDay(currentFilter); }
+// ── INFO PANEL ───────────────────────────────────────────────
+function showInfo(p) {
+  const panel = document.getElementById('info');
+  panel.classList.add('open');
 
-function filterDay(day) {
-  currentFilter = day;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.filter-btn[data-day="${day}"]`).classList.add('active');
+  document.getElementById('i-name').textContent = p.name;
+  document.getElementById('i-cn').textContent = p.cn || '';
 
-  markerObjs.forEach(m => {
-    const el = m.marker.getElement();
-    el.style.display = (day === 'all' || m.day === day) ? 'flex' : 'none';
-  });
+  const timeEl = document.getElementById('i-time');
+  if (p.time) { timeEl.textContent = p.time; timeEl.style.display = ''; }
+  else { timeEl.style.display = 'none'; }
 
-  lineIds.forEach(id => {
-    const d = id.replace('route-', '');
-    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', (day === 'all' || d === day) ? 'visible' : 'none');
-  });
+  document.getElementById('i-desc').textContent = p.desc || '';
+  document.getElementById('i-gmaps').href =
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q || p.name)}`;
 
-  if (day !== 'all' && dayCoords[day]) {
-    const bounds = new maptilersdk.LngLatBounds();
-    dayCoords[day].forEach(c => bounds.extend(c));
-    map.fitBounds(bounds, { padding: 80 });
-  } else if (day === 'all') {
-    map.flyTo({ center: [121.55, 25.05], zoom: 10 });
+  const sched = SCHED[p.day];
+  const layer = LAYERS.find(l => l.id === p.day);
+  document.getElementById('s-title').textContent = layer?.label || '정보';
+  document.getElementById('s-list').innerHTML = sched
+    ? sched.map(r => `<div class="sched-row"><span class="sched-time">${r.t}</span><span class="sched-desc">${r.d}</span></div>`).join('')
+    : '<div class="sched-row"><span class="sched-desc" style="color:#333">일정 정보 없음</span></div>';
+
+}
+
+function closeInfo() {
+  document.getElementById('info').classList.remove('open');
+}
+
+// ── WEATHER ──────────────────────────────────────────────────
+const WX_LABELS = ['5/1 금','5/2 토','5/3 일','5/4 월','5/5 화'];
+
+function wCode(code) {
+  if (code === 0)  return {icon:'☀️',  desc:'맑음'};
+  if (code <= 1)   return {icon:'🌤',  desc:'대체로 맑음'};
+  if (code <= 2)   return {icon:'⛅',  desc:'구름 조금'};
+  if (code <= 3)   return {icon:'☁️',  desc:'흐림'};
+  if (code <= 49)  return {icon:'🌫',  desc:'안개'};
+  if (code <= 57)  return {icon:'🌦',  desc:'이슬비'};
+  if (code <= 67)  return {icon:'🌧',  desc:'비'};
+  if (code <= 77)  return {icon:'🌨',  desc:'눈'};
+  if (code <= 82)  return {icon:'🌧',  desc:'소나기'};
+  if (code <= 99)  return {icon:'⛈',  desc:'뇌우'};
+  return {icon:'🌡', desc:'?'};
+}
+
+function renderWeather(daily) {
+  const el = document.getElementById('wx-days');
+  el.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const w    = wCode(daily.weathercode[i]);
+    const hi   = Math.round(daily.temperature_2m_max[i]);
+    const lo   = Math.round(daily.temperature_2m_min[i]);
+    const rain = daily.precipitation_sum[i];
+    const d    = document.createElement('div');
+    d.className = 'wx-day';
+    d.innerHTML =
+      `<div class="wx-date">${WX_LABELS[i]}</div>` +
+      `<div class="wx-icon">${w.icon}</div>` +
+      `<div class="wx-hi">${hi}°</div>` +
+      `<div class="wx-lo">${lo}°</div>` +
+      (rain > 0.1 ? `<div class="wx-rain">${rain.toFixed(1)}mm</div>` : '') +
+      `<div class="wx-desc">${w.desc}</div>`;
+    el.appendChild(d);
   }
 }
 
+async function loadWeather() {
+  const url = [
+    'https://api.open-meteo.com/v1/forecast',
+    '?latitude=25.0478&longitude=121.5319',
+    '&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode',
+    '&timezone=Asia%2FTaipei',
+    '&start_date=2026-05-01&end_date=2026-05-05',
+  ].join('');
+  try {
+    const res  = await fetch(url);
+    const data = await res.json();
+    renderWeather(data.daily);
+  } catch (_) {
+    document.getElementById('wx-days').innerHTML =
+      '<div class="wx-loading">날씨 정보를 불러올 수 없습니다</div>';
+  }
+}
+
+// ── (doc files moved to static HTML) ─────────────────────────
+const _FILES_REMOVED = [
+  {id:'sched',     icon:'📋', name:'일정 개요'},
+  {id:'flight',    icon:'✈️', name:'항공편'},
+  {id:'hotel',     icon:'🏨', name:'숙소'},
+  {id:'prep',      icon:'✅', name:'준비사항'},
+  {id:'money',     icon:'💰', name:'물가 정보'},
+  {id:'food',      icon:'🍜', name:'맛집 가이드'},
+  {id:'kavalan',   icon:'🥃', name:'카발란 가이드'},
+  {id:'tea',       icon:'🍵', name:'동방미인차'},
+  {id:'carrefour', icon:'🛍', name:'까르푸 리스트'},
+  {id:'rain',      icon:'🌧', name:'우천 대비'},
+  {id:'bag',       icon:'🧳', name:'짐 체크리스트'},
+  {id:'chinese',   icon:'🗣', name:'유용한 중국어'},
+  {id:'group',     icon:'👥', name:'단체 운영 팁'},
+  {id:'bib',       icon:'⭐', name:'빕구르망'},
+];
+
+const FC = {
+  sched:`<table class="doc-table"><tr><th>날짜</th><th>주요 일정</th><th>포인트</th></tr>
+<tr><td><span class="dtag dtag-b">5/1 금</span></td><td>단수이 — 홍마오청·소백궁·페리·빠리</td><td>닝샤야시장 굴전 필수</td></tr>
+<tr><td><span class="dtag dtag-g">5/2 토</span></td><td>중정기념당 → 중산 카페거리 → 시먼딩</td><td>루터스 오픈런, 아종면선</td></tr>
+<tr><td><span class="dtag dtag-y">5/3 일</span></td><td>예스허지 — 예류·스펀·허우통·지우펀</td><td>천등 날리기·홍등 야경</td></tr>
+<tr><td><span class="dtag dtag-r">5/4 월</span></td><td>우라이 온천 → 융캉제 → 용산사</td><td>딘타이펑·망고빙수·야경</td></tr>
+<tr><td><span class="dtag dtag-p">5/5 화</span></td><td>식물원 산책 → 체크아웃 → 귀국</td><td>제주 11:55 / 에바 15:15 / 중화 15:30</td></tr>
+</table>`,
+
+  flight:`<table class="doc-table"><tr><th>날짜</th><th>구간</th><th>편명</th><th>탑승자</th><th>시간</th></tr>
+<tr><td><span class="dtag dtag-b">5/1</span></td><td>인천→타오위안</td><td>7C 2803 제주</td><td>지수·희주·우영·영진</td><td>09:05→10:55</td></tr>
+<tr><td><span class="dtag dtag-b">5/1</span></td><td>인천→타오위안</td><td>BR 171 에바</td><td>원상·현상</td><td>12:00→13:35</td></tr>
+<tr><td><span class="dtag dtag-g">5/2</span></td><td>인천→타오위안</td><td>7C 2803 제주</td><td>민영·채한·진우</td><td>09:05→10:55</td></tr>
+<tr><td><span class="dtag dtag-p">5/5</span></td><td>타오위안→인천</td><td>7C 2804 제주</td><td>지수·희주·우영·영진·민영·채한·진우</td><td>11:55→15:25</td></tr>
+<tr><td><span class="dtag dtag-p">5/5</span></td><td>타오위안→인천</td><td>BR 172 에바</td><td>원상·현상</td><td>15:15→18:45</td></tr>
+<tr><td><span class="dtag dtag-p">5/5</span></td><td>타오위안→인천</td><td>CI 161 중화</td><td>영우</td><td>15:30→19:05</td></tr>
+</table>`,
+
+  hotel:`<table class="doc-table"><tr><th>숙소</th><th>투숙객</th><th>기간</th></tr>
+<tr><td>타이베이가든호텔</td><td>지수·희주·우영</td><td>5/1–5</td></tr>
+<tr><td>이스트드래곤</td><td>영진·채한·민영</td><td>5/1–5</td></tr>
+<tr><td>시저 메트로 타이베이</td><td>영우·원상·진우(5/4~)</td><td>5/1–5</td></tr>
+<tr><td>시티인 호텔 플러스 시먼딩</td><td>현상</td><td>5/1–5</td></tr>
+<tr><td>베이먼 바우 포시텔</td><td>진우</td><td>5/2–3</td></tr>
+<tr><td>시티즌M 북문 타이베이</td><td>영우</td><td>4/30</td></tr>
+<tr><td>지엘시티호텔 인천공항</td><td>영진·희주·우영</td><td>4/30</td></tr>
+</table>`,
+
+  prep:`<table class="doc-table"><tr><th>항목</th><th>기한</th><th>내용</th></tr>
+<tr><td>✈️ 항공권</td><td>완료</td><td>제주·에바·중화항공 모두 확보</td></tr>
+<tr><td>🏨 숙소</td><td>완료</td><td>전원 예약 완료</td></tr>
+<tr><td>🎫 예스허지 투어</td><td>출발 전</td><td>booking.com 예약 필수</td></tr>
+<tr><td>📋 대만 입국신고서</td><td>출발 3일 전</td><td>customs.gov.tw 온라인 신청</td></tr>
+<tr><td>📱 eSIM</td><td>출발 전</td><td style="color:#ef5350">미신청 → 요청 필요!</td></tr>
+<tr><td>💴 환전</td><td>출발 전</td><td>TWD 현금 (개인 선택)</td></tr>
+<tr><td>🛍 에버리치 예약</td><td>출발 전</td><td>카발란 면세 가장 저렴</td></tr>
+</table>`,
+
+  money:`<blockquote>환율: 1TWD ≈ 47원 · 100TWD ≈ 4,700원</blockquote>
+<table class="doc-table"><tr><th>품목</th><th>가격(TWD)</th><th>한화 환산</th></tr>
+<tr><td>편의점 생수 600ml</td><td>20</td><td>약 940원</td></tr>
+<tr><td>편의점 도시락</td><td>65–80</td><td>약 3,100–3,800원</td></tr>
+<tr><td>야시장 먹거리 1개</td><td>40–70</td><td>약 1,900–3,300원</td></tr>
+<tr><td>로컬 식당 한 끼 (루로우판+탕)</td><td>80–120</td><td>약 3,800–5,600원</td></tr>
+<tr><td>딘타이펑 샤오룽바오 10개</td><td>250</td><td>약 11,800원</td></tr>
+<tr><td>버블티</td><td>50–70</td><td>약 2,400–3,300원</td></tr>
+<tr><td>MRT 1회 탑승</td><td>20–65</td><td>약 940–3,100원</td></tr>
+<tr><td>택시 기본요금(주간)</td><td>85</td><td>약 4,000원</td></tr>
+</table>
+<blockquote>전반적으로 한국보다 식비 30–40% 저렴, 교통비도 저렴한 편.</blockquote>`,
+
+  food:`<h4>5/1 단수이</h4>
+<table class="doc-table"><tr><th>가게</th><th>메뉴</th><th>가격</th><th>비고</th></tr>
+<tr><td>흑전반점 黑殿飯店</td><td>돼지갈비덮밥</td><td>약 100TWD</td><td>11:00–20:00</td></tr>
+<tr><td>위엔환볜 圓環邊</td><td>미슐랭 굴전</td><td>70–80TWD</td><td>닝샤야시장 내</td></tr>
+</table>
+<h4>5/2 시먼딩</h4>
+<table class="doc-table"><tr><th>가게</th><th>메뉴</th><th>가격</th><th>비고</th></tr>
+<tr><td>아종면선 阿宗麵線</td><td>곱창국수 (서서 먹음)</td><td>소 65 / 대 120TWD</td><td>08:30–22:30</td></tr>
+<tr><td>몽가 / 투팩</td><td>지파이 닭튀김</td><td>70–85TWD</td><td>시먼딩 내</td></tr>
+<tr><td>리얼 58도</td><td>위스키 구매</td><td>–</td><td>시먼딩 내</td></tr>
+</table>
+<h4>5/4 융캉제</h4>
+<table class="doc-table"><tr><th>가게</th><th>메뉴</th><th>가격</th><th>비고</th></tr>
+<tr><td>딘타이펑 신생점</td><td>샤오룽바오 10개</td><td>250TWD</td><td>11:00–20:30 (주말 10:00–)</td></tr>
+<tr><td>까오지 본점 高記</td><td>생전포 10개</td><td>200TWD</td><td>신생남로 1단 167호</td></tr>
+</table>
+<h4>루터스 오픈런 가이드</h4>
+<table class="doc-table"><tr><th>항목</th><th>내용</th></tr>
+<tr><td>오픈런 팁</td><td>08:00–08:30 도착 추천. 09시 오픈, 보통 10시 전 품절. 수요일 휴무</td></tr>
+<tr><td>인기 메뉴</td><td>갈릭 누가크래커 · 오리지널</td></tr>
+<tr><td>가격</td><td>22개입 약 580TWD (약 27,000원)</td></tr>
+<tr><td>주의</td><td>1인 10박스 제한 · <strong>현금만 가능</strong></td></tr>
+</table>`,
+
+  kavalan:`<p><strong>카발란(噶瑪蘭)</strong>은 대만 이란현(宜蘭縣)에 위치한 <strong>대만 최초의 위스키 증류소</strong> (2005년, 킹카 그룹 설립). 아열대 기후 덕분에 스코틀랜드 대비 숙성이 빠르고 짧은 기간에도 깊은 풍미를 낸다. 2015년 WWA에서 Solist Vinho Barrique가 <strong>"World's Best Single Malt"</strong> 수상, 2025년 IWC 3관왕(위스키·증류소·마스터 디스틸러) 달성. 지난 10년간 9개의 "World's Best" 타이틀 획득.</p>
+<h4>타이베이 구매처</h4>
+<table class="doc-table"><tr><th>매장</th><th>특징</th></tr>
+<tr><td>공관 전시판매센터</td><td>직영. 12:00–20:30. 한정판 구매 가능</td></tr>
+<tr><td>충효 전시판매센터</td><td>직영. 12:00–21:00</td></tr>
+<tr><td>공항 면세점 (에버리치)</td><td><strong>가장 저렴.</strong> 사전 예약 → 공항 수령</td></tr>
+<tr><td>리얼 58도 (시먼딩)</td><td>위스키 전문점, 다양한 라인업</td></tr>
+</table>
+<h4>주요 라인업 (700ml 대만 현지가)</h4>
+<table class="doc-table"><tr><th>제품명</th><th>도수</th><th>가격(TWD)</th></tr>
+<tr><td>Classic Single Malt</td><td>40%</td><td>약 1,900</td></tr>
+<tr><td>King Car Conductor</td><td>46%</td><td>약 2,300</td></tr>
+<tr><td>Solist Vinho Barrique (WWA 수상)</td><td>약 54–58%</td><td>약 3,200–3,500</td></tr>
+<tr><td>Solist Fino Sherry (IWC 2025)</td><td>약 55–58%</td><td>약 3,500+</td></tr>
+</table>
+<blockquote>한국 시내 가격 대비 대만 현지가가 30–50% 저렴. 면세점은 추가 10–15% 할인.</blockquote>`,
+
+  tea:`<p><strong>동방미인차(東方美人茶)</strong>는 대만 고유의 <strong>중발효 우롱차</strong> (발효도 60–85%). 가장 큰 특징은 <strong>소록엽선(小綠葉蟬)</strong>이라는 작은 매미충이 찻잎을 물어야만 만들어진다는 것. 벌레가 물면 차나무가 방어 기제를 발동해 특유의 <strong>꿀향(蜜香)</strong>과 숙과향을 생성한다. 농약 미사용 자연 재배 필수, 연 1회(5–6월) 한정 수확이라 생산량이 매우 적다.</p>
+<p>전설에 따르면 영국 상인이 빅토리아 여왕에게 헌상했을 때 찻잎이 "절세미인이 춤추는 것 같다"며 <strong>"Oriental Beauty"</strong>라 명명. 별칭: 백호우롱·팽풍차·오색차.</p>
+<h4>타이베이 구매처</h4>
+<table class="doc-table"><tr><th>매장</th><th>위치</th><th>특징</th></tr>
+<tr><td>린화타이차항 林華泰茶行</td><td>다다오청</td><td>1883년 창립. <strong>가성비 최고</strong> (도매가 수준). 150g 단위</td></tr>
+<tr><td>유기명차 有記名茶</td><td>다다오청</td><td>1890년 5대째. 시음 체험 가능</td></tr>
+<tr><td>왕더촨 王德傳</td><td>101·백화점</td><td>1862년. 선물 포장 우아. 프리미엄</td></tr>
+<tr><td>톈런명차 天仁茗茶</td><td>시내 곳곳</td><td>접근성 최고. 100g 400TWD부터</td></tr>
+</table>
+<h4>좋은 차 고르는 법</h4>
+<p>① 백·녹·황·홍·갈 <strong>5색</strong>이 고르게 섞인 것 &nbsp;② <strong>백호(흰 솜털)</strong>가 많을수록 고급 &nbsp;③ 차탕 색: 맑고 투명한 오렌지–호박색 &nbsp;④ <strong>천연 꿀향·숙과향</strong> 필수 &nbsp;⑤ 반드시 무료 시음 후 결정</p>`,
+
+  carrefour:`<table class="doc-table"><tr><th>품목</th><th>추천</th><th>가격대</th></tr>
+<tr><td>펑리수 (파인애플케이크)</td><td>기념품 부동의 1위</td><td>400–600TWD/박스</td></tr>
+<tr><td>누가크래커</td><td>수제 크래커, 맛 다양</td><td>200–400TWD</td></tr>
+<tr><td>닥터큐 곤약젤리</td><td>망고/리치/포도. 저칼로리</td><td>80–120TWD/봉지</td></tr>
+<tr><td>타이완 맥주 과일시리즈</td><td>망고·파인애플맥주</td><td>35–45TWD/캔</td></tr>
+<tr><td>썬케이크 太陽餅</td><td>타이중 명물</td><td>200–350TWD</td></tr>
+<tr><td>차 (고산차, 동방미인)</td><td>선물용</td><td>300–800TWD</td></tr>
+<tr><td>마유(말기름) 크림</td><td>일본보다 저렴</td><td>200–400TWD</td></tr>
+</table>
+<blockquote>NT$2,000 이상 구매 시 여권 제시 → 세금 환급 5% (매장 서비스 센터)</blockquote>`,
+
+  rain:`<table class="doc-table"><tr><th>원래 일정</th><th>비 오면 대안</th></tr>
+<tr><td><span class="dtag dtag-b">5/1</span> 단수이</td><td>페리·자전거 취소 → 단수이 라오제 실내 구경 + 야시장으로 일찍 이동</td></tr>
+<tr><td><span class="dtag dtag-g">5/2</span> 중산 카페거리</td><td>실내 카페/서점 위주라 영향 없음</td></tr>
+<tr><td><span class="dtag dtag-y">5/3</span> 예스허지 투어</td><td>투어 진행 (예류 미끄러움 주의). 지우펀은 비 와도 분위기 좋음</td></tr>
+<tr><td><span class="dtag dtag-r">5/4</span> 우라이</td><td>폭포 OK. 온천은 오히려 운치. 비 심하면 오전 시내 변경</td></tr>
+</table>
+<blockquote>5월은 우기 초입. 접이식 우산 필수 지참.</blockquote>`,
+
+  bag:`<table class="doc-table"><tr><th>필수</th><th>선택</th></tr>
+<tr><td>여권 + 사본(사진)</td><td>수영복 (우라이 노천탕)</td></tr>
+<tr><td>접이식 우산</td><td>슬리퍼 (온천/숙소용)</td></tr>
+<tr><td>충전기 + 보조배터리</td><td>선크림 (5월 자외선 강함)</td></tr>
+<tr><td>편한 운동화 (5/3 투어 많이 걸음)</td><td>가벼운 겉옷 (실내 냉방 강함)</td></tr>
+<tr><td>현금 TWD + 카드</td><td>멀미약 (5/3 산길 이동)</td></tr>
+</table>
+<blockquote>비상: 경찰 110 · 소방/구급 119 · 한국대표부 +886-2-2758-8320</blockquote>`,
+
+  chinese:`<table class="doc-table"><tr><th>상황</th><th>중국어</th><th>발음</th></tr>
+<tr><td>감사합니다</td><td>謝謝</td><td>씨에씨에</td></tr>
+<tr><td>얼마예요?</td><td>多少錢？</td><td>뚜오샤오치엔?</td></tr>
+<tr><td>이거 주세요</td><td>我要這個</td><td>워야오쩌거</td></tr>
+<tr><td>맵지 않게</td><td>不要辣</td><td>뿌야오라</td></tr>
+<tr><td>봉투 필요없어요</td><td>不用袋子</td><td>뿌용따이쯔</td></tr>
+<tr><td>화장실 어디예요?</td><td>廁所在哪裡？</td><td>츠쒀짜이나리?</td></tr>
+<tr><td>10명이에요</td><td>我們十個人</td><td>워먼스거런</td></tr>
+<tr><td>계산이요</td><td>買單</td><td>마이단</td></tr>
+<tr><td>고수 빼주세요</td><td>不要香菜</td><td>뿌야오씨앙차이</td></tr>
+<tr><td>포장이요</td><td>外帶</td><td>와이따이</td></tr>
+</table>`,
+
+  group:`<h4>이동 & 집합</h4>
+<p>① <strong>소그룹 분리</strong>: 매번 10명 같이 안 움직여도 됨. 오전 같이 → 오후 소그룹 → 저녁 합류<br>
+② <strong>집합장소</strong>: MRT역 출구 번호로 지정 (예: "동먼역 5번 출구 12시")<br>
+③ <strong>택시</strong>: 10명 = 택시 3–4대. 앞차 기사에게 목적지 보여주고 뒷차들 따라가기</p>
+<h4>식당 & 결제</h4>
+<p>④ <strong>식당</strong>: 10명 착석 어려운 곳 많음. 핫플은 11:30 전 도착 or 사전 예약<br>
+⑤ <strong>결제</strong>: 한 명이 대표 결제 → 나중에 Toss/카카오페이 정산<br>
+⑥ <strong>이지카드 잔액</strong>: 공항 편의점 소진 or MRT 창구 환불 (수수료 20TWD)</p>
+<h4>현지 체험</h4>
+<p>• <strong>새우 낚시</strong>: 잡은 대하 즉석 그릴, 맥주 반입 OK — 350TWD/1시간<br>
+• <strong>KTV</strong>: 한국 노래 많음. 약 300–500TWD/인 (3시간)<br>
+• <strong>쾌차오뎬</strong>: 볶음집. 바질 조개볶음(九層塔炒蛤蜊) 필수 — 1인 200–400TWD</p>`,
+
+  bib:`<h4>시먼딩/만화 구역</h4>
+<table class="doc-table"><tr><th>매장</th><th>추천메뉴</th><th>가격대</th><th>특징</th></tr>
+<tr><td>라오산둥 우육면 老山東牛肉麵</td><td>홍소우육면</td><td>약 200TWD</td><td>완녠빌딩 B1. 76년 전통</td></tr>
+<tr><td>위안팡 과바오 源芳刈包</td><td>과바오 70TWD</td><td>70–150TWD</td><td>대만식 햄버거. 월 휴무</td></tr>
+<tr><td>이자쯔 一甲子餐飲</td><td>꽁러우판 80TWD</td><td>50–150TWD</td><td>월 휴무</td></tr>
+</table>
+<h4>중산 구역</h4>
+<table class="doc-table"><tr><th>매장</th><th>추천메뉴</th><th>가격대</th><th>특징</th></tr>
+<tr><td>황지루러우판 黃記魯肉飯</td><td>루러우판</td><td>약 120TWD</td><td>현금만. 월 휴무</td></tr>
+<tr><td>지자좡 雞家莊</td><td>삼미지 600–800TWD</td><td>400–800TWD</td><td>단체석 가능 (10명 확인 권장)</td></tr>
+<tr><td>런허위안 人和園</td><td>기궈지</td><td>300–600TWD</td><td>윈난요리. 60년. 예약 필수</td></tr>
+</table>
+<h4>동먼/대안 구역</h4>
+<table class="doc-table"><tr><th>매장</th><th>추천메뉴</th><th>가격대</th><th>특징</th></tr>
+<tr><td>항저우샤오롱탕바오 杭州小籠湯包</td><td>샤오롱바오</td><td>300–600TWD</td><td>딘타이펑 1/3 가격!</td></tr>
+<tr><td>솽위에스핀셔 雙月食品社</td><td>하마둔지탕 190TWD</td><td>200–400TWD</td><td>8년 연속 선정. 예약 불가</td></tr>
+</table>
+<blockquote>소규모 맛집이 많아 10명은 2–3팀 나눠서 시간차 방문 추천.</blockquote>`,
+};
+
+// ── INIT ─────────────────────────────────────────────────────
 map.on('load', () => {
-  addAllMarkers();
-  addAllLines();
+  buildSidebar();
+  initLines();
+  rebuildMarkers();
+  loadWeather();
+  map.on('mousemove', e => {
+    document.getElementById('coords').textContent =
+      `${e.lngLat.lat.toFixed(4)}°N  ${e.lngLat.lng.toFixed(4)}°E`;
+  });
 });
 </script>
 </body>
