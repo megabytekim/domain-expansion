@@ -286,7 +286,9 @@ body {
   }
   #mob-overlay.open { display:block; }
 
-  #right { flex-direction:column; height:auto; }
+  body { height:auto; overflow-y:auto; }
+  #main { overflow:visible; height:auto; }
+  #right { flex-direction:column; height:auto; overflow:visible; }
 
   #map-wrap { height:45vh; min-height:220px; }
 
