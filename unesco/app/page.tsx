@@ -1,41 +1,34 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import UnescoMap from "@/components/UnescoMap";
+import HyechoMap from "@/components/UnescoMap";
 import BottomSheet from "@/components/BottomSheet";
 import SiteDetail from "@/components/SiteDetail";
 import FilterBar from "@/components/FilterBar";
-import type { UnescoSiteProperties, UnescoGeoJSON, CategoryFilter } from "@/lib/types";
-import { mergeData } from "@/lib/merge-data";
-import rawUnesco from "@/data/unesco-sites.json";
-import rawHyecho from "@/data/hyecho-packages.json";
-import rawMapping from "@/data/hyecho-unesco-mapping.json";
+import { productsToGeoJSON } from "@/lib/merge-data";
+import type { MarkerProperties, HyechoProduct, CategoryFilter } from "@/lib/types";
+import rawProducts from "@/data/hyecho-packages.json";
 
-const data = mergeData(
-  rawUnesco as unknown as UnescoGeoJSON,
-  rawHyecho,
-  rawMapping as Record<string, number[]>
-);
+const products = rawProducts as unknown as HyechoProduct[];
+const geoData = productsToGeoJSON(products);
 
 export default function Home() {
-  const [selectedSite, setSelectedSite] = useState<UnescoSiteProperties | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<MarkerProperties | null>(null);
   const [sheetState, setSheetState] = useState<"closed" | "half" | "full">("closed");
   const [categories, setCategories] = useState<Set<CategoryFilter>>(
-    new Set(["Cultural", "Natural", "Mixed"])
+    new Set(["trekking", "culture", "walking"])
   );
-  const [hyechoOnly, setHyechoOnly] = useState(true);
-  const [region, setRegion] = useState<string | null>(null);
 
-  const handleSiteSelect = useCallback((site: UnescoSiteProperties | null) => {
-    setSelectedSite(site);
-    setSheetState(site ? "half" : "closed");
+  const handleMarkerSelect = useCallback((props: MarkerProperties | null) => {
+    setSelectedMarker(props);
+    setSheetState(props ? "half" : "closed");
   }, []);
 
   const handleToggleCategory = useCallback((cat: CategoryFilter) => {
     setCategories((prev) => {
       const next = new Set(prev);
       if (next.has(cat)) {
-        if (next.size > 1) next.delete(cat); // don't allow empty
+        if (next.size > 1) next.delete(cat);
       } else {
         next.add(cat);
       }
@@ -43,27 +36,19 @@ export default function Home() {
     });
   }, []);
 
-  const handleToggleHyecho = useCallback(() => {
-    setHyechoOnly((prev) => !prev);
-  }, []);
-
   return (
     <div className="relative h-full w-full">
       <FilterBar
         categories={categories}
         onToggleCategory={handleToggleCategory}
-        hyechoOnly={hyechoOnly}
-        onToggleHyecho={handleToggleHyecho}
       />
-      <UnescoMap
-        data={data}
-        onSiteSelect={handleSiteSelect}
-        filterState={{ categories, hyechoOnly, region }}
+      <HyechoMap
+        data={geoData}
+        onMarkerSelect={handleMarkerSelect}
+        filterCategories={categories}
       />
       <BottomSheet state={sheetState} onStateChange={setSheetState}>
-        {selectedSite && (
-          <SiteDetail site={selectedSite} isFullView={sheetState === "full"} />
-        )}
+        {selectedMarker && <SiteDetail marker={selectedMarker} />}
       </BottomSheet>
     </div>
   );

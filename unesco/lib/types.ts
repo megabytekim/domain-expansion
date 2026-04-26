@@ -1,48 +1,45 @@
-export interface UnescoSiteProperties {
-  id: number;
+export interface HyechoLocation {
   name: string;
-  country: string;
-  isoCode: string;
-  region: string;
-  category: "Cultural" | "Natural" | "Mixed";
-  year: number;
-  endangered: boolean;
-  description: string;
-  imageUrl: string;
-  url: string;
-  criteria: string;
-  hasHyecho: boolean;
-  hyechoPackages: HyechoPackage[];
+  lat: number;
+  lng: number;
 }
 
-export interface HyechoPackage {
+export interface HyechoProduct {
   id: string;
+  category: "trekking" | "culture" | "walking";
   title: string;
   price: string;
   duration: string;
   url: string;
-  destinations: string[];
-  imageUrl?: string;
+  imageUrl: string;
+  locations: HyechoLocation[];
 }
 
-export interface UnescoSiteFeature {
+// GeoJSON feature for a single marker on the map
+export interface MarkerProperties {
+  productId: string;
+  productTitle: string;
+  productPrice: string;
+  productDuration: string;
+  productUrl: string;
+  productImageUrl: string;
+  productCategory: string;
+  locationName: string;
+  colorIndex: number; // index into color palette, same for all locations of a product
+}
+
+export interface MarkerFeature {
   type: "Feature";
   geometry: {
     type: "Point";
     coordinates: [number, number]; // [lng, lat]
   };
-  properties: UnescoSiteProperties;
+  properties: MarkerProperties;
 }
 
-export interface UnescoGeoJSON {
+export interface MarkerGeoJSON {
   type: "FeatureCollection";
-  features: UnescoSiteFeature[];
+  features: MarkerFeature[];
 }
 
-export type CategoryFilter = "Cultural" | "Natural" | "Mixed";
-
-export interface FilterState {
-  categories: Set<CategoryFilter>;
-  hyechoOnly: boolean;
-  region: string | null;
-}
+export type CategoryFilter = "trekking" | "culture" | "walking";

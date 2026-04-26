@@ -2,361 +2,120 @@
 
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
-import type {
-  UnescoGeoJSON,
-  UnescoSiteProperties,
-  CategoryFilter,
-} from "@/lib/types";
+import type { MarkerGeoJSON, MarkerProperties, CategoryFilter } from "@/lib/types";
 
-interface UnescoMapProps {
-  data: UnescoGeoJSON;
-  onSiteSelect: (site: UnescoSiteProperties | null) => void;
-  filterState: {
-    categories: Set<CategoryFilter>;
-    hyechoOnly: boolean;
-    region: string | null;
-  };
+// 50 distinct colors for products
+const PALETTE = [
+  "#ff6b6b","#ffa94d","#ffd43b","#a9e34b","#51cf66",
+  "#20c997","#22b8cf","#339af0","#5c7cfa","#7950f2",
+  "#be4bdb","#e64980","#ff8787","#ffc078","#ffe066",
+  "#c0eb75","#69db7c","#38d9a9","#3bc9db","#4dabf7",
+  "#748ffc","#9775fa","#cc5de8","#f06595","#fa5252",
+  "#fd7e14","#fab005","#82c91e","#40c057","#12b886",
+  "#15aabf","#228be6","#4c6ef5","#7048e8","#ae3ec9",
+  "#d6336c","#e03131","#e8590c","#f08c00","#66a80f",
+  "#2b8a3e","#0b7285","#1864ab","#364fc7","#5f3dc4",
+  "#862e9c","#a61e4d","#c92a2a","#d9480f","#e67700",
+];
+
+interface HyechoMapProps {
+  data: MarkerGeoJSON;
+  onMarkerSelect: (props: MarkerProperties | null) => void;
+  filterCategories: Set<CategoryFilter>;
 }
 
-export default function UnescoMap({
-  data,
-  onSiteSelect,
-  filterState,
-}: UnescoMapProps) {
-  const mapContainerRef = useRef<HTMLDivElement>(null);
+export default function HyechoMap({ data, onMarkerSelect, filterCategories }: HyechoMapProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const onSiteSelectRef = useRef(onSiteSelect);
+  const onSelectRef = useRef(onMarkerSelect);
 
-  // Keep callback ref in sync without triggering map re-creation
+  useEffect(() => { onSelectRef.current = onMarkerSelect; }, [onMarkerSelect]);
+
+  // Init map
   useEffect(() => {
-    onSiteSelectRef.current = onSiteSelect;
-  }, [onSiteSelect]);
-
-  // Initialize map
-  useEffect(() => {
-    if (!mapContainerRef.current) return;
-
+    if (!containerRef.current) return;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+
     const map = new maplibregl.Map({
-      container: mapContainerRef.current,
+      container: containerRef.current,
       style: `https://api.maptiler.com/maps/streets-v2-dark/style.json?key=${key}`,
-      center: [15, 30],
+      center: [30, 25],
       zoom: 2,
     });
 
     map.addControl(new maplibregl.NavigationControl(), "top-right");
 
     map.on("load", () => {
-      // Add GeoJSON source with clustering
-      map.addSource("unesco-sites", {
+      map.addSource("hyecho", {
         type: "geojson",
         data: data as unknown as GeoJSON.FeatureCollection,
-        cluster: true,
-        clusterMaxZoom: 12,
-        clusterRadius: 50,
       });
 
-      // Cluster circles layer
+      // Circle layer — color by product colorIndex
       map.addLayer({
-        id: "clusters",
+        id: "markers",
         type: "circle",
-        source: "unesco-sites",
-        filter: ["has", "point_count"],
+        source: "hyecho",
         paint: {
-          "circle-color": "#1e293b",
-          "circle-stroke-color": "#94a3b8",
-          "circle-stroke-width": 2,
-          "circle-radius": [
-            "step",
-            ["get", "point_count"],
-            15,
-            10,
-            20,
-            50,
-            25,
-            100,
-            30,
-            500,
-            35,
-          ],
-        },
-      });
-
-      // Cluster count labels
-      map.addLayer({
-        id: "cluster-count",
-        type: "symbol",
-        source: "unesco-sites",
-        filter: ["has", "point_count"],
-        layout: {
-          "text-field": [
-            "step",
-            ["get", "point_count"],
-            ["to-string", ["get", "point_count"]],
-            1000,
-            [
-              "concat",
-              ["to-string", ["/", ["round", ["*", ["get", "point_count"], 0.1]], 0.1]],
-              "k",
-            ],
-          ],
-          "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
-          "text-size": 12,
-          "text-allow-overlap": true,
-        },
-        paint: {
-          "text-color": "#e2e8f0",
-        },
-      });
-
-      // Individual site circles
-      map.addLayer({
-        id: "sites",
-        type: "circle",
-        source: "unesco-sites",
-        filter: ["!", ["has", "point_count"]],
-        paint: {
-          "circle-radius": 6,
+          "circle-radius": 8,
           "circle-color": [
             "match",
-            ["get", "category"],
-            "Cultural",
-            "#ff6b35",
-            "Natural",
-            "#22c55e",
-            "Mixed",
-            "#3b82f6",
-            "#888888",
-          ],
-          "circle-stroke-width": [
-            "case",
-            [
-              "any",
-              ["==", ["get", "hasHyecho"], true],
-              ["==", ["get", "hasHyecho"], "true"],
-            ],
-            2,
-            1,
-          ],
-          "circle-stroke-color": [
-            "case",
-            [
-              "any",
-              ["==", ["get", "hasHyecho"], true],
-              ["==", ["get", "hasHyecho"], "true"],
-            ],
-            "#fbbf24",
-            "#475569",
-          ],
+            ["%", ["get", "colorIndex"], PALETTE.length],
+            ...PALETTE.flatMap((c, i) => [i, c]),
+            "#888",
+          ] as unknown as maplibregl.ExpressionSpecification,
+          "circle-stroke-width": 1.5,
+          "circle-stroke-color": "rgba(255,255,255,0.4)",
+          "circle-opacity": 0.9,
         },
       });
 
-      // Click cluster → zoom to expansion
-      map.on("click", "clusters", (e) => {
-        const features = map.queryRenderedFeatures(e.point, {
-          layers: ["clusters"],
-        });
-        if (!features.length) return;
-        const clusterId = features[0].properties.cluster_id;
-        const source = map.getSource("unesco-sites") as maplibregl.GeoJSONSource;
-        source.getClusterExpansionZoom(clusterId).then((zoom) => {
-          const geometry = features[0].geometry;
-          if (geometry.type === "Point") {
-            map.easeTo({
-              center: geometry.coordinates as [number, number],
-              zoom,
-            });
-          }
-        });
+      // Click marker
+      map.on("click", "markers", (e) => {
+        const feature = e.features?.[0];
+        if (!feature) return;
+        const props = feature.properties as unknown as MarkerProperties;
+        onSelectRef.current(props);
       });
 
-      // Click site → select it
-      map.on("click", "sites", (e) => {
-        const features = map.queryRenderedFeatures(e.point, {
-          layers: ["sites"],
-        });
-        if (!features.length) return;
-
-        const props = features[0].properties;
-
-        // Parse stringified properties from MapLibre
-        const site: UnescoSiteProperties = {
-          id: typeof props.id === "string" ? parseInt(props.id, 10) : props.id,
-          name: props.name,
-          country: props.country,
-          isoCode: props.isoCode,
-          region: props.region,
-          category: props.category as UnescoSiteProperties["category"],
-          year:
-            typeof props.year === "string"
-              ? parseInt(props.year, 10)
-              : props.year,
-          endangered:
-            typeof props.endangered === "string"
-              ? props.endangered === "true"
-              : props.endangered,
-          description: props.description,
-          imageUrl: props.imageUrl,
-          url: props.url,
-          criteria: props.criteria,
-          hasHyecho:
-            typeof props.hasHyecho === "string"
-              ? props.hasHyecho === "true"
-              : props.hasHyecho,
-          hyechoPackages:
-            typeof props.hyechoPackages === "string"
-              ? JSON.parse(props.hyechoPackages)
-              : props.hyechoPackages,
-        };
-
-        onSiteSelectRef.current(site);
-      });
-
-      // Click empty area → deselect
+      // Click empty → deselect
       map.on("click", (e) => {
-        const queryLayers = ["sites"];
-        if (map.getLayer("clusters")) queryLayers.push("clusters");
-        const features = map.queryRenderedFeatures(e.point, {
-          layers: queryLayers,
-        });
-        if (features.length === 0) {
-          onSiteSelectRef.current(null);
-        }
+        const features = map.queryRenderedFeatures(e.point, { layers: ["markers"] });
+        if (features.length === 0) onSelectRef.current(null);
       });
 
-      // Pointer cursor on hover
-      map.on("mouseenter", "clusters", () => {
-        map.getCanvas().style.cursor = "pointer";
-      });
-      map.on("mouseleave", "clusters", () => {
-        map.getCanvas().style.cursor = "";
-      });
-      map.on("mouseenter", "sites", () => {
-        map.getCanvas().style.cursor = "pointer";
-      });
-      map.on("mouseleave", "sites", () => {
-        map.getCanvas().style.cursor = "";
-      });
+      // Cursor
+      map.on("mouseenter", "markers", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "markers", () => { map.getCanvas().style.cursor = ""; });
     });
 
     mapRef.current = map;
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-    };
+    return () => { map.remove(); mapRef.current = null; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Filter effect: update source data when filters change
-  // When hyechoOnly is on and few markers remain, disable clustering
+  // Filter
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    const applyFilter = () => {
-      const filtered = data.features.filter((feature) => {
-        const props = feature.properties;
-        if (!filterState.categories.has(props.category)) return false;
-        if (filterState.hyechoOnly && !props.hasHyecho) return false;
-        if (filterState.region && props.region !== filterState.region)
-          return false;
-        return true;
-      });
+    const apply = () => {
+      const source = map.getSource("hyecho") as maplibregl.GeoJSONSource;
+      if (!source) return;
 
-      const shouldCluster = !filterState.hyechoOnly;
+      const filtered = data.features.filter((f) =>
+        filterCategories.has(f.properties.productCategory as CategoryFilter)
+      );
 
-      // Remove old source and layers, re-add with updated cluster setting
-      if (map.getLayer("clusters")) map.removeLayer("clusters");
-      if (map.getLayer("cluster-count")) map.removeLayer("cluster-count");
-      if (map.getLayer("sites")) map.removeLayer("sites");
-      if (map.getSource("unesco-sites")) map.removeSource("unesco-sites");
-
-      map.addSource("unesco-sites", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: filtered,
-        } as unknown as GeoJSON.FeatureCollection,
-        cluster: shouldCluster,
-        clusterMaxZoom: 12,
-        clusterRadius: 50,
-      });
-
-      if (shouldCluster) {
-        map.addLayer({
-          id: "clusters",
-          type: "circle",
-          source: "unesco-sites",
-          filter: ["has", "point_count"],
-          paint: {
-            "circle-color": "#1e293b",
-            "circle-stroke-color": "#94a3b8",
-            "circle-stroke-width": 2,
-            "circle-radius": [
-              "step",
-              ["get", "point_count"],
-              15, 10, 20, 50, 25, 100, 30, 500, 35,
-            ],
-          },
-        });
-
-        map.addLayer({
-          id: "cluster-count",
-          type: "symbol",
-          source: "unesco-sites",
-          filter: ["has", "point_count"],
-          layout: {
-            "text-field": "{point_count_abbreviated}",
-            "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
-            "text-size": 12,
-            "text-allow-overlap": true,
-          },
-          paint: { "text-color": "#e2e8f0" },
-        });
-      }
-
-      map.addLayer({
-        id: "sites",
-        type: "circle",
-        source: "unesco-sites",
-        ...(shouldCluster ? { filter: ["!", ["has", "point_count"]] as maplibregl.ExpressionFilterSpecification } : {}),
-        paint: {
-          "circle-radius": filterState.hyechoOnly ? 8 : 6,
-          "circle-color": [
-            "match",
-            ["get", "category"],
-            "Cultural", "#ff6b35",
-            "Natural", "#22c55e",
-            "Mixed", "#3b82f6",
-            "#888888",
-          ],
-          "circle-stroke-width": [
-            "case",
-            ["any", ["==", ["get", "hasHyecho"], true], ["==", ["get", "hasHyecho"], "true"]],
-            2, 1,
-          ],
-          "circle-stroke-color": [
-            "case",
-            ["any", ["==", ["get", "hasHyecho"], true], ["==", ["get", "hasHyecho"], "true"]],
-            "#fbbf24", "#475569",
-          ],
-        },
-      });
+      source.setData({
+        type: "FeatureCollection",
+        features: filtered,
+      } as unknown as GeoJSON.FeatureCollection);
     };
 
-    if (map.isStyleLoaded()) {
-      applyFilter();
-    } else {
-      map.once("load", applyFilter);
-    }
-  }, [data, filterState]);
+    if (map.isStyleLoaded()) apply();
+    else map.once("load", apply);
+  }, [data, filterCategories]);
 
-  return (
-    <div
-      ref={mapContainerRef}
-      className="h-full w-full"
-      style={{ position: "absolute", inset: 0 }}
-    />
-  );
+  return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }
