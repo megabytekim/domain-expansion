@@ -210,15 +210,6 @@ export default function UnescoMap({
         };
 
         onSiteSelectRef.current(site);
-
-        const geometry = features[0].geometry;
-        if (geometry.type === "Point") {
-          map.easeTo({
-            center: geometry.coordinates as [number, number],
-            zoom: Math.max(map.getZoom(), 6),
-            offset: [0, -100],
-          });
-        }
       });
 
       // Click empty area → deselect
@@ -256,34 +247,100 @@ export default function UnescoMap({
   }, []);
 
   // Filter effect: update source data when filters change
+  // When hyechoOnly is on and few markers remain, disable clustering
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
     const applyFilter = () => {
-      const source = map.getSource("unesco-sites") as maplibregl.GeoJSONSource;
-      if (!source) return;
-
       const filtered = data.features.filter((feature) => {
         const props = feature.properties;
-
-        // Category filter
         if (!filterState.categories.has(props.category)) return false;
-
-        // Hyecho-only filter
         if (filterState.hyechoOnly && !props.hasHyecho) return false;
-
-        // Region filter
         if (filterState.region && props.region !== filterState.region)
           return false;
-
         return true;
       });
 
-      source.setData({
-        type: "FeatureCollection",
-        features: filtered,
-      } as unknown as GeoJSON.FeatureCollection);
+      const shouldCluster = !filterState.hyechoOnly;
+
+      // Remove old source and layers, re-add with updated cluster setting
+      if (map.getLayer("clusters")) map.removeLayer("clusters");
+      if (map.getLayer("cluster-count")) map.removeLayer("cluster-count");
+      if (map.getLayer("sites")) map.removeLayer("sites");
+      if (map.getSource("unesco-sites")) map.removeSource("unesco-sites");
+
+      map.addSource("unesco-sites", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: filtered,
+        } as unknown as GeoJSON.FeatureCollection,
+        cluster: shouldCluster,
+        clusterMaxZoom: 12,
+        clusterRadius: 50,
+      });
+
+      if (shouldCluster) {
+        map.addLayer({
+          id: "clusters",
+          type: "circle",
+          source: "unesco-sites",
+          filter: ["has", "point_count"],
+          paint: {
+            "circle-color": "#1e293b",
+            "circle-stroke-color": "#94a3b8",
+            "circle-stroke-width": 2,
+            "circle-radius": [
+              "step",
+              ["get", "point_count"],
+              15, 10, 20, 50, 25, 100, 30, 500, 35,
+            ],
+          },
+        });
+
+        map.addLayer({
+          id: "cluster-count",
+          type: "symbol",
+          source: "unesco-sites",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+            "text-size": 12,
+            "text-allow-overlap": true,
+          },
+          paint: { "text-color": "#e2e8f0" },
+        });
+      }
+
+      map.addLayer({
+        id: "sites",
+        type: "circle",
+        source: "unesco-sites",
+        filter: shouldCluster ? ["!", ["has", "point_count"]] : undefined,
+        paint: {
+          "circle-radius": filterState.hyechoOnly ? 8 : 6,
+          "circle-color": [
+            "match",
+            ["get", "category"],
+            "Cultural", "#ff6b35",
+            "Natural", "#22c55e",
+            "Mixed", "#3b82f6",
+            "#888888",
+          ],
+          "circle-stroke-width": [
+            "case",
+            ["any", ["==", ["get", "hasHyecho"], true], ["==", ["get", "hasHyecho"], "true"]],
+            2, 1,
+          ],
+          "circle-stroke-color": [
+            "case",
+            ["any", ["==", ["get", "hasHyecho"], true], ["==", ["get", "hasHyecho"], "true"]],
+            "#fbbf24", "#475569",
+          ],
+        },
+      });
     };
 
     if (map.isStyleLoaded()) {

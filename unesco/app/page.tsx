@@ -23,7 +23,7 @@ export default function Home() {
   const [categories, setCategories] = useState<Set<CategoryFilter>>(
     new Set(["Cultural", "Natural", "Mixed"])
   );
-  const [hyechoOnly, setHyechoOnly] = useState(false);
+  const [hyechoOnly, setHyechoOnly] = useState(true);
   const [region, setRegion] = useState<string | null>(null);
 
   const handleSiteSelect = useCallback((site: UnescoSiteProperties | null) => {

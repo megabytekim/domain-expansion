@@ -57,22 +57,24 @@ export default function SiteDetail({ site, isFullView }: SiteDetailProps) {
         </div>
       </div>
 
-      {/* Photo + description — full view only */}
+      {/* Photo + UNESCO link — always visible */}
+      {site.imageUrl && (
+        <img src={site.imageUrl} alt={site.name} className="w-full h-36 object-cover rounded-lg" loading="lazy" />
+      )}
+      <a href={site.url} target="_blank" rel="noopener noreferrer"
+        className="inline-block text-sm text-blue-400 hover:text-blue-300 underline">
+        View on UNESCO.org
+      </a>
+
+      {/* Description + criteria — full view only */}
       {isFullView && (
         <>
-          {site.imageUrl && (
-            <img src={site.imageUrl} alt={site.name} className="w-full h-48 object-cover rounded-lg" loading="lazy" />
-          )}
           {site.description && (
             <p className="text-sm text-gray-300 leading-relaxed">{site.description}</p>
           )}
           {site.criteria && (
             <p className="text-xs text-gray-500">Criteria: {site.criteria}</p>
           )}
-          <a href={site.url} target="_blank" rel="noopener noreferrer"
-            className="inline-block text-sm text-blue-400 hover:text-blue-300 underline">
-            View on UNESCO.org
-          </a>
         </>
       )}
     </div>
