@@ -1,137 +1,1172 @@
 [
   {
-    "id": "hyecho-2246",
-    "title": "[완전일주] 미지의 왕국 부탄 11일",
-    "price": "8,200,000",
-    "duration": "10박 11일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2246&eventSeq=42703",
-    "destinations": ["부탄", "붐탕", "탁상사원", "팀푸"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2246/hyecho_cm9900_30000527.jpg"
+    "id": "hyecho-2474",
+    "category": "trekking",
+    "title": "황산 서해대협곡/삼청산 트레킹+관광 5일",
+    "price": "1,890,000",
+    "duration": "5일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2474",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2474/hyecho_cm9900_30002261.jpg",
+    "locations": [
+      {
+        "name": "황산 (Huangshan)",
+        "lat": 30.13,
+        "lng": 118.17
+      },
+      {
+        "name": "삼청산 (Sanqingshan)",
+        "lat": 28.91,
+        "lng": 118.06
+      }
+    ]
   },
   {
-    "id": "hyecho-1967",
-    "title": "폴란드일주+발트3국 13일",
-    "price": "10,100,000",
-    "duration": "12박 13일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1967&eventSeq=42143",
-    "destinations": ["폴란드", "크라쿠프", "리투아니아", "빌뉴스", "라트비아", "리가", "에스토니아", "탈린"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1967/hyecho_cm9900_30002992.jpg"
+    "id": "hyecho-3089",
+    "category": "trekking",
+    "title": "[북유럽] 페로제도+아이슬란드 트레킹 13일",
+    "price": "18,900,000",
+    "duration": "13일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3089&eventSeq=41997",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3089/hyecho_cm9900_30001017.jpg",
+    "locations": [
+      {
+        "name": "페로제도 (Faroe Islands)",
+        "lat": 62.01,
+        "lng": -6.77
+      },
+      {
+        "name": "아이슬란드 (Iceland)",
+        "lat": 64.96,
+        "lng": -19.02
+      }
+    ]
   },
   {
-    "id": "hyecho-2251",
-    "title": "[핵심일주] 천상고원 티벳 청장열차 9일",
-    "price": "3,700,000",
-    "duration": "8박 9일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2251&eventSeq=41652",
-    "destinations": ["티벳", "라싸", "포탈라궁"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30000432.jpg"
+    "id": "hyecho-2631",
+    "category": "trekking",
+    "title": "[티벳]카일라스/얌드록쵸+마나사로바+남쵸 12일",
+    "price": "7,800,000",
+    "duration": "12일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2631&eventSeq=41749",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2631/hyecho_cm9900_30001847.jpg",
+    "locations": [
+      {
+        "name": "카일라스 (Mt. Kailash)",
+        "lat": 31.07,
+        "lng": 81.31
+      },
+      {
+        "name": "라싸 (Lhasa)",
+        "lat": 29.65,
+        "lng": 91.17
+      }
+    ]
   },
   {
-    "id": "hyecho-1844",
-    "title": "[실크로드 5편] 중앙아시아 5개국 완전일주 17일",
-    "price": "6,500,000",
-    "duration": "16박 17일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1844&eventSeq=41380",
-    "destinations": ["우즈베키스탄", "사마르칸트", "부하라", "히바", "카자흐스탄", "키르기스스탄", "타지키스탄", "투르크메니스탄"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png"
+    "id": "hyecho-30000123",
+    "category": "trekking",
+    "title": "[하이라이트]일본 동북 시오카제(바닷바람) 이지 트레킹 7일",
+    "price": "3,350,000",
+    "duration": "7일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000123&eventSeq=30001685",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000123/hyecho_cm9900_30003090.jpg",
+    "locations": [
+      {
+        "name": "센다이 (Sendai)",
+        "lat": 38.27,
+        "lng": 140.87
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3060",
+    "category": "trekking",
+    "title": "[돌로미테/4성급] 하이라이트 트레킹 9일(OZ)",
+    "price": "9,500,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3060&eventSeq=41908",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3060/hyecho_cm9900_30002900.jpg",
+    "locations": [
+      {
+        "name": "돌로미테 (Dolomites)",
+        "lat": 46.41,
+        "lng": 11.84
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2806",
+    "category": "trekking",
+    "title": "[산장 2인 1실] 일본 최고봉 후지산(3,776m)등정 3일",
+    "price": "1,250,000",
+    "duration": "3일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2806&eventSeq=30000859",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2806/hyecho_cm9900_30001167.jpg",
+    "locations": [
+      {
+        "name": "시즈오카",
+        "lat": 34.9716454,
+        "lng": 138.3885902
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2422",
+    "category": "trekking",
+    "title": "[키르기즈] 알틴아라샨 아라콜패스 7일",
+    "price": "3,650,000",
+    "duration": "7일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2422&eventSeq=30000467",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2422/hyecho_cm9900_30000621.jpg",
+    "locations": [
+      {
+        "name": "비쉬케크 (Bishkek)",
+        "lat": 42.87,
+        "lng": 74.59
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2475",
+    "category": "trekking",
+    "title": "[오악Best] 화산/숭산/운대산 트레킹 5일",
+    "price": "1,950,000",
+    "duration": "5일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2475&eventSeq=41691",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2475/hyecho_cm9900_30001798.jpg",
+    "locations": [
+      {
+        "name": "화산 (Huashan)",
+        "lat": 34.47,
+        "lng": 110.09
+      },
+      {
+        "name": "숭산 (Songshan)",
+        "lat": 34.49,
+        "lng": 113.07
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3172",
+    "category": "trekking",
+    "title": "[유류할증료 인상분 0원][오리지널의위엄] 캐나다 로키 트레킹 9일",
+    "price": "7,200,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3172&eventSeq=41849",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3172/hyecho_cm9900_30002043.jpg",
+    "locations": [
+      {
+        "name": "밴프 (Banff)",
+        "lat": 51.18,
+        "lng": -115.57
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2486",
+    "category": "trekking",
+    "title": "[3U]세계3대 트레킹 호도협/옥룡설산 트레킹 6일",
+    "price": "1,950,000",
+    "duration": "6일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2486&eventSeq=41699",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2486/hyecho_cm9900_30002049.jpg",
+    "locations": [
+      {
+        "name": "호도협 (Tiger Leaping Gorge)",
+        "lat": 27.17,
+        "lng": 100.15
+      },
+      {
+        "name": "옥룡설산 (Jade Dragon Snow Mt.)",
+        "lat": 27.12,
+        "lng": 100.23
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2640",
+    "category": "trekking",
+    "title": "[안나푸르나] 베이스캠프 트레킹 9일 #출발확정",
+    "price": "3,600,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2640&eventSeq=30001635",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2640/hyecho_cm9900_30001605.jpg",
+    "locations": [
+      {
+        "name": "카트만두",
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "포카라",
+        "lat": 14.9930341,
+        "lng": 79.1963876
+      },
+      {
+        "name": "촘롱",
+        "lat": 28.4242621,
+        "lng": 83.8185274
+      },
+      {
+        "name": "도반",
+        "lat": 8.380986,
+        "lng": 16.0246343
+      },
+      {
+        "name": "데우랄리",
+        "lat": 28.4975598,
+        "lng": 83.8983343
+      },
+      {
+        "name": "M.B.C",
+        "lat": -34.705773,
+        "lng": -58.3007818
+      },
+      {
+        "name": "A.B.C",
+        "lat": 51.5531208,
+        "lng": -0.1417522
+      },
+      {
+        "name": "밤부",
+        "lat": -6.1833002,
+        "lng": 106.8035888
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3132",
+    "category": "trekking",
+    "title": "동남아 최고봉 키나발루(4,095m)등정 5일",
+    "price": "2,250,000",
+    "duration": "5일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3132&eventSeq=30001859",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3132/hyecho_cm9900_30002006.jpg",
+    "locations": [
+      {
+        "name": "키나발루 (Mt. Kinabalu)",
+        "lat": 6.08,
+        "lng": 116.56
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2672",
+    "category": "trekking",
+    "title": "[히말라야3대트레킹] 랑탕 밸리 트레킹 11일(환승/SQ)",
+    "price": "3,800,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2672&eventSeq=30000908",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2672/hyecho_cm9900_30002003.jpg",
+    "locations": [
+      {
+        "name": "카트만두",
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "싱가포르",
+        "lat": 1.2899175,
+        "lng": 103.8519072
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2658",
+    "category": "trekking",
+    "title": "[무스탕] 완전일주 트레킹 16일",
+    "price": "6,300,000",
+    "duration": "16일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2658&eventSeq=41251",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2658/hyecho_cm9900_30001757.jpg",
+    "locations": [
+      {
+        "name": "무스탕 (Mustang)",
+        "lat": 29.18,
+        "lng": 83.77
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2895",
+    "category": "trekking",
+    "title": "[7C][하이라이트]일본의 옛길, 나카센도+후지산둘레길 5일",
+    "price": "2,100,000",
+    "duration": "5일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2895&eventSeq=30000158",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2895/hyecho_cm9900_30001113.jpg",
+    "locations": [
+      {
+        "name": "나고야",
+        "lat": 35.170952,
+        "lng": 136.8829402
+      },
+      {
+        "name": "마고메주쿠",
+        "lat": 35.5790314,
+        "lng": 137.5949441
+      },
+      {
+        "name": "시즈오카",
+        "lat": 34.9716454,
+        "lng": 138.3885902
+      }
+    ]
+  },
+  {
+    "id": "hyecho-30000096",
+    "category": "trekking",
+    "title": "[술라웨시]마나도 이지트레킹+휴양 5일",
+    "price": "1,790,000",
+    "duration": "5일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000096&eventSeq=30000900",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000096/hyecho_cm9900_30002526.jpg",
+    "locations": [
+      {
+        "name": "마나도 (Manado)",
+        "lat": 1.49,
+        "lng": 124.84
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2750",
+    "category": "trekking",
+    "title": "[라다크]하이라이트 이지트레킹 9일",
+    "price": "3,650,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2750",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2899/hyecho_cm9900_30001059.jpg",
+    "locations": [
+      {
+        "name": "레 (Leh, Ladakh)",
+        "lat": 34.16,
+        "lng": 77.58
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2489",
+    "category": "trekking",
+    "title": "[감숙성]칠채산/하서회랑 트레킹+황하석림 6일",
+    "price": "2,690,000",
+    "duration": "6일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2489&eventSeq=41712",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2489/hyecho_cm9900_30001898.jpg",
+    "locations": [
+      {
+        "name": "칠채산 (Zhangye Danxia)",
+        "lat": 38.92,
+        "lng": 100.44
+      },
+      {
+        "name": "황하석림 (Yellow River Stone Forest)",
+        "lat": 36.34,
+        "lng": 104.27
+      },
+      {
+        "name": "란저우 (Lanzhou)",
+        "lat": 36.06,
+        "lng": 103.83
+      },
+      {
+        "name": "둔황 (Dunhuang)",
+        "lat": 40.14,
+        "lng": 94.66
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2392",
+    "category": "trekking",
+    "title": "[추석기획] 마차메루트(캠핑)+아루샤 사파리 11일",
+    "price": "8,300,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2392&eventSeq=42739",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2392/hyecho_cm9900_30001312.jpg",
+    "locations": [
+      {
+        "name": "아디스아바바",
+        "lat": 9,
+        "lng": 38.75
+      },
+      {
+        "name": "모시",
+        "lat": -3.3486456,
+        "lng": 37.3435249
+      },
+      {
+        "name": "모시(750m)",
+        "lat": -3.3486456,
+        "lng": 37.3435249
+      },
+      {
+        "name": "아루샤",
+        "lat": -3.3696827,
+        "lng": 36.6880794
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2388",
+    "category": "trekking",
+    "title": "[킬리만자로] 마랑구루트(산장)+워킹사파리 9일",
+    "price": "6,900,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2388&eventSeq=42000",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2388/hyecho_cm9900_30002838.jpg",
+    "locations": [
+      {
+        "name": "킬리만자로 (Kilimanjaro)",
+        "lat": -3.08,
+        "lng": 37.35
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2378",
+    "category": "trekking",
+    "title": "[추석기획] 마랑구루트(산장)+응고롱고로 사파리 11일",
+    "price": "9,600,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2378&eventSeq=42738",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2378/hyecho_cm9900_30002839.jpg",
+    "locations": [
+      {
+        "name": "응고롱고로 (Ngorongoro)",
+        "lat": -3.22,
+        "lng": 35.45
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1951",
+    "category": "culture",
+    "title": "이탈리아 중북부(토스카나+돌로미테+피에몬테)11일(OZ)",
+    "price": "10,200,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1951&eventSeq=41819",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1951/hyecho_cm9900_30002864.jpg",
+    "locations": [
+      {
+        "name": "돌로미테 (Dolomites)",
+        "lat": 46.41,
+        "lng": 11.84
+      },
+      {
+        "name": "피렌체 (Florence)",
+        "lat": 43.77,
+        "lng": 11.25
+      },
+      {
+        "name": "토리노 (Turin)",
+        "lat": 45.07,
+        "lng": 7.69
+      },
+      {
+        "name": "볼차노 (Bolzano)",
+        "lat": 46.5,
+        "lng": 11.35
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2082",
+    "category": "culture",
+    "title": "[하이킹] 북알프스 가미코지 4일",
+    "price": "2,350,000",
+    "duration": "4일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2082&eventSeq=30000732",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2082/hyecho_cm9900_30000301.jpg",
+    "locations": [
+      {
+        "name": "나고야",
+        "lat": 35.170952,
+        "lng": 136.8829402
+      }
+    ]
   },
   {
     "id": "hyecho-1938",
-    "title": "[실크로드 7편] 코카서스 3개국 15일",
-    "price": "8,900,000",
-    "duration": "14박 15일",
+    "category": "culture",
+    "title": "[혜초 실크로드 7편] 코카서스 3개국 15일(TK)",
+    "price": "9,300,000",
+    "duration": "15일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1938&eventSeq=41562",
-    "destinations": ["조지아", "아르메니아", "아제르바이잔"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1938/hyecho_cm9900_30002767.jpg"
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1938/hyecho_cm9900_30002767.jpg",
+    "locations": [
+      {
+        "name": "트빌리시 (Tbilisi)",
+        "lat": 41.72,
+        "lng": 44.79
+      },
+      {
+        "name": "예레반 (Yerevan)",
+        "lat": 40.18,
+        "lng": 44.51
+      },
+      {
+        "name": "바쿠 (Baku)",
+        "lat": 40.41,
+        "lng": 49.87
+      }
+    ]
   },
   {
-    "id": "hyecho-2272",
-    "title": "[하이킹] 그랜드서클+요세미티+데스밸리 13일",
-    "price": "11,800,000",
-    "duration": "12박 13일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2272&eventSeq=41598",
-    "destinations": ["그랜드캐니언", "요세미티", "데스밸리"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2272/hyecho_cm9900_30001428.jpg"
+    "id": "hyecho-1931",
+    "category": "culture",
+    "title": "[장강대장정] 중경에서 상해까지 12일",
+    "price": "7,700,000",
+    "duration": "12일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1931&eventSeq=42873",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg",
+    "locations": [
+      {
+        "name": "충칭 (Chongqing)",
+        "lat": 29.56,
+        "lng": 106.55
+      },
+      {
+        "name": "상하이 (Shanghai)",
+        "lat": 31.23,
+        "lng": 121.47
+      }
+    ]
   },
   {
-    "id": "hyecho-1925",
-    "title": "[천혜의 비경] 사천성/구채구/청해성 10일",
-    "price": "3,300,000",
-    "duration": "9박 10일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1925&eventSeq=42052",
-    "destinations": ["구채구", "황룡", "사천성", "청해성"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1925/hyecho_cm9900_30002588.jpg"
+    "id": "hyecho-2246",
+    "category": "culture",
+    "title": "[완전일주] 미지의 왕국 부탄 11일",
+    "price": "8,200,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2246&eventSeq=42703",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2246/hyecho_cm9900_30000527.jpg",
+    "locations": [
+      {
+        "name": "팀푸 (Thimphu)",
+        "lat": 27.47,
+        "lng": 89.64
+      },
+      {
+        "name": "파로 (Paro)",
+        "lat": 27.43,
+        "lng": 89.42
+      }
+    ]
   },
   {
-    "id": "hyecho-1910",
-    "title": "[천년의 수로마을] 강남수향 4일",
-    "price": "1,600,000",
-    "duration": "3박 4일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1910&eventSeq=41784",
-    "destinations": ["소주", "강남수향"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg"
+    "id": "hyecho-1967",
+    "category": "culture",
+    "title": "폴란드일주+발트3국 13일(TK)",
+    "price": "10,100,000",
+    "duration": "13일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1967&eventSeq=42143",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1967/hyecho_cm9900_30002992.jpg",
+    "locations": [
+      {
+        "name": "크라쿠프 (Krakow)",
+        "lat": 50.06,
+        "lng": 19.94
+      },
+      {
+        "name": "바르샤바 (Warsaw)",
+        "lat": 52.23,
+        "lng": 21.01
+      },
+      {
+        "name": "빌뉴스 (Vilnius)",
+        "lat": 54.69,
+        "lng": 25.28
+      },
+      {
+        "name": "리가 (Riga)",
+        "lat": 56.95,
+        "lng": 24.11
+      },
+      {
+        "name": "탈린 (Tallinn)",
+        "lat": 59.44,
+        "lng": 24.75
+      }
+    ]
   },
   {
-    "id": "hyecho-1992",
-    "title": "[신상품] 이탈리아 중남부+이스키아 섬 11일",
-    "price": "10,600,000",
-    "duration": "10박 11일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1992&eventSeq=41561",
-    "destinations": ["이탈리아", "폼페이", "아말피"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1992/hyecho_cm9900_30002879.jpg"
+    "id": "hyecho-2251",
+    "category": "culture",
+    "title": "[핵심일주] 천상고원 티벳 청장열차 9일",
+    "price": "3,700,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2251&eventSeq=41652",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30000432.jpg",
+    "locations": [
+      {
+        "name": "라싸 (Lhasa)",
+        "lat": 29.65,
+        "lng": 91.17
+      },
+      {
+        "name": "시닝 (Xining)",
+        "lat": 36.62,
+        "lng": 101.77
+      }
+    ]
   },
   {
-    "id": "hyecho-1816",
-    "title": "[정글과 휴양] 브루나이+말레이시아 8일",
-    "price": "3,750,000",
-    "duration": "7박 8일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1816&eventSeq=30001392",
-    "destinations": ["보르네오", "키나발루", "브루나이"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1816/hyecho_cm9900_30000598.jpg"
-  },
-  {
-    "id": "hyecho-1986",
-    "title": "[신상품] 네덜란드+벨기에 미술기행 9일",
-    "price": "9,500,000",
-    "duration": "8박 9일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1986&eventSeq=41575",
-    "destinations": ["네덜란드", "암스테르담", "벨기에", "브뤼헤"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1986/hyecho_cm9900_30000840.jpg"
-  },
-  {
-    "id": "hyecho-30000064",
-    "title": "[신상품] 독일 동부 인문학여행 10일",
-    "price": "9,100,000",
-    "duration": "9박 10일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000064&eventSeq=30000305",
-    "destinations": ["독일", "드레스덴", "바이마르"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000064/hyecho_cm9900_30002288.jpg"
-  },
-  {
-    "id": "hyecho-1856",
-    "title": "[아름다운 사막] 바단지린/칠채산/황하석림 6일",
-    "price": "2,750,000",
-    "duration": "5박 6일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1856&eventSeq=41982",
-    "destinations": ["바단지린", "칠채산", "단하지모"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg"
-  },
-  {
-    "id": "hyecho-2139",
-    "title": "[하이킹] 몽골 고비사막 핵심일주 8일",
-    "price": "3,090,000",
-    "duration": "7박 8일",
-    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2139&eventSeq=42026",
-    "destinations": ["몽골", "고비사막"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2139/hyecho_cm9900_30000484.jpg"
+    "id": "hyecho-1844",
+    "category": "culture",
+    "title": "[혜초 실크로드 5편] 중앙아시아 5개국 완전일주 17일 (OZ)",
+    "price": "8,700,000",
+    "duration": "17일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1844&eventSeq=41380",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png",
+    "locations": [
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      },
+      {
+        "name": "부하라 (Bukhara)",
+        "lat": 39.77,
+        "lng": 64.42
+      },
+      {
+        "name": "타슈켄트 (Tashkent)",
+        "lat": 41.3,
+        "lng": 69.28
+      }
+    ]
   },
   {
     "id": "hyecho-1858",
-    "title": "[실크로드 2편] 천산남로 9일",
+    "category": "culture",
+    "title": "[혜초실크로드 2편] 천산남로 9일",
     "price": "4,650,000",
-    "duration": "8박 9일",
+    "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1858&eventSeq=41640",
-    "destinations": ["타클라마칸", "쿠차", "키질석굴", "카스"],
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1858/hyecho_cm9900_30002578.jpg"
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1858/hyecho_cm9900_30002578.jpg",
+    "locations": [
+      {
+        "name": "투르판 (Turpan)",
+        "lat": 42.95,
+        "lng": 89.19
+      },
+      {
+        "name": "카슈가르 (Kashgar)",
+        "lat": 39.47,
+        "lng": 75.99
+      }
+    ]
+  },
+  {
+    "id": "hyecho-30000064",
+    "category": "culture",
+    "title": "[신상품] 독일 동부 인문학여행 10일(TK)",
+    "price": "9,100,000",
+    "duration": "10일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000064&eventSeq=30000305",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000064/hyecho_cm9900_30002288.jpg",
+    "locations": [
+      {
+        "name": "드레스덴 (Dresden)",
+        "lat": 51.05,
+        "lng": 13.74
+      },
+      {
+        "name": "바이마르 (Weimar)",
+        "lat": 50.98,
+        "lng": 11.33
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2139",
+    "category": "culture",
+    "title": "[하이킹] 몽골 고비사막 핵심일주 8일",
+    "price": "3,190,000",
+    "duration": "8일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2139&eventSeq=42026",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2139/hyecho_cm9900_30000484.jpg",
+    "locations": [
+      {
+        "name": "울란바토르 (Ulaanbaatar)",
+        "lat": 47.92,
+        "lng": 106.91
+      },
+      {
+        "name": "고비사막 (Gobi)",
+        "lat": 43.5,
+        "lng": 105
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1910",
+    "category": "culture",
+    "title": "[천년의 수로마을] 강남수향 1편 4일",
+    "price": "1,600,000",
+    "duration": "4일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1910&eventSeq=41784",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg",
+    "locations": [
+      {
+        "name": "소주 (Suzhou)",
+        "lat": 31.3,
+        "lng": 120.58
+      },
+      {
+        "name": "주좡 (Zhouzhuang)",
+        "lat": 31.11,
+        "lng": 120.85
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2272",
+    "category": "culture",
+    "title": "[하이킹]그랜드서클+요세미티+데스밸리 13일(KE)",
+    "price": "11,800,000",
+    "duration": "13일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2272&eventSeq=41598",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2272/hyecho_cm9900_30001428.jpg",
+    "locations": [
+      {
+        "name": "그랜드캐니언 (Grand Canyon)",
+        "lat": 36.11,
+        "lng": -112.11
+      },
+      {
+        "name": "요세미티 (Yosemite)",
+        "lat": 37.87,
+        "lng": -119.54
+      },
+      {
+        "name": "데스밸리 (Death Valley)",
+        "lat": 36.51,
+        "lng": -117.08
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1986",
+    "category": "culture",
+    "title": "[신상품] 네덜란드+벨기에 미술기행 9일(KE)",
+    "price": "9,500,000",
+    "duration": "9일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1986&eventSeq=41575",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1986/hyecho_cm9900_30000840.jpg",
+    "locations": [
+      {
+        "name": "암스테르담 (Amsterdam)",
+        "lat": 52.37,
+        "lng": 4.9
+      },
+      {
+        "name": "브뤼헤 (Bruges)",
+        "lat": 51.21,
+        "lng": 3.22
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1816",
+    "category": "culture",
+    "title": "[정글과 휴양] 브루나이+말레이시아 8일",
+    "price": "3,750,000",
+    "duration": "8일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1816&eventSeq=30001392",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1816/hyecho_cm9900_30000598.jpg",
+    "locations": [
+      {
+        "name": "반다르스리브가완 (Bandar)",
+        "lat": 4.93,
+        "lng": 114.95
+      },
+      {
+        "name": "코타키나발루 (Kota Kinabalu)",
+        "lat": 5.98,
+        "lng": 116.07
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1992",
+    "category": "culture",
+    "title": "[신상품] 이탈리아 중남부+이스키아 섬 11일(OZ)",
+    "price": "10,600,000",
+    "duration": "11일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1992&eventSeq=41561",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1992/hyecho_cm9900_30002879.jpg",
+    "locations": [
+      {
+        "name": "나폴리 (Naples)",
+        "lat": 40.85,
+        "lng": 14.27
+      },
+      {
+        "name": "아말피 (Amalfi)",
+        "lat": 40.63,
+        "lng": 14.6
+      },
+      {
+        "name": "이스키아 (Ischia)",
+        "lat": 40.73,
+        "lng": 13.9
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2273",
+    "category": "culture",
+    "title": "[하이킹] 와일드! 하와이 하이라이트 8일 (KE)",
+    "price": "9,800,000",
+    "duration": "8일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2273&eventSeq=30001440",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2273/hyecho_cm9900_30002178.jpg",
+    "locations": [
+      {
+        "name": "힐로",
+        "lat": 19.7073734,
+        "lng": -155.08158
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1989",
+    "category": "culture",
+    "title": "[하이킹]그린란드+페로제도 자연기행 12일(TK)",
+    "price": "21,900,000",
+    "duration": "12일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1989",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1989/hyecho_cm9900_30002929.jpg",
+    "locations": [
+      {
+        "name": "이스탄불(튀르키예)",
+        "lat": 41.006381,
+        "lng": 28.9758715
+      },
+      {
+        "name": "코펜하겐(덴마크)",
+        "lat": 55.6867243,
+        "lng": 12.5700724
+      },
+      {
+        "name": "토르스하운",
+        "lat": 62.0101396,
+        "lng": -6.7715709
+      },
+      {
+        "name": "클락스비크",
+        "lat": 62.2254921,
+        "lng": -6.5837755
+      },
+      {
+        "name": "코펜하겐",
+        "lat": 55.6867243,
+        "lng": 12.5700724
+      },
+      {
+        "name": "누크(그린란드)",
+        "lat": 64.1767049,
+        "lng": -51.7361444
+      },
+      {
+        "name": "누크",
+        "lat": 64.1767049,
+        "lng": -51.7361444
+      }
+    ]
+  },
+  {
+    "id": "hyecho-2296",
+    "category": "culture",
+    "title": "[지구의 끝] 남극 크루즈 16일(EK)",
+    "price": "26,000,000",
+    "duration": "16일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2296&eventSeq=42976",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2296/hyecho_cm9900_30000095.jpg",
+    "locations": [
+      {
+        "name": "우수아이아 (Ushuaia)",
+        "lat": -54.8,
+        "lng": -68.3
+      },
+      {
+        "name": "남극반도 (Antarctic Peninsula)",
+        "lat": -65,
+        "lng": -60
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1856",
+    "category": "culture",
+    "title": "[아름다운 사막] 바단지린/칠채산/황하석림 6일",
+    "price": "2,750,000",
+    "duration": "6일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1856&eventSeq=41982",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg",
+    "locations": [
+      {
+        "name": "칠채산 (Zhangye Danxia)",
+        "lat": 38.92,
+        "lng": 100.44
+      },
+      {
+        "name": "황하석림 (Yellow River Stone Forest)",
+        "lat": 36.34,
+        "lng": 104.27
+      },
+      {
+        "name": "바단지린사막 (Badain Jaran)",
+        "lat": 39.97,
+        "lng": 102.45
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1925",
+    "category": "culture",
+    "title": "[천혜의 비경] 사천성/구채구/황룡/청해성 10일",
+    "price": "3,300,000",
+    "duration": "10일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1925&eventSeq=42052",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1925/hyecho_cm9900_30002588.jpg",
+    "locations": [
+      {
+        "name": "구채구 (Jiuzhaigou)",
+        "lat": 33.26,
+        "lng": 103.92
+      },
+      {
+        "name": "황룡 (Huanglong)",
+        "lat": 32.75,
+        "lng": 103.82
+      },
+      {
+        "name": "청두 (Chengdu)",
+        "lat": 30.57,
+        "lng": 104.07
+      },
+      {
+        "name": "시닝 (Xining)",
+        "lat": 36.62,
+        "lng": 101.77
+      }
+    ]
+  },
+  {
+    "id": "hyecho-1916",
+    "category": "culture",
+    "title": "[진정한 샹그릴라] 야딩풍경구 8일",
+    "price": "3,100,000",
+    "duration": "8일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1916&eventSeq=41988",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg",
+    "locations": [
+      {
+        "name": "야딩 (Yading)",
+        "lat": 28.38,
+        "lng": 100.3
+      },
+      {
+        "name": "샹그릴라 (Shangri-La)",
+        "lat": 27.83,
+        "lng": 99.71
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3325",
+    "category": "walking",
+    "title": "[산티아고] 하이라이트 도보순례 16일",
+    "price": "6,900,000",
+    "duration": "16일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3325",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3350/hyecho_cm9900_30002880.jpg",
+    "locations": [
+      {
+        "name": "산티아고 데 콤포스텔라 (Santiago)",
+        "lat": 42.88,
+        "lng": -8.54
+      }
+    ]
+  },
+  {
+    "id": "hyecho-30000099",
+    "category": "walking",
+    "title": "[산티아고]북쪽길+영국길 15일",
+    "price": "6,900,000",
+    "duration": "15일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000099",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000099/hyecho_cm9900_30002948.jpg",
+    "locations": [
+      {
+        "name": "이룬",
+        "lat": 34.7713861,
+        "lng": 127.7018599
+      },
+      {
+        "name": "로레도",
+        "lat": 48.4268411,
+        "lng": -123.5435155
+      },
+      {
+        "name": "페네",
+        "lat": 42.7795083,
+        "lng": 2.7861584
+      },
+      {
+        "name": "미뇨",
+        "lat": 42.0273051,
+        "lng": -8.6404204
+      },
+      {
+        "name": "마드리드",
+        "lat": 40.416782,
+        "lng": -3.703507
+      },
+      {
+        "name": "두바이",
+        "lat": 25.0742823,
+        "lng": 55.1885387
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3347",
+    "category": "walking",
+    "title": "[한필석+가이드 동행] 산티아고 하이라이트 순례길 17일",
+    "price": "7,300,000",
+    "duration": "17일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3347",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3347/hyecho_cm9900_30002741.jpg",
+    "locations": [
+      {
+        "name": "산티아고 데 콤포스텔라 (Santiago)",
+        "lat": 42.88,
+        "lng": -8.54
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3361",
+    "category": "walking",
+    "title": "[호텔23박] 산티아고 전용밴 800KM 완주 43일",
+    "price": "9,600,000",
+    "duration": "43일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3361&eventSeq=41655",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3361/hyecho_cm9900_30000571.jpg",
+    "locations": [
+      {
+        "name": "산티아고 데 콤포스텔라 (Santiago)",
+        "lat": 42.88,
+        "lng": -8.54
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3360",
+    "category": "walking",
+    "title": "[산티아고]포르투갈 해안길+내륙길 220km 17일",
+    "price": "7,200,000",
+    "duration": "17일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3360&eventSeq=42652",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3360/hyecho_cm9900_30000567.jpg",
+    "locations": [
+      {
+        "name": "산티아고 데 콤포스텔라 (Santiago)",
+        "lat": 42.88,
+        "lng": -8.54
+      },
+      {
+        "name": "포르투 (Porto)",
+        "lat": 41.16,
+        "lng": -8.63
+      },
+      {
+        "name": "리스본 (Lisbon)",
+        "lat": 38.72,
+        "lng": -9.14
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3351",
+    "category": "walking",
+    "title": "[이탈리아] 로마로 가는 길(비아프란치제나) 360km 21일",
+    "price": "9,500,000",
+    "duration": "21일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3351&eventSeq=37511",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3351/hyecho_cm9900_30000581.jpg",
+    "locations": [
+      {
+        "name": "로마 (Rome)",
+        "lat": 41.9,
+        "lng": 12.5
+      },
+      {
+        "name": "시에나 (Siena)",
+        "lat": 43.32,
+        "lng": 11.33
+      }
+    ]
+  },
+  {
+    "id": "hyecho-3109",
+    "category": "trekking",
+    "title": "[스위스] 기차 일주 + 이지트레킹 13일",
+    "price": "13,400,000",
+    "duration": "13일",
+    "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3109&eventSeq=41893",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3109/hyecho_cm9900_30001237.jpg",
+    "locations": [
+      {
+        "name": "취리히",
+        "lat": 47.3744489,
+        "lng": 8.5410422
+      },
+      {
+        "name": "리기",
+        "lat": 43.0582398,
+        "lng": -0.8763064
+      },
+      {
+        "name": "루체른",
+        "lat": 47.052144,
+        "lng": 8.3058123
+      },
+      {
+        "name": "인터라켄",
+        "lat": 46.6855231,
+        "lng": 7.8585139
+      },
+      {
+        "name": "벵엔",
+        "lat": 50.5675052,
+        "lng": 7.1267059
+      },
+      {
+        "name": "체르마트",
+        "lat": 46.0212076,
+        "lng": 7.749254
+      },
+      {
+        "name": "티라노",
+        "lat": 30.537391,
+        "lng": -111.0078865
+      },
+      {
+        "name": "루가노",
+        "lat": 46.3120729,
+        "lng": 11.3938224
+      },
+      {
+        "name": "밀라노",
+        "lat": 45.4641943,
+        "lng": 9.1896346
+      }
+    ]
   }
 ]
