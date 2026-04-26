@@ -25,3 +25,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Prevent MapLibre logo from overlapping bottom sheet */
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  bottom: 8px;
+}
+
+/* Smooth body background to prevent white flash */
+html, body {
+  background: #111827;
+}
