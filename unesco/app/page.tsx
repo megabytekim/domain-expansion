@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import UnescoMap from "@/components/UnescoMap";
+import BottomSheet from "@/components/BottomSheet";
+import SiteDetail from "@/components/SiteDetail";
 import type { UnescoSiteProperties, UnescoGeoJSON, CategoryFilter } from "@/lib/types";
 import rawData from "@/data/unesco-sites.json";
 
@@ -9,19 +11,30 @@ const data = rawData as unknown as UnescoGeoJSON;
 
 export default function Home() {
   const [selectedSite, setSelectedSite] = useState<UnescoSiteProperties | null>(null);
+  const [sheetState, setSheetState] = useState<"closed" | "half" | "full">("closed");
   const [categories, setCategories] = useState<Set<CategoryFilter>>(
     new Set(["Cultural", "Natural", "Mixed"])
   );
   const [hyechoOnly, setHyechoOnly] = useState(false);
   const [region, setRegion] = useState<string | null>(null);
 
+  const handleSiteSelect = useCallback((site: UnescoSiteProperties | null) => {
+    setSelectedSite(site);
+    setSheetState(site ? "half" : "closed");
+  }, []);
+
   return (
     <div className="relative h-full w-full">
       <UnescoMap
         data={data}
-        onSiteSelect={setSelectedSite}
+        onSiteSelect={handleSiteSelect}
         filterState={{ categories, hyechoOnly, region }}
       />
+      <BottomSheet state={sheetState} onStateChange={setSheetState}>
+        {selectedSite && (
+          <SiteDetail site={selectedSite} isFullView={sheetState === "full"} />
+        )}
+      </BottomSheet>
     </div>
   );
 }
