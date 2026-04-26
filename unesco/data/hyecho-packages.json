@@ -1,0 +1,18 @@
+[
+  {
+    "id": "hyecho-001",
+    "title": "앙코르와트·톤레삽 5일",
+    "price": "1,890,000",
+    "duration": "4박 5일",
+    "url": "https://www.hyecho.com",
+    "destinations": ["앙코르", "톤레삽"]
+  },
+  {
+    "id": "hyecho-002",
+    "title": "마추픽추·쿠스코 10일",
+    "price": "5,490,000",
+    "duration": "9박 10일",
+    "url": "https://www.hyecho.com",
+    "destinations": ["마추픽추", "쿠스코"]
+  }
+]

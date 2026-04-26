@@ -6,9 +6,16 @@ import BottomSheet from "@/components/BottomSheet";
 import SiteDetail from "@/components/SiteDetail";
 import FilterBar from "@/components/FilterBar";
 import type { UnescoSiteProperties, UnescoGeoJSON, CategoryFilter } from "@/lib/types";
-import rawData from "@/data/unesco-sites.json";
+import { mergeData } from "@/lib/merge-data";
+import rawUnesco from "@/data/unesco-sites.json";
+import rawHyecho from "@/data/hyecho-packages.json";
+import rawMapping from "@/data/hyecho-unesco-mapping.json";
 
-const data = rawData as unknown as UnescoGeoJSON;
+const data = mergeData(
+  rawUnesco as unknown as UnescoGeoJSON,
+  rawHyecho,
+  rawMapping as Record<string, number[]>
+);
 
 export default function Home() {
   const [selectedSite, setSelectedSite] = useState<UnescoSiteProperties | null>(null);
