@@ -5,7 +5,8 @@
     "price": "8,200,000",
     "duration": "10박 11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2246&eventSeq=42703",
-    "destinations": ["부탄", "붐탕", "탁상사원", "팀푸"]
+    "destinations": ["부탄", "붐탕", "탁상사원", "팀푸"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2246/hyecho_cm9900_30000527.jpg"
   },
   {
     "id": "hyecho-1967",
@@ -13,7 +14,8 @@
     "price": "10,100,000",
     "duration": "12박 13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1967&eventSeq=42143",
-    "destinations": ["폴란드", "크라쿠프", "리투아니아", "빌뉴스", "라트비아", "리가", "에스토니아", "탈린"]
+    "destinations": ["폴란드", "크라쿠프", "리투아니아", "빌뉴스", "라트비아", "리가", "에스토니아", "탈린"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1967/hyecho_cm9900_30002992.jpg"
   },
   {
     "id": "hyecho-2251",
@@ -21,7 +23,8 @@
     "price": "3,700,000",
     "duration": "8박 9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2251&eventSeq=41652",
-    "destinations": ["티벳", "라싸", "포탈라궁"]
+    "destinations": ["티벳", "라싸", "포탈라궁"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30000432.jpg"
   },
   {
     "id": "hyecho-1844",
@@ -29,7 +32,8 @@
     "price": "6,500,000",
     "duration": "16박 17일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1844&eventSeq=41380",
-    "destinations": ["우즈베키스탄", "사마르칸트", "부하라", "히바", "카자흐스탄", "키르기스스탄", "타지키스탄", "투르크메니스탄"]
+    "destinations": ["우즈베키스탄", "사마르칸트", "부하라", "히바", "카자흐스탄", "키르기스스탄", "타지키스탄", "투르크메니스탄"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png"
   },
   {
     "id": "hyecho-1938",
@@ -37,7 +41,8 @@
     "price": "8,900,000",
     "duration": "14박 15일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1938&eventSeq=41562",
-    "destinations": ["조지아", "아르메니아", "아제르바이잔"]
+    "destinations": ["조지아", "아르메니아", "아제르바이잔"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1938/hyecho_cm9900_30002767.jpg"
   },
   {
     "id": "hyecho-2272",
@@ -45,7 +50,8 @@
     "price": "11,800,000",
     "duration": "12박 13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2272&eventSeq=41598",
-    "destinations": ["그랜드캐니언", "요세미티", "데스밸리"]
+    "destinations": ["그랜드캐니언", "요세미티", "데스밸리"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2272/hyecho_cm9900_30001428.jpg"
   },
   {
     "id": "hyecho-1925",
@@ -53,7 +59,8 @@
     "price": "3,300,000",
     "duration": "9박 10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1925&eventSeq=42052",
-    "destinations": ["구채구", "황룡", "사천성", "청해성"]
+    "destinations": ["구채구", "황룡", "사천성", "청해성"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1925/hyecho_cm9900_30002588.jpg"
   },
   {
     "id": "hyecho-1910",
@@ -61,7 +68,8 @@
     "price": "1,600,000",
     "duration": "3박 4일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1910&eventSeq=41784",
-    "destinations": ["소주", "강남수향"]
+    "destinations": ["소주", "강남수향"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg"
   },
   {
     "id": "hyecho-1992",
@@ -69,7 +77,8 @@
     "price": "10,600,000",
     "duration": "10박 11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1992&eventSeq=41561",
-    "destinations": ["이탈리아", "폼페이", "아말피"]
+    "destinations": ["이탈리아", "폼페이", "아말피"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1992/hyecho_cm9900_30002879.jpg"
   },
   {
     "id": "hyecho-1816",
@@ -77,7 +86,8 @@
     "price": "3,750,000",
     "duration": "7박 8일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1816&eventSeq=30001392",
-    "destinations": ["보르네오", "키나발루", "브루나이"]
+    "destinations": ["보르네오", "키나발루", "브루나이"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1816/hyecho_cm9900_30000598.jpg"
   },
   {
     "id": "hyecho-1986",
@@ -85,7 +95,8 @@
     "price": "9,500,000",
     "duration": "8박 9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1986&eventSeq=41575",
-    "destinations": ["네덜란드", "암스테르담", "벨기에", "브뤼헤"]
+    "destinations": ["네덜란드", "암스테르담", "벨기에", "브뤼헤"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1986/hyecho_cm9900_30000840.jpg"
   },
   {
     "id": "hyecho-30000064",
@@ -93,7 +104,8 @@
     "price": "9,100,000",
     "duration": "9박 10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000064&eventSeq=30000305",
-    "destinations": ["독일", "드레스덴", "바이마르"]
+    "destinations": ["독일", "드레스덴", "바이마르"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000064/hyecho_cm9900_30002288.jpg"
   },
   {
     "id": "hyecho-1856",
@@ -101,7 +113,8 @@
     "price": "2,750,000",
     "duration": "5박 6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1856&eventSeq=41982",
-    "destinations": ["바단지린", "칠채산", "단하지모"]
+    "destinations": ["바단지린", "칠채산", "단하지모"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2251/hyecho_cm9900_30002982.jpg"
   },
   {
     "id": "hyecho-2139",
@@ -109,7 +122,8 @@
     "price": "3,090,000",
     "duration": "7박 8일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2139&eventSeq=42026",
-    "destinations": ["몽골", "고비사막"]
+    "destinations": ["몽골", "고비사막"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2139/hyecho_cm9900_30000484.jpg"
   },
   {
     "id": "hyecho-1858",
@@ -117,6 +131,7 @@
     "price": "4,650,000",
     "duration": "8박 9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1858&eventSeq=41640",
-    "destinations": ["타클라마칸", "쿠차", "키질석굴", "카스"]
+    "destinations": ["타클라마칸", "쿠차", "키질석굴", "카스"],
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1858/hyecho_cm9900_30002578.jpg"
   }
 ]

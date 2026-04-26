@@ -22,6 +22,7 @@ export interface HyechoPackage {
   duration: string;
   url: string;
   destinations: string[];
+  imageUrl?: string;
 }
 
 export interface UnescoSiteFeature {

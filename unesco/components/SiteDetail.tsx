@@ -6,6 +6,9 @@ interface SiteDetailProps {
 }
 
 export default function SiteDetail({ site, isFullView }: SiteDetailProps) {
+  // Use hyecho image if available, fall back to UNESCO image
+  const displayImage = site.hyechoPackages[0]?.imageUrl || site.imageUrl;
+
   return (
     <div className="space-y-4">
       {/* Hyecho packages — always visible, top priority */}
@@ -58,8 +61,8 @@ export default function SiteDetail({ site, isFullView }: SiteDetailProps) {
       </div>
 
       {/* Photo + UNESCO link — always visible */}
-      {site.imageUrl && (
-        <img src={site.imageUrl} alt={site.name} className="w-full h-36 object-cover rounded-lg" loading="lazy" />
+      {displayImage && (
+        <img src={displayImage} alt={site.name} className="w-full h-36 object-cover rounded-lg" loading="lazy" />
       )}
       <a href={site.url} target="_blank" rel="noopener noreferrer"
         className="inline-block text-sm text-blue-400 hover:text-blue-300 underline">

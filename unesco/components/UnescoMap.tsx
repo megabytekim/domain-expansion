@@ -214,8 +214,10 @@ export default function UnescoMap({
 
       // Click empty area → deselect
       map.on("click", (e) => {
+        const queryLayers = ["sites"];
+        if (map.getLayer("clusters")) queryLayers.push("clusters");
         const features = map.queryRenderedFeatures(e.point, {
-          layers: ["clusters", "sites"],
+          layers: queryLayers,
         });
         if (features.length === 0) {
           onSiteSelectRef.current(null);
@@ -318,7 +320,7 @@ export default function UnescoMap({
         id: "sites",
         type: "circle",
         source: "unesco-sites",
-        filter: shouldCluster ? ["!", ["has", "point_count"]] : undefined,
+        ...(shouldCluster ? { filter: ["!", ["has", "point_count"]] as maplibregl.ExpressionFilterSpecification } : {}),
         paint: {
           "circle-radius": filterState.hyechoOnly ? 8 : 6,
           "circle-color": [
