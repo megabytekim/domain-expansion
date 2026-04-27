@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "UNESCO World Heritage Sites Map",
-  description: "Explore 1,199+ UNESCO World Heritage Sites on an interactive map. See available travel packages from Hyecho Travel.",
+  title: "혜초여행 세계 투어 지도",
+  description: "트레킹·문화·실크로드 해외 패키지 투어를 지도에서 탐색하세요. 인기 순위와 출발 일정을 한눈에.",
   openGraph: {
-    title: "UNESCO World Heritage Sites Map",
-    description: "Interactive map of UNESCO World Heritage Sites with travel packages",
+    title: "혜초여행 세계 투어 지도",
+    description: "트레킹·문화·실크로드 해외 패키지 투어를 지도에서 탐색하세요. 인기 순위와 출발 일정을 한눈에.",
     type: "website",
   },
 };

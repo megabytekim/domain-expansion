@@ -7661,7 +7661,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3078&eventSeq=42001",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3078/hyecho_cm9900_30002803.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "피레네 (Pyrenees)",
+        "lat": 42.65,
+        "lng": 0.89
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42001,
@@ -7828,7 +7834,13 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3029&eventSeq=41858",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3029/hyecho_cm9900_30002886.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "샤모니 (Chamonix)",
+        "lat": 45.92,
+        "lng": 6.87
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41858,
@@ -7971,7 +7983,13 @@
     "duration": "21일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2763&eventSeq=42707",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2763/hyecho_cm9900_30001670.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "돌포 (Dolpo)",
+        "lat": 29,
+        "lng": 82.8
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001710,
@@ -8223,7 +8241,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2632&eventSeq=41602",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2486/hyecho_cm9900_30002662.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "우루무치 (Urumqi)",
+        "lat": 43.83,
+        "lng": 87.61
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41602,
@@ -8464,7 +8488,23 @@
     "duration": "24일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2616&eventSeq=42084",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2616/hyecho_cm9900_30002397.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "훈자 (Hunza)",
+        "lat": 36.32,
+        "lng": 74.65
+      },
+      {
+        "name": "낭가파르밧 (Nanga Parbat)",
+        "lat": 35.24,
+        "lng": 74.59
+      },
+      {
+        "name": "K2 베이스캠프 (K2 BC)",
+        "lat": 35.88,
+        "lng": 76.51
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42084,
@@ -8487,7 +8527,23 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000054&eventSeq=30000038",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000054/hyecho_cm9900_30002249.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "우루무치 (Urumqi)",
+        "lat": 43.83,
+        "lng": 87.61
+      },
+      {
+        "name": "훈자 (Hunza)",
+        "lat": 36.32,
+        "lng": 74.65
+      },
+      {
+        "name": "낭가파르밧 (Nanga Parbat)",
+        "lat": 35.24,
+        "lng": 74.59
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000042,
@@ -8729,7 +8785,13 @@
     "duration": "5일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2476&eventSeq=41738",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2476/hyecho_cm9900_30001918.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "백두산 (Changbai Mountain)",
+        "lat": 42,
+        "lng": 128.08
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41737,
@@ -9292,7 +9354,13 @@
     "duration": "6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2477&eventSeq=41952",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2477/hyecho_cm9900_30001903.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "장가계 (Zhangjiajie)",
+        "lat": 29.12,
+        "lng": 110.48
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000584,
@@ -9811,8 +9879,8 @@
       },
       {
         "name": "닛코",
-        "lat": 50.4641343,
-        "lng": 22.2688393
+        "lat": 36.75,
+        "lng": 139.6
       },
       {
         "name": "이치노세",
@@ -10335,8 +10403,8 @@
     "locations": [
       {
         "name": "마츠모토",
-        "lat": 26.217085,
-        "lng": 127.678666
+        "lat": 36.2381,
+        "lng": 137.9722
       },
       {
         "name": "나고야",
@@ -10870,7 +10938,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3198",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3198/hyecho_cm9900_30002055.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "밴쿠버 (Vancouver)",
+        "lat": 49.28,
+        "lng": -123.12
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42847,
@@ -10916,8 +10990,8 @@
       },
       {
         "name": "모압",
-        "lat": 31.2692159,
-        "lng": 35.737769
+        "lat": 38.5733,
+        "lng": -109.5498
       },
       {
         "name": "페이지",
@@ -11050,7 +11124,23 @@
     "duration": "14일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3270&eventSeq=30000719",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3270/hyecho_cm9900_30002686.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "쿠스코 (Cusco)",
+        "lat": -13.53,
+        "lng": -71.97
+      },
+      {
+        "name": "마추픽추 (Machu Picchu)",
+        "lat": -13.16,
+        "lng": -72.55
+      },
+      {
+        "name": "우유니 (Uyuni)",
+        "lat": -20.46,
+        "lng": -66.83
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000719,
@@ -11073,7 +11163,18 @@
     "duration": "13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3230&eventSeq=30001742",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3230/hyecho_cm9900_30001026.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "쿠스코 (Cusco)",
+        "lat": -13.53,
+        "lng": -71.97
+      },
+      {
+        "name": "파타고니아 (Patagonia)",
+        "lat": -50.34,
+        "lng": -72.26
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001742,
@@ -11185,7 +11286,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2472&eventSeq=30000767",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2472/hyecho_cm9900_30001656.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "두샨베 (Dushanbe)",
+        "lat": 38.56,
+        "lng": 68.77
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000767,
@@ -12313,7 +12420,18 @@
     "duration": "7일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3130&eventSeq=41667",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3130/hyecho_cm9900_30002018.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "발리 (Bali)",
+        "lat": -8.34,
+        "lng": 115.09
+      },
+      {
+        "name": "자카르타 (Jakarta)",
+        "lat": -6.21,
+        "lng": 106.85
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41667,
@@ -12396,7 +12514,13 @@
     "duration": "4일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3133",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3133/hyecho_cm9900_30002574.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "홍콩 (Hong Kong)",
+        "lat": 22.32,
+        "lng": 114.17
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000924,
@@ -12559,7 +12683,13 @@
     "duration": "10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000067",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000067/hyecho_cm9900_30002916.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "페트라 (Petra)",
+        "lat": 30.33,
+        "lng": 35.44
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000046,
@@ -12582,7 +12712,13 @@
     "duration": "16일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2390&eventSeq=30001681",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2388/hyecho_cm9900_30001301.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "카트만두 (Kathmandu)",
+        "lat": 27.71,
+        "lng": 85.32
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001681,
@@ -12608,8 +12744,8 @@
     "locations": [
       {
         "name": "CHC",
-        "lat": 35.000074,
-        "lng": 104.999927
+        "lat": -43.4893,
+        "lng": 172.532
       },
       {
         "name": "테카포",
@@ -12618,8 +12754,8 @@
       },
       {
         "name": "와나카",
-        "lat": -43.644314,
-        "lng": 172.4653325
+        "lat": -44.7031,
+        "lng": 169.1318
       },
       {
         "name": "퀸스타운",
@@ -12654,7 +12790,18 @@
     "duration": "13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2778&eventSeq=30000596",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2778/hyecho_cm9900_30002212.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "퀸스타운 (Queenstown)",
+        "lat": -45.03,
+        "lng": 168.66
+      },
+      {
+        "name": "밀포드사운드 (Milford Sound)",
+        "lat": -44.67,
+        "lng": 167.93
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000596,
@@ -12894,8 +13041,8 @@
       },
       {
         "name": "와나카",
-        "lat": -43.644314,
-        "lng": 172.4653325
+        "lat": -44.7031,
+        "lng": 169.1318
       },
       {
         "name": "퀸스타운",
@@ -12969,7 +13116,13 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3076&eventSeq=41836",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3076/hyecho_cm9900_30002821.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "샤모니 (Chamonix)",
+        "lat": 45.92,
+        "lng": 6.87
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41836,
@@ -12992,7 +13145,13 @@
     "duration": "35일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3277&eventSeq=40947",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3277/hyecho_cm9900_30002955.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "쿠스코 (Cusco)",
+        "lat": -13.53,
+        "lng": -71.97
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001376,
@@ -13033,8 +13192,8 @@
       },
       {
         "name": "이란",
-        "lat": 32.6475314,
-        "lng": 54.5643516
+        "lat": 24.7516,
+        "lng": 121.7518
       }
     ],
     "departures": [
@@ -13141,9 +13300,9 @@
         "lng": 7.749254
       },
       {
-        "name": "넨다",
-        "lat": 1.3156607,
-        "lng": 103.8962937
+        "name": "넨다즈 (Nendaz)",
+        "lat": 46.19,
+        "lng": 7.31
       }
     ],
     "departures": [
@@ -13188,7 +13347,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2010&eventSeq=40478",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002840.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "델리 (Delhi)",
+        "lat": 28.61,
+        "lng": 77.21
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001650,
@@ -13960,7 +14125,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2007&eventSeq=41138",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2007/hyecho_cm9900_30001468.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "카트만두 (Kathmandu)",
+        "lat": 27.71,
+        "lng": 85.32
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000381,
@@ -14113,7 +14284,23 @@
     "duration": "13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2027",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2027/hyecho_cm9900_30001543.png",
-    "locations": [],
+    "locations": [
+      {
+        "name": "델리 (Delhi)",
+        "lat": 28.61,
+        "lng": 77.21
+      },
+      {
+        "name": "콜롬보 (Colombo)",
+        "lat": 6.93,
+        "lng": 79.85
+      },
+      {
+        "name": "시기리야 (Sigiriya)",
+        "lat": 7.96,
+        "lng": 80.76
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001492,
@@ -14266,7 +14453,23 @@
     "duration": "8일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2005&eventSeq=30001206",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2005/hyecho_cm9900_30001535.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "델리 (Delhi)",
+        "lat": 28.61,
+        "lng": 77.21
+      },
+      {
+        "name": "콜롬보 (Colombo)",
+        "lat": 6.93,
+        "lng": 79.85
+      },
+      {
+        "name": "시기리야 (Sigiriya)",
+        "lat": 7.96,
+        "lng": 80.76
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001206,
@@ -14479,7 +14682,13 @@
     "duration": "6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1929&eventSeq=42067",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png",
-    "locations": [],
+    "locations": [
+      {
+        "name": "백두산 (Changbai Mountain)",
+        "lat": 42,
+        "lng": 128.08
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42067,
@@ -14756,7 +14965,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1859&eventSeq=41885",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1859/hyecho_cm9900_30002584.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41644,
@@ -14959,7 +15174,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1853&eventSeq=41877",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1853/hyecho_cm9900_30002577.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41634,
@@ -15231,7 +15452,18 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2268&eventSeq=41339",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2268/hyecho_cm9900_30000358.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "이슬라마바드 (Islamabad)",
+        "lat": 33.69,
+        "lng": 73.04
+      },
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42646,
@@ -15313,7 +15545,23 @@
     "duration": "10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2270&eventSeq=41862",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2270/hyecho_cm9900_30000380.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "이슬라마바드 (Islamabad)",
+        "lat": 33.69,
+        "lng": 73.04
+      },
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      },
+      {
+        "name": "훈자 (Hunza)",
+        "lat": 36.32,
+        "lng": 74.65
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41862,
@@ -15396,7 +15644,13 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1973",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1973/hyecho_cm9900_30002874.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "더블린 (Dublin)",
+        "lat": 53.33,
+        "lng": -6.25
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42072,
@@ -15429,7 +15683,18 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1978",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1978/hyecho_cm9900_30000742.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "뮌헨 (Munich)",
+        "lat": 48.14,
+        "lng": 11.58
+      },
+      {
+        "name": "베를린 (Berlin)",
+        "lat": 52.52,
+        "lng": 13.4
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41573,
@@ -15472,7 +15737,28 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1990",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1990/hyecho_cm9900_30001204.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "샤모니 (Chamonix)",
+        "lat": 45.92,
+        "lng": 6.87
+      },
+      {
+        "name": "파리 (Paris)",
+        "lat": 48.86,
+        "lng": 2.35
+      },
+      {
+        "name": "리옹 (Lyon)",
+        "lat": 45.75,
+        "lng": 4.83
+      },
+      {
+        "name": "안시 (Annecy)",
+        "lat": 45.9,
+        "lng": 6.12
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42086,
@@ -15495,7 +15781,18 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1991&eventSeq=41801",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1991/hyecho_cm9900_30000858.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "에든버러 (Edinburgh)",
+        "lat": 55.95,
+        "lng": -3.19
+      },
+      {
+        "name": "하이랜드 (Highlands)",
+        "lat": 57.12,
+        "lng": -4.71
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41801,
@@ -15656,7 +15953,18 @@
     "duration": "7일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1819",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1819/hyecho_cm9900_30000510.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "하노이 (Hanoi)",
+        "lat": 21.03,
+        "lng": 105.85
+      },
+      {
+        "name": "호찌민 (Ho Chi Minh)",
+        "lat": 10.82,
+        "lng": 106.63
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000570,
@@ -15689,7 +15997,18 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1792",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1792/hyecho_cm9900_30000589.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "발리 (Bali)",
+        "lat": -8.34,
+        "lng": 115.09
+      },
+      {
+        "name": "자카르타 (Jakarta)",
+        "lat": -6.21,
+        "lng": 106.85
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41790,
@@ -16497,7 +16816,23 @@
     "duration": "17일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1775&eventSeq=30001765",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1775/hyecho_cm9900_30001259.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "케이프타운 (Cape Town)",
+        "lat": -33.93,
+        "lng": 18.42
+      },
+      {
+        "name": "요하네스버그 (Johannesburg)",
+        "lat": -26.2,
+        "lng": 28.04
+      },
+      {
+        "name": "세렝게티 (Serengeti)",
+        "lat": -2.33,
+        "lng": 34.83
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001765,
@@ -16594,7 +16929,18 @@
     "duration": "13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2274&eventSeq=42111",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2274/hyecho_cm9900_30001424.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "앵커리지 (Anchorage)",
+        "lat": 61.22,
+        "lng": -149.9
+      },
+      {
+        "name": "옐로스톤 (Yellowstone)",
+        "lat": 44.6,
+        "lng": -110.5
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42111,
@@ -16666,7 +17012,13 @@
     "duration": "8일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2277&eventSeq=42832",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2277/hyecho_cm9900_30002142.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "밴쿠버 (Vancouver)",
+        "lat": 49.28,
+        "lng": -123.12
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42832,
@@ -16699,7 +17051,23 @@
     "duration": "10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2275&eventSeq=42868",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2275/hyecho_cm9900_30001529.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "시카고 (Chicago)",
+        "lat": 41.88,
+        "lng": -87.63
+      },
+      {
+        "name": "마이애미 (Miami)",
+        "lat": 25.77,
+        "lng": -80.19
+      },
+      {
+        "name": "나소 (Nassau)",
+        "lat": 25.05,
+        "lng": -77.34
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42868,
@@ -16722,7 +17090,13 @@
     "duration": "23일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2279&eventSeq=40331",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2279/hyecho_cm9900_30000167.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "쿠스코 (Cusco)",
+        "lat": -13.53,
+        "lng": -71.97
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42937,
@@ -16803,8 +17177,8 @@
       },
       {
         "name": "시파키라",
-        "lat": 31.8319529,
-        "lng": 78.7338942
+        "lat": 5.0233,
+        "lng": -74.0033
       },
       {
         "name": "키토(에콰도르)",
@@ -16818,8 +17192,8 @@
       },
       {
         "name": "갈라파고스",
-        "lat": 40.6965656,
-        "lng": -3.3379649
+        "lat": -0.9538,
+        "lng": -90.9656
       },
       {
         "name": "파나마",
@@ -16859,7 +17233,13 @@
     "duration": "15일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2303&eventSeq=42934",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2303/hyecho_cm9900_30000161.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "파타고니아 (Patagonia)",
+        "lat": -50.34,
+        "lng": -72.26
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42934,
@@ -16955,8 +17335,8 @@
       },
       {
         "name": "산호세",
-        "lat": 37.3361663,
-        "lng": -121.890591
+        "lat": 9.9281,
+        "lng": -84.0907
       },
       {
         "name": "과테말라시티(과테말라)",
@@ -16970,8 +17350,8 @@
       },
       {
         "name": "안티구아",
-        "lat": 48.1482838,
-        "lng": 11.5699796
+        "lat": 14.5586,
+        "lng": -90.7295
       },
       {
         "name": "플로레스",
@@ -17010,8 +17390,8 @@
       },
       {
         "name": "툴룸",
-        "lat": 48.6762624,
-        "lng": 5.8941759
+        "lat": 20.2114,
+        "lng": -87.4654
       },
       {
         "name": "칸쿤",
@@ -17071,7 +17451,23 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000053&eventSeq=41502",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000053/hyecho_cm9900_30000144.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "이스탄불 (Istanbul)",
+        "lat": 41.01,
+        "lng": 28.98
+      },
+      {
+        "name": "카파도키아 (Cappadocia)",
+        "lat": 38.65,
+        "lng": 34.83
+      },
+      {
+        "name": "앙카라 (Ankara)",
+        "lat": 39.93,
+        "lng": 32.86
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42756,
@@ -17124,7 +17520,23 @@
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1846&eventSeq=41288",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1846/hyecho_cm9900_30000091.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "사마르칸트 (Samarkand)",
+        "lat": 39.65,
+        "lng": 66.96
+      },
+      {
+        "name": "이스탄불 (Istanbul)",
+        "lat": 41.01,
+        "lng": 28.98
+      },
+      {
+        "name": "카파도키아 (Cappadocia)",
+        "lat": 38.65,
+        "lng": 34.83
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42629,
@@ -17177,7 +17589,13 @@
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1832&eventSeq=42395",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2019/hyecho_cm9900_30001115.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "두샨베 (Dushanbe)",
+        "lat": 38.56,
+        "lng": 68.77
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42097,
@@ -17845,8 +18263,8 @@
       },
       {
         "name": "닛코",
-        "lat": 50.4641343,
-        "lng": 22.2688393
+        "lat": 36.75,
+        "lng": 139.6
       },
       {
         "name": "시나가와",
@@ -18391,7 +18809,13 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2144&eventSeq=41569",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2144/hyecho_cm9900_30000860.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "롱이어비엔 (Longyearbyen)",
+        "lat": 78.22,
+        "lng": 15.65
+      }
+    ],
     "departures": [
       {
         "eventSeq": 41569,
@@ -18424,7 +18848,13 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1830&eventSeq=42928",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1830/hyecho_cm9900_30002837.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "퀸스타운 (Queenstown)",
+        "lat": -45.03,
+        "lng": 168.66
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42928,
@@ -18457,7 +18887,13 @@
     "duration": "19일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2143&eventSeq=42991",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2143/hyecho_cm9900_30000894.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "롱이어비엔 (Longyearbyen)",
+        "lat": 78.22,
+        "lng": 15.65
+      }
+    ],
     "departures": [
       {
         "eventSeq": 42991,
@@ -18632,7 +19068,13 @@
     "duration": "3일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000117&eventSeq=30001817",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000117/hyecho_cm9900_30003057.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "제주시 (Jeju)",
+        "lat": 33.5,
+        "lng": 126.53
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001817,
@@ -18675,7 +19117,18 @@
     "duration": "3일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000074",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000074/hyecho_cm9900_30002442.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "제주시 (Jeju)",
+        "lat": 33.5,
+        "lng": 126.53
+      },
+      {
+        "name": "가파도 (Gapa Island)",
+        "lat": 33.17,
+        "lng": 126.27
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000014,
@@ -18788,7 +19241,13 @@
     "duration": "",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000098&eventSeq=30000711",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000098/hyecho_cm9900_30002446.png",
-    "locations": [],
+    "locations": [
+      {
+        "name": "가파도 (Gapa Island)",
+        "lat": 33.17,
+        "lng": 126.27
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30001632,
@@ -18831,7 +19290,28 @@
     "duration": "12일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000063&eventSeq=30000573",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000063/hyecho_cm9900_30002731.jpg",
-    "locations": [],
+    "locations": [
+      {
+        "name": "스코페 (Skopje)",
+        "lat": 41.99,
+        "lng": 21.43
+      },
+      {
+        "name": "사라예보 (Sarajevo)",
+        "lat": 43.85,
+        "lng": 18.41
+      },
+      {
+        "name": "티라나 (Tirana)",
+        "lat": 41.33,
+        "lng": 19.83
+      },
+      {
+        "name": "포드고리차 (Podgorica)",
+        "lat": 42.44,
+        "lng": 19.26
+      }
+    ],
     "departures": [
       {
         "eventSeq": 30000573,

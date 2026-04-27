@@ -6,6 +6,7 @@ import BottomSheet from "@/components/BottomSheet";
 import SiteDetail from "@/components/SiteDetail";
 import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
+import RankingPanel from "@/components/RankingPanel";
 import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
@@ -14,6 +15,15 @@ const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
 const locationMap = buildLocationMap(products);
 const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
+
+function getSearchMatches(
+  products: HyechoProduct[],
+  query: string,
+  filteredIds: Set<string>
+): HyechoProduct[] {
+  if (!query.trim()) return [];
+  return products.filter((p) => filteredIds.has(p.id)).slice(0, 8);
+}
 
 export default function Home() {
   // 선택 상태
@@ -25,6 +35,7 @@ export default function Home() {
   const [flyToTarget, setFlyToTarget] = useState<{ lat: number; lng: number; seq: number } | null>(null);
   const handleCityTagClick = useCallback((lat: number, lng: number) => {
     setFlyToTarget({ lat, lng, seq: Date.now() });
+    setSheetState("closed");
   }, []);
 
   // 필터 상태
@@ -84,6 +95,12 @@ export default function Home() {
     return new Set(selectedLocation.products.map((p) => p.id));
   }, [selectedLocation]);
 
+  const handleRankingSelect = useCallback((productId: string) => {
+    setSelectedProductId(productId);
+    setSelectedLocation(null);
+    setSheetState("full");
+  }, []);
+
   return (
     <div className="relative h-full w-full">
       <SearchBar
@@ -96,7 +113,13 @@ export default function Home() {
         categories={categories}
         onToggleCategory={handleToggleCategory}
         resultCount={filteredProductIds.size}
+        searchMatches={getSearchMatches(products, searchQuery, filteredProductIds)}
+        onSelectMatch={(id) => { setSelectedProductId(id); setSelectedLocation(null); setSheetState("full"); setSearchQuery(""); }}
       />
+      <RankingPanel products={products} onSelectProduct={handleRankingSelect} onPanelOpen={() => setSheetState("closed")} />
+      {sheetState !== "closed" && (
+        <div className="absolute inset-0 z-[5]" onClick={() => setSheetState("closed")} />
+      )}
       <HyechoMap
         data={geoData}
         multiGeoJSON={multiGeoJSON}

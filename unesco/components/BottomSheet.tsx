@@ -13,7 +13,7 @@ interface BottomSheetProps {
 const SNAP_POINTS: Record<SheetState, number> = {
   closed: 0,
   half: 40,
-  full: 85,
+  full: 65,
 };
 
 export default function BottomSheet({ state, onStateChange, children }: BottomSheetProps) {
@@ -53,8 +53,8 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
     if (!dragRef.current.dragging || !sheetRef.current) return;
     const dy = dragRef.current.startY - e.clientY;
     const vh = window.innerHeight;
-    const newHeight = Math.max(0, Math.min(95, dragRef.current.startHeight + (dy / vh) * 100));
-    sheetRef.current.style.height = `${newHeight}vh`;
+    const newHeight = Math.max(0, Math.min(68, dragRef.current.startHeight + (dy / vh) * 100));
+    sheetRef.current.style.height = `${newHeight}dvh`;
     sheetRef.current.style.transition = "none";
   }, []);
 
@@ -78,7 +78,7 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
     <div
       ref={sheetRef}
       className="absolute bottom-0 left-0 right-0 bg-gray-900 rounded-t-2xl shadow-2xl z-20 flex flex-col transition-all duration-300 ease-out border-t border-gray-700"
-      style={{ height: `${height}vh` }}
+      style={{ height: `${height}dvh` }}
     >
       <div
         className="flex-shrink-0 flex items-center justify-center py-3 cursor-grab active:cursor-grabbing touch-none"

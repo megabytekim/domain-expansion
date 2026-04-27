@@ -257,7 +257,9 @@ async function main() {
       existing.departures = departures;
       existing.departuresUpdatedAt = new Date().toISOString();
       console.log(`  ✓ ${departures.length}개 출발일`);
-      continue;
+      // locations가 비어있으면 skip하지 않고 아래서 재추출
+      if (existing.locations && existing.locations.length > 0) continue;
+      console.log(`  locations 없음 — 페이지 재크롤로 위치 추출`);
     }
 
     console.log(`\n[${i + 1}/${PRODUCT_LIST.length}] ${p.s}...`);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { CategoryFilter } from "@/lib/types";
+import type { CategoryFilter, HyechoProduct } from "@/lib/types";
 
 const CATEGORY_CONFIG: { key: CategoryFilter; label: string; color: string; bg: string; border: string }[] = [
   { key: "trekking", label: "트레킹", color: "#22c55e", bg: "rgba(34,197,94,0.15)", border: "rgba(34,197,94,0.4)" },
@@ -23,6 +23,8 @@ interface SearchBarProps {
   categories: Set<CategoryFilter>;
   onToggleCategory: (cat: CategoryFilter) => void;
   resultCount: number;
+  searchMatches: HyechoProduct[];
+  onSelectMatch: (id: string) => void;
 }
 
 export default function SearchBar({
@@ -31,6 +33,7 @@ export default function SearchBar({
   durationRange, onDurationChange,
   categories, onToggleCategory,
   resultCount,
+  searchMatches, onSelectMatch,
 }: SearchBarProps) {
   const [filterOpen, setFilterOpen] = useState(false);
 
@@ -78,6 +81,35 @@ export default function SearchBar({
           필터 {hasActiveFilter && "●"}
         </button>
       </div>
+
+      {/* 검색 결과 드롭다운 */}
+      {searchQuery.trim() && searchMatches.length > 0 && (
+        <div
+          className="rounded-xl overflow-hidden backdrop-blur-sm"
+          style={{ background: "rgba(15,23,42,0.95)", border: "1px solid #334155" }}
+        >
+          {searchMatches.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => onSelectMatch(p.id)}
+              className="w-full text-left px-3 py-2 hover:bg-white/5 transition-colors border-b border-gray-800 last:border-0"
+            >
+              <p className="text-xs text-gray-200 leading-tight line-clamp-2">{p.title}</p>
+              {p.locations.length > 0 && (
+                <p className="text-xs text-gray-500 mt-0.5">{p.locations.map((l) => l.name).join(" · ")}</p>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+      {searchQuery.trim() && searchMatches.length === 0 && (
+        <div
+          className="px-3 py-2 rounded-xl text-xs text-gray-500 backdrop-blur-sm"
+          style={{ background: "rgba(15,23,42,0.95)", border: "1px solid #334155" }}
+        >
+          검색 결과 없음
+        </div>
+      )}
 
       {/* 카테고리 칩 */}
       <div className="flex flex-wrap gap-1.5">
