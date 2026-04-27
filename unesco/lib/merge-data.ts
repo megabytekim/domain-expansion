@@ -1,4 +1,4 @@
-import type { HyechoProduct, MarkerGeoJSON, SelectedLocation } from "./types";
+import type { HyechoProduct, MarkerGeoJSON, CategoryFilter } from "./types";
 
 export function productsToGeoJSON(products: HyechoProduct[]): MarkerGeoJSON {
   const features = [];
@@ -47,22 +47,22 @@ export function locKey(lat: number, lng: number): string {
   return `${Math.round(lat * 10000) / 10000},${Math.round(lng * 10000) / 10000}`;
 }
 
-/** 좌표 키 → 해당 위치에 연결된 상품 배열 */
+/** 좌표 키 → 해당 위치에 연결된 상품 배열. 조회 시 locKey(lat,lng) 사용 */
 export function buildLocationMap(products: HyechoProduct[]): Map<string, HyechoProduct[]> {
-  const map = new Map<string, HyechoProduct[]>();
+  const locationMap = new Map<string, HyechoProduct[]>();
   for (const product of products) {
     for (const loc of product.locations) {
       const key = locKey(loc.lat, loc.lng);
-      const existing = map.get(key) ?? [];
+      const existing = locationMap.get(key) ?? [];
       if (!existing.includes(product)) existing.push(product);
-      map.set(key, existing);
+      locationMap.set(key, existing);
     }
   }
-  return map;
+  return locationMap;
 }
 
 export interface FilterOptions {
-  categories: Set<string>;
+  categories: Set<CategoryFilter>;
   searchQuery: string;
   priceRange: [number, number]; // [min, max], 0이면 무제한
   durationRange: [number, number]; // [min, max], 0이면 무제한
