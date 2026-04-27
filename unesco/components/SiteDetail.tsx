@@ -4,19 +4,22 @@ interface SiteDetailProps {
   product: HyechoProduct;
   locationCount: number; // 1이면 뒤로가기 숨김
   onBack: () => void;
+  onCityTagClick: (lat: number, lng: number) => void;
 }
 
-export default function SiteDetail({ product, locationCount, onBack }: SiteDetailProps) {
+export default function SiteDetail({ product, locationCount, onBack, onCityTagClick }: SiteDetailProps) {
   return (
     <div className="space-y-3">
       {/* 뒤로가기 */}
       {locationCount > 1 && (
-        <button
-          onClick={onBack}
-          className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
-        >
-          ← 목록으로
-        </button>
+        <div className="sticky top-0 z-10 -mx-4 px-4 py-1.5 bg-gray-900">
+          <button
+            onClick={onBack}
+            className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            ← 목록으로
+          </button>
+        </div>
       )}
 
       {/* 상품 이미지 */}
@@ -46,13 +49,14 @@ export default function SiteDetail({ product, locationCount, onBack }: SiteDetai
       {product.locations.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {product.locations.map((loc) => (
-            <span
+            <button
               key={`${loc.name}-${loc.lat}-${loc.lng}`}
-              className="px-2 py-0.5 rounded-full text-xs"
+              onClick={() => onCityTagClick(loc.lat, loc.lng)}
+              className="px-2 py-0.5 rounded-full text-xs transition-opacity hover:opacity-70"
               style={{ background: "rgba(30,58,138,0.5)", color: "#93c5fd", border: "1px solid rgba(96,165,250,0.3)" }}
             >
               {loc.name}
-            </span>
+            </button>
           ))}
         </div>
       )}

@@ -51,3 +51,14 @@ export interface SelectedLocation {
   lng: number;
   products: HyechoProduct[];
 }
+
+export interface MultiLocationFeature {
+  type: "Feature";
+  geometry: { type: "Point"; coordinates: [number, number] };
+  properties: { count: number; lat: number; lng: number };
+}
+
+export interface MultiLocationGeoJSON {
+  type: "FeatureCollection";
+  features: MultiLocationFeature[];
+}

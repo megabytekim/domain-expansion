@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, type ReactNode } from "react";
+import { useRef, useCallback, useEffect, type ReactNode } from "react";
 
 type SheetState = "closed" | "half" | "full";
 
@@ -21,6 +21,14 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
   const dragRef = useRef({ startY: 0, startHeight: 0, dragging: false });
 
   const height = SNAP_POINTS[state];
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onStateChange("closed");
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [onStateChange]);
 
   const snapToNearest = useCallback(
     (currentHeight: number) => {

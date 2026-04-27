@@ -6,19 +6,26 @@ import BottomSheet from "@/components/BottomSheet";
 import SiteDetail from "@/components/SiteDetail";
 import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
-import { productsToGeoJSON, buildLocationMap, filterProducts } from "@/lib/merge-data";
+import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
 
 const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
 const locationMap = buildLocationMap(products);
+const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
 
 export default function Home() {
   // 선택 상태
   const [selectedLocation, setSelectedLocation] = useState<SelectedLocation | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [sheetState, setSheetState] = useState<"closed" | "half" | "full">("closed");
+
+  // 도시 태그 클릭 → flyTo
+  const [flyToTarget, setFlyToTarget] = useState<{ lat: number; lng: number; seq: number } | null>(null);
+  const handleCityTagClick = useCallback((lat: number, lng: number) => {
+    setFlyToTarget({ lat, lng, seq: Date.now() });
+  }, []);
 
   // 필터 상태
   const [categories, setCategories] = useState<Set<CategoryFilter>>(
@@ -92,11 +99,13 @@ export default function Home() {
       />
       <HyechoMap
         data={geoData}
+        multiGeoJSON={multiGeoJSON}
         filteredProductIds={filteredProductIds}
         selectedProductId={selectedProductId}
         selectedLocationProductIds={selectedLocationProductIds}
         locationMap={locationMap}
         onLocationSelect={handleLocationSelect}
+        flyToTarget={flyToTarget}
       />
       <BottomSheet state={sheetState} onStateChange={setSheetState}>
         {selectedProduct ? (
@@ -104,6 +113,7 @@ export default function Home() {
             product={selectedProduct}
             locationCount={selectedLocation?.products.length ?? 1}
             onBack={handleBack}
+            onCityTagClick={handleCityTagClick}
           />
         ) : selectedLocation ? (
           <ProductList

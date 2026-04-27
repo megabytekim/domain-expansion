@@ -1,4 +1,4 @@
-import type { HyechoProduct, MarkerGeoJSON, CategoryFilter } from "./types";
+import type { HyechoProduct, MarkerGeoJSON, CategoryFilter, MultiLocationGeoJSON } from "./types";
 
 export function productsToGeoJSON(products: HyechoProduct[]): MarkerGeoJSON {
   const features = [];
@@ -61,6 +61,21 @@ export function buildLocationMap(products: HyechoProduct[]): Map<string, HyechoP
     }
   }
   return locationMap;
+}
+
+/** 2개 이상 상품이 있는 위치에 count 뱃지 GeoJSON 생성 */
+export function buildMultiLocationGeoJSON(locationMap: Map<string, HyechoProduct[]>): MultiLocationGeoJSON {
+  const features = [];
+  for (const [key, prods] of locationMap) {
+    if (prods.length < 2) continue;
+    const [lat, lng] = key.split(",").map(Number);
+    features.push({
+      type: "Feature" as const,
+      geometry: { type: "Point" as const, coordinates: [lng, lat] as [number, number] },
+      properties: { count: prods.length, lat, lng },
+    });
+  }
+  return { type: "FeatureCollection", features };
 }
 
 export interface FilterOptions {

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
-import type { MarkerGeoJSON, SelectedLocation } from "@/lib/types";
+import type { MarkerGeoJSON, SelectedLocation, MultiLocationGeoJSON } from "@/lib/types";
 import type { HyechoProduct } from "@/lib/types";
 import { locKey } from "@/lib/merge-data";
 
@@ -21,20 +21,24 @@ const PALETTE = [
 
 interface HyechoMapProps {
   data: MarkerGeoJSON;
+  multiGeoJSON: MultiLocationGeoJSON;
   filteredProductIds: Set<string>;
   selectedProductId: string | null;
   selectedLocationProductIds: Set<string> | null; // ProductList 표시 중일 때 해당 위치의 상품들
   locationMap: Map<string, HyechoProduct[]>;
   onLocationSelect: (loc: SelectedLocation | null) => void;
+  flyToTarget: { lat: number; lng: number; seq: number } | null;
 }
 
 export default function HyechoMap({
   data,
+  multiGeoJSON,
   filteredProductIds,
   selectedProductId,
   selectedLocationProductIds,
   locationMap,
   onLocationSelect,
+  flyToTarget,
 }: HyechoMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -84,6 +88,39 @@ export default function HyechoMap({
         },
       });
 
+      // 복수 상품 위치 뱃지
+      map.addSource("hyecho-multi", {
+        type: "geojson",
+        data: multiGeoJSON as unknown as GeoJSON.FeatureCollection,
+      });
+      map.addLayer({
+        id: "multi-badge-bg",
+        type: "circle",
+        source: "hyecho-multi",
+        paint: {
+          "circle-radius": 7,
+          "circle-color": "#1e293b",
+          "circle-stroke-width": 1.5,
+          "circle-stroke-color": "#ffffff",
+          "circle-translate": [6, -6],
+        },
+      });
+      map.addLayer({
+        id: "multi-badge-text",
+        type: "symbol",
+        source: "hyecho-multi",
+        layout: {
+          "text-field": ["to-string", ["get", "count"]],
+          "text-size": 9,
+          "text-allow-overlap": true,
+          "text-ignore-placement": true,
+          "text-offset": [0.55, -0.55],
+        },
+        paint: {
+          "text-color": "#ffffff",
+        },
+      });
+
       // 마커 클릭
       map.on("click", "markers", (e) => {
         const feature = e.features?.[0];
@@ -94,6 +131,7 @@ export default function HyechoMap({
         const lng = feature.properties?.lng as number;
         const key = locKey(lat, lng);
         const products = locationMapRef.current.get(key) ?? [];
+        map.flyTo({ center: [lng, lat], duration: 500 });
         onSelectRef.current({ lat, lng, products });
       });
 
@@ -139,6 +177,17 @@ export default function HyechoMap({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // 도시 태그 클릭 → 해당 좌표로 flyTo
+  useEffect(() => {
+    if (!flyToTarget) return;
+    const map = mapRef.current;
+    if (!map) return;
+    const apply = () =>
+      map.flyTo({ center: [flyToTarget.lng, flyToTarget.lat], zoom: Math.max(map.getZoom(), 6), duration: 600 });
+    if (map.isStyleLoaded()) apply();
+    else map.once("load", apply);
+  }, [flyToTarget]);
 
   // 필터/선택 상태 → 마커 opacity 업데이트
   useEffect(() => {
