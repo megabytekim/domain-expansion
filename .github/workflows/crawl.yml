@@ -32,7 +32,6 @@ jobs:
 
       - name: Crawl Hyecho packages
         run: npx tsx scripts/crawl-all-hyecho.ts
-        timeout-minutes: 10
 
       - name: Fetch UNESCO sites
         run: npx tsx scripts/fetch-unesco.ts
