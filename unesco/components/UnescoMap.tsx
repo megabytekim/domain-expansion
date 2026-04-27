@@ -115,10 +115,10 @@ export default function HyechoMap({
         const feature = e.features?.[0];
         if (!feature) return;
         const title = feature.properties?.productTitle ?? "";
-        popup
-          .setLngLat(e.lngLat)
-          .setHTML(`<span style="font-size:12px;color:#e2e8f0;white-space:nowrap;max-width:200px;display:block;overflow:hidden;text-overflow:ellipsis">${title}</span>`)
-          .addTo(map);
+        const span = document.createElement("span");
+        span.style.cssText = "font-size:12px;color:#e2e8f0;white-space:nowrap;max-width:200px;display:block;overflow:hidden;text-overflow:ellipsis";
+        span.textContent = title;
+        popup.setLngLat(e.lngLat).setDOMContent(span).addTo(map);
       });
 
       map.on("mouseleave", "markers", () => {
@@ -144,17 +144,15 @@ export default function HyechoMap({
       const source = map.getSource("hyecho") as maplibregl.GeoJSONSource;
       if (!source) return;
 
-      const isFiltering = filteredProductIds.size < data.features.length;
-
       const features = data.features.map((f) => {
         const id = f.properties.productId;
         const isFiltered = filteredProductIds.has(id);
         const isSelected = selectedProductId === id;
 
-        let opacity = 0.9;
+        let opacity: number;
         if (selectedProductId) {
           opacity = isSelected ? 1.0 : 0.2;
-        } else if (isFiltering) {
+        } else {
           opacity = isFiltered ? 0.9 : 0.2;
         }
 
