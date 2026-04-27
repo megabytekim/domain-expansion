@@ -6,7 +6,7 @@ export interface HyechoLocation {
 
 export interface HyechoProduct {
   id: string;
-  category: "trekking" | "culture" | "walking";
+  category: "trekking" | "culture" | "walking" | "event";
   title: string;
   price: string;
   duration: string;
@@ -42,4 +42,10 @@ export interface MarkerGeoJSON {
   features: MarkerFeature[];
 }
 
-export type CategoryFilter = "trekking" | "culture" | "walking";
+export type CategoryFilter = "trekking" | "culture" | "walking" | "event";
+
+export interface SelectedLocation {
+  lat: number;
+  lng: number;
+  products: HyechoProduct[];
+}
