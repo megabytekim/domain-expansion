@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
-import type { MarkerGeoJSON, MarkerProperties, CategoryFilter } from "@/lib/types";
+import type { MarkerGeoJSON, SelectedLocation } from "@/lib/types";
+import type { HyechoProduct } from "@/lib/types";
+import { locKey } from "@/lib/merge-data";
 
-// 50 distinct colors for products
 const PALETTE = [
   "#ff6b6b","#ffa94d","#ffd43b","#a9e34b","#51cf66",
   "#20c997","#22b8cf","#339af0","#5c7cfa","#7950f2",
@@ -20,18 +21,29 @@ const PALETTE = [
 
 interface HyechoMapProps {
   data: MarkerGeoJSON;
-  onMarkerSelect: (props: MarkerProperties | null) => void;
-  filterCategories: Set<CategoryFilter>;
+  filteredProductIds: Set<string>;
+  selectedProductId: string | null;
+  locationMap: Map<string, HyechoProduct[]>;
+  onLocationSelect: (loc: SelectedLocation | null) => void;
 }
 
-export default function HyechoMap({ data, onMarkerSelect, filterCategories }: HyechoMapProps) {
+export default function HyechoMap({
+  data,
+  filteredProductIds,
+  selectedProductId,
+  locationMap,
+  onLocationSelect,
+}: HyechoMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const onSelectRef = useRef(onMarkerSelect);
+  const onSelectRef = useRef(onLocationSelect);
+  const locationMapRef = useRef(locationMap);
+  const popupRef = useRef<maplibregl.Popup | null>(null);
 
-  useEffect(() => { onSelectRef.current = onMarkerSelect; }, [onMarkerSelect]);
+  useEffect(() => { onSelectRef.current = onLocationSelect; }, [onLocationSelect]);
+  useEffect(() => { locationMapRef.current = locationMap; }, [locationMap]);
 
-  // Init map
+  // 지도 초기화
   useEffect(() => {
     if (!containerRef.current) return;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
@@ -51,7 +63,6 @@ export default function HyechoMap({ data, onMarkerSelect, filterCategories }: Hy
         data: data as unknown as GeoJSON.FeatureCollection,
       });
 
-      // Circle layer — color by product colorIndex
       map.addLayer({
         id: "markers",
         type: "circle",
@@ -64,37 +75,67 @@ export default function HyechoMap({ data, onMarkerSelect, filterCategories }: Hy
             ...PALETTE.flatMap((c, i) => [i, c]),
             "#888",
           ] as unknown as maplibregl.ExpressionSpecification,
-          "circle-stroke-width": 1.5,
-          "circle-stroke-color": "rgba(255,255,255,0.4)",
-          "circle-opacity": 0.9,
+          "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1.5],
+          "circle-stroke-color": ["case", ["get", "_selected"], "#ffffff", "rgba(255,255,255,0.4)"],
+          "circle-opacity": ["coalesce", ["get", "_opacity"], 0.9],
         },
       });
 
-      // Click marker
+      // 마커 클릭
       map.on("click", "markers", (e) => {
         const feature = e.features?.[0];
         if (!feature) return;
-        const props = feature.properties as unknown as MarkerProperties;
-        onSelectRef.current(props);
+        const coords = (feature.geometry as GeoJSON.Point).coordinates as [number, number];
+        const [lng, lat] = coords;
+        const key = locKey(lat, lng);
+        const products = locationMapRef.current.get(key) ?? [];
+        onSelectRef.current({ lat, lng, products });
       });
 
-      // Click empty → deselect
+      // 빈 영역 클릭 → 선택 해제
       map.on("click", (e) => {
         const features = map.queryRenderedFeatures(e.point, { layers: ["markers"] });
         if (features.length === 0) onSelectRef.current(null);
       });
 
-      // Cursor
+      // 커서
       map.on("mouseenter", "markers", () => { map.getCanvas().style.cursor = "pointer"; });
       map.on("mouseleave", "markers", () => { map.getCanvas().style.cursor = ""; });
+
+      // Hover 툴팁
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: [0, -14],
+        className: "hyecho-tooltip",
+      });
+      popupRef.current = popup;
+
+      map.on("mousemove", "markers", (e) => {
+        const feature = e.features?.[0];
+        if (!feature) return;
+        const title = feature.properties?.productTitle ?? "";
+        popup
+          .setLngLat(e.lngLat)
+          .setHTML(`<span style="font-size:12px;color:#e2e8f0;white-space:nowrap;max-width:200px;display:block;overflow:hidden;text-overflow:ellipsis">${title}</span>`)
+          .addTo(map);
+      });
+
+      map.on("mouseleave", "markers", () => {
+        popup.remove();
+      });
     });
 
     mapRef.current = map;
-    return () => { map.remove(); mapRef.current = null; };
+    return () => {
+      popupRef.current?.remove();
+      map.remove();
+      mapRef.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Filter
+  // 필터/선택 상태 → 마커 opacity 업데이트
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -103,19 +144,39 @@ export default function HyechoMap({ data, onMarkerSelect, filterCategories }: Hy
       const source = map.getSource("hyecho") as maplibregl.GeoJSONSource;
       if (!source) return;
 
-      const filtered = data.features.filter((f) =>
-        filterCategories.has(f.properties.productCategory as CategoryFilter)
-      );
+      const isFiltering = filteredProductIds.size < data.features.length;
+
+      const features = data.features.map((f) => {
+        const id = f.properties.productId;
+        const isFiltered = filteredProductIds.has(id);
+        const isSelected = selectedProductId === id;
+
+        let opacity = 0.9;
+        if (selectedProductId) {
+          opacity = isSelected ? 1.0 : 0.2;
+        } else if (isFiltering) {
+          opacity = isFiltered ? 0.9 : 0.2;
+        }
+
+        return {
+          ...f,
+          properties: {
+            ...f.properties,
+            _opacity: opacity,
+            _selected: isSelected,
+          },
+        };
+      });
 
       source.setData({
         type: "FeatureCollection",
-        features: filtered,
+        features,
       } as unknown as GeoJSON.FeatureCollection);
     };
 
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
-  }, [data, filterCategories]);
+  }, [data, filteredProductIds, selectedProductId]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }
