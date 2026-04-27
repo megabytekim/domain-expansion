@@ -77,7 +77,8 @@ export default function HyechoMap({
           ] as unknown as maplibregl.ExpressionSpecification,
           "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1.5],
           "circle-stroke-color": ["case", ["get", "_selected"], "#ffffff", "rgba(255,255,255,0.4)"],
-          "circle-opacity": ["coalesce", ["get", "_opacity"], 0.9],
+          "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
+          "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],
         },
       });
 
@@ -151,9 +152,9 @@ export default function HyechoMap({
 
         let opacity: number;
         if (selectedProductId) {
-          opacity = isSelected ? 1.0 : 0.2;
+          opacity = isSelected ? 1.0 : 0.3;
         } else {
-          opacity = isFiltered ? 0.9 : 0.2;
+          opacity = isFiltered ? 1.0 : 0.2;
         }
 
         return {

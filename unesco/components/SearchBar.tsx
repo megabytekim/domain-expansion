@@ -37,8 +37,7 @@ export default function SearchBar({
   const hasActiveFilter =
     searchQuery.trim() !== "" ||
     priceRange[0] > 0 || priceRange[1] > 0 ||
-    durationRange[0] > 0 || durationRange[1] > 0 ||
-    categories.size < CATEGORY_CONFIG.length;
+    durationRange[0] > 0 || durationRange[1] > 0;
 
   const resetFilters = () => {
     onSearchChange("");
