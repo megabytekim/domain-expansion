@@ -1,0 +1,89 @@
+<h2>바텀시트 플로우 설계</h2>
+<p class="subtitle">마커 클릭 → 목록 → 상세 두 단계로 분리</p>
+
+<div class="split" style="gap:16px;align-items:flex-start">
+
+  <!-- STEP 1: Location selected -->
+  <div class="mockup" style="flex:1">
+    <div class="mockup-header">① 마커 클릭 시 (위치에 상품 N개)</div>
+    <div class="mockup-body" style="padding:0">
+      <!-- Mini map placeholder -->
+      <div style="background:#1a2535;height:280px;display:flex;align-items:center;justify-content:center;color:#4a5568;font-size:13px">
+        🗺 지도 (마커 클릭됨)
+      </div>
+      <!-- Bottom sheet - list mode -->
+      <div style="background:#1e293b;border-radius:16px 16px 0 0;padding:16px;margin-top:-8px">
+        <div style="width:36px;height:4px;background:#334155;border-radius:2px;margin:0 auto 12px"></div>
+        <div style="color:#94a3b8;font-size:11px;margin-bottom:8px">돌로미테 · 상품 4개</div>
+        <!-- Product list items -->
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:#0f172a;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer">
+            <div style="width:44px;height:44px;background:#1e3a5f;border-radius:8px;flex-shrink:0"></div>
+            <div>
+              <div style="color:#e2e8f0;font-size:13px;font-weight:600">[돌로미테] 하이라이트 트레킹 9일</div>
+              <div style="color:#22c55e;font-size:12px">₩9,200,000 · 9일</div>
+            </div>
+            <div style="margin-left:auto;color:#475569">›</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer">
+            <div style="width:44px;height:44px;background:#1e3a5f;border-radius:8px;flex-shrink:0"></div>
+            <div>
+              <div style="color:#e2e8f0;font-size:13px;font-weight:600">돌로미테 파노라마 하이킹 9일</div>
+              <div style="color:#22c55e;font-size:12px">₩9,200,000 · 9일</div>
+            </div>
+            <div style="margin-left:auto;color:#475569">›</div>
+          </div>
+          <div style="background:#0f172a;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer">
+            <div style="width:44px;height:44px;background:#1e3a5f;border-radius:8px;flex-shrink:0"></div>
+            <div>
+              <div style="color:#e2e8f0;font-size:13px;font-weight:600">돌로미테 자연기행+오스트리아 12일</div>
+              <div style="color:#22c55e;font-size:12px">₩11,500,000 · 12일</div>
+            </div>
+            <div style="margin-left:auto;color:#475569">›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div style="display:flex;align-items:center;padding-top:200px;color:#475569;font-size:24px;flex-shrink:0">→</div>
+
+  <!-- STEP 2: Product selected -->
+  <div class="mockup" style="flex:1">
+    <div class="mockup-header">② 상품 선택 시</div>
+    <div class="mockup-body" style="padding:0">
+      <!-- Mini map with all markers of this product highlighted -->
+      <div style="background:#1a2535;height:280px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-direction:column;gap:8px">
+        <span style="color:#4a5568">🗺 지도</span>
+        <span style="color:#22c55e;font-size:11px">● 이 상품의 모든 마커 강조됨</span>
+      </div>
+      <!-- Bottom sheet - detail mode -->
+      <div style="background:#1e293b;border-radius:16px 16px 0 0;padding:16px;margin-top:-8px">
+        <div style="width:36px;height:4px;background:#334155;border-radius:2px;margin:0 auto 12px"></div>
+        <!-- Back button -->
+        <div style="color:#60a5fa;font-size:12px;margin-bottom:10px;cursor:pointer">← 돌로미테 목록으로</div>
+        <!-- Product image -->
+        <div style="background:#1e3a5f;height:100px;border-radius:10px;margin-bottom:10px"></div>
+        <!-- Title -->
+        <div style="color:#e2e8f0;font-size:15px;font-weight:700;margin-bottom:4px">[돌로미테] 하이라이트 트레킹 9일</div>
+        <!-- Price + duration -->
+        <div style="display:flex;gap:12px;margin-bottom:10px">
+          <span style="color:#22c55e;font-size:13px;font-weight:600">₩9,200,000</span>
+          <span style="color:#64748b;font-size:13px">9일</span>
+        </div>
+        <!-- City tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+          <span style="background:#1e3a5f;color:#60a5fa;font-size:11px;padding:3px 8px;border-radius:12px">밀라노</span>
+          <span style="background:#1e3a5f;color:#60a5fa;font-size:11px;padding:3px 8px;border-radius:12px">돌로미테</span>
+          <span style="background:#1e3a5f;color:#60a5fa;font-size:11px;padding:3px 8px;border-radius:12px">베니스</span>
+        </div>
+        <!-- CTA -->
+        <div style="background:#064e3b;color:#6ee7b7;font-size:13px;padding:10px;border-radius:8px;text-align:center">혜초여행에서 보기 →</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="color:#64748b;font-size:12px;margin-top:16px;text-align:center">← 뒤로가기 버튼으로 목록으로 돌아올 수 있음 / 상품이 하나뿐이면 목록 단계 건너뜀</p>
