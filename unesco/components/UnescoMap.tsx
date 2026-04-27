@@ -23,6 +23,7 @@ interface HyechoMapProps {
   data: MarkerGeoJSON;
   filteredProductIds: Set<string>;
   selectedProductId: string | null;
+  selectedLocationProductIds: Set<string> | null; // ProductList 표시 중일 때 해당 위치의 상품들
   locationMap: Map<string, HyechoProduct[]>;
   onLocationSelect: (loc: SelectedLocation | null) => void;
 }
@@ -31,6 +32,7 @@ export default function HyechoMap({
   data,
   filteredProductIds,
   selectedProductId,
+  selectedLocationProductIds,
   locationMap,
   onLocationSelect,
 }: HyechoMapProps) {
@@ -154,8 +156,13 @@ export default function HyechoMap({
 
         let opacity: number;
         if (selectedProductId) {
+          // 상품 상세: 해당 상품 마커만 강조
           opacity = isSelected ? 1.0 : 0.3;
+        } else if (selectedLocationProductIds) {
+          // 위치 목록(ProductList): 해당 위치 상품들만 강조
+          opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
         } else {
+          // 선택 없음: 검색/필터 결과 기반
           opacity = isFiltered ? 1.0 : 0.2;
         }
 
@@ -177,7 +184,7 @@ export default function HyechoMap({
 
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
-  }, [data, filteredProductIds, selectedProductId]);
+  }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }

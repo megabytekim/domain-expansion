@@ -71,6 +71,12 @@ export default function Home() {
     ? products.find((p) => p.id === selectedProductId) ?? null
     : null;
 
+  // ProductList 표시 중일 때 해당 위치 상품 ID set (마커 opacity 제어용)
+  const selectedLocationProductIds = useMemo(() => {
+    if (!selectedLocation) return null;
+    return new Set(selectedLocation.products.map((p) => p.id));
+  }, [selectedLocation]);
+
   return (
     <div className="relative h-full w-full">
       <SearchBar
@@ -88,6 +94,7 @@ export default function Home() {
         data={geoData}
         filteredProductIds={filteredProductIds}
         selectedProductId={selectedProductId}
+        selectedLocationProductIds={selectedLocationProductIds}
         locationMap={locationMap}
         onLocationSelect={handleLocationSelect}
       />
