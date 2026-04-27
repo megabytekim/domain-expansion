@@ -37,12 +37,14 @@ export default function SearchBar({
   const hasActiveFilter =
     searchQuery.trim() !== "" ||
     priceRange[0] > 0 || priceRange[1] > 0 ||
-    durationRange[0] > 0 || durationRange[1] > 0;
+    durationRange[0] > 0 || durationRange[1] > 0 ||
+    categories.size < CATEGORY_CONFIG.length;
 
   const resetFilters = () => {
     onSearchChange("");
     onPriceChange([0, 0]);
     onDurationChange([0, 0]);
+    setFilterOpen(false);
   };
 
   return (
@@ -144,7 +146,10 @@ export default function SearchBar({
             <div className="flex gap-2">
               <input type="range" min={1} max={MAX_DAYS}
                 value={durationRange[0] || 1}
-                onChange={(e) => onDurationChange([+e.target.value, durationRange[1]])}
+                onChange={(e) => {
+                  const v = +e.target.value;
+                  onDurationChange([v === 1 ? 0 : v, durationRange[1]]);
+                }}
                 className="flex-1 accent-blue-400" />
               <input type="range" min={1} max={MAX_DAYS}
                 value={durationRange[1] || MAX_DAYS}
