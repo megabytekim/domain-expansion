@@ -47,7 +47,7 @@ export default function SiteDetail({ product, locationCount, onBack }: SiteDetai
         <div className="flex flex-wrap gap-1.5">
           {product.locations.map((loc) => (
             <span
-              key={`${loc.lat}-${loc.lng}`}
+              key={`${loc.name}-${loc.lat}-${loc.lng}`}
               className="px-2 py-0.5 rounded-full text-xs"
               style={{ background: "rgba(30,58,138,0.5)", color: "#93c5fd", border: "1px solid rgba(96,165,250,0.3)" }}
             >

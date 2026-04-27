@@ -26,6 +26,8 @@ export interface MarkerProperties {
   productCategory: string;
   locationName: string;
   colorIndex: number; // index into color palette, same for all locations of a product
+  lat: number; // stored in properties to avoid MapLibre tile-quantization of geometry coords
+  lng: number;
 }
 
 export interface MarkerFeature {

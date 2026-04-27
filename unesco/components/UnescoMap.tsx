@@ -86,8 +86,10 @@ export default function HyechoMap({
       map.on("click", "markers", (e) => {
         const feature = e.features?.[0];
         if (!feature) return;
-        const coords = (feature.geometry as GeoJSON.Point).coordinates as [number, number];
-        const [lng, lat] = coords;
+        // geometry.coordinates가 MapLibre 타일 인코딩으로 정밀도를 잃을 수 있으므로
+        // properties에 저장된 원본 좌표를 사용
+        const lat = feature.properties?.lat as number;
+        const lng = feature.properties?.lng as number;
         const key = locKey(lat, lng);
         const products = locationMapRef.current.get(key) ?? [];
         onSelectRef.current({ lat, lng, products });

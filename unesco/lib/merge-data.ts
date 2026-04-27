@@ -22,6 +22,8 @@ export function productsToGeoJSON(products: HyechoProduct[]): MarkerGeoJSON {
           productCategory: product.category,
           locationName: loc.name,
           colorIndex: i,
+          lat: loc.lat,
+          lng: loc.lng,
         },
       });
     }
