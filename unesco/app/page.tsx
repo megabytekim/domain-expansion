@@ -1,27 +1,58 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import HyechoMap from "@/components/UnescoMap";
 import BottomSheet from "@/components/BottomSheet";
 import SiteDetail from "@/components/SiteDetail";
-import FilterBar from "@/components/FilterBar";
-import { productsToGeoJSON } from "@/lib/merge-data";
-import type { MarkerProperties, HyechoProduct, CategoryFilter } from "@/lib/types";
+import ProductList from "@/components/ProductList";
+import SearchBar from "@/components/SearchBar";
+import { productsToGeoJSON, buildLocationMap, filterProducts } from "@/lib/merge-data";
+import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
 
 const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
+const locationMap = buildLocationMap(products);
 
 export default function Home() {
-  const [selectedMarker, setSelectedMarker] = useState<MarkerProperties | null>(null);
+  // 선택 상태
+  const [selectedLocation, setSelectedLocation] = useState<SelectedLocation | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [sheetState, setSheetState] = useState<"closed" | "half" | "full">("closed");
+
+  // 필터 상태
   const [categories, setCategories] = useState<Set<CategoryFilter>>(
-    new Set(["trekking", "culture", "walking"])
+    new Set(["trekking", "culture", "walking", "event"])
+  );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
+  const [durationRange, setDurationRange] = useState<[number, number]>([0, 0]);
+
+  // 필터 통과 상품 ID
+  const filteredProductIds = useMemo(
+    () => filterProducts(products, { categories, searchQuery, priceRange, durationRange }),
+    [categories, searchQuery, priceRange, durationRange]
   );
 
-  const handleMarkerSelect = useCallback((props: MarkerProperties | null) => {
-    setSelectedMarker(props);
-    setSheetState(props ? "half" : "closed");
+  const handleLocationSelect = useCallback((loc: SelectedLocation | null) => {
+    if (!loc) {
+      setSelectedLocation(null);
+      setSelectedProductId(null);
+      setSheetState("closed");
+      return;
+    }
+    setSelectedLocation(loc);
+    // 상품이 하나면 바로 상세
+    if (loc.products.length === 1) {
+      setSelectedProductId(loc.products[0].id);
+    } else {
+      setSelectedProductId(null);
+    }
+    setSheetState("half");
+  }, []);
+
+  const handleBack = useCallback(() => {
+    setSelectedProductId(null);
   }, []);
 
   const handleToggleCategory = useCallback((cat: CategoryFilter) => {
@@ -36,19 +67,43 @@ export default function Home() {
     });
   }, []);
 
+  const selectedProduct = selectedProductId
+    ? products.find((p) => p.id === selectedProductId) ?? null
+    : null;
+
   return (
     <div className="relative h-full w-full">
-      <FilterBar
+      <SearchBar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        priceRange={priceRange}
+        onPriceChange={setPriceRange}
+        durationRange={durationRange}
+        onDurationChange={setDurationRange}
         categories={categories}
         onToggleCategory={handleToggleCategory}
+        resultCount={filteredProductIds.size}
       />
       <HyechoMap
         data={geoData}
-        onMarkerSelect={handleMarkerSelect}
-        filterCategories={categories}
+        filteredProductIds={filteredProductIds}
+        selectedProductId={selectedProductId}
+        locationMap={locationMap}
+        onLocationSelect={handleLocationSelect}
       />
       <BottomSheet state={sheetState} onStateChange={setSheetState}>
-        {selectedMarker && <SiteDetail marker={selectedMarker} />}
+        {selectedProduct ? (
+          <SiteDetail
+            product={selectedProduct}
+            locationCount={selectedLocation?.products.length ?? 1}
+            onBack={handleBack}
+          />
+        ) : selectedLocation ? (
+          <ProductList
+            location={selectedLocation}
+            onSelectProduct={setSelectedProductId}
+          />
+        ) : null}
       </BottomSheet>
     </div>
   );
