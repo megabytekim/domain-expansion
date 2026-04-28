@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>반도체 계측장비 테마 대시보드</title>
+<meta property="og:title" content="반도체 계측장비 테마 대시보드" />
+<meta property="og:description" content="오로스테크놀로지 · 에프에스티 · 넥스틴 — 밸류체인, 재무 비교, 52주 레인지 시각화" />
+<meta property="og:image" content="/og.svg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="반도체 계측장비 테마 대시보드" />
+<meta name="twitter:description" content="오로스테크놀로지 · 에프에스티 · 넥스틴 — 밸류체인, 재무 비교, 52주 레인지 시각화" />
+<meta name="twitter:image" content="/og.svg" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0d14;--bg2:#10131c;--card:#151926;--card2:#1a1f30;
+  --border:#232940;--border2:#2d3555;
+  --text:#e8eaf0;--dim:#7c839e;--dim2:#555c78;
+  --accent:#6e8eff;--purple:#a78bfa;--pink:#f472b6;
+  --green:#34d399;--red:#f87171;--yellow:#fbbf24;--orange:#fb923c;--cyan:#22d3ee;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;line-height:1.6}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(11,13,20,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:8px;height:48px;overflow-x:auto;white-space:nowrap}
+.nav a{color:var(--dim);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:6px;transition:.15s}
+.nav a:hover{color:var(--text);background:var(--card)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1280px;margin:0 auto;padding:32px 24px 64px}
+.section{margin-bottom:56px}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.section-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--card2);color:var(--accent);border:1px solid var(--border)}
+.section-title{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.section-sub{color:var(--dim);font-size:13px;margin-left:auto}
+
+/* ── HEADER ── */
+.hero{text-align:center;padding:56px 0 40px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(110,142,255,.08) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:36px;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--dim);font-size:14px;margin-top:8px}
+.hero-tags{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.hero-tag{font-size:11px;padding:4px 10px;border-radius:20px;background:var(--card2);border:1px solid var(--border);color:var(--dim)}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:.2s}
+.card:hover{border-color:var(--border2);background:var(--card2)}
+.card-glow{position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;pointer-events:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.card-name{font-size:17px;font-weight:700}
+.card-ticker{font-size:12px;color:var(--dim);margin-top:2px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-hold{background:rgba(251,191,36,.1);color:var(--yellow)}
+.card-price{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.card-change{font-size:13px;font-weight:600;margin-top:2px}
+.up{color:var(--red)}.down{color:var(--accent)}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.card-grid dt{font-size:11px;color:var(--dim)}
+.card-grid dd{font-size:13px;font-weight:600}
+
+/* ── BUBBLES ── */
+.bubbles{display:flex;align-items:flex-end;justify-content:center;gap:48px;padding:32px 0 8px}
+.bubble-item{text-align:center}
+.bubble{border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-weight:700;font-size:13px;border:2px solid;transition:transform .2s;cursor:default}
+.bubble:hover{transform:scale(1.06)}
+.bubble-name{font-size:14px;font-weight:600}
+.bubble-sub{font-size:11px;color:var(--dim)}
+
+/* ── VALUE CHAIN ── */
+.chain{display:flex;gap:12px;overflow-x:auto;padding:4px 0}
+.chain-step{flex:1;min-width:220px;position:relative}
+.chain-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--dim2);font-size:18px;z-index:1}
+.chain-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;height:100%}
+.chain-phase{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:700;margin-bottom:6px}
+.chain-label{font-size:14px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.chain-co{background:rgba(110,142,255,.06);border:1px solid rgba(110,142,255,.15);border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.chain-co.hl{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.2)}
+.chain-co-name{font-weight:700;font-size:13px;margin-bottom:3px}
+.chain-co-desc{font-size:11px;color:var(--dim);line-height:1.5}
+.chain-note{font-size:10px;color:var(--dim2);margin-top:8px;font-style:italic}
+
+/* ── SCENARIO ── */
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scenario-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.scenario-name{font-size:16px;font-weight:700;margin-bottom:16px}
+.scenario-bar-wrap{position:relative;height:40px;margin:20px 0 12px}
+.scenario-bar{position:absolute;height:8px;border-radius:4px;top:16px}
+.scenario-bar.bear{background:var(--accent);opacity:.5}
+.scenario-bar.base{background:var(--yellow);opacity:.7}
+.scenario-bar.bull{background:var(--green);opacity:.6}
+.scenario-marker{position:absolute;top:6px;width:3px;height:28px;background:var(--red);border-radius:2px;z-index:2}
+.scenario-marker-label{position:absolute;top:-6px;font-size:10px;color:var(--red);font-weight:700;white-space:nowrap;transform:translateX(-50%)}
+.scenario-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:16px}
+.scenario-legend{display:flex;gap:12px;flex-wrap:wrap}
+.scenario-legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--dim)}
+.scenario-legend-dot{width:8px;height:8px;border-radius:2px}
+.scenario-detail{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--dim);line-height:1.7}
+
+/* ── CHARTS ── */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.chart-card h3{font-size:14px;font-weight:600;color:var(--dim);margin-bottom:16px}
+.chart-card canvas{max-height:260px}
+.chart-card.full{grid-column:1/-1}
+
+/* ── MOAT RADAR ── */
+.moat-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.moat-chart{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.moat-chart canvas{max-height:320px}
+.moat-detail{display:flex;flex-direction:column;gap:12px}
+.moat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;flex:1}
+.moat-card-name{font-size:14px;font-weight:700;margin-bottom:10px}
+.moat-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px}
+.moat-row-label{color:var(--dim)}
+.moat-dots{display:flex;gap:3px}
+.moat-dot{width:8px;height:8px;border-radius:2px;background:var(--border)}
+.moat-dot.on{background:var(--accent)}
+.moat-card:nth-child(2) .moat-dot.on{background:var(--purple)}
+.moat-card:nth-child(3) .moat-dot.on{background:var(--cyan)}
+
+/* ── GAUGE (52-week) ── */
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gauge{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.gauge-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.gauge-name{font-size:15px;font-weight:700}
+.gauge-pct{font-size:24px;font-weight:800}
+.gauge-bar{position:relative;height:10px;background:linear-gradient(to right,var(--accent),var(--purple),var(--yellow),var(--orange),var(--red));border-radius:5px;margin-bottom:8px}
+.gauge-pin{position:absolute;top:-5px;width:4px;height:20px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 8px rgba(255,255,255,.4)}
+.gauge-range{display:flex;justify-content:space-between;font-size:11px;color:var(--dim)}
+.gauge-signals{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.sig{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
+.sig-up{background:rgba(248,113,113,.12);color:var(--red)}
+.sig-n{background:rgba(124,131,158,.12);color:var(--dim)}
+.sig-dn{background:rgba(110,142,255,.12);color:var(--accent)}
+.gauge-nums{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);text-align:center}
+.gauge-nums dt{font-size:10px;color:var(--dim)}
+.gauge-nums dd{font-size:13px;font-weight:700}
+
+/* ── SENTIMENT ── */
+.sent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.sent-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center}
+.sent-card-name{font-size:14px;font-weight:700;margin-bottom:16px}
+.sent-arc-wrap{position:relative;width:160px;height:90px;margin:0 auto 12px;overflow:hidden}
+.sent-arc-bg{width:160px;height:160px;border-radius:50%;border:10px solid var(--border);border-bottom-color:transparent;border-right-color:transparent;transform:rotate(225deg);position:absolute;top:0;left:0}
+.sent-arc-fill{width:160px;height:160px;border-radius:50%;border:10px solid transparent;position:absolute;top:0;left:0;transform:rotate(225deg)}
+.sent-score{font-size:28px;font-weight:800;margin-top:4px}
+.sent-label{font-size:12px;color:var(--dim);margin-top:2px}
+.sent-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--border)}
+.sent-breakdown dt{font-size:11px;color:var(--dim)}
+.sent-breakdown dd{font-size:13px;font-weight:600}
+.sent-quotes{margin-top:14px;text-align:left}
+.sent-quote{font-size:11px;color:var(--dim);padding:4px 0;border-bottom:1px solid rgba(35,41,64,.5)}
+.sent-quote:last-child{border:none}
+.sent-quote em{font-style:normal}
+.bull-q{color:var(--red)}
+.bear-q{color:var(--accent)}
+
+/* ── RISK HEATMAP ── */
+.risk-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.risk-table th,.risk-table td{padding:12px 14px;text-align:left;font-size:12px;border-bottom:1px solid var(--border)}
+.risk-table th{background:var(--card2);color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.risk-table tr:last-child td{border-bottom:none}
+.risk-table td:first-child{font-weight:600;color:var(--text);min-width:160px}
+.risk-cell{display:inline-block;padding:2px 10px;border-radius:4px;font-weight:600;font-size:11px}
+.risk-vh{background:rgba(248,113,113,.15);color:var(--red)}
+.risk-h{background:rgba(251,146,60,.15);color:var(--orange)}
+.risk-m{background:rgba(251,191,36,.12);color:var(--yellow)}
+.risk-l{background:rgba(52,211,153,.12);color:var(--green)}
+
+/* ── MONITOR ── */
+.monitor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.monitor-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.monitor-card-name{font-size:14px;font-weight:700;margin-bottom:14px}
+.monitor-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(35,41,64,.5);font-size:12px;line-height:1.5}
+.monitor-item:last-child{border:none}
+.monitor-dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.monitor-dot.pending{background:var(--yellow)}
+.monitor-dot.watch{background:var(--dim2)}
+.monitor-text{color:var(--dim)}
+.monitor-text strong{color:var(--text);font-weight:600}
+
+/* ── FOOTER ── */
+.footer{text-align:center;color:var(--dim2);font-size:11px;padding:32px 0;border-top:1px solid var(--border);line-height:2}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .cards,.scenario-grid,.gauges,.sent-grid,.monitor-grid{grid-template-columns:1fr}
+  .chart-grid,.moat-wrap{grid-template-columns:1fr}
+  .chain{flex-direction:column}
+  .chain-step::after{display:none}
+  .bubbles{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+  <a href="#overview">종목</a>
+  <a href="#chain">밸류체인</a>
+  <a href="#scenario">시나리오</a>
+  <a href="#financials">재무</a>
+  <a href="#moat">Moat</a>
+  <a href="#range">52주</a>
+  <a href="#sentiment">센티먼트</a>
+  <a href="#risk">리스크</a>
+  <a href="#monitor">모니터링</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>반도체 계측장비</h1>
+  <p>반도체 미세화 · 3D 적층 · HBM 확장에 따른 계측/검사 장비 구조적 수요 증가</p>
+  <div class="hero-tags">
+    <span class="hero-tag">오버레이 계측</span>
+    <span class="hero-tag">EUV 펠리클</span>
+    <span class="hero-tag">HBM 결함 검사</span>
+    <span class="hero-tag">KLA 대항마</span>
+    <span class="hero-tag">2026-04-14 기준</span>
+  </div>
+</div>
+
+<!-- 1. OVERVIEW -->
+<div class="section" id="overview">
+  <div class="section-head">
+    <div class="section-num">1</div>
+    <div class="section-title">종목 개요</div>
+    <div class="section-sub">시총 기준 버블 + 핵심 지표</div>
+  </div>
+
+  <div class="bubbles">
+    <div class="bubble-item">
+      <div class="bubble" style="width:90px;height:90px;border-color:var(--yellow);color:var(--yellow)">3,447억</div>
+      <div class="bubble-name">오로스테크놀로지</div>
+      <div class="bubble-sub">IBO 오버레이</div>
+    </div>
+    <div class="bubble-item">
+      <div class="bubble" style="width:140px;height:140px;border-color:var(--cyan);color:var(--cyan)">7,753억</div>
+      <div class="bubble-name">넥스틴</div>
+      <div class="bubble-sub">HBM 결함 검사</div>
+    </div>
+    <div class="bubble-item">
+      <div class="bubble" style="width:160px;height:160px;border-color:var(--purple);color:var(--purple)">8,836억</div>
+      <div class="bubble-name">에프에스티</div>
+      <div class="bubble-sub">EUV 펠리클</div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <!-- 오로스 -->
+    <div class="card">
+      <div class="card-glow" style="background:var(--yellow)"></div>
+      <div class="card-top">
+        <div><div class="card-name">오로스테크놀로지</div><div class="card-ticker">322310 · KOSDAQ</div></div>
+        <span class="badge badge-hold">Hold</span>
+      </div>
+      <div class="card-price">36,800<span style="font-size:14px;font-weight:400;color:var(--dim)">원</span></div>
+      <div class="card-change up">+4,200 (+12.88%) ▲ 52주 신고가</div>
+      <dl class="card-grid">
+        <dt>시가총액</dt><dd>3,447억</dd>
+        <dt>PBR / PSR</dt><dd>5.35x / 6.6x</dd>
+        <dt>핵심기술</dt><dd>IBO 오버레이 (2곳)</dd>
+        <dt>외국인</dt><dd>1.70%</dd>
+        <dt>해자</dt><dd style="color:var(--yellow)">중간~강</dd>
+        <dt>센티먼트</dt><dd style="color:var(--green)">+0.5 약긍정</dd>
+      </dl>
+    </div>
+    <!-- 에프에스티 -->
+    <div class="card">
+      <div class="card-glow" style="background:var(--purple)"></div>
+      <div class="card-top">
+        <div><div class="card-name">에프에스티</div><div class="card-ticker">036810 · KOSDAQ</div></div>
+        <span class="badge badge-hold">Hold</span>
+      </div>
+      <div class="card-price">41,200<span style="font-size:14px;font-weight:400;color:var(--dim)">원</span></div>
+      <div class="card-change up">+1,700 (+4.30%)</div>
+      <dl class="card-grid">
+        <dt>시가총액</dt><dd>8,836억</dd>
+        <dt>PBR / PER(26E)</dt><dd>3.47x / 93.4x</dd>
+        <dt>핵심기술</dt><dd>ArF/EUV 펠리클</dd>
+        <dt>외국인</dt><dd>5.40%</dd>
+        <dt>해자</dt><dd style="color:var(--yellow)">중간~높음</dd>
+        <dt>센티먼트</dt><dd style="color:var(--green)">+0.5 약긍정</dd>
+      </dl>
+    </div>
+    <!-- 넥스틴 -->
+    <div class="card">
+      <div class="card-glow" style="background:var(--cyan)"></div>
+      <div class="card-top">
+        <div><div class="card-name">넥스틴</div><div class="card-ticker">348210 · KOSDAQ</div></div>
+        <span class="badge badge-hold">Hold</span>
+      </div>
+      <div class="card-price">74,000<span style="font-size:14px;font-weight:400;color:var(--dim)">원</span></div>
+      <div class="card-change down">-2,600 (-3.39%)</div>
+      <dl class="card-grid">
+        <dt>시가총액</dt><dd>7,753억</dd>
+        <dt>PBR / PSR</dt><dd>5.03x / 11.6x</dd>
+        <dt>핵심기술</dt><dd>HBM 크랙 검출 (유일)</dd>
+        <dt>외국인</dt><dd>13.0%</dd>
+        <dt>해자</dt><dd style="color:var(--green)">강</dd>
+        <dt>센티먼트</dt><dd style="color:var(--green)">+0.5 약긍정</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<!-- 2. VALUE CHAIN -->
+<div class="section" id="chain">
+  <div class="section-head">
+    <div class="section-num">2</div>
+    <div class="section-title">밸류체인</div>
+    <div class="section-sub">반도체 제조 공정 흐름</div>
+  </div>
+  <div class="chain">
+    <div class="chain-step">
+      <div class="chain-box">
+        <div class="chain-phase">Step 1</div>
+        <div class="chain-label">포토리소그래피</div>
+        <div class="chain-co hl">
+          <div class="chain-co-name">에프에스티</div>
+          <div class="chain-co-desc">ArF/EUV <b>펠리클</b> — 포토마스크 보호막<br>국내 독점 · 삼성 2대주주 (7.18%)</div>
+        </div>
+        <div class="chain-note">삼성 2나노 테일러 팹 핵심 파트너</div>
+      </div>
+    </div>
+    <div class="chain-step">
+      <div class="chain-box">
+        <div class="chain-phase">Step 2</div>
+        <div class="chain-label">오버레이 계측</div>
+        <div class="chain-co">
+          <div class="chain-co-name">오로스테크놀로지</div>
+          <div class="chain-co-desc">IBO 방식 <b>오버레이 계측</b><br>레이어 정렬 정밀도 · 전세계 KLA와 2곳만</div>
+        </div>
+        <div class="chain-note">SK하이닉스 하이엔드 100% 점유</div>
+      </div>
+    </div>
+    <div class="chain-step">
+      <div class="chain-box">
+        <div class="chain-phase">Step 3</div>
+        <div class="chain-label">웨이퍼 결함 검사</div>
+        <div class="chain-co">
+          <div class="chain-co-name">넥스틴</div>
+          <div class="chain-co-desc"><b>이지스</b>: 2D 패턴 결함 (1nm급)<br><b>아이리스</b>: NIR 비파괴 3D · KLA 미개발</div>
+        </div>
+        <div class="chain-note">중국 매출 87% (YMTC, SMIC)</div>
+      </div>
+    </div>
+    <div class="chain-step">
+      <div class="chain-box">
+        <div class="chain-phase">Step 4</div>
+        <div class="chain-label">후공정 (HBM/패키징)</div>
+        <div class="chain-co hl">
+          <div class="chain-co-name">오로스테크놀로지</div>
+          <div class="chain-co-desc"><b>HE-900ir</b>: IR 오버레이 HBM용<br>SK하이닉스·삼성 퀄 테스트 중</div>
+        </div>
+        <div class="chain-co hl">
+          <div class="chain-co-name">넥스틴</div>
+          <div class="chain-co-desc"><b>크로키</b>: HBM 크랙 검출 (유일)<br><b>아스퍼</b>: 후공정 전용 검사 (세계 유일)</div>
+        </div>
+        <div class="chain-note">HBM4 양산 (2026) → 수요 폭증</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. SCENARIO -->
+<div class="section" id="scenario">
+  <div class="section-head">
+    <div class="section-num">3</div>
+    <div class="section-title">시나리오 분석</div>
+    <div class="section-sub">Bull / Base / Bear 목표가</div>
+  </div>
+  <div class="scenario-grid">
+    <!-- 오로스 -->
+    <div class="scenario-card">
+      <div class="scenario-name">오로스테크놀로지</div>
+      <div class="scenario-bar-wrap" id="scn-oros"></div>
+      <div class="scenario-labels"><span>25,000</span><span>60,000원</span></div>
+      <div class="scenario-legend">
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--accent)"></div>Bear 25K~28K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--yellow)"></div>Base 35K~42K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--green)"></div>Bull 50K~60K</div>
+      </div>
+      <div class="scenario-detail">
+        <b style="color:var(--green)">Bull</b>: IR오버레이 퀄 통과 + HBM 대량수주<br>
+        <b style="color:var(--yellow)">Base</b>: 2026 소폭 흑전, 퀄 진행 중<br>
+        <b style="color:var(--accent)">Bear</b>: 적자 지속, 퀄 실패
+      </div>
+    </div>
+    <!-- 에프에스티 -->
+    <div class="scenario-card">
+      <div class="scenario-name">에프에스티</div>
+      <div class="scenario-bar-wrap" id="scn-fst"></div>
+      <div class="scenario-labels"><span>28,000</span><span>65,000원</span></div>
+      <div class="scenario-legend">
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--accent)"></div>Bear 28K~33K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--yellow)"></div>Base 42K~48K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--green)"></div>Bull 55K~65K</div>
+      </div>
+      <div class="scenario-detail">
+        <b style="color:var(--green)">Bull</b>: EUV 퀄승인 + 테일러 팹 납품<br>
+        <b style="color:var(--yellow)">Base</b>: 하반기 퀄승인, 소량 납품<br>
+        <b style="color:var(--accent)">Bear</b>: 퀄승인 지연, 삼성 투자 축소
+      </div>
+    </div>
+    <!-- 넥스틴 -->
+    <div class="scenario-card">
+      <div class="scenario-name">넥스틴</div>
+      <div class="scenario-bar-wrap" id="scn-nxt"></div>
+      <div class="scenario-labels"><span>45,000</span><span>130,000원</span></div>
+      <div class="scenario-legend">
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--accent)"></div>Bear 45K~55K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--yellow)"></div>Base 75K~95K</div>
+        <div class="scenario-legend-item"><div class="scenario-legend-dot" style="background:var(--green)"></div>Bull 110K~130K</div>
+      </div>
+      <div class="scenario-detail">
+        <b style="color:var(--green)">Bull</b>: 삼성 아스퍼 수주 + 중국 회복<br>
+        <b style="color:var(--yellow)">Base</b>: 소폭 흑전, 아스퍼 2027년<br>
+        <b style="color:var(--accent)">Bear</b>: 중국 규제, KLA 진입
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. FINANCIALS -->
+<div class="section" id="financials">
+  <div class="section-head">
+    <div class="section-num">4</div>
+    <div class="section-title">재무 비교</div>
+    <div class="section-sub">연간 + 분기별 추이</div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>연간 매출액 (억원)</h3><canvas id="cRevenue"></canvas></div>
+    <div class="chart-card"><h3>연간 영업이익 (억원)</h3><canvas id="cProfit"></canvas></div>
+    <div class="chart-card"><h3>분기별 매출액 — 2025 (억원)</h3><canvas id="cQRev"></canvas></div>
+    <div class="chart-card"><h3>분기별 영업이익 — 2025 (억원)</h3><canvas id="cQProf"></canvas></div>
+    <div class="chart-card"><h3>영업이익률 추이 (%)</h3><canvas id="cMargin"></canvas></div>
+    <div class="chart-card"><h3>밸류에이션 비교 (배)</h3><canvas id="cValuation"></canvas></div>
+  </div>
+</div>
+
+<!-- 5. MOAT RADAR -->
+<div class="section" id="moat">
+  <div class="section-head">
+    <div class="section-num">5</div>
+    <div class="section-title">Moat (경제적 해자)</div>
+    <div class="section-sub">5가지 경쟁우위 축</div>
+  </div>
+  <div class="moat-wrap">
+    <div class="moat-chart"><canvas id="cMoat"></canvas></div>
+    <div class="moat-detail">
+      <div class="moat-card">
+        <div class="moat-card-name" style="color:var(--yellow)">오로스테크놀로지 — 중간~강</div>
+        <div class="moat-row"><span class="moat-row-label">Network Effects</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Switching Costs</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Cost Advantages</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Intangible Assets</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Efficient Scale</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-card-name" style="color:var(--purple)">에프에스티 — 중간~높음</div>
+        <div class="moat-row"><span class="moat-row-label">Network Effects</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Switching Costs</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Cost Advantages</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Intangible Assets</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Efficient Scale</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-card-name" style="color:var(--cyan)">넥스틴 — 강</div>
+        <div class="moat-row"><span class="moat-row-label">Network Effects</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Switching Costs</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Cost Advantages</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Intangible Assets</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span></div></div>
+        <div class="moat-row"><span class="moat-row-label">Efficient Scale</span><div class="moat-dots"><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot on"></span><span class="moat-dot"></span><span class="moat-dot"></span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. 52-WEEK RANGE -->
+<div class="section" id="range">
+  <div class="section-head">
+    <div class="section-num">6</div>
+    <div class="section-title">52주 레인지 포지션</div>
+    <div class="section-sub">기술적 시그널 포함</div>
+  </div>
+  <div class="gauges">
+    <div class="gauge">
+      <div class="gauge-top">
+        <div class="gauge-name">오로스테크놀로지</div>
+        <div class="gauge-pct" style="color:var(--red)">93.1%</div>
+      </div>
+      <div class="gauge-bar"><div class="gauge-pin" style="left:93.1%"></div></div>
+      <div class="gauge-range"><span>17,860</span><span>38,200</span></div>
+      <div class="gauge-signals">
+        <span class="sig sig-up">정배열</span><span class="sig sig-up">MACD 골든크로스</span><span class="sig sig-up">볼린저 상단 돌파</span><span class="sig sig-n">RSI 62.4</span>
+      </div>
+      <dl class="gauge-nums">
+        <dt>저가 대비</dt><dd class="up">+106.0%</dd>
+        <dt>고가 대비</dt><dd>-3.7%</dd>
+        <dt>당일</dt><dd class="up">+12.88%</dd>
+      </dl>
+    </div>
+    <div class="gauge">
+      <div class="gauge-top">
+        <div class="gauge-name">에프에스티</div>
+        <div class="gauge-pct" style="color:var(--yellow)">71.9%</div>
+      </div>
+      <div class="gauge-bar"><div class="gauge-pin" style="left:71.9%"></div></div>
+      <div class="gauge-range"><span>16,065</span><span>51,000</span></div>
+      <div class="gauge-signals">
+        <span class="sig sig-n">정배열 시도</span><span class="sig sig-up">MACD +256</span><span class="sig sig-n">RSI 47.6</span><span class="sig sig-n">베타 1.56</span>
+      </div>
+      <dl class="gauge-nums">
+        <dt>저가 대비</dt><dd class="up">+156.4%</dd>
+        <dt>고가 대비</dt><dd>-19.2%</dd>
+        <dt>당일</dt><dd class="up">+4.30%</dd>
+      </dl>
+    </div>
+    <div class="gauge">
+      <div class="gauge-top">
+        <div class="gauge-name">넥스틴</div>
+        <div class="gauge-pct">55.7%</div>
+      </div>
+      <div class="gauge-bar"><div class="gauge-pin" style="left:55.7%"></div></div>
+      <div class="gauge-range"><span>40,750</span><span>100,400</span></div>
+      <div class="gauge-signals">
+        <span class="sig sig-n">이평 혼조</span><span class="sig sig-up">MACD +885</span><span class="sig sig-n">RSI 50.5</span><span class="sig sig-dn">MA60 저항</span>
+      </div>
+      <dl class="gauge-nums">
+        <dt>저가 대비</dt><dd class="up">+81.6%</dd>
+        <dt>고가 대비</dt><dd>-26.3%</dd>
+        <dt>당일</dt><dd class="down">-3.39%</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<!-- 7. SENTIMENT -->
+<div class="section" id="sentiment">
+  <div class="section-head">
+    <div class="section-num">7</div>
+    <div class="section-title">센티먼트</div>
+    <div class="section-sub">종토방 · 뉴스 감성 분석</div>
+  </div>
+  <div class="sent-grid">
+    <!-- 오로스 -->
+    <div class="sent-card">
+      <div class="sent-card-name">오로스테크놀로지</div>
+      <div style="position:relative;width:140px;height:78px;margin:0 auto 8px;overflow:hidden">
+        <svg width="140" height="78" viewBox="0 0 140 78">
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="#232940" stroke-width="10" stroke-linecap="round"/>
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="url(#gOros)" stroke-width="10" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47"/>
+        </svg>
+        <defs><svg width="0" height="0"><defs><linearGradient id="gOros"><stop offset="0%" stop-color="var(--accent)"/><stop offset="100%" stop-color="var(--green)"/></linearGradient></defs></svg></defs>
+      </div>
+      <div class="sent-score" style="color:var(--green)">+0.5</div>
+      <div class="sent-label">약한 긍정</div>
+      <dl class="sent-breakdown">
+        <dt>종토방</dt><dd style="color:var(--green)">+1.0</dd>
+        <dt>뉴스</dt><dd style="color:var(--green)">+0.5</dd>
+      </dl>
+      <div class="sent-quotes">
+        <div class="sent-quote"><em class="bull-q">"키옥시아 대폭등!! 오로스 떡상!!!"</em></div>
+        <div class="sent-quote"><em class="bear-q">"뭐하냐 신발아"</em> — 실적 부진 불만</div>
+      </div>
+    </div>
+    <!-- 에프에스티 -->
+    <div class="sent-card">
+      <div class="sent-card-name">에프에스티</div>
+      <div style="position:relative;width:140px;height:78px;margin:0 auto 8px;overflow:hidden">
+        <svg width="140" height="78" viewBox="0 0 140 78">
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="#232940" stroke-width="10" stroke-linecap="round"/>
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="url(#gFst)" stroke-width="10" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47"/>
+        </svg>
+        <svg width="0" height="0"><defs><linearGradient id="gFst"><stop offset="0%" stop-color="var(--accent)"/><stop offset="100%" stop-color="var(--green)"/></linearGradient></defs></svg>
+      </div>
+      <div class="sent-score" style="color:var(--green)">+0.5</div>
+      <div class="sent-label">약한 긍정</div>
+      <dl class="sent-breakdown">
+        <dt>종토방</dt><dd style="color:var(--green)">+0.5</dd>
+        <dt>뉴스</dt><dd style="color:var(--green)">+1.0</dd>
+      </dl>
+      <div class="sent-quotes">
+        <div class="sent-quote"><em class="bull-q">"42층 돌파하면 45층은 무난"</em></div>
+        <div class="sent-quote"><em class="bear-q">"3분기 퀄승인까지 언제기다리냐"</em></div>
+      </div>
+    </div>
+    <!-- 넥스틴 -->
+    <div class="sent-card">
+      <div class="sent-card-name">넥스틴</div>
+      <div style="position:relative;width:140px;height:78px;margin:0 auto 8px;overflow:hidden">
+        <svg width="140" height="78" viewBox="0 0 140 78">
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="#232940" stroke-width="10" stroke-linecap="round"/>
+          <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="url(#gNxt)" stroke-width="10" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="47"/>
+        </svg>
+        <svg width="0" height="0"><defs><linearGradient id="gNxt"><stop offset="0%" stop-color="var(--accent)"/><stop offset="100%" stop-color="var(--green)"/></linearGradient></defs></svg>
+      </div>
+      <div class="sent-score" style="color:var(--green)">+0.5</div>
+      <div class="sent-label">약한 긍정</div>
+      <dl class="sent-breakdown">
+        <dt>종토방</dt><dd style="color:var(--red)">-0.5</dd>
+        <dt>뉴스</dt><dd style="color:var(--green)">+1.0</dd>
+      </dl>
+      <div class="sent-quotes">
+        <div class="sent-quote"><em class="bull-q">"넥스틴 냄새가 납니다 차트보니"</em></div>
+        <div class="sent-quote"><em class="bear-q">"외인 기관 공매도 놀이터"</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. RISK HEATMAP -->
+<div class="section" id="risk">
+  <div class="section-head">
+    <div class="section-num">8</div>
+    <div class="section-title">리스크 히트맵</div>
+    <div class="section-sub">종목별 위험 요인 비교</div>
+  </div>
+  <table class="risk-table">
+    <thead>
+      <tr><th>리스크 요인</th><th>오로스테크놀로지</th><th>에프에스티</th><th>넥스틴</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>실적 변동성</td>
+        <td><span class="risk-cell risk-h">높음</span></td>
+        <td><span class="risk-cell risk-h">높음</span></td>
+        <td><span class="risk-cell risk-h">높음</span></td>
+      </tr>
+      <tr>
+        <td>밸류에이션 부담</td>
+        <td><span class="risk-cell risk-h">높음</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-h">높음</span></td>
+      </tr>
+      <tr>
+        <td>퀄 테스트 / 양산 지연</td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-vh">매우높음</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+      </tr>
+      <tr>
+        <td>고객 집중 / 지정학</td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-vh">매우높음</span></td>
+      </tr>
+      <tr>
+        <td>KLA/ASML 경쟁</td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-l">낮음</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+      </tr>
+      <tr>
+        <td>현금흐름 / 재무건전성</td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+      </tr>
+      <tr>
+        <td>HBM 사이클 둔화</td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+        <td><span class="risk-cell risk-m">중간</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 9. MONITORING -->
+<div class="section" id="monitor">
+  <div class="section-head">
+    <div class="section-num">9</div>
+    <div class="section-title">핵심 모니터링</div>
+    <div class="section-sub">체크해야 할 이벤트</div>
+  </div>
+  <div class="monitor-grid">
+    <div class="monitor-card">
+      <div class="monitor-card-name" style="color:var(--yellow)">오로스테크놀로지</div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>2026Q1 실적</strong> — 매출 150억+, 적자 축소 여부 (5~6월)</span></div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>IR오버레이 퀄 테스트</strong> — SK하이닉스/삼성 HE-900ir 결과</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>키옥시아 추가 수주</strong> — 일본 시장 확대 신호</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>MT-30t 신규 장비</strong> — 2D/3D 인스펙션 매출 기여</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>볼린저 상단</strong> — 36,228원 조정 후 안착 여부</span></div>
+    </div>
+    <div class="monitor-card">
+      <div class="monitor-card-name" style="color:var(--purple)">에프에스티</div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>EUV 펠리클 퀄승인</strong> — 삼성전자 품질 승인 공식 발표</span></div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>2026Q1 실적</strong> — 컨센서스 560억 대비 실제치</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>삼성 테일러 팹</strong> — EUV 장비 반입/가동 일정</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>ASML 인수 시너지</strong> — 공급망 기업 통합 효과</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>부채비율</strong> — 122% → 분기별 추이 확인</span></div>
+    </div>
+    <div class="monitor-card">
+      <div class="monitor-card-name" style="color:var(--cyan)">넥스틴</div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>삼성 아스퍼 수주</strong> — HBM4 검사장비 퀄 테스트 → 정식 수주</span></div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>중국 매출 회복</strong> — 미중 규제 변화, YMTC/SMIC 재수주</span></div>
+      <div class="monitor-item"><span class="monitor-dot pending"></span><span class="monitor-text"><strong>2026Q1 실적</strong> — 매출 200억+, 흑자전환 확인</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>KLA HBM 진입 여부</strong> — 크랙 검출/NIR 개발 동향</span></div>
+      <div class="monitor-item"><span class="monitor-dot watch"></span><span class="monitor-text"><strong>MA60 안착</strong> — 77,718원 돌파 시 추세 전환</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<div class="footer">
+  본 자료는 투자 권유가 아닌 학습/연구 목적의 시각화입니다. 투자 판단은 본인 책임 하에 이루어져야 합니다.<br>
+  데이터 출처: Naver Finance, pykrx, FnGuide | domain-expansion | 2026-04-14
+</div>
+
+<script>
+// ── Chart.js Defaults ──
+Chart.defaults.color = '#7c839e';
+Chart.defaults.borderColor = '#232940';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
+
+const C = {
+  oros:   { bg:'rgba(251,191,36,.15)', br:'#fbbf24' },
+  fst:    { bg:'rgba(167,139,250,.15)', br:'#a78bfa' },
+  nxt:    { bg:'rgba(34,211,238,.15)',  br:'#22d3ee' },
+};
+
+function ds(label, data, c, type) {
+  const base = { label, data, backgroundColor:c.bg, borderColor:c.br, borderWidth:2 };
+  if (type==='line') return { ...base, pointRadius:4, pointHoverRadius:6, tension:.3, fill:false };
+  return { ...base, borderRadius:4, barPercentage:.7 };
+}
+
+// ── 1. Annual Revenue ──
+new Chart(document.getElementById('cRevenue'), {
+  type:'bar',
+  data:{ labels:['2022','2023','2024','2025'], datasets:[
+    ds('오로스테크놀로지',[354,455,614,521],C.oros),
+    ds('에프에스티',[null,1976,2374,2803],C.fst),
+    ds('넥스틴',[1149,879,1137,669],C.nxt),
+  ]},
+  options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{padding:14} } },
+    scales:{ y:{grid:{color:'#1a1d27'}}, x:{grid:{display:false}} } }
+});
+
+// ── 2. Annual Operating Profit ──
+new Chart(document.getElementById('cProfit'), {
+  type:'bar',
+  data:{ labels:['2022','2023','2024','2025'], datasets:[
+    ds('오로스테크놀로지',[-33,24,61,-84],C.oros),
+    ds('에프에스티',[null,-108,23,-5],C.fst),
+    ds('넥스틴',[565,362,470,-12],C.nxt),
+  ]},
+  options:{ responsive:true, plugins:{ legend:{position:'bottom',labels:{padding:14}} },
+    scales:{ y:{grid:{color:'#1a1d27'},ticks:{callback:v=>v+'억'}}, x:{grid:{display:false}} } }
+});
+
+// ── 3. Quarterly Revenue 2025 ──
+new Chart(document.getElementById('cQRev'), {
+  type:'line',
+  data:{ labels:['Q1','Q2','Q3','Q4'], datasets:[
+    ds('오로스테크놀로지',[169,139,76,138],C.oros,'line'),
+    ds('에프에스티',[685,760,655,703],C.fst,'line'),
+    ds('넥스틴',[171,232,107,159],C.nxt,'line'),
+  ]},
+  options:{ responsive:true, plugins:{legend:{position:'bottom',labels:{padding:14}}},
+    scales:{ y:{grid:{color:'#1a1d27'}}, x:{grid:{display:false}} } }
+});
+
+// ── 4. Quarterly Operating Profit 2025 ──
+new Chart(document.getElementById('cQProf'), {
+  type:'line',
+  data:{ labels:['Q1','Q2','Q3','Q4'], datasets:[
+    ds('오로스테크놀로지',[-3,-7,-58,-16],C.oros,'line'),
+    ds('에프에스티',[28,17,-19,-32],C.fst,'line'),
+    ds('넥스틴',[34,26,-37,-35],C.nxt,'line'),
+  ]},
+  options:{ responsive:true, plugins:{legend:{position:'bottom',labels:{padding:14}}},
+    scales:{ y:{grid:{color:'#1a1d27'},ticks:{callback:v=>v+'억'}}, x:{grid:{display:false}} } }
+});
+
+// ── 5. Operating Margin ──
+function opm(rev,op){ return rev.map((r,i)=> op[i]!=null&&r!=null ? +(op[i]/r*100).toFixed(1) : null); }
+new Chart(document.getElementById('cMargin'), {
+  type:'line',
+  data:{ labels:['2022','2023','2024','2025'], datasets:[
+    ds('오로스테크놀로지',opm([354,455,614,521],[-33,24,61,-84]),C.oros,'line'),
+    ds('에프에스티',opm([null,1976,2374,2803],[null,-108,23,-5]),C.fst,'line'),
+    ds('넥스틴',opm([1149,879,1137,669],[565,362,470,-12]),C.nxt,'line'),
+  ]},
+  options:{ responsive:true, plugins:{legend:{position:'bottom',labels:{padding:14}},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+'%'}}},
+    scales:{ y:{grid:{color:'#1a1d27'},ticks:{callback:v=>v+'%'}}, x:{grid:{display:false}} } }
+});
+
+// ── 6. Valuation ──
+new Chart(document.getElementById('cValuation'), {
+  type:'bar',
+  data:{ labels:['PBR','PSR'], datasets:[
+    { label:'오로스테크놀로지', data:[5.35,6.6], ...C.oros, backgroundColor:C.oros.bg, borderColor:C.oros.br, borderWidth:2, borderRadius:4 },
+    { label:'에프에스티', data:[3.47,3.2], ...C.fst, backgroundColor:C.fst.bg, borderColor:C.fst.br, borderWidth:2, borderRadius:4 },
+    { label:'넥스틴', data:[5.03,11.6], ...C.nxt, backgroundColor:C.nxt.bg, borderColor:C.nxt.br, borderWidth:2, borderRadius:4 },
+  ]},
+  options:{ indexAxis:'y', responsive:true, plugins:{legend:{position:'bottom',labels:{padding:14}},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.x+'배'}}},
+    scales:{ x:{grid:{color:'#1a1d27'},ticks:{callback:v=>v+'배'}}, y:{grid:{display:false}} } }
+});
+
+// ── 7. Moat Radar ──
+new Chart(document.getElementById('cMoat'), {
+  type:'radar',
+  data:{
+    labels:['Network\nEffects','Switching\nCosts','Cost\nAdvantages','Intangible\nAssets','Efficient\nScale'],
+    datasets:[
+      { label:'오로스테크놀로지', data:[1,5,3,5,3], borderColor:C.oros.br, backgroundColor:'rgba(251,191,36,.08)', pointBackgroundColor:C.oros.br, borderWidth:2 },
+      { label:'에프에스티', data:[1,5,3,5,3], borderColor:C.fst.br, backgroundColor:'rgba(167,139,250,.08)', pointBackgroundColor:C.fst.br, borderWidth:2 },
+      { label:'넥스틴', data:[1,5,3,5,3], borderColor:C.nxt.br, backgroundColor:'rgba(34,211,238,.08)', pointBackgroundColor:C.nxt.br, borderWidth:2 },
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{ legend:{position:'bottom',labels:{padding:14}} },
+    scales:{ r:{ beginAtZero:true, max:5, ticks:{stepSize:1,display:false}, grid:{color:'#232940'}, pointLabels:{color:'#7c839e',font:{size:11}} } }
+  }
+});
+
+// ── 8. Scenario Bars (custom) ──
+function drawScenario(id, bear, base, bull, current, min, max) {
+  const el = document.getElementById(id);
+  const range = max - min;
+  const pct = v => ((v - min) / range * 100);
+
+  // Bear bar
+  const bBar = document.createElement('div');
+  bBar.className = 'scenario-bar bear';
+  bBar.style.left = pct(bear[0])+'%';
+  bBar.style.width = (pct(bear[1])-pct(bear[0]))+'%';
+  el.appendChild(bBar);
+
+  // Base bar
+  const mBar = document.createElement('div');
+  mBar.className = 'scenario-bar base';
+  mBar.style.left = pct(base[0])+'%';
+  mBar.style.width = (pct(base[1])-pct(base[0]))+'%';
+  el.appendChild(mBar);
+
+  // Bull bar
+  const uBar = document.createElement('div');
+  uBar.className = 'scenario-bar bull';
+  uBar.style.left = pct(bull[0])+'%';
+  uBar.style.width = (pct(bull[1])-pct(bull[0]))+'%';
+  el.appendChild(uBar);
+
+  // Current marker
+  const mk = document.createElement('div');
+  mk.className = 'scenario-marker';
+  mk.style.left = pct(current)+'%';
+  const lbl = document.createElement('div');
+  lbl.className = 'scenario-marker-label';
+  lbl.style.left = pct(current)+'%';
+  lbl.textContent = (current/1000).toFixed(1)+'K';
+  el.appendChild(mk);
+  el.appendChild(lbl);
+}
+
+drawScenario('scn-oros',[25000,28000],[35000,42000],[50000,60000],36800,20000,65000);
+drawScenario('scn-fst',[28000,33000],[42000,48000],[55000,65000],41200,25000,70000);
+drawScenario('scn-nxt',[45000,55000],[75000,95000],[110000,130000],74000,40000,135000);
+</script>
+</body>
+</html>
