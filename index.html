@@ -657,6 +657,7 @@ const LAYERS = [
   {id:'shop', color:'#e91e63', label:'쇼핑·구매처',              sec:'추천'},
   {id:'photo',color:'#00bcd4', label:'인생네컷',                 sec:'추천'},
   {id:'bib',  color:'#ff6f00', label:'빕구르망',                 sec:'추천'},
+  {id:'spa',  color:'#00e5ff', label:'♨️ 온천 옵션',             sec:'온천'},
 ];
 
 // ── SCHEDULES ────────────────────────────────────────────────
@@ -785,10 +786,16 @@ const places = [
   {day:'bib',name:'다차오터우 미가오',cn:'大橋頭米糕',lat:25.0651,lng:121.5115,desc:'통쯔미가오 35TWD. 초저가 아침. 화요일 휴무',q:'大橋頭米糕 延平北路 台北'},
   {day:'bib',name:'마이멘옌쯔',cn:'賣麵炎仔',lat:25.0633,lng:121.5096,desc:'80년 3대째. 대만 최초 빕구르망. 07:00-14:30만',q:'賣麵炎仔 安西街 台北'},
   {day:'bib',name:'신차오판뎬',cn:'心潮飯店',lat:25.0408,lng:121.5687,desc:'미풍신의 2F. 간베이우위쯔차오판 580TWD',q:'心潮飯店 忠孝東路 台北'},
+  // SPA 온천 옵션
+  {day:'spa',name:'볼란도 우라이 온천 ★예약',cn:'馥蘭朵烏來渡假酒店',lat:24.8613,lng:121.5547,desc:'⭐5/4 13:00 그랜드뷰 프라이빗 예약완료. 비수기 90분. 수영복 선택. 신디엔역 셔틀 50TWD(30분). 에메랄드 남시강 풀뷰',q:'Volando Urai Spring Spa Resort'},
+  {day:'spa',name:'포즈란디스',cn:'璞石麗緻溫泉會館',lat:24.8641,lng:121.5527,desc:'프라이빗탕 9종. 90분 1,700TWD/2인. 2025 금천상 수상. 댐역서 도보 15분',q:'Pause Landis Resort Wulai'},
+  {day:'spa',name:'풀문스파',cn:'明月溫泉',lat:24.8671,lng:121.5514,desc:'온천 모텔. 우라이 올드스트리트 바로 옆. 가성비 숙박+온천 패키지. 편백나무 욕조',q:'Full Moon Spa Wulai'},
+  {day:'spa',name:'Yen Town 공중탕',cn:'堰堤溫泉',lat:24.8667,lng:121.5507,desc:'수영복 필수 남녀공용 공중탕. 우라이 유일 혼성 온천. 댐역 바로 앞. 소규모·저렴',q:'Yen Town Hot Spring Wulai'},
+  {day:'spa',name:'스프링시티 (베이터우)',cn:'春天酒店',lat:25.1397,lng:121.5073,desc:'야외풀 9종. 수영복+수영모 필수. 남녀공용. 800TWD/인 무제한. 신베이터우역 무료셔틀(15분). 베이터우 최고 야외풀',q:'Spring City Resort Beitou'},
 ];
 
 // ── STATE ────────────────────────────────────────────────────
-let active = new Set(LAYERS.map(l => l.id));
+let active = new Set();
 let markers = [];
 
 // ── CLOCK + D-DAYS ───────────────────────────────────────────
@@ -843,9 +850,9 @@ function buildSidebar() {
     }
     const cnt = places.filter(p => p.day === l.id).length;
     const item = document.createElement('div');
-    item.className = 'layer-item on'; item.dataset.lid = l.id;
+    item.className = 'layer-item'; item.dataset.lid = l.id;
     item.innerHTML = `
-      <div class="layer-cb" style="background:${l.color}20;border-color:${l.color}">✓</div>
+      <div class="layer-cb" style="border-color:#2a2a2a"></div>
       <div class="layer-dot" style="background:${l.color}"></div>
       <div class="layer-label">${l.label}</div>
       <div class="layer-count">${cnt}</div>`;
