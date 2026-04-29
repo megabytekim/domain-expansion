@@ -418,7 +418,7 @@ body {
           <div class="bp-head">✈️ 항공편</div>
           <div class="bp-body"><table class="doc-table">
             <tr><th>날짜</th><th>편명</th><th>탑승자</th><th>시간</th></tr>
-            <tr><td><span class="dtag dtag-dim">4/30</span></td><td>CI 162</td><td>영우 (사전 도착)</td><td>13:55→15:35</td></tr>
+            <tr><td><span class="dtag dtag-dim">4/30</span></td><td>CI 162</td><td>영우 (사전 도착·송산)</td><td>13:55→15:35</td></tr>
             <tr><td><span class="dtag dtag-b">5/1</span></td><td>7C 2803</td><td>지수·희주·우영·영진</td><td>09:05→10:55</td></tr>
             <tr><td><span class="dtag dtag-b">5/1</span></td><td>BR 171</td><td>원상·현상</td><td>12:00→13:35</td></tr>
             <tr><td><span class="dtag dtag-g">5/2</span></td><td>7C 2803</td><td>민영·채한·진우</td><td>09:05→10:55</td></tr>
@@ -669,15 +669,17 @@ const LAYERS = [
 // ── SCHEDULES ────────────────────────────────────────────────
 const SCHED = {
   '0':[
-    {t:'13:55',d:'김포 출발 — 영우 (중화항공)'},
-    {t:'15:35',d:'타오위안 도착 → MRT 타이베이역 (35-45분)'},
-    {t:'17:00',d:'시티즌M 북문 체크인'},
-    {t:'17:30',d:'다다오청 부두 산책 (도보 15분)'},
-    {t:'18:30',d:'다다오청 일몰 + 푸드트럭·팝업 바'},
-    {t:'19:00',d:'디화제 골목 — 한약재상·레트로 카페'},
-    {t:'20:00',d:'남기장 야시장 — 미슐랭 빕구르망'},
-    {t:'21:30',d:'카발란 위스키 바 (난징점) 시음'},
-    {t:'23:00',d:'호텔 복귀 — 5/1 본진 합류 대비'},
+    {t:'13:55',d:'김포 출발 — 영우 (중화항공 CI 162)'},
+    {t:'15:35',d:'쑹산공항(TSA) 도착 — 시내공항'},
+    {t:'16:15',d:'택시 15분 NT$200 or MRT 문후선 25분 → 호텔'},
+    {t:'16:40',d:'시티즌M 북문 체크인'},
+    {t:'17:00',d:'호텔 출발 → 디화제 도보 15분'},
+    {t:'17:15',d:'디화제 가게 둘러보기 — 19시 전 마감'},
+    {t:'18:30',d:'다다오청 부두 — ⭐수요일 라이브 18:30-21:00'},
+    {t:'19:00',d:'일몰 + 푸드트럭 저녁 (컨테이너 시장)'},
+    {t:'21:00',d:'MRT → 송강난징역 (25분)'},
+    {t:'21:30',d:'카발란 위스키 바 — 최저 700 NTD/인'},
+    {t:'23:00',d:'호텔 복귀 (MRT 20분)'},
   ],
   '1':[
     {t:'10:55',d:'공항 도착 — 지수/희주/우영/영진 (제주항공)'},
@@ -732,12 +734,11 @@ const SCHED = {
 // ── PLACES ───────────────────────────────────────────────────
 const places = [
   // DAY 0 — 4/30 영우 솔로 (단체 코스 미중복)
-  {day:'0',o:1,name:'타오위안 공항 (4/30 도착)',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'15:35',desc:'중화항공 13:55→15:35. 영우 솔로 도착',q:'Taoyuan International Airport'},
-  {day:'0',o:2,name:'시티즌M 북문 (4/30 1박)',cn:'citizenM 北門',lat:25.0494,lng:121.5102,time:'17:00',desc:'영우 4/30 솔로 1박. 베이먼역 도보 1분',q:'citizenM Taipei Northgate'},
-  {day:'0',o:3,name:'다다오청 부두',cn:'大稻埕碼頭',lat:25.0578,lng:121.5063,time:'17:30',desc:'담수이강 5수문. 일몰·푸드트럭·팝업 바. 5월 평일 저녁 한적함. 호텔 도보 15분',q:'Dadaocheng Wharf Taipei'},
-  {day:'0',o:4,name:'디화제',cn:'迪化街',lat:25.0568,lng:121.5103,time:'19:00',desc:'청나라 무역거리. 한약재상·건어물·레트로 카페. 린화타이차항(차) 위치',q:'Dihua Street Taipei'},
-  {day:'0',o:5,name:'남기장 야시장',cn:'南機場夜市',lat:25.0301,lng:121.5043,time:'20:00',desc:'미슐랭 빕구르망 다수. 관광객 거의 없음. 산지우비엔 닭고기덮밥·마라훠궈',q:'Nanjichang Night Market'},
-  {day:'0',o:6,name:'카발란 위스키 바 (난징점)',cn:'噶瑪蘭威士忌酒吧',lat:25.0521,lng:121.5435,time:'21:30',desc:'잔 단위 시음 + 구매. 평일 19:00-24:00. 5/5 면세 픽업 라인업 미리 정하기',q:'Kavalan Whisky Bar Nanjing Taipei'},
+  {day:'0',o:1,name:'쑹산공항 (4/30 도착)',cn:'臺北松山機場',lat:25.0697,lng:121.5527,time:'15:35',desc:'중화항공 CI 162 김포→송산 13:55→15:35. 시내공항이라 빠름',q:'Taipei Songshan Airport'},
+  {day:'0',o:2,name:'시티즌M 북문 (4/30 1박)',cn:'citizenM 北門',lat:25.0494,lng:121.5102,time:'16:40',desc:'영우 4/30 솔로 1박. 베이먼역 도보 1분. 송산공항에서 택시 15분 NT$200',q:'citizenM Taipei Northgate'},
+  {day:'0',o:3,name:'디화제',cn:'迪化街',lat:25.0568,lng:121.5103,time:'17:15',desc:'⚠️ 가게 19시 마감. 청나라 무역거리·한약재·건어물·레트로 카페·린화타이차항(차)',q:'Dihua Street Taipei'},
+  {day:'0',o:4,name:'다다오청 부두',cn:'大稻埕碼頭',lat:25.0578,lng:121.5063,time:'18:30',desc:'⭐수요일 한정 "星光水岸 라이브 콘서트" 18:30-21:00. 일몰·푸드트럭·컨테이너 시장. 디화제 끝에서 도보 5분',q:'Dadaocheng Wharf Taipei'},
+  {day:'0',o:5,name:'카발란 위스키 바 (난징점)',cn:'噶瑪蘭威士忌酒吧',lat:25.0521,lng:121.5435,time:'21:30',desc:'평일 19:00-25:00. 최저 700 NTD/인. 잔 시음 + 구매. 예약 권장 +886-2-2521-0880',q:'Kavalan Whisky Bar Nanjing Taipei'},
 
   // DAY 1
   {day:'1',o:1,name:'타오위안 국제공항',cn:'桃園國際機場',lat:25.0797,lng:121.2342,time:'10:55 / 13:35 도착',desc:'제주항공 09:05→10:55 (지수/희주/우영/영진) | 에바항공 12:00→13:35 (원상/현상)',q:'Taoyuan International Airport'},
@@ -1149,7 +1150,7 @@ const FC = {
 </table>`,
 
   flight:`<table class="doc-table"><tr><th>날짜</th><th>구간</th><th>편명</th><th>탑승자</th><th>시간</th></tr>
-<tr><td><span class="dtag dtag-dim">4/30</span></td><td>김포→타오위안</td><td>CI 162 중화</td><td>영우 (사전 도착)</td><td>13:55→15:35</td></tr>
+<tr><td><span class="dtag dtag-dim">4/30</span></td><td>김포→<strong>쑹산(TSA)</strong> 시내공항</td><td>CI 162 중화</td><td>영우 (사전 도착)</td><td>13:55→15:35</td></tr>
 <tr><td><span class="dtag dtag-b">5/1</span></td><td>인천→타오위안</td><td>7C 2803 제주</td><td>지수·희주·우영·영진</td><td>09:05→10:55</td></tr>
 <tr><td><span class="dtag dtag-b">5/1</span></td><td>인천→타오위안</td><td>BR 171 에바</td><td>원상·현상</td><td>12:00→13:35</td></tr>
 <tr><td><span class="dtag dtag-g">5/2</span></td><td>인천→타오위안</td><td>7C 2803 제주</td><td>민영·채한·진우</td><td>09:05→10:55</td></tr>
