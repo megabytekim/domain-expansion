@@ -6346,11 +6346,6 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1989/hyecho_cm9900_30002929.jpg",
     "locations": [
       {
-        "name": "이스탄불(튀르키예)",
-        "lat": 41.006381,
-        "lng": 28.9758715
-      },
-      {
         "name": "코펜하겐(덴마크)",
         "lat": 55.6867243,
         "lng": 12.5700724
@@ -7128,11 +7123,6 @@
         "name": "마드리드",
         "lat": 40.416782,
         "lng": -3.703507
-      },
-      {
-        "name": "두바이",
-        "lat": 25.0742823,
-        "lng": 55.1885387
       }
     ],
     "departures": [
@@ -7531,11 +7521,6 @@
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3030&eventSeq=41855",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3030/hyecho_cm9900_30002888.jpg",
     "locations": [
-      {
-        "name": "두바이",
-        "lat": 25.0742823,
-        "lng": 55.1885387
-      },
       {
         "name": "베니스",
         "lat": 45.4408,
@@ -16050,11 +16035,6 @@
         "name": "카사블랑카",
         "lat": 33.5945144,
         "lng": -7.6200284
-      },
-      {
-        "name": "이스탄불",
-        "lat": 41.006381,
-        "lng": 28.9758715
       }
     ],
     "departures": [
@@ -16190,11 +16170,6 @@
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1777",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1777/hyecho_cm9900_30000909.jpg",
     "locations": [
-      {
-        "name": "두바이",
-        "lat": 25.0742823,
-        "lng": 55.1885387
-      },
       {
         "name": "카이로",
         "lat": 30.0443879,
@@ -16379,11 +16354,6 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1734/hyecho_cm9900_30001411.jpg",
     "locations": [
       {
-        "name": "두바이",
-        "lat": 25.0742823,
-        "lng": 55.1885387
-      },
-      {
         "name": "카사블랑카",
         "lat": 33.5945144,
         "lng": -7.6200284
@@ -16405,18 +16375,13 @@
       },
       {
         "name": "라밧",
-        "lat": 42.7824809,
-        "lng": -0.108251
+        "lat": 34.0209,
+        "lng": -6.8416
       },
       {
         "name": "페스",
         "lat": 34.0346534,
         "lng": -5.0161926
-      },
-      {
-        "name": "메디나",
-        "lat": 24.471153,
-        "lng": 39.6111216
       },
       {
         "name": "튀니스",
@@ -16870,11 +16835,6 @@
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2294&eventSeq=42070",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2294/hyecho_cm9900_30000155.jpg",
     "locations": [
-      {
-        "name": "이스탄불",
-        "lat": 41.006381,
-        "lng": 28.9758715
-      },
       {
         "name": "보고타(콜롬비아)",
         "lat": 4.6533817,
