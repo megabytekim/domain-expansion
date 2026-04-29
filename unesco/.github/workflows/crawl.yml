@@ -56,3 +56,9 @@ jobs:
           git add data/
           git commit -m "chore: weekly data refresh $(date +%Y-%m-%d)"
           git push
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+        env:
+          VERCEL_ORG_ID: team_VuiqYkZq4TGlfLliNh9Pb68W
+          VERCEL_PROJECT_ID: prj_hQsE4ugnnlRWj7PWjbZLBx19pezw
