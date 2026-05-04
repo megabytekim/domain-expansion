@@ -205,8 +205,8 @@
         "startDay": "20261017",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 4,
+        "resvCnt": 10,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 1950000
       },
@@ -271,7 +271,7 @@
         "saleAmt": 1890000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:33.505Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:17.939Z"
   },
   {
     "id": "hyecho-3089",
@@ -319,13 +319,13 @@
         "startDay": "20260808",
         "personCnt": 18,
         "minPersonCnt": 12,
-        "resvCnt": 15,
-        "restCnt": 3,
+        "resvCnt": 17,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 18900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:36.327Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:20.351Z"
   },
   {
     "id": "hyecho-2631",
@@ -348,16 +348,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41748,
-        "startDay": "20260501",
-        "personCnt": 14,
-        "minPersonCnt": 10,
-        "resvCnt": 4,
-        "restCnt": 10,
-        "procCd": "00",
-        "saleAmt": 7800000
-      },
       {
         "eventSeq": 41749,
         "startDay": "20260531",
@@ -399,7 +389,7 @@
         "saleAmt": 8500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:40.641Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:24.682Z"
   },
   {
     "id": "hyecho-30000123",
@@ -420,11 +410,11 @@
       {
         "eventSeq": 30001668,
         "startDay": "20260608",
-        "personCnt": 25,
+        "personCnt": 22,
         "minPersonCnt": 5,
         "resvCnt": 22,
-        "restCnt": 3,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 3650000
       },
       {
@@ -434,7 +424,7 @@
         "minPersonCnt": 15,
         "resvCnt": 25,
         "restCnt": 0,
-        "procCd": "01",
+        "procCd": "40",
         "saleAmt": 3650000
       },
       {
@@ -442,8 +432,8 @@
         "startDay": "20260623",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 19,
-        "restCnt": 5,
+        "resvCnt": 21,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 3350000
       },
@@ -498,7 +488,7 @@
         "saleAmt": 4100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:45.550Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:28.808Z"
   },
   {
     "id": "hyecho-3060",
@@ -717,7 +707,7 @@
         "saleAmt": 9300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:49.814Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:33.223Z"
   },
   {
     "id": "hyecho-2806",
@@ -790,8 +780,8 @@
         "startDay": "20260730",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 23,
-        "restCnt": 1,
+        "resvCnt": 26,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 1400000
       },
@@ -906,7 +896,7 @@
         "saleAmt": 1300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:53.722Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:36.425Z"
   },
   {
     "id": "hyecho-2422",
@@ -929,8 +919,8 @@
         "startDay": "20260625",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 12,
+        "resvCnt": 5,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 3650000
       },
@@ -949,8 +939,8 @@
         "startDay": "20260702",
         "personCnt": 19,
         "minPersonCnt": 8,
-        "resvCnt": 17,
-        "restCnt": 2,
+        "resvCnt": 18,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 3600000
       },
@@ -959,8 +949,8 @@
         "startDay": "20260704",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 6,
+        "resvCnt": 13,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 4150000
       },
@@ -1009,8 +999,8 @@
         "startDay": "20260723",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 15,
-        "restCnt": 3,
+        "resvCnt": 17,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 3600000
       },
@@ -1215,7 +1205,7 @@
         "saleAmt": 4250000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:51:58.851Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:41.768Z"
   },
   {
     "id": "hyecho-2475",
@@ -1373,9 +1363,9 @@
         "startDay": "20260815",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 8,
-        "procCd": "00",
+        "resvCnt": 8,
+        "restCnt": 6,
+        "procCd": "01",
         "saleAmt": 1950000
       },
       {
@@ -1499,7 +1489,7 @@
         "saleAmt": 1690000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:06.047Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:48.636Z"
   },
   {
     "id": "hyecho-3172",
@@ -1572,8 +1562,8 @@
         "startDay": "20260725",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 20,
-        "restCnt": 4,
+        "resvCnt": 22,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 7800000
       },
@@ -1632,13 +1622,13 @@
         "startDay": "20261003",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 19,
-        "restCnt": 5,
+        "resvCnt": 18,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 7900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:11.901Z"
+    "departuresUpdatedAt": "2026-05-04T00:14:53.901Z"
   },
   {
     "id": "hyecho-2486",
@@ -1676,8 +1666,8 @@
         "startDay": "20260521",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 3,
+        "resvCnt": 13,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 2390000
       },
@@ -1706,8 +1696,8 @@
         "startDay": "20260603",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 12,
-        "restCnt": 2,
+        "resvCnt": 10,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 2350000
       },
@@ -1736,8 +1726,8 @@
         "startDay": "20260611",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 16,
-        "restCnt": 4,
+        "resvCnt": 18,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 2090000
       },
@@ -1856,8 +1846,8 @@
         "startDay": "20260723",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 4,
+        "resvCnt": 12,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 2150000
       },
@@ -2086,8 +2076,8 @@
         "startDay": "20261104",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 8,
+        "resvCnt": 8,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 2250000
       },
@@ -2162,7 +2152,7 @@
         "saleAmt": 2150000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:18.689Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:00.260Z"
   },
   {
     "id": "hyecho-2640",
@@ -2250,8 +2240,8 @@
         "startDay": "20260923",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 11,
+        "resvCnt": 6,
+        "restCnt": 10,
         "procCd": "00",
         "saleAmt": 3800000
       },
@@ -2370,8 +2360,8 @@
         "startDay": "20261027",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 3,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 3800000
       },
@@ -2526,7 +2516,7 @@
         "saleAmt": 3700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:24.118Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:05.643Z"
   },
   {
     "id": "hyecho-3132",
@@ -2544,26 +2534,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000999,
-        "startDay": "20260502",
-        "personCnt": 5,
-        "minPersonCnt": 4,
-        "resvCnt": 5,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 2650000
-      },
-      {
-        "eventSeq": 30001858,
-        "startDay": "20260503",
-        "personCnt": 4,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 4,
-        "procCd": "00",
-        "saleAmt": 2250000
-      },
       {
         "eventSeq": 30001860,
         "startDay": "20260505",
@@ -3605,7 +3575,7 @@
         "saleAmt": 2690000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:30.290Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:11.783Z"
   },
   {
     "id": "hyecho-2672",
@@ -3779,7 +3749,7 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:34.880Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:16.356Z"
   },
   {
     "id": "hyecho-2658",
@@ -3828,7 +3798,7 @@
         "saleAmt": 6500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:37.874Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:18.761Z"
   },
   {
     "id": "hyecho-2895",
@@ -4137,7 +4107,7 @@
         "saleAmt": 2450000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:42.799Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:23.823Z"
   },
   {
     "id": "hyecho-30000096",
@@ -4155,16 +4125,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000900,
-        "startDay": "20260429",
-        "personCnt": 8,
-        "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 1790000
-      },
       {
         "eventSeq": 30000901,
         "startDay": "20260513",
@@ -4356,7 +4316,7 @@
         "saleAmt": 1790000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:52.192Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:31.709Z"
   },
   {
     "id": "hyecho-2750",
@@ -4445,7 +4405,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:52:56.591Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:36.109Z"
   },
   {
     "id": "hyecho-2489",
@@ -4583,8 +4543,8 @@
         "startDay": "20260731",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 4,
+        "resvCnt": 11,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 2590000
       },
@@ -4669,7 +4629,7 @@
         "saleAmt": 2590000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:02.666Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:42.410Z"
   },
   {
     "id": "hyecho-2392",
@@ -4713,7 +4673,7 @@
         "saleAmt": 8300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:04.240Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:43.770Z"
   },
   {
     "id": "hyecho-2388",
@@ -4776,8 +4736,8 @@
         "startDay": "20261002",
         "personCnt": 23,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 7,
+        "resvCnt": 17,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 7200000
       },
@@ -4792,7 +4752,7 @@
         "saleAmt": 7200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:10.041Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:49.505Z"
   },
   {
     "id": "hyecho-2378",
@@ -4821,7 +4781,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:11.677Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:51.298Z"
   },
   {
     "id": "hyecho-1951",
@@ -4895,7 +4855,7 @@
         "saleAmt": 10300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:14.880Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:55.174Z"
   },
   {
     "id": "hyecho-2082",
@@ -4918,8 +4878,8 @@
         "startDay": "20260604",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 15,
-        "restCnt": 2,
+        "resvCnt": 12,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2350000
       },
@@ -4984,7 +4944,7 @@
         "saleAmt": 2600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:19.205Z"
+    "departuresUpdatedAt": "2026-05-04T00:15:59.859Z"
   },
   {
     "id": "hyecho-1938",
@@ -5053,7 +5013,7 @@
         "saleAmt": 9400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:23.806Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:03.847Z"
   },
   {
     "id": "hyecho-1931",
@@ -5081,13 +5041,13 @@
         "startDay": "20261004",
         "personCnt": 25,
         "minPersonCnt": 10,
-        "resvCnt": 25,
-        "restCnt": 0,
+        "resvCnt": 23,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 7700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:25.369Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:05.676Z"
   },
   {
     "id": "hyecho-2246",
@@ -5141,7 +5101,7 @@
         "saleAmt": 8200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:28.296Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:08.324Z"
   },
   {
     "id": "hyecho-1967",
@@ -5210,7 +5170,7 @@
         "saleAmt": 10100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:32.276Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:11.544Z"
   },
   {
     "id": "hyecho-2251",
@@ -5364,7 +5324,7 @@
         "saleAmt": 3700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:38.769Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:17.496Z"
   },
   {
     "id": "hyecho-1844",
@@ -5453,7 +5413,7 @@
         "saleAmt": 8700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:42.609Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:20.707Z"
   },
   {
     "id": "hyecho-1858",
@@ -5541,8 +5501,8 @@
         "startDay": "20260806",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 13,
+        "resvCnt": 1,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 4800000
       },
@@ -5627,7 +5587,7 @@
         "saleAmt": 4800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:48.873Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:26.403Z"
   },
   {
     "id": "hyecho-30000064",
@@ -5655,13 +5615,13 @@
         "startDay": "20260727",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 8,
-        "restCnt": 8,
+        "resvCnt": 10,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 9100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:50.432Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:28.135Z"
   },
   {
     "id": "hyecho-2139",
@@ -5709,8 +5669,8 @@
         "startDay": "20260623",
         "personCnt": 9,
         "minPersonCnt": 0,
-        "resvCnt": 6,
-        "restCnt": 3,
+        "resvCnt": 8,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 3290000
       },
@@ -5845,7 +5805,7 @@
         "saleAmt": 3090000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:54.560Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:32.416Z"
   },
   {
     "id": "hyecho-1910",
@@ -5883,8 +5843,8 @@
         "startDay": "20260520",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 3,
-        "restCnt": 17,
+        "resvCnt": 4,
+        "restCnt": 16,
         "procCd": "00",
         "saleAmt": 1600000
       },
@@ -5899,7 +5859,7 @@
         "saleAmt": 1600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:56.273Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:33.892Z"
   },
   {
     "id": "hyecho-2272",
@@ -5948,7 +5908,7 @@
         "saleAmt": 11800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:53:59.123Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:36.324Z"
   },
   {
     "id": "hyecho-1986",
@@ -5986,13 +5946,13 @@
         "startDay": "20261013",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 2,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 9500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:01.848Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:39.141Z"
   },
   {
     "id": "hyecho-1816",
@@ -6116,7 +6076,7 @@
         "saleAmt": 3750000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:06.816Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:44.243Z"
   },
   {
     "id": "hyecho-1992",
@@ -6144,16 +6104,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41561,
-        "startDay": "20260503",
-        "personCnt": 17,
-        "minPersonCnt": 12,
-        "resvCnt": 17,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 10600000
-      },
       {
         "eventSeq": 42666,
         "startDay": "20260902",
@@ -6185,7 +6135,7 @@
         "saleAmt": 10600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:11.089Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:47.680Z"
   },
   {
     "id": "hyecho-2273",
@@ -6288,8 +6238,8 @@
         "startDay": "20261117",
         "personCnt": 10,
         "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 2,
+        "resvCnt": 9,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 9800000
       },
@@ -6334,7 +6284,7 @@
         "saleAmt": 9800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:15.253Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:51.732Z"
   },
   {
     "id": "hyecho-1989",
@@ -6398,7 +6348,7 @@
         "saleAmt": 21900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:17.775Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:54.438Z"
   },
   {
     "id": "hyecho-2296",
@@ -6432,7 +6382,7 @@
         "saleAmt": 26000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:19.314Z"
+    "departuresUpdatedAt": "2026-05-04T00:16:56.136Z"
   },
   {
     "id": "hyecho-1856",
@@ -6741,7 +6691,7 @@
         "saleAmt": 2800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:25.452Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:03.225Z"
   },
   {
     "id": "hyecho-1925",
@@ -6845,7 +6795,7 @@
         "saleAmt": 3400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:30.448Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:08.413Z"
   },
   {
     "id": "hyecho-1916",
@@ -6983,9 +6933,9 @@
         "startDay": "20260829",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 7,
-        "procCd": "01",
+        "resvCnt": 7,
+        "restCnt": 9,
+        "procCd": "00",
         "saleAmt": 3100000
       },
       {
@@ -7009,7 +6959,7 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:34.909Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:13.010Z"
   },
   {
     "id": "hyecho-3325",
@@ -7052,8 +7002,8 @@
         "startDay": "20260908",
         "personCnt": 25,
         "minPersonCnt": 15,
-        "resvCnt": 15,
-        "restCnt": 10,
+        "resvCnt": 14,
+        "restCnt": 11,
         "procCd": "00",
         "saleAmt": 6900000
       },
@@ -7088,7 +7038,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:38.438Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:16.381Z"
   },
   {
     "id": "hyecho-30000099",
@@ -7131,13 +7081,13 @@
         "startDay": "20260911",
         "personCnt": 25,
         "minPersonCnt": 15,
-        "resvCnt": 0,
-        "restCnt": 25,
+        "resvCnt": 1,
+        "restCnt": 24,
         "procCd": "00",
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:40.287Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:18.111Z"
   },
   {
     "id": "hyecho-3347",
@@ -7163,10 +7113,10 @@
         "resvCnt": 9,
         "restCnt": 16,
         "procCd": "00",
-        "saleAmt": 7300000
+        "saleAmt": 7100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:41.960Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:20.163Z"
   },
   {
     "id": "hyecho-3361",
@@ -7205,7 +7155,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:44.680Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:22.909Z"
   },
   {
     "id": "hyecho-3360",
@@ -7254,7 +7204,7 @@
         "saleAmt": 7200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:46.945Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:25.610Z"
   },
   {
     "id": "hyecho-3351",
@@ -7298,7 +7248,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:49.440Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:28.122Z"
   },
   {
     "id": "hyecho-3109",
@@ -7387,7 +7337,7 @@
         "saleAmt": 12900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:52.120Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:30.447Z"
   },
   {
     "id": "hyecho-3028",
@@ -7433,11 +7383,11 @@
       {
         "eventSeq": 41898,
         "startDay": "20260630",
-        "personCnt": 17,
+        "personCnt": 15,
         "minPersonCnt": 10,
         "resvCnt": 15,
-        "restCnt": 2,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 9500000
       },
       {
@@ -7453,25 +7403,25 @@
       {
         "eventSeq": 42456,
         "startDay": "20260806",
-        "personCnt": 17,
+        "personCnt": 19,
         "minPersonCnt": 10,
-        "resvCnt": 19,
-        "restCnt": 0,
+        "resvCnt": 17,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 9600000
       },
       {
         "eventSeq": 42455,
         "startDay": "20260813",
-        "personCnt": 17,
+        "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 1,
-        "procCd": "01",
+        "resvCnt": 18,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 9300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:55.413Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:33.838Z"
   },
   {
     "id": "hyecho-3078",
@@ -7510,7 +7460,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:54:57.955Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:36.498Z"
   },
   {
     "id": "hyecho-3030",
@@ -7533,8 +7483,8 @@
         "startDay": "20260622",
         "personCnt": 14,
         "minPersonCnt": 12,
-        "resvCnt": 11,
-        "restCnt": 3,
+        "resvCnt": 13,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 7900000
       },
@@ -7639,7 +7589,7 @@
         "saleAmt": 7700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:02.214Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:40.785Z"
   },
   {
     "id": "hyecho-3029",
@@ -7744,7 +7694,7 @@
         "minPersonCnt": 10,
         "resvCnt": 14,
         "restCnt": 0,
-        "procCd": "01",
+        "procCd": "40",
         "saleAmt": 7900000
       },
       {
@@ -7762,8 +7712,8 @@
         "startDay": "20260804",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 9,
-        "restCnt": 5,
+        "resvCnt": 13,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 7900000
       },
@@ -7788,7 +7738,7 @@
         "saleAmt": 7700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:06.349Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:45.641Z"
   },
   {
     "id": "hyecho-2763",
@@ -7837,7 +7787,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:08.549Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:48.052Z"
   },
   {
     "id": "hyecho-2639",
@@ -7860,8 +7810,8 @@
         "startDay": "20260919",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 1,
+        "restCnt": 15,
         "procCd": "40",
         "saleAmt": 4400000
       },
@@ -7920,8 +7870,8 @@
         "startDay": "20261017",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 14,
-        "restCnt": 2,
+        "resvCnt": 12,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 4100000
       },
@@ -7966,6 +7916,16 @@
         "saleAmt": 4100000
       },
       {
+        "eventSeq": 30001971,
+        "startDay": "20261112",
+        "personCnt": 16,
+        "minPersonCnt": 8,
+        "resvCnt": 4,
+        "restCnt": 12,
+        "procCd": "00",
+        "saleAmt": 3700000
+      },
+      {
         "eventSeq": 30000374,
         "startDay": "20261114",
         "personCnt": 16,
@@ -8004,6 +7964,16 @@
         "restCnt": 12,
         "procCd": "00",
         "saleAmt": 4100000
+      },
+      {
+        "eventSeq": 30001972,
+        "startDay": "20261203",
+        "personCnt": 16,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 16,
+        "procCd": "00",
+        "saleAmt": 3700000
       },
       {
         "eventSeq": 30000377,
@@ -8046,7 +8016,7 @@
         "saleAmt": 4000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:12.855Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:52.230Z"
   },
   {
     "id": "hyecho-2632",
@@ -8115,7 +8085,7 @@
         "saleAmt": 5000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:16.583Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:55.627Z"
   },
   {
     "id": "hyecho-2618",
@@ -8168,8 +8138,8 @@
         "startDay": "20260815",
         "personCnt": 15,
         "minPersonCnt": 10,
-        "resvCnt": 11,
-        "restCnt": 4,
+        "resvCnt": 12,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 4150000
       },
@@ -8184,7 +8154,7 @@
         "saleAmt": 4200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:20.826Z"
+    "departuresUpdatedAt": "2026-05-04T00:17:59.695Z"
   },
   {
     "id": "hyecho-2599",
@@ -8293,7 +8263,7 @@
         "saleAmt": 7600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:27.231Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:06.392Z"
   },
   {
     "id": "hyecho-2616",
@@ -8332,7 +8302,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:28.805Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:08.084Z"
   },
   {
     "id": "hyecho-30000054",
@@ -8375,8 +8345,8 @@
         "startDay": "20260722",
         "personCnt": 15,
         "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 7,
+        "resvCnt": 9,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 6100000
       },
@@ -8401,7 +8371,7 @@
         "saleAmt": 5900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:32.368Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:11.725Z"
   },
   {
     "id": "hyecho-30000104",
@@ -8428,16 +8398,6 @@
         "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2090000
-      },
-      {
-        "eventSeq": 30000847,
-        "startDay": "20260521",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 2150000
       },
       {
         "eventSeq": 30000843,
@@ -8590,7 +8550,7 @@
         "saleAmt": 1990000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:37.575Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:16.840Z"
   },
   {
     "id": "hyecho-2476",
@@ -8611,11 +8571,11 @@
       {
         "eventSeq": 41737,
         "startDay": "20260515",
-        "personCnt": 14,
+        "personCnt": 11,
         "minPersonCnt": 8,
         "resvCnt": 11,
-        "restCnt": 3,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 1390000
       },
       {
@@ -8623,9 +8583,9 @@
         "startDay": "20260529",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 7,
-        "restCnt": 7,
-        "procCd": "01",
+        "resvCnt": 4,
+        "restCnt": 10,
+        "procCd": "00",
         "saleAmt": 1390000
       },
       {
@@ -8743,8 +8703,8 @@
         "startDay": "20260627",
         "personCnt": 7,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 3,
+        "resvCnt": 6,
+        "restCnt": 1,
         "procCd": "00",
         "saleAmt": 1650000
       },
@@ -8813,8 +8773,8 @@
         "startDay": "20260724",
         "personCnt": 21,
         "minPersonCnt": 8,
-        "resvCnt": 19,
-        "restCnt": 2,
+        "resvCnt": 21,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 1650000
       },
@@ -9139,7 +9099,7 @@
         "saleAmt": 1390000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:44.935Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:23.507Z"
   },
   {
     "id": "hyecho-2477",
@@ -9348,7 +9308,7 @@
         "saleAmt": 1990000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:52.125Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:30.427Z"
   },
   {
     "id": "hyecho-2809",
@@ -9487,7 +9447,7 @@
         "saleAmt": 2300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:55.685Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:33.525Z"
   },
   {
     "id": "hyecho-2920",
@@ -9600,8 +9560,8 @@
         "startDay": "20260815",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 3,
-        "restCnt": 14,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2500000
       },
@@ -9656,7 +9616,7 @@
         "saleAmt": 2150000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:55:59.019Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:36.727Z"
   },
   {
     "id": "hyecho-2899",
@@ -9739,8 +9699,8 @@
         "startDay": "20260528",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 21,
-        "restCnt": 3,
+        "resvCnt": 23,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 2200000
       },
@@ -9849,8 +9809,8 @@
         "startDay": "20260617",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 9,
-        "restCnt": 8,
+        "resvCnt": 4,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 2250000
       },
@@ -9949,8 +9909,8 @@
         "startDay": "20260709",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2250000
       },
@@ -10185,7 +10145,7 @@
         "saleAmt": 1800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:04.490Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:42.573Z"
   },
   {
     "id": "hyecho-2854",
@@ -10443,8 +10403,8 @@
         "startDay": "20260905",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 1750000
       },
@@ -10519,7 +10479,7 @@
         "saleAmt": 1850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:10.573Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:49.266Z"
   },
   {
     "id": "hyecho-2940",
@@ -10557,8 +10517,8 @@
         "startDay": "20260608",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 13,
-        "restCnt": 4,
+        "resvCnt": 17,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 3400000
       },
@@ -10607,8 +10567,8 @@
         "startDay": "20260627",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 2,
-        "restCnt": 15,
+        "resvCnt": 0,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 3350000
       },
@@ -10723,7 +10683,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:15.105Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:53.795Z"
   },
   {
     "id": "hyecho-3198",
@@ -10762,7 +10722,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:16.492Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:55.620Z"
   },
   {
     "id": "hyecho-3184",
@@ -10801,16 +10761,6 @@
     ],
     "departures": [
       {
-        "eventSeq": 41648,
-        "startDay": "20260501",
-        "personCnt": 16,
-        "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 0,
-        "procCd": "40",
-        "saleAmt": 9700000
-      },
-      {
         "eventSeq": 42683,
         "startDay": "20260924",
         "personCnt": 20,
@@ -10831,7 +10781,7 @@
         "saleAmt": 9800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:20.034Z"
+    "departuresUpdatedAt": "2026-05-04T00:18:58.055Z"
   },
   {
     "id": "hyecho-3204",
@@ -10870,7 +10820,7 @@
         "saleAmt": 7900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:22.455Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:00.473Z"
   },
   {
     "id": "hyecho-3232",
@@ -10909,7 +10859,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:24.330Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:01.947Z"
   },
   {
     "id": "hyecho-3270",
@@ -10948,7 +10898,7 @@
         "saleAmt": 12200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:26.024Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:03.599Z"
   },
   {
     "id": "hyecho-3230",
@@ -11012,7 +10962,7 @@
         "saleAmt": 13100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:29.443Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:06.935Z"
   },
   {
     "id": "hyecho-3260",
@@ -11045,8 +10995,8 @@
         "startDay": "20270108",
         "personCnt": 18,
         "minPersonCnt": 0,
-        "resvCnt": 15,
-        "restCnt": 3,
+        "resvCnt": 17,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 27500000
       },
@@ -11071,7 +11021,7 @@
         "saleAmt": 27000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:32.842Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:10.092Z"
   },
   {
     "id": "hyecho-2472",
@@ -11110,7 +11060,7 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:35.517Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:12.465Z"
   },
   {
     "id": "hyecho-2409",
@@ -11173,8 +11123,8 @@
         "startDay": "20260725",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 6,
+        "resvCnt": 7,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 3750000
       },
@@ -11219,7 +11169,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:39.238Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:15.694Z"
   },
   {
     "id": "hyecho-2415",
@@ -11237,16 +11187,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41781,
-        "startDay": "20260527",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 10,
-        "procCd": "00",
-        "saleAmt": 2150000
-      },
       {
         "eventSeq": 42043,
         "startDay": "20260603",
@@ -11332,8 +11272,8 @@
         "startDay": "20260729",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 15,
-        "restCnt": 5,
+        "resvCnt": 18,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 2450000
       },
@@ -11438,7 +11378,7 @@
         "saleAmt": 2490000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:44.759Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:20.126Z"
   },
   {
     "id": "hyecho-2466",
@@ -11456,36 +11396,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41776,
-        "startDay": "20260522",
-        "personCnt": 14,
-        "minPersonCnt": 4,
-        "resvCnt": 2,
-        "restCnt": 12,
-        "procCd": "00",
-        "saleAmt": 3790000
-      },
-      {
-        "eventSeq": 41779,
-        "startDay": "20260528",
-        "personCnt": 14,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 3150000
-      },
-      {
-        "eventSeq": 41777,
-        "startDay": "20260529",
-        "personCnt": 14,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 3850000
-      },
       {
         "eventSeq": 42036,
         "startDay": "20260604",
@@ -11827,7 +11737,7 @@
         "saleAmt": 3990000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:50.537Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:24.348Z"
   },
   {
     "id": "hyecho-2467",
@@ -11845,16 +11755,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000311,
-        "startDay": "20260602",
-        "personCnt": 18,
-        "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 16,
-        "procCd": "00",
-        "saleAmt": 3050000
-      },
       {
         "eventSeq": 30000312,
         "startDay": "20260609",
@@ -12006,7 +11906,7 @@
         "saleAmt": 3250000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:56:55.734Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:29.761Z"
   },
   {
     "id": "hyecho-30000134",
@@ -12025,22 +11925,12 @@
     ],
     "departures": [
       {
-        "eventSeq": 30001713,
-        "startDay": "20260528",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 12,
-        "procCd": "00",
-        "saleAmt": 2190000
-      },
-      {
         "eventSeq": 30001721,
         "startDay": "20260604",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 12,
+        "resvCnt": 1,
+        "restCnt": 11,
         "procCd": "00",
         "saleAmt": 2450000
       },
@@ -12049,8 +11939,8 @@
         "startDay": "20260618",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 12,
+        "resvCnt": 2,
+        "restCnt": 10,
         "procCd": "00",
         "saleAmt": 2350000
       },
@@ -12069,8 +11959,8 @@
         "startDay": "20260702",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 6,
+        "resvCnt": 10,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 2390000
       },
@@ -12089,8 +11979,8 @@
         "startDay": "20260716",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 6,
+        "resvCnt": 7,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2690000
       },
@@ -12205,7 +12095,7 @@
         "saleAmt": 2590000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:02.158Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:35.133Z"
   },
   {
     "id": "hyecho-3130",
@@ -12233,8 +12123,8 @@
         "startDay": "20260519",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 9,
-        "restCnt": 5,
+        "resvCnt": 8,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 3450000
       },
@@ -12299,7 +12189,7 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:07.415Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:40.486Z"
   },
   {
     "id": "hyecho-3133",
@@ -12317,16 +12207,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000924,
-        "startDay": "20260501",
-        "personCnt": 13,
-        "minPersonCnt": 8,
-        "resvCnt": 13,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 2190000
-      },
       {
         "eventSeq": 30001345,
         "startDay": "20261016",
@@ -12468,7 +12348,7 @@
         "saleAmt": 1890000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:10.701Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:43.186Z"
   },
   {
     "id": "hyecho-30000067",
@@ -12497,7 +12377,7 @@
         "saleAmt": 6600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:12.456Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:44.884Z"
   },
   {
     "id": "hyecho-2390",
@@ -12526,7 +12406,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:21.147Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:53.838Z"
   },
   {
     "id": "hyecho-30000105",
@@ -12575,7 +12455,7 @@
         "saleAmt": 8500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:22.743Z"
+    "departuresUpdatedAt": "2026-05-04T00:19:55.316Z"
   },
   {
     "id": "hyecho-2778",
@@ -12603,8 +12483,8 @@
         "startDay": "20261107",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 12,
+        "resvCnt": 3,
+        "restCnt": 11,
         "procCd": "00",
         "saleAmt": 9800000
       },
@@ -12759,7 +12639,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:27.989Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:00.765Z"
   },
   {
     "id": "hyecho-2792",
@@ -12808,7 +12688,7 @@
         "saleAmt": 11800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:30.689Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:03.355Z"
   },
   {
     "id": "hyecho-2798",
@@ -12872,7 +12752,7 @@
         "saleAmt": 11500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:33.089Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:06.043Z"
   },
   {
     "id": "hyecho-2796",
@@ -12901,7 +12781,7 @@
         "saleAmt": 7800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:34.678Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:07.818Z"
   },
   {
     "id": "hyecho-3076",
@@ -12930,7 +12810,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:36.324Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:09.396Z"
   },
   {
     "id": "hyecho-3277",
@@ -12959,7 +12839,7 @@
         "saleAmt": 34000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:38.274Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:11.171Z"
   },
   {
     "id": "hyecho-3162",
@@ -13073,7 +12953,7 @@
         "saleAmt": 2050000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:42.077Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:14.698Z"
   },
   {
     "id": "hyecho-3114",
@@ -13122,7 +13002,7 @@
         "saleAmt": 7500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:45.075Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:17.561Z"
   },
   {
     "id": "hyecho-2010",
@@ -13771,7 +13651,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:55.493Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:27.311Z"
   },
   {
     "id": "hyecho-2019",
@@ -13794,8 +13674,8 @@
         "startDay": "20260619",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 9,
-        "restCnt": 11,
+        "resvCnt": 8,
+        "restCnt": 12,
         "procCd": "01",
         "saleAmt": 5450000
       },
@@ -13814,8 +13694,8 @@
         "startDay": "20260724",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 7,
-        "restCnt": 13,
+        "resvCnt": 8,
+        "restCnt": 12,
         "procCd": "01",
         "saleAmt": 5600000
       },
@@ -13860,7 +13740,7 @@
         "saleAmt": 5600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:57:59.613Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:31.058Z"
   },
   {
     "id": "hyecho-2007",
@@ -14019,7 +13899,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:03.965Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:35.297Z"
   },
   {
     "id": "hyecho-2027",
@@ -14188,7 +14068,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:08.558Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:39.573Z"
   },
   {
     "id": "hyecho-2005",
@@ -14417,7 +14297,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:14.626Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:45.345Z"
   },
   {
     "id": "hyecho-1929",
@@ -14440,8 +14320,8 @@
         "startDay": "20260616",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 10,
-        "restCnt": 6,
+        "resvCnt": 12,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 2500000
       },
@@ -14520,8 +14400,8 @@
         "startDay": "20260818",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 10,
-        "restCnt": 6,
+        "resvCnt": 12,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 2600000
       },
@@ -14536,7 +14416,7 @@
         "saleAmt": 2600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:18.005Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:48.930Z"
   },
   {
     "id": "hyecho-1903",
@@ -14700,7 +14580,7 @@
         "saleAmt": 3000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:23.334Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:54.330Z"
   },
   {
     "id": "hyecho-1859",
@@ -14859,7 +14739,7 @@
         "saleAmt": 4850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:27.765Z"
+    "departuresUpdatedAt": "2026-05-04T00:20:58.092Z"
   },
   {
     "id": "hyecho-1853",
@@ -14942,8 +14822,8 @@
         "startDay": "20260627",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 12,
-        "restCnt": 8,
+        "resvCnt": 14,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 3700000
       },
@@ -14982,8 +14862,8 @@
         "startDay": "20260725",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 2,
+        "restCnt": 18,
         "procCd": "00",
         "saleAmt": 3950000
       },
@@ -14992,8 +14872,8 @@
         "startDay": "20260731",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 15,
+        "resvCnt": 2,
+        "restCnt": 18,
         "procCd": "00",
         "saleAmt": 3950000
       },
@@ -15088,7 +14968,7 @@
         "saleAmt": 3850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:34.977Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:04.288Z"
   },
   {
     "id": "hyecho-2247",
@@ -15137,7 +15017,7 @@
         "saleAmt": 6000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:38.686Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:07.743Z"
   },
   {
     "id": "hyecho-2268",
@@ -15191,7 +15071,7 @@
         "saleAmt": 5850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:41.729Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:10.074Z"
   },
   {
     "id": "hyecho-2256",
@@ -15230,7 +15110,7 @@
         "saleAmt": 4900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:44.045Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:12.875Z"
   },
   {
     "id": "hyecho-2270",
@@ -15283,8 +15163,8 @@
         "startDay": "20260805",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 7,
-        "restCnt": 13,
+        "resvCnt": 9,
+        "restCnt": 11,
         "procCd": "01",
         "saleAmt": 5950000
       },
@@ -15293,8 +15173,8 @@
         "startDay": "20260819",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 2,
-        "restCnt": 18,
+        "resvCnt": 0,
+        "restCnt": 20,
         "procCd": "00",
         "saleAmt": 5950000
       },
@@ -15329,7 +15209,7 @@
         "saleAmt": 5950000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:48.924Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:18.396Z"
   },
   {
     "id": "hyecho-1973",
@@ -15368,7 +15248,7 @@
         "saleAmt": 10300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:51.455Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:21.179Z"
   },
   {
     "id": "hyecho-1978",
@@ -15422,7 +15302,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:54.944Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:24.312Z"
   },
   {
     "id": "hyecho-1990",
@@ -15466,7 +15346,7 @@
         "saleAmt": 12400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:56.825Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:25.698Z"
   },
   {
     "id": "hyecho-1991",
@@ -15492,10 +15372,10 @@
       {
         "eventSeq": 41801,
         "startDay": "20260610",
-        "personCnt": 15,
-        "minPersonCnt": 12,
+        "personCnt": 13,
+        "minPersonCnt": 13,
         "resvCnt": 11,
-        "restCnt": 4,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 11800000
       },
@@ -15504,13 +15384,13 @@
         "startDay": "20260902",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 2,
-        "restCnt": 18,
+        "resvCnt": 4,
+        "restCnt": 16,
         "procCd": "00",
         "saleAmt": 11800000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:58:59.133Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:28.324Z"
   },
   {
     "id": "hyecho-30000072",
@@ -15569,7 +15449,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:02.645Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:31.986Z"
   },
   {
     "id": "hyecho-1962",
@@ -15638,7 +15518,7 @@
         "saleAmt": 11500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:06.151Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:35.252Z"
   },
   {
     "id": "hyecho-1819",
@@ -15682,7 +15562,7 @@
         "saleAmt": 2700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:07.538Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:36.785Z"
   },
   {
     "id": "hyecho-1792",
@@ -15708,11 +15588,11 @@
       {
         "eventSeq": 41790,
         "startDay": "20260507",
-        "personCnt": 20,
+        "personCnt": 6,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 12,
-        "procCd": "01",
+        "resvCnt": 6,
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 4300000
       },
       {
@@ -15876,7 +15756,7 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:14.187Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:42.269Z"
   },
   {
     "id": "hyecho-30000094",
@@ -15995,7 +15875,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:19.874Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:47.465Z"
   },
   {
     "id": "hyecho-1767",
@@ -16159,7 +16039,7 @@
         "saleAmt": 7250000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:26.963Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:55.131Z"
   },
   {
     "id": "hyecho-1777",
@@ -16258,7 +16138,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:28.866Z"
+    "departuresUpdatedAt": "2026-05-04T00:21:56.859Z"
   },
   {
     "id": "hyecho-1770",
@@ -16316,8 +16196,8 @@
         "startDay": "20260928",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 11,
-        "restCnt": 5,
+        "resvCnt": 12,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 18000000
       },
@@ -16342,7 +16222,7 @@
         "saleAmt": 18000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:33.365Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:01.426Z"
   },
   {
     "id": "hyecho-1734",
@@ -16481,7 +16361,7 @@
         "saleAmt": 12500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:38.547Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:06.383Z"
   },
   {
     "id": "hyecho-1775",
@@ -16530,7 +16410,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:41.249Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:08.848Z"
   },
   {
     "id": "hyecho-1761",
@@ -16594,7 +16474,7 @@
         "saleAmt": 12500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:43.078Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:10.466Z"
   },
   {
     "id": "hyecho-2274",
@@ -16628,7 +16508,7 @@
         "saleAmt": 17200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:44.690Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:12.091Z"
   },
   {
     "id": "hyecho-2276",
@@ -16661,8 +16541,8 @@
         "startDay": "20260815",
         "personCnt": 20,
         "minPersonCnt": 15,
-        "resvCnt": 20,
-        "restCnt": 0,
+        "resvCnt": 18,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 8600000
       },
@@ -16677,7 +16557,7 @@
         "saleAmt": 8900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:47.401Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:14.577Z"
   },
   {
     "id": "hyecho-2277",
@@ -16716,7 +16596,7 @@
         "saleAmt": 11200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:48.847Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:16.031Z"
   },
   {
     "id": "hyecho-2275",
@@ -16755,7 +16635,7 @@
         "saleAmt": 12200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:50.392Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:17.532Z"
   },
   {
     "id": "hyecho-2279",
@@ -16824,7 +16704,7 @@
         "saleAmt": 26000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:55.355Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:22.658Z"
   },
   {
     "id": "hyecho-2294",
@@ -16893,7 +16773,7 @@
         "saleAmt": 22900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T08:59:57.107Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:24.099Z"
   },
   {
     "id": "hyecho-2303",
@@ -16962,7 +16842,7 @@
         "saleAmt": 17400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:02.354Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:28.988Z"
   },
   {
     "id": "hyecho-2286",
@@ -17111,7 +16991,7 @@
         "saleAmt": 22200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:05.848Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:32.186Z"
   },
   {
     "id": "hyecho-30000053",
@@ -17180,7 +17060,7 @@
         "saleAmt": 7400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:08.106Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:35.001Z"
   },
   {
     "id": "hyecho-1846",
@@ -17239,7 +17119,7 @@
         "saleAmt": 7100000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:10.854Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:37.339Z"
   },
   {
     "id": "hyecho-1832",
@@ -17278,7 +17158,7 @@
         "saleAmt": 6700000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:13.163Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:39.826Z"
   },
   {
     "id": "hyecho-2142",
@@ -17507,7 +17387,7 @@
         "saleAmt": 2300000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:17.435Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:44.295Z"
   },
   {
     "id": "hyecho-2127",
@@ -17600,8 +17480,8 @@
         "startDay": "20260721",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 12,
+        "resvCnt": 10,
+        "restCnt": 10,
         "procCd": "01",
         "saleAmt": 3200000
       },
@@ -17736,7 +17616,7 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:21.442Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:48.442Z"
   },
   {
     "id": "hyecho-2080",
@@ -17880,7 +17760,7 @@
         "saleAmt": 3250000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:29.003Z"
+    "departuresUpdatedAt": "2026-05-04T00:22:57.035Z"
   },
   {
     "id": "hyecho-2077",
@@ -17974,7 +17854,7 @@
         "saleAmt": 2250000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:34.732Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:03.413Z"
   },
   {
     "id": "hyecho-2089",
@@ -18063,7 +17943,7 @@
         "saleAmt": 2550000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:39.943Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:08.567Z"
   },
   {
     "id": "hyecho-2079",
@@ -18096,8 +17976,8 @@
         "startDay": "20260723",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 13,
-        "restCnt": 3,
+        "resvCnt": 11,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2900000
       },
@@ -18142,7 +18022,7 @@
         "saleAmt": 2850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:44.351Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:12.709Z"
   },
   {
     "id": "hyecho-2081",
@@ -18206,7 +18086,7 @@
         "saleAmt": 3200000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:46.861Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:14.999Z"
   },
   {
     "id": "hyecho-2054",
@@ -18305,7 +18185,7 @@
         "saleAmt": 3950000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:52.123Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:19.728Z"
   },
   {
     "id": "hyecho-2058",
@@ -18429,7 +18309,7 @@
         "saleAmt": 3900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:00:58.566Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:25.539Z"
   },
   {
     "id": "hyecho-2144",
@@ -18468,7 +18348,7 @@
         "saleAmt": 17000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:00.860Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:27.944Z"
   },
   {
     "id": "hyecho-1830",
@@ -18507,7 +18387,7 @@
         "saleAmt": 10400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:03.254Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:30.080Z"
   },
   {
     "id": "hyecho-2143",
@@ -18536,7 +18416,7 @@
         "saleAmt": 54000000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:04.975Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:31.888Z"
   },
   {
     "id": "hyecho-2087",
@@ -18600,7 +18480,7 @@
         "saleAmt": 2500000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:09.259Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:36.270Z"
   },
   {
     "id": "hyecho-3364",
@@ -18633,13 +18513,13 @@
         "startDay": "20260906",
         "personCnt": 21,
         "minPersonCnt": 15,
-        "resvCnt": 19,
-        "restCnt": 2,
+        "resvCnt": 22,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 7600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:11.153Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:37.980Z"
   },
   {
     "id": "hyecho-3350",
@@ -18682,13 +18562,13 @@
         "startDay": "20260911",
         "personCnt": 25,
         "minPersonCnt": 20,
-        "resvCnt": 20,
-        "restCnt": 5,
+        "resvCnt": 22,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 5850000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:14.026Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:40.611Z"
   },
   {
     "id": "hyecho-30000117",
@@ -18737,7 +18617,7 @@
         "saleAmt": 590000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:17.029Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:43.073Z"
   },
   {
     "id": "hyecho-30000074",
@@ -18761,32 +18641,12 @@
     ],
     "departures": [
       {
-        "eventSeq": 30000014,
-        "startDay": "20260429",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 2,
-        "procCd": "01",
-        "saleAmt": 570000
-      },
-      {
-        "eventSeq": 30000017,
-        "startDay": "20260503",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 12,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 580000
-      },
-      {
         "eventSeq": 30000019,
         "startDay": "20260510",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 1,
-        "restCnt": 11,
+        "resvCnt": 0,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 580000
       },
@@ -18851,7 +18711,7 @@
         "saleAmt": 580000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:19.690Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:44.875Z"
   },
   {
     "id": "hyecho-30000098",
@@ -18890,7 +18750,7 @@
         "saleAmt": 600000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:22.176Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:47.573Z"
   },
   {
     "id": "hyecho-30000063",
@@ -18934,7 +18794,7 @@
         "saleAmt": 8900000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:23.976Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:49.230Z"
   },
   {
     "id": "hyecho-2942",
@@ -18955,10 +18815,10 @@
       {
         "eventSeq": 30000150,
         "startDay": "20260616",
-        "personCnt": 17,
+        "personCnt": 22,
         "minPersonCnt": 10,
-        "resvCnt": 15,
-        "restCnt": 2,
+        "resvCnt": 17,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 3000000
       },
@@ -19033,6 +18893,6 @@
         "saleAmt": 3400000
       }
     ],
-    "departuresUpdatedAt": "2026-04-29T09:01:28.597Z"
+    "departuresUpdatedAt": "2026-05-04T00:23:53.231Z"
   }
 ]
