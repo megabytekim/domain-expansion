@@ -49,7 +49,7 @@ domain-expansion/unesco/
 **Files:**
 - Create: `unesco/package.json`, `unesco/next.config.ts`, `unesco/tsconfig.json`, `unesco/tailwind.config.ts`, `unesco/postcss.config.mjs`, `unesco/.env.local`, `unesco/.gitignore`, `unesco/app/layout.tsx`, `unesco/app/page.tsx`
 
-- [ ] **Step 1: Initialize Next.js project**
+- [x] **Step 1: Initialize Next.js project**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -58,14 +58,14 @@ npx create-next-app@latest unesco --typescript --tailwind --eslint --app --no-sr
 
 Answer prompts: Yes to all defaults.
 
-- [ ] **Step 2: Install MapLibre GL**
+- [x] **Step 2: Install MapLibre GL**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
 npm install maplibre-gl
 ```
 
-- [ ] **Step 3: Configure static export**
+- [x] **Step 3: Configure static export**
 
 Replace `unesco/next.config.ts` with:
 
@@ -79,13 +79,13 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 ```
 
-- [ ] **Step 4: Create `.env.local`**
+- [x] **Step 4: Create `.env.local`**
 
 ```bash
 echo 'NEXT_PUBLIC_MAPTILER_KEY=Jae74EBLEJXQSqcHSf8x' > /Users/newyork/domain-expansion/unesco/.env.local
 ```
 
-- [ ] **Step 5: Update `.gitignore`**
+- [x] **Step 5: Update `.gitignore`**
 
 Append to `unesco/.gitignore`:
 
@@ -93,7 +93,7 @@ Append to `unesco/.gitignore`:
 .env.local
 ```
 
-- [ ] **Step 6: Replace `app/layout.tsx` with minimal layout**
+- [x] **Step 6: Replace `app/layout.tsx` with minimal layout**
 
 ```tsx
 import type { Metadata } from "next";
@@ -117,7 +117,7 @@ export default function RootLayout({
 }
 ```
 
-- [ ] **Step 7: Replace `app/page.tsx` with placeholder**
+- [x] **Step 7: Replace `app/page.tsx` with placeholder**
 
 ```tsx
 export default function Home() {
@@ -129,7 +129,7 @@ export default function Home() {
 }
 ```
 
-- [ ] **Step 8: Verify dev server runs**
+- [x] **Step 8: Verify dev server runs**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -138,7 +138,7 @@ npm run dev
 
 Open `http://localhost:3000` — should see "UNESCO Map — loading..." on dark background.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -153,7 +153,7 @@ git commit -m "feat: scaffold unesco Next.js sub-project with Tailwind + MapLibr
 **Files:**
 - Create: `unesco/lib/types.ts`, `unesco/scripts/fetch-unesco.ts`, `unesco/data/unesco-sites.json`
 
-- [ ] **Step 1: Define TypeScript types**
+- [x] **Step 1: Define TypeScript types**
 
 Create `unesco/lib/types.ts`:
 
@@ -206,7 +206,7 @@ export interface FilterState {
 }
 ```
 
-- [ ] **Step 2: Write UNESCO XML fetch script**
+- [x] **Step 2: Write UNESCO XML fetch script**
 
 Create `unesco/scripts/fetch-unesco.ts`:
 
@@ -308,7 +308,7 @@ async function fetchUnesco() {
 fetchUnesco().catch(console.error);
 ```
 
-- [ ] **Step 3: Create data directory and run the script**
+- [x] **Step 3: Create data directory and run the script**
 
 ```bash
 mkdir -p /Users/newyork/domain-expansion/unesco/data
@@ -318,7 +318,7 @@ npx tsx scripts/fetch-unesco.ts
 
 Expected: `Wrote 1100+ sites to .../data/unesco-sites.json`
 
-- [ ] **Step 4: Verify the output**
+- [x] **Step 4: Verify the output**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -327,7 +327,7 @@ node -e "const d=require('./data/unesco-sites.json'); console.log('Total:', d.fe
 
 Expected: prints total count (~1100+) and a site name.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -343,7 +343,7 @@ git commit -m "feat: add UNESCO data types and fetch script with GeoJSON output"
 - Create: `unesco/components/UnescoMap.tsx`
 - Modify: `unesco/app/page.tsx`, `unesco/app/globals.css`
 
-- [ ] **Step 1: Add MapLibre CSS import**
+- [x] **Step 1: Add MapLibre CSS import**
 
 Add to the top of `unesco/app/globals.css` (before the Tailwind directives):
 
@@ -351,7 +351,7 @@ Add to the top of `unesco/app/globals.css` (before the Tailwind directives):
 @import "maplibre-gl/dist/maplibre-gl.css";
 ```
 
-- [ ] **Step 2: Create UnescoMap component**
+- [x] **Step 2: Create UnescoMap component**
 
 Create `unesco/components/UnescoMap.tsx`:
 
@@ -578,7 +578,7 @@ export default function UnescoMap({ data, onSiteSelect, filterState }: UnescoMap
 }
 ```
 
-- [ ] **Step 3: Update `app/page.tsx` to render the map**
+- [x] **Step 3: Update `app/page.tsx` to render the map**
 
 ```tsx
 "use client";
@@ -610,7 +610,7 @@ export default function Home() {
 }
 ```
 
-- [ ] **Step 4: Enable JSON imports in `tsconfig.json`**
+- [x] **Step 4: Enable JSON imports in `tsconfig.json`**
 
 Add to `compilerOptions` in `unesco/tsconfig.json`:
 
@@ -618,7 +618,7 @@ Add to `compilerOptions` in `unesco/tsconfig.json`:
 "resolveJsonModule": true
 ```
 
-- [ ] **Step 5: Verify map renders**
+- [x] **Step 5: Verify map renders**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -627,7 +627,7 @@ npm run dev
 
 Open `http://localhost:3000` — should see a dark-themed world map with colored markers. Zoom in to see individual sites. Click a cluster to zoom. Click a site — nothing visible yet (no bottom sheet), but no errors in console.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -643,7 +643,7 @@ git commit -m "feat: add MapLibre GL map with UNESCO markers and clustering"
 - Create: `unesco/components/BottomSheet.tsx`
 - Modify: `unesco/app/page.tsx`
 
-- [ ] **Step 1: Create BottomSheet component**
+- [x] **Step 1: Create BottomSheet component**
 
 Create `unesco/components/BottomSheet.tsx`:
 
@@ -743,7 +743,7 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
 }
 ```
 
-- [ ] **Step 2: Wire BottomSheet into page.tsx**
+- [x] **Step 2: Wire BottomSheet into page.tsx**
 
 Update `unesco/app/page.tsx` — add imports and bottom sheet state:
 
@@ -792,7 +792,7 @@ export default function Home() {
 }
 ```
 
-- [ ] **Step 3: Verify bottom sheet behavior**
+- [x] **Step 3: Verify bottom sheet behavior**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -801,7 +801,7 @@ npm run dev
 
 Open `http://localhost:3000`. Click a site marker — bottom sheet should appear at ~40% height with site name. Drag up → expands to ~85%. Drag down → closes. Click empty map → closes.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -817,7 +817,7 @@ git commit -m "feat: add draggable 3-state bottom sheet"
 - Create: `unesco/components/SiteDetail.tsx`
 - Modify: `unesco/app/page.tsx`
 
-- [ ] **Step 1: Create SiteDetail component**
+- [x] **Step 1: Create SiteDetail component**
 
 Create `unesco/components/SiteDetail.tsx`:
 
@@ -923,7 +923,7 @@ export default function SiteDetail({ site, isFullView }: SiteDetailProps) {
 }
 ```
 
-- [ ] **Step 2: Replace placeholder content in page.tsx**
+- [x] **Step 2: Replace placeholder content in page.tsx**
 
 In `unesco/app/page.tsx`, replace the BottomSheet children:
 
@@ -938,11 +938,11 @@ import SiteDetail from "@/components/SiteDetail";
 </BottomSheet>
 ```
 
-- [ ] **Step 3: Verify site detail rendering**
+- [x] **Step 3: Verify site detail rendering**
 
 Open `http://localhost:3000`. Click a site marker → bottom sheet shows hyecho packages (if any) at top, then site name, tags. Drag to full view → photo and description appear.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -958,7 +958,7 @@ git commit -m "feat: add site detail component with hyecho package cards"
 - Create: `unesco/components/FilterBar.tsx`
 - Modify: `unesco/app/page.tsx`
 
-- [ ] **Step 1: Create FilterBar component**
+- [x] **Step 1: Create FilterBar component**
 
 Create `unesco/components/FilterBar.tsx`:
 
@@ -1021,7 +1021,7 @@ export default function FilterBar({
 }
 ```
 
-- [ ] **Step 2: Wire FilterBar into page.tsx**
+- [x] **Step 2: Wire FilterBar into page.tsx**
 
 Update `unesco/app/page.tsx` — add FilterBar import and toggle handlers:
 
@@ -1054,11 +1054,11 @@ const handleToggleHyecho = useCallback(() => {
 />
 ```
 
-- [ ] **Step 3: Verify filter behavior**
+- [x] **Step 3: Verify filter behavior**
 
 Open `http://localhost:3000`. Click filter chips — markers should appear/disappear in real time. The "혜초 ✓" chip won't filter anything yet (no hyecho data linked), but toggling categories should work.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -1074,7 +1074,7 @@ git commit -m "feat: add filter bar with category and hyecho toggle chips"
 - Create: `unesco/scripts/crawl-hyecho.ts`, `unesco/data/hyecho-packages.json`, `unesco/data/hyecho-unesco-mapping.json`, `unesco/lib/merge-data.ts`
 - Modify: `unesco/app/page.tsx`
 
-- [ ] **Step 1: Create Hyecho crawler script**
+- [x] **Step 1: Create Hyecho crawler script**
 
 Install Playwright:
 
@@ -1151,7 +1151,7 @@ async function crawlHyecho() {
 crawlHyecho().catch(console.error);
 ```
 
-- [ ] **Step 2: Run the crawler (or create fallback manual data)**
+- [x] **Step 2: Run the crawler (or create fallback manual data)**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -1183,7 +1183,7 @@ Create `unesco/data/hyecho-packages.json`:
 ]
 ```
 
-- [ ] **Step 3: Create mapping file**
+- [x] **Step 3: Create mapping file**
 
 Create `unesco/data/hyecho-unesco-mapping.json`:
 
@@ -1196,7 +1196,7 @@ Create `unesco/data/hyecho-unesco-mapping.json`:
 
 Note: `668` = Angkor, `274` = Historic Sanctuary of Machu Picchu. Add more mappings after reviewing full Hyecho product list.
 
-- [ ] **Step 4: Create merge utility**
+- [x] **Step 4: Create merge utility**
 
 Create `unesco/lib/merge-data.ts`:
 
@@ -1245,7 +1245,7 @@ export function mergeData(
 }
 ```
 
-- [ ] **Step 5: Use mergeData in page.tsx**
+- [x] **Step 5: Use mergeData in page.tsx**
 
 Update `unesco/app/page.tsx` — import merge logic and data:
 
@@ -1265,11 +1265,11 @@ const data = mergeData(
 
 Remove the old `rawData` import and `data` cast.
 
-- [ ] **Step 6: Verify hyecho data appears**
+- [x] **Step 6: Verify hyecho data appears**
 
 Open `http://localhost:3000`. Find Angkor (Cambodia, Southeast Asia) — click the marker. Bottom sheet should show the green "혜초여행" card at the top with "앙코르와트·톤레삽 5일" and ₩1,890,000. Toggle "혜초 ✓" filter — only Angkor and Machu Picchu should remain visible.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -1284,7 +1284,7 @@ git commit -m "feat: add hyecho data, mapping, merge logic, and crawler script"
 **Files:**
 - Modify: `unesco/app/layout.tsx`, `unesco/app/globals.css`, `unesco/next.config.ts`
 
-- [ ] **Step 1: Add Open Graph metadata**
+- [x] **Step 1: Add Open Graph metadata**
 
 Update `unesco/app/layout.tsx` metadata:
 
@@ -1300,7 +1300,7 @@ export const metadata: Metadata = {
 };
 ```
 
-- [ ] **Step 2: Add global style tweaks**
+- [x] **Step 2: Add global style tweaks**
 
 Append to `unesco/app/globals.css`:
 
@@ -1317,7 +1317,7 @@ html, body {
 }
 ```
 
-- [ ] **Step 3: Build static export and test**
+- [x] **Step 3: Build static export and test**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -1332,7 +1332,7 @@ npx serve out
 
 Open the served URL and verify the full app works: map, markers, clusters, filters, bottom sheet, site detail.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 cd /Users/newyork/domain-expansion
@@ -1340,7 +1340,7 @@ git add unesco/
 git commit -m "feat: polish UNESCO map — metadata, styles, static build verified"
 ```
 
-- [ ] **Step 5: Deploy to Vercel**
+- [x] **Step 5: Deploy to Vercel**
 
 ```bash
 cd /Users/newyork/domain-expansion/unesco
@@ -1349,11 +1349,11 @@ npx vercel --yes
 
 Set Root Directory to `unesco/` when prompted (or via Vercel dashboard). Set environment variable `NEXT_PUBLIC_MAPTILER_KEY` in Vercel project settings.
 
-- [ ] **Step 6: Verify production deployment**
+- [x] **Step 6: Verify production deployment**
 
 Open the Vercel preview URL. Verify: map loads, markers render, filters work, bottom sheet opens, hyecho packages display with correct links.
 
-- [ ] **Step 7: Commit and push**
+- [x] **Step 7: Commit and push**
 
 ```bash
 cd /Users/newyork/domain-expansion
