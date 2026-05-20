@@ -100,16 +100,16 @@ export default function ChatWidget() {
           {/* 데스크탑: 좌하단 floating button */}
           <button
             onClick={() => setOpen(true)}
-            className="hidden md:flex absolute bottom-3 left-3 z-10 items-center gap-2 px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-sm transition-all hover:scale-105"
+            className="hidden md:flex absolute bottom-4 left-4 z-10 items-center gap-3 px-6 py-3.5 rounded-full shadow-2xl backdrop-blur-sm transition-all hover:scale-105"
             style={{
               background: "linear-gradient(135deg, rgba(107,70,193,0.9), rgba(146,64,14,0.9))",
               color: "#fef3c7",
-              border: "1px solid rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.18)",
             }}
             aria-label="혜초대사 열기"
           >
-            <span style={{ fontSize: "20px", lineHeight: 1 }}>🧘</span>
-            <span className="text-sm font-medium">혜초대사에게 묻기</span>
+            <span style={{ fontSize: "28px", lineHeight: 1 }}>🧘</span>
+            <span className="text-base font-medium">혜초대사에게 묻기</span>
           </button>
         </>
       )}
@@ -141,14 +141,15 @@ export default function ChatWidget() {
             />
           </div>
 
-          {/* 모바일: 화면 하단 시트 (지도 위 거의 풀스크린) */}
+          {/* 모바일: 하단 절반 정도의 바텀 패널 — 위쪽 지도/트로피/필터는 그대로 보이게 */}
           <div
             className="md:hidden absolute z-30 flex flex-col rounded-t-2xl shadow-2xl"
             style={{
               left: 0,
               right: 0,
               bottom: 0,
-              height: "calc(100dvh - 60px)",
+              height: "60dvh",
+              maxHeight: "calc(100dvh - 120px)",
               background: "rgba(15,23,42,0.97)",
               backdropFilter: "blur(12px)",
               borderTop: "1px solid rgba(255,255,255,0.1)",
@@ -244,7 +245,8 @@ function ChatPanel({ messages, input, setInput, send, sending, handleKey, onClos
             onKeyDown={handleKey}
             placeholder="길에 대해 묻기…"
             disabled={sending}
-            className="flex-1 bg-transparent outline-none text-sm text-gray-100 placeholder-gray-500 disabled:opacity-50"
+            className="flex-1 bg-transparent outline-none text-gray-100 placeholder-gray-500 disabled:opacity-50"
+            style={{ fontSize: "16px" }}
           />
           <button
             onClick={send}
