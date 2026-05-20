@@ -7,6 +7,7 @@ import SiteDetail from "@/components/SiteDetail";
 import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
 import RankingPanel from "@/components/RankingPanel";
+import ChatWidget from "@/components/ChatWidget";
 import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
@@ -154,6 +155,7 @@ export default function Home() {
           />
         ) : null}
       </BottomSheet>
+      <ChatWidget />
     </div>
   );
 }
