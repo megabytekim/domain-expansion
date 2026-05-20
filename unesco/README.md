@@ -101,3 +101,17 @@ vercel --prod
 - [ ] **CI/CD: Deploy 스텝 미실행 원인 조사** — 5/4 크롤에서 commit&push 성공했으나 `vercel --prod` 스텝이 실행되지 않음. 5/6 수동 `workflow_dispatch`로 재현 테스트 중
 - [ ] **GitHub 계정 권한 정리** — `megabytekim` 계정으로 워크플로우 트리거 필요. `socar-newyork`은 READ 권한만 있어 dispatch 불가
 - [ ] **Geocode 경계 케이스 모니터링** — 상파울루(-23.55, -46.63)이 콜롬비아+아마존 상품에 포함 (2686km, 임계값 미만이나 주시 필요)
+- [ ] **Dev 환경 구성 검토** — 현재 개선 작업은 로컬 `npm run dev` + Playwright 자체 검토 후 `vercel --prod`. 향후 옵션:
+    - (A) `vercel` (preview) → 일회성 URL
+    - (B) preview + `vercel alias unesco-dev.vercel.app` → 고정 staging URL
+    - (C) 별도 dev Vercel 프로젝트 → production 직배포 가드레일
+
+## 개선 후보 (2026-05-20 Playwright 검토)
+
+- [ ] **필터 슬라이더 값 표시** — "최소 — 최대"만 있고 실제 가격/일수 노출 없음
+- [ ] **출발 일정 테이블 "예약 > 정원" 표기** — 가예약 포함 표시인데 보는 사람이 헷갈림. `min(예약, 정원)` 또는 "초과예약" 뱃지
+- [ ] **검색 결과 8개 하드캡** — `getSearchMatches`의 `.slice(0, 8)` — 결과 카운트 노출 또는 "더 보기"
+- [ ] **모바일 상단 영역 점유율** — 검색/필터/카테고리가 ~30% 차지. 카테고리 칩을 토글/드롭다운으로
+- [ ] **마커 색상 의미 부여** — 50색 팔레트 모듈로 무의미. 카테고리/가격대 기반으로 의미 부여
+- [ ] **마커 hit-radius** — r=8 작아서 모바일 터치 정확도 ↓
+- [ ] **UNESCO 데이터 활용 확인** — `data/unesco-sites.json` 32k줄이 현재 UI에 노출 안 됨. 원래 매핑 의도 확인 필요

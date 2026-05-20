@@ -10,8 +10,20 @@ const CATEGORY_CONFIG: { key: CategoryFilter; label: string; color: string; bg: 
   { key: "event", label: "기획상품", color: "#f472b6", bg: "rgba(244,114,182,0.15)", border: "rgba(244,114,182,0.4)" },
 ];
 
-const MAX_PRICE = 30_000_000;
-const MAX_DAYS = 45;
+function formatPriceRange(a: number, b: number): string {
+  if (a === 0 && b === 0) return "최소 — 최대";
+  const fmt = (v: number) => `${Math.round(v / 10000)}만`;
+  if (a > 0 && b > 0) return `₩${fmt(a)} ─ ${fmt(b)}`;
+  if (a > 0) return `₩${fmt(a)} 이상`;
+  return `${fmt(b)} 이하`;
+}
+
+function formatDurationRange(a: number, b: number): string {
+  if (a === 0 && b === 0) return "최소 — 최대";
+  if (a > 0 && b > 0) return `${a} ─ ${b}일`;
+  if (a > 0) return `${a}일 이상`;
+  return `${b}일 이하`;
+}
 
 interface SearchBarProps {
   searchQuery: string;
@@ -20,6 +32,9 @@ interface SearchBarProps {
   onPriceChange: (r: [number, number]) => void;
   durationRange: [number, number];
   onDurationChange: (r: [number, number]) => void;
+  priceMax: number;
+  priceStep: number;
+  durationMax: number;
   categories: Set<CategoryFilter>;
   onToggleCategory: (cat: CategoryFilter) => void;
   resultCount: number;
@@ -31,6 +46,7 @@ export default function SearchBar({
   searchQuery, onSearchChange,
   priceRange, onPriceChange,
   durationRange, onDurationChange,
+  priceMax, priceStep, durationMax,
   categories, onToggleCategory,
   resultCount,
   searchMatches, onSelectMatch,
@@ -50,7 +66,7 @@ export default function SearchBar({
   };
 
   return (
-    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5" style={{ maxWidth: "calc(100vw - 64px)" }}>
+    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5 max-w-[calc(100vw-110px)] md:max-w-[calc(100vw-64px)]">
       {/* 검색창 + 필터 버튼 */}
       <div className="flex gap-1.5">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm backdrop-blur-sm"
@@ -112,14 +128,14 @@ export default function SearchBar({
       )}
 
       {/* 카테고리 칩 */}
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1 md:gap-1.5 items-center">
         {CATEGORY_CONFIG.map(({ key, label, color, bg, border }) => {
           const active = categories.has(key);
           return (
             <button
               key={key}
               onClick={() => onToggleCategory(key)}
-              className="px-3 py-1 rounded-full text-xs font-medium transition-all backdrop-blur-sm"
+              className="px-2 md:px-3 py-1 rounded-full text-xs font-medium transition-all backdrop-blur-sm"
               style={{
                 backgroundColor: active ? bg : "rgba(0,0,0,0.5)",
                 color: active ? color : "#666",
@@ -130,7 +146,7 @@ export default function SearchBar({
             </button>
           );
         })}
-        <span className="px-2 py-1 text-xs text-gray-500">{resultCount}개</span>
+        <span className="px-1 md:px-2 py-1 text-xs text-gray-500">{resultCount}개</span>
       </div>
 
       {/* 필터 드롭다운 */}
@@ -143,22 +159,18 @@ export default function SearchBar({
           <div>
             <div className="flex justify-between text-xs text-gray-400 mb-2">
               <span>가격</span>
-              <span>
-                {priceRange[0] > 0 ? `₩${(priceRange[0] / 10000).toFixed(0)}만` : "최소"}
-                {" — "}
-                {priceRange[1] > 0 ? `₩${(priceRange[1] / 10000).toFixed(0)}만` : "최대"}
-              </span>
+              <span>{formatPriceRange(priceRange[0], priceRange[1])}</span>
             </div>
             <div className="flex gap-2">
-              <input type="range" min={0} max={MAX_PRICE} step={500_000}
+              <input type="range" min={0} max={priceMax} step={priceStep}
                 value={priceRange[0]}
                 onChange={(e) => onPriceChange([+e.target.value, priceRange[1]])}
                 className="flex-1 accent-blue-400" />
-              <input type="range" min={0} max={MAX_PRICE} step={500_000}
-                value={priceRange[1] || MAX_PRICE}
+              <input type="range" min={0} max={priceMax} step={priceStep}
+                value={priceRange[1] || priceMax}
                 onChange={(e) => {
                   const v = +e.target.value;
-                  onPriceChange([priceRange[0], v === MAX_PRICE ? 0 : v]);
+                  onPriceChange([priceRange[0], v === priceMax ? 0 : v]);
                 }}
                 className="flex-1 accent-blue-400" />
             </div>
@@ -168,25 +180,21 @@ export default function SearchBar({
           <div>
             <div className="flex justify-between text-xs text-gray-400 mb-2">
               <span>기간</span>
-              <span>
-                {durationRange[0] > 0 ? `${durationRange[0]}일` : "최소"}
-                {" — "}
-                {durationRange[1] > 0 ? `${durationRange[1]}일` : "최대"}
-              </span>
+              <span>{formatDurationRange(durationRange[0], durationRange[1])}</span>
             </div>
             <div className="flex gap-2">
-              <input type="range" min={1} max={MAX_DAYS}
+              <input type="range" min={1} max={durationMax}
                 value={durationRange[0] || 1}
                 onChange={(e) => {
                   const v = +e.target.value;
                   onDurationChange([v === 1 ? 0 : v, durationRange[1]]);
                 }}
                 className="flex-1 accent-blue-400" />
-              <input type="range" min={1} max={MAX_DAYS}
-                value={durationRange[1] || MAX_DAYS}
+              <input type="range" min={1} max={durationMax}
+                value={durationRange[1] || durationMax}
                 onChange={(e) => {
                   const v = +e.target.value;
-                  onDurationChange([durationRange[0], v === MAX_DAYS ? 0 : v]);
+                  onDurationChange([durationRange[0], v === durationMax ? 0 : v]);
                 }}
                 className="flex-1 accent-blue-400" />
             </div>

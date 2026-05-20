@@ -7,7 +7,7 @@ import SiteDetail from "@/components/SiteDetail";
 import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
 import RankingPanel from "@/components/RankingPanel";
-import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON } from "@/lib/merge-data";
+import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
 
@@ -15,6 +15,12 @@ const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
 const locationMap = buildLocationMap(products);
 const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
+
+const PRICE_STEP = 500_000;
+const priceMax = Math.ceil(
+  Math.max(...products.map((p) => parsePrice(p.price)), 0) / PRICE_STEP
+) * PRICE_STEP;
+const durationMax = Math.max(...products.map((p) => parseDuration(p.duration)), 1);
 
 function getSearchMatches(
   products: HyechoProduct[],
@@ -110,6 +116,9 @@ export default function Home() {
         onPriceChange={setPriceRange}
         durationRange={durationRange}
         onDurationChange={setDurationRange}
+        priceMax={priceMax}
+        priceStep={PRICE_STEP}
+        durationMax={durationMax}
         categories={categories}
         onToggleCategory={handleToggleCategory}
         resultCount={filteredProductIds.size}
