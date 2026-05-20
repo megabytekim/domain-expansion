@@ -100,7 +100,7 @@ export default function ChatWidget() {
           {/* 데스크탑: 좌하단 floating button */}
           <button
             onClick={() => setOpen(true)}
-            className="hidden md:flex absolute bottom-4 left-4 z-10 items-center gap-3 px-6 py-3.5 rounded-full shadow-2xl backdrop-blur-sm transition-all hover:scale-105"
+            className="hidden md:flex absolute bottom-5 left-5 z-10 items-center gap-3 px-7 py-4 rounded-full shadow-2xl backdrop-blur-sm transition-all hover:scale-105"
             style={{
               background: "linear-gradient(135deg, rgba(107,70,193,0.9), rgba(146,64,14,0.9))",
               color: "#fef3c7",
@@ -108,8 +108,8 @@ export default function ChatWidget() {
             }}
             aria-label="혜초대사 열기"
           >
-            <span style={{ fontSize: "28px", lineHeight: 1 }}>🧘</span>
-            <span className="text-base font-medium">혜초대사에게 묻기</span>
+            <span style={{ fontSize: "34px", lineHeight: 1 }}>🧘</span>
+            <span className="text-lg font-medium">혜초대사에게 묻기</span>
           </button>
         </>
       )}
@@ -148,8 +148,8 @@ export default function ChatWidget() {
               left: 0,
               right: 0,
               bottom: 0,
-              height: "60dvh",
-              maxHeight: "calc(100dvh - 120px)",
+              height: "55dvh",
+              maxHeight: "calc(100dvh - 160px)",
               background: "rgba(15,23,42,0.97)",
               backdropFilter: "blur(12px)",
               borderTop: "1px solid rgba(255,255,255,0.1)",
@@ -188,9 +188,9 @@ interface ChatPanelProps {
 function ChatPanel({ messages, input, setInput, send, sending, handleKey, onClose, scrollRef, inputRef }: ChatPanelProps) {
   return (
     <>
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 shrink-0">
-        <div className="flex items-center gap-2">
-          <span style={{ fontSize: "22px", lineHeight: 1 }}>🧘</span>
+      <div className="flex items-center justify-between px-4 pt-5 pb-3 border-b border-white/10 shrink-0">
+        <div className="flex items-center gap-2.5">
+          <span style={{ fontSize: "26px", lineHeight: 1.1 }}>🧘</span>
           <div>
             <p className="text-sm font-semibold text-amber-100 leading-tight">혜초대사</p>
             <p className="text-xs text-gray-500 leading-tight">길의 이야기를 들려주는 구도자</p>
