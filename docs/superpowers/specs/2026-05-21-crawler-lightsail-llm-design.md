@@ -29,7 +29,7 @@
 2. 가격 sanity check (saleAmt와 cross-check)
 3. 의심 케이스 자동 검출 → GitHub Issue 자동 발행
 4. 인프라를 GitHub Actions → AWS Lightsail로 이전 (사용자 인프라 통합 의향)
-5. Anthropic API 비용 0 — Claude Code Plan(Max 5x) `-p` 옵션 사용
+5. Anthropic 비용 ~$3-$7/run — `claude --model haiku -p` + `--resume`으로 cache_read 재활용 + chunked sessions(15-20개/세션). Plan(Max 5x) OAuth 사용량 한도 안에서 카운트, API key 별도 청구 없음. *(검증 2026-05-21: dry call 3개 누적 비용 $0.19, call 1 $0.141 → call 2 $0.026 → call 3 $0.025 — `--resume`이 cache_read로 5-6× 절감)*
 
 ## Non-Goals
 
@@ -64,7 +64,9 @@
 
 **핵심 디자인 결정**:
 - 크롤 빈도는 systemd timer `OnCalendar`에서만 결정. 스크립트는 빈도 무관(weekly라는 단어 코드/파일명에서 제거).
-- LLM 호출은 `execFile('claude', ['-p', '--output-format=json'])` subprocess. API key·HTTP fetch 없음.
+- LLM 호출은 `execFile('claude', ['--model', 'haiku', '-p', '--output-format=json', '--json-schema', SCHEMA, '--resume', sessionId])` subprocess. OAuth(`~/.claude/`) 사용, API key 없음.
+- **Session chunking**: conversation history가 haiku 200k context를 넘지 않도록 15-20개 호출마다 새 session-id로 chunk. 첫 호출(`--session-id <uuid>`)은 cache_creation 비용이 들고, 같은 chunk의 후속 호출(`--resume <uuid>`)은 cache_read로 5-6× 절감.
+- **JSON Schema 사용**: `--json-schema` 옵션의 `structured_output` 필드 활용. spec 이전 버전의 `text.match(/\{[\s\S]*\}/)` regex 파싱은 폐기 (LLM 출력 fragility 회피).
 - 기존 GitHub Actions는 `on.schedule` 제거 + `workflow_dispatch`만 남겨 비상용으로 보관.
 
 ## Components
@@ -165,12 +167,22 @@ fi
 
 npx tsx scripts/enrich-locations.ts
 
-# 80% threshold 검증
+# Safety net — 진짜 사고만 잡고 정상 시즌 변동(±30%)은 통과
 OLD=$(git show HEAD:unesco/data/hyecho-packages.json | jq 'length' 2>/dev/null || echo 0)
 NEW=$(jq 'length' data/hyecho-packages.json)
-THRESHOLD=$(( OLD * 80 / 100 ))
-if [[ "$NEW" -lt "$THRESHOLD" ]] && [[ "$OLD" -gt 0 ]]; then
-  echo "FAIL: $NEW < 80% of $OLD — restoring"
+EMPTY_LOC=$(jq '[.[] | select((.locations | length) == 0)] | length' data/hyecho-packages.json)
+
+FAIL_REASON=""
+if [[ "$NEW" -lt 30 ]]; then
+  FAIL_REASON="absolute-floor: only $NEW packages"
+elif [[ "$OLD" -gt 0 ]] && [[ "$NEW" -lt "$(( OLD * 50 / 100 ))" ]]; then
+  FAIL_REASON="relative-drop: $NEW < 50% of $OLD"
+elif [[ "$NEW" -gt 0 ]] && [[ "$(( EMPTY_LOC * 100 / NEW ))" -gt 50 ]]; then
+  FAIL_REASON="extraction-failure: $EMPTY_LOC/$NEW packages have empty locations (>50%)"
+fi
+
+if [[ -n "$FAIL_REASON" ]]; then
+  echo "FAIL: $FAIL_REASON — restoring"
   git checkout -- data/hyecho-packages.json
   exit 2
 fi
@@ -630,17 +642,19 @@ hyecho.com 페이지 (Playwright)
 
 implementation은 Lightsail의 claude 세션에서 이어 작업할 예정. 거기서 확인할 것들:
 
-1. **Claude Code CLI 설치 방식** — `npm install -g @anthropic-ai/claude-code` 인지, brew 인지, curl installer 인지. (Anthropic 공식 문서 확인)
-2. **`claude -p --output-format=json` 실제 출력 구조** — `{result: string}` 인지 직접 JSON 인지. `claude -p --help` 또는 짧은 dry call(`echo "say hi" | claude -p --output-format=json`)로 확인. **이 구조 확정 전에는 llm-extract.ts 코드 동작 X. 첫 implementation step에 검증 필수.**
+1. **Claude Code CLI 설치 방식** — `npm install -g @anthropic-ai/claude-code` 인지, brew 인지, curl installer 인지. (Anthropic 공식 문서 확인) ✅ **resolved 2026-05-21: 이 환경에 `/usr/bin/claude` (2.1.142) 설치됨**
+2. ~~**`claude -p --output-format=json` 실제 출력 구조**~~ ✅ **resolved 2026-05-21**: 단일 응답은 top-level `{type:"result",result:"...",total_cost_usd:N,...}`. `--json-schema` 사용 시 `structured_output` 필드에 schema 검증된 JSON 객체. spec의 fragile regex parsing 폐기 → `outer.structured_output.cities` 직접 사용.
 3. **Claude Code headless 인증** — 로컬 OAuth 후 `~/.claude/` 디렉토리만 복사하면 충분한지, refresh token 만료 시 갱신 흐름.
 4. **Plan Max 5x rate limit 실시간 동작** — 154개 한 번에 처리 중 429/limit 반환 시 자동 backoff/대기 동작.
 5. **Playwright + Chromium + Node + Claude CLI subprocess 동시 실행 시 메모리** — swap 2GB로 충분한지 dry run에서 `free -h` + `dmesg`로 확인. 부족하면 swap 늘리거나 인스턴스 upgrade.
 6. **gh CLI 인증 방식** — `GH_TOKEN` env로 충분한지, `gh auth login --with-token` 별도 필요한지.
 7. **Claude CLI subprocess 동시 5개 실행 안정성** — `~/.claude/` creds 디렉토리 동시 접근 시 lock 충돌 가능성. 첫 dry run에서 concurrency=1로 시도 후 5로 올려서 검증.
 8. **VERCEL_TOKEN scope** — 전체 권한 token보다 project-scoped token 권장(Vercel Tokens 페이지에서 unesco 프로젝트로 제한). 보안 강화.
-9. **LLM JSON 파싱의 fragility** — `text.match(/\{[\s\S]*\}/)` greedy match. LLM이 ```json 코드 블록 안에 답하면 OK지만 중간에 다른 `{}` 섞이면 깨짐. 첫 dry run에서 실패 패턴 수집 후 안전한 파서로 교체 가능성.
+9. ~~**LLM JSON 파싱의 fragility**~~ ✅ **resolved 2026-05-21**: `--json-schema` 옵션으로 strict structured output 강제. LLM 출력이 schema 어기면 CLI 단에서 빈 `structured_output` 반환. regex 파싱 폐기.
 
-## 참고: 현재 데이터 통계 (2026-05-21 기준)
+10. ✅ **resolved 2026-05-21 — `--resume`으로 cache 재활용**: 같은 session-id로 후속 호출하면 cache_read로 처리되어 5-6× 절감. 다만 conversation history가 turn마다 ~6k tokens 추가되므로 haiku 200k context 안전 마진 위해 **15-20개 호출마다 새 session-id로 chunk**.
+
+## 참고: 현재 데이터 통계 (2026-05-21 스냅샷)
 
 | locations 수 | 패키지 수 | 비율 |
 |---|---|---|
@@ -648,6 +662,8 @@ implementation은 Lightsail의 claude 세션에서 이어 작업할 예정. 거�
 | 2 | 31 | 20% |
 | 3 | 24 | 16% |
 | 4+ | 32 | 21% |
+
+총 154개 (이 숫자는 **스냅샷이며 시즌·신상품 출시에 따라 ±30% 변동 가능**). safety net의 절대 floor(30개) + 상대 50% 임계는 이 변동성을 고려해 설정.
 
 7일+ 단일 도시 (누락 강력 의심): **49개 / 32%**.
 
