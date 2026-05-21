@@ -201,10 +201,10 @@ width: 380px, height: 540px
 
 | KEY | 위치 | 용도 |
 |---|---|---|
-| `UPSTASH_REDIS_REST_URL` | Vercel env (production, preview, development) | Upstash REST endpoint |
-| `UPSTASH_REDIS_REST_TOKEN` | Vercel env (sensitive) | Upstash 인증 토큰 |
+| `KV_REST_API_URL` | Vercel env (production, preview, development) | Upstash REST endpoint |
+| `KV_REST_API_TOKEN` | Vercel env (sensitive) | Upstash 인증 토큰 |
 
-Upstash 셋업: Vercel marketplace → Upstash Redis Integration → 자동으로 위 두 env가 hyecho-master에 주입됨 (수동 set 불필요).
+Upstash 셋업: Vercel marketplace → Upstash Redis Integration → 자동으로 위 두 env가 hyecho-master에 주입됨 (Vercel + Upstash 표준 이름: `KV_REST_API_URL`, `KV_REST_API_TOKEN`). 로컬 dev에서 실제 Upstash 호출 필요시 Upstash 대시보드에서 두 값을 복사해 `.env`에 수동 set (Vercel CLI의 `vercel env pull`은 sensitive env를 빈 값으로 마스킹).
 
 ## 10. 테스트
 
