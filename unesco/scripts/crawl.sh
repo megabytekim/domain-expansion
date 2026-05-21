@@ -62,7 +62,11 @@ npx tsx scripts/fetch-unesco.ts
 if [[ "$SKIP_LLM" == "false" ]]; then
   echo ""
   echo "--- 3a/4 llm-extract.ts ---"
-  npx tsx scripts/llm-extract.ts
+  if [[ -n "$PRODUCT_LIMIT" ]]; then
+    npx tsx scripts/llm-extract.ts --all --limit "$PRODUCT_LIMIT"
+  else
+    npx tsx scripts/llm-extract.ts
+  fi
 else
   echo "--- 3a/4 LLM extract skipped (--skip-llm) ---"
 fi

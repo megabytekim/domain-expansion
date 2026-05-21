@@ -274,9 +274,10 @@ async function main() {
       existing.departures = departures;
       existing.departuresUpdatedAt = new Date().toISOString();
       console.log(`  ✓ ${departures.length}개 출발일`);
-      // locations가 비어있으면 skip하지 않고 아래서 재추출
-      if (existing.locations && existing.locations.length > 0) continue;
-      console.log(`  locations 없음 — 페이지 재크롤로 위치 추출`);
+      // 단일 도시 이하면 LLM extract step이 본문을 쓸 수 있게 재크롤로 bodyText 저장.
+      // 2개 이상은 신뢰 가능 — 재크롤 skip (Playwright 시간 절약).
+      if (existing.locations && existing.locations.length > 1) continue;
+      console.log(`  locations 단일 — 페이지 재크롤로 bodyText 저장 (LLM extract 대상)`);
     }
 
     console.log(`\n[${i + 1}/${targets.length}] ${p.s}...`);
