@@ -65,6 +65,10 @@ export default function HyechoMap({
     map.addControl(new maplibregl.NavigationControl(), "top-right");
 
     map.on("load", () => {
+      // Globe projection — desktop only (iOS WebKit often fails to init globe)
+      if (typeof window !== "undefined" && window.innerWidth >= 768) {
+        try { (map as unknown as { setProjection: (p: { type: string }) => void }).setProjection({ type: "globe" }); } catch { /* projection may not be supported */ }
+      }
       map.addSource("hyecho", {
         type: "geojson",
         data: data as unknown as GeoJSON.FeatureCollection,
