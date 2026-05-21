@@ -246,7 +246,11 @@ export default function HyechoMap({
       const src = map.getSource("hyecho-expanded") as maplibregl.GeoJSONSource | undefined;
       if (!src) return;
       src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
-      if (expandedGeoJSON.features.length >= 2) {
+      if (expandedGeoJSON.features.length === 1) {
+        // 단일 location: flyTo로 그 도시로 이동
+        const coord = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
+        map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 6), duration: 800 });
+      } else if (expandedGeoJSON.features.length >= 2) {
         const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
         const bounds = new maplibregl.LngLatBounds(first, first);
         for (const f of expandedGeoJSON.features) {
