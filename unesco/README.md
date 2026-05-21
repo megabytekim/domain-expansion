@@ -124,10 +124,22 @@ vercel --prod
 
 ## 다음 라운드 후보
 
+### 데이터 신뢰성 (2026-05-21 샘플 검증 후 식별)
+- **크롤러 로직 fix** — `scripts/crawl-all-hyecho.ts` 점검:
+    - **가격 추출 오류**: hyecho-1777 시나이 → product.price ₩3.5M인데 실제 사이트 대표가 ₩9.5M (1/3로 표시됨). 다른 옵션의 가장 싼 saleAmt를 메인 가격으로 잘못 가져왔을 가능성
+    - **도시 vs 랜드마크 구분 안 됨**: "엘 바디 궁전", "바히아 궁전", "쿠투비아 모스크", "바르도 박물관", "문명 박물관", "소호 광장" 등이 도시로 추출됨. 키워드 필터(궁전/박물관/광장/모스크/사원/대성당 등) 또는 LLM 분류 도입
+    - **도시 누락**: hyecho-1844 실크로드 — 사이트엔 11개 도시, 우리 크롤은 3개만 (Almaty/Turkestan/Shymkent/Khiva/Issyk-Kul/Bishkek/Dushanbe/Ashgabat 누락)
+- **크롤 후 자동 검증 워크플로우** — `.github/workflows/crawl.yml`에 검증 step 추가:
+    - 가격 sanity check (product.price vs min/max saleAmt 비교, 70% 이하 차이면 fail)
+    - locations 노이즈 키워드 검출
+    - **심각도 분리 (옵션 E)**: Critical(가격 1/3 등)은 워크플로우 fail + 배포 차단 + GitHub Issue 자동 생성. Warning(노이즈 1-2개)은 log만 + 배포 진행
+    - 실패 시 production은 이전 데이터 유지 (안전)
+
+### 챗봇 / UX
 - **혜초대사 채팅 영속화 (KV)** — 현재 in-memory라 Vercel serverless 콜드 스타트마다 사라짐. Upstash Redis 또는 Vercel KV 도입
 - **혜초대사 채팅 스트리밍 (SSE)** — 긴 답변 점진 출력으로 체감 응답 속도 ↑
-- **상품 상세에서 같은 패키지 마커 polyline 시각화** — 한 투어가 도는 도시들 지도에 곡선으로 (위 마커 색상 v2 안과 동일)
-- **공유용 deep link** — 선택한 상품/위치를 URL에 반영 (URL state) → 링크 공유 가능
+- **상품 상세에서 같은 패키지 마커 polyline 시각화** — 한 투어가 도는 도시들 지도에 곡선으로
+- **공유용 deep link** — 선택한 상품/위치를 URL에 반영 → 링크 공유 가능
 - **즐겨찾기 (localStorage)** — 별표 표시한 상품만 모아보기
 - **인기순 외 정렬 옵션** — 가격순/기간순/카테고리별
 - **모바일에도 데이터 기준 표시 위치 찾기** — 현재 데스크탑만 노출
