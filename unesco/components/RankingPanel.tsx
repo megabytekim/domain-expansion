@@ -176,8 +176,8 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
           }}
           aria-label="인기순위 열기"
         >
-          <span className="serif-kr" style={{ fontSize: "28px", lineHeight: 1, color: "var(--ink-deep)", fontWeight: 700 }}>頂</span>
-          <span className="text-[10px] mt-1 tracking-[0.25em]" style={{ color: "var(--ink-deep)" }}>인기순</span>
+          <span style={{ fontSize: "30px", lineHeight: 1 }}>🏆</span>
+          <span className="text-[11px] mt-1 tracking-[0.18em] font-semibold" style={{ color: "var(--ink-deep)" }}>인기순</span>
         </button>
       </div>
 
