@@ -214,28 +214,34 @@ async function main() {
 
     if (cities.length <= p.locations.length) {
       skippedNoImprovement++;
-      continue;
-    }
+    } else {
+      // Geocode new cities
+      const newLocations: { name: string; lat: number; lng: number }[] = [];
+      for (const c of cities) {
+        const queryName = c.name_en || c.name_ko;
+        const coords = await geocodeWithCache(queryName, geocodeCache);
+        if (coords) {
+          const displayName = c.name_en ? `${c.name_ko} (${c.name_en})` : c.name_ko;
+          newLocations.push({ name: displayName, ...coords });
+        }
+      }
 
-    // Geocode new cities
-    const newLocations: { name: string; lat: number; lng: number }[] = [];
-    for (const c of cities) {
-      const queryName = c.name_en || c.name_ko;
-      const coords = await geocodeWithCache(queryName, geocodeCache);
-      if (coords) {
-        const displayName = c.name_en ? `${c.name_ko} (${c.name_en})` : c.name_ko;
-        newLocations.push({ name: displayName, ...coords });
+      // 퇴화 방지: geocode 실패로 새 결과가 짧아지면 기존 유지
+      if (newLocations.length > p.locations.length) {
+        packages[idx].locations = newLocations;
+        upgraded++;
+        console.log(`  ✓ ${p.locations.length} → ${newLocations.length} locations`);
+      } else {
+        skippedNoImprovement++;
+        console.log(`  - skip (geocode 후 ${newLocations.length} <= 기존 ${p.locations.length})`);
       }
     }
 
-    // 퇴화 방지: geocode 실패로 새 결과가 짧아지면 기존 유지
-    if (newLocations.length > p.locations.length) {
-      packages[idx].locations = newLocations;
-      upgraded++;
-      console.log(`  ✓ ${p.locations.length} → ${newLocations.length} locations`);
-    } else {
-      skippedNoImprovement++;
-      console.log(`  - skip (geocode 후 ${newLocations.length} <= 기존 ${p.locations.length})`);
+    // Intermediate save every 10 (prevents data loss on interrupt)
+    if ((n + 1) % 10 === 0) {
+      writeFileSync(PACKAGES_PATH, JSON.stringify(packages, null, 2));
+      writeFileSync(GEOCODE_CACHE_PATH, JSON.stringify(geocodeCache, null, 2));
+      console.log(`  [saved progress: ${n + 1}/${targets.length}, upgraded ${upgraded}]`);
     }
   }
 
