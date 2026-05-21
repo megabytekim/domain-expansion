@@ -25,6 +25,13 @@ const priceMax = _prices.length ? Math.ceil(Math.max(..._prices) / PRICE_STEP) *
 const durationMin = _durations.length ? Math.min(..._durations) : 1;
 const durationMax = _durations.length ? Math.max(..._durations) : 1;
 
+const dataDateLabel = (() => {
+  const iso = products[0]?.departuresUpdatedAt;
+  if (!iso) return null;
+  const d = new Date(iso);
+  return `${d.getMonth() + 1}월 ${d.getDate()}일`;
+})();
+
 function getSearchMatches(
   products: HyechoProduct[],
   query: string,
@@ -112,6 +119,34 @@ export default function Home() {
 
   return (
     <div className="relative h-full w-full">
+      {/* 화면 상단 중앙 — 데이터 기준일 (데스크탑만) */}
+      {dataDateLabel && (
+        <div
+          className="hidden md:flex absolute top-4 z-10 pointer-events-none items-center gap-2 px-4 py-1.5 backdrop-blur-sm"
+          style={{
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "rgba(20,19,28,0.85)",
+            borderRadius: "2px",
+            borderLeft: "2px solid var(--vermillion)",
+            borderRight: "2px solid var(--vermillion)",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.45)",
+          }}
+        >
+          <span
+            className="display-italic text-xs tracking-[0.22em] uppercase"
+            style={{ color: "var(--paper-500)" }}
+          >
+            데이터 기준
+          </span>
+          <span
+            className="serif-kr text-sm font-medium tabular-nums"
+            style={{ color: "var(--paper-100)" }}
+          >
+            {dataDateLabel}
+          </span>
+        </div>
+      )}
       <SearchBar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}

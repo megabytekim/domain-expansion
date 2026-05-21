@@ -186,15 +186,17 @@ async def _health(request):
 # ---------------------------------------------------------------------------
 
 _ALLOWED_ORIGINS = [
-    "https://unesco-delta.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+# unesco-*.vercel.app 모든 alias / preview deploy 허용
+_ALLOWED_ORIGIN_REGEX = r"https://unesco(-[\w-]+)?\.vercel\.app"
 
 middleware = [
     Middleware(
         CORSMiddleware,
         allow_origins=_ALLOWED_ORIGINS,
+        allow_origin_regex=_ALLOWED_ORIGIN_REGEX,
         allow_methods=["GET", "POST", "OPTIONS"],
         allow_headers=["Content-Type"],
     ),

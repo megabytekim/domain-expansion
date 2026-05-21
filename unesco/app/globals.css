@@ -1,29 +1,78 @@
 @import "maplibre-gl/dist/maplibre-gl.css";
 @import "tailwindcss";
 
+/* ─── Pilgrim Manuscript palette (왕오천축국전 톤) ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Ink */
+  --ink-deep: #14131c;        /* 묵빛 (배경) */
+  --ink-soft: #1f1d2a;        /* 패널 위 묵빛 */
+  --ink-border: rgba(244,236,216,0.12);
+
+  /* Paper / sepia */
+  --paper-100: #f4ecd8;       /* 한지 */
+  --paper-200: #d9cdab;       /* 변색한 한지 */
+  --paper-500: #a89876;       /* 옅은 묵필 */
+  --paper-700: #6f6244;       /* 보조 텍스트 */
+
+  /* Accent */
+  --vermillion: #c0392b;      /* 단청 적색 */
+  --vermillion-soft: rgba(192,57,43,0.18);
+  --jade: #4f7d6b;            /* 청록 (보조) */
+
+  /* Marker hues (sepia-shifted, 카테고리) */
+  --marker-trekking: #7a9aa3;   /* 묵청 */
+  --marker-culture: #c47a3b;    /* 자황 (황토) */
+  --marker-walking: #5f8d76;    /* 청록 */
+  --marker-event: #b85450;      /* 단청 적 */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--ink-deep);
+  --color-foreground: var(--paper-100);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--ink-deep);
+  color: var(--paper-100);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── 종이 결: 미세 grain 배경 ───
+   지도 위에 깔리진 않고 비주얼 영역(시트/패널)에 변형 가능 */
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(244,236,216,0.04) 1px, transparent 0),
+    radial-gradient(circle at 7px 13px, rgba(244,236,216,0.02) 1px, transparent 0);
+  background-size: 11px 11px, 17px 17px;
+}
+
+/* 두루마리 결 hairline — 부모 element는 이미 absolute/relative여야 함 */
+.scroll-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid var(--ink-border);
+  box-shadow: inset 0 1px 0 rgba(244,236,216,0.04), inset 0 -1px 0 rgba(0,0,0,0.4);
+}
+
+/* 강조 문구용 italic display */
+.display-italic {
+  font-family: var(--font-display, serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.serif-kr {
+  font-family: var(--font-serif, serif);
+  font-weight: 500;
 }
 
 /* Hide MapLibre bottom controls when bottom sheet is open */
@@ -32,17 +81,17 @@ body {
   display: none;
 }
 
-/* Smooth body background to prevent white flash */
-html, body {
-  background: #111827;
-}
-
+/* Hover 툴팁: 한지 톤 */
 .hyecho-tooltip .maplibregl-popup-content {
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid #334155;
-  border-radius: 6px;
-  padding: 5px 9px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  background: var(--ink-soft);
+  color: var(--paper-100);
+  border: 1px solid var(--ink-border);
+  border-radius: 2px;
+  padding: 6px 10px;
+  font-family: var(--font-serif, serif);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.55);
 }
 .hyecho-tooltip .maplibregl-popup-tip {
   display: none;

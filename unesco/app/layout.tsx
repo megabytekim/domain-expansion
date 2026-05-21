@@ -1,5 +1,28 @@
 import type { Metadata } from "next";
+import { Noto_Serif_KR, Noto_Sans_KR, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+
+const serif = Noto_Serif_KR({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  display: "swap",
+  variable: "--font-serif",
+});
+
+const sans = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: "혜초여행 세계 투어 지도",
@@ -13,8 +36,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="h-screen w-screen overflow-hidden">{children}</body>
+    <html lang="ko" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
+      <body className="h-screen w-screen overflow-hidden font-sans">{children}</body>
     </html>
   );
 }

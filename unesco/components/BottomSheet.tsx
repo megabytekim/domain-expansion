@@ -77,8 +77,14 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
   return (
     <div
       ref={sheetRef}
-      className="absolute bottom-0 left-0 right-0 bg-gray-900 rounded-t-2xl shadow-2xl z-20 flex flex-col transition-all duration-300 ease-out border-t border-gray-700"
-      style={{ height: `${height}dvh` }}
+      className="absolute bottom-0 left-0 right-0 shadow-2xl z-20 flex flex-col transition-all duration-300 ease-out paper-grain"
+      style={{
+        height: `${height}dvh`,
+        background: "var(--ink-deep)",
+        borderTop: "2px solid var(--vermillion)",
+        borderTopLeftRadius: "6px",
+        borderTopRightRadius: "6px",
+      }}
     >
       <div
         className="flex-shrink-0 flex items-center justify-center py-3 cursor-grab active:cursor-grabbing touch-none"
@@ -86,7 +92,7 @@ export default function BottomSheet({ state, onStateChange, children }: BottomSh
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
       >
-        <div className="w-10 h-1 bg-gray-600 rounded-full" />
+        <div className="w-10 h-px" style={{ background: "var(--paper-500)" }} />
       </div>
       <div className="flex-1 overflow-y-auto px-4 pb-4">{children}</div>
     </div>

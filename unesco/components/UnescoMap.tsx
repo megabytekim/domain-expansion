@@ -6,6 +6,7 @@ import type { MarkerGeoJSON, SelectedLocation, MultiLocationGeoJSON } from "@/li
 import type { HyechoProduct } from "@/lib/types";
 import { locKey } from "@/lib/merge-data";
 
+// 패키지별 구분용 50색 팔레트 (사용자가 색으로 패키지 시각 구분 원함)
 const PALETTE = [
   "#ff6b6b","#ffa94d","#ffd43b","#a9e34b","#51cf66",
   "#20c997","#22b8cf","#339af0","#5c7cfa","#7950f2",
