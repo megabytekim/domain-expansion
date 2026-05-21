@@ -5,6 +5,7 @@ import pytest
 from starlette.requests import Request
 
 from api import guestbook
+from api.guestbook import ENTRIES_KEY
 
 
 def _make_request(headers=None, client_host="10.0.0.1"):
@@ -118,9 +119,6 @@ class TestUpstashCall:
             await guestbook._upstash_call(["GET", "foo"])
 
 
-from api.guestbook import ENTRIES_KEY
-
-
 class TestFetchEntries:
     @pytest.mark.asyncio
     async def test_returns_parsed_entries_in_lrange_order(self, monkeypatch):
@@ -156,3 +154,48 @@ class TestFetchEntries:
         monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
         entries = await guestbook.fetch_entries(limit=50)
         assert entries == []
+
+
+class TestGetHandler:
+    """Tests for the GET /api/guestbook handler — covers param parsing and error path."""
+
+    @pytest.mark.asyncio
+    async def test_invalid_limit_falls_back_to_default(self, monkeypatch):
+        captured = {}
+
+        async def fake_upstash(commands, pipeline=False):
+            captured["commands"] = commands
+            return {"result": []}
+
+        monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
+
+        scope = {
+            "type": "http",
+            "method": "GET",
+            "headers": [],
+            "query_string": b"limit=not-a-number",
+        }
+        request = Request(scope)
+        response = await guestbook.get_handler(request)
+
+        assert response.status_code == 200
+        # fetch_entries was called with DEFAULT_LIMIT (50), so LRANGE uses "0..49"
+        assert captured["commands"] == ["LRANGE", ENTRIES_KEY, "0", str(guestbook.DEFAULT_LIMIT - 1)]
+
+    @pytest.mark.asyncio
+    async def test_returns_500_when_fetch_raises(self, monkeypatch):
+        async def fake_upstash(commands, pipeline=False):
+            raise RuntimeError("upstash down")
+
+        monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
+
+        scope = {
+            "type": "http",
+            "method": "GET",
+            "headers": [],
+            "query_string": b"",
+        }
+        request = Request(scope)
+        response = await guestbook.get_handler(request)
+
+        assert response.status_code == 500
