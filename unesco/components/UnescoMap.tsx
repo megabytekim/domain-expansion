@@ -6,14 +6,19 @@ import type { MarkerGeoJSON, SelectedLocation, MultiLocationGeoJSON } from "@/li
 import type { HyechoProduct } from "@/lib/types";
 import { locKey } from "@/lib/merge-data";
 
-// Pilgrim Manuscript: 카테고리별 sepia-tinted 4색 (한지 톤)
-const CATEGORY_COLORS: Record<string, string> = {
-  trekking: "#7a9aa3", // 묵청
-  culture:  "#c47a3b", // 자황
-  walking:  "#5f8d76", // 청록
-  event:    "#b85450", // 단청 적
-};
-const DEFAULT_MARKER = "#a89876"; // paper-500
+// 패키지별 구분용 50색 팔레트 (사용자가 색으로 패키지 시각 구분 원함)
+const PALETTE = [
+  "#ff6b6b","#ffa94d","#ffd43b","#a9e34b","#51cf66",
+  "#20c997","#22b8cf","#339af0","#5c7cfa","#7950f2",
+  "#be4bdb","#e64980","#ff8787","#ffc078","#ffe066",
+  "#c0eb75","#69db7c","#38d9a9","#3bc9db","#4dabf7",
+  "#748ffc","#9775fa","#cc5de8","#f06595","#fa5252",
+  "#fd7e14","#fab005","#82c91e","#40c057","#12b886",
+  "#15aabf","#228be6","#4c6ef5","#7048e8","#ae3ec9",
+  "#d6336c","#e03131","#e8590c","#f08c00","#66a80f",
+  "#2b8a3e","#0b7285","#1864ab","#364fc7","#5f3dc4",
+  "#862e9c","#a61e4d","#c92a2a","#d9480f","#e67700",
+];
 
 interface HyechoMapProps {
   data: MarkerGeoJSON;
@@ -70,17 +75,14 @@ export default function HyechoMap({
         type: "circle",
         source: "hyecho",
         paint: {
-          "circle-radius": 7.5,
+          "circle-radius": 8,
           "circle-color": [
             "match",
-            ["get", "productCategory"],
-            "trekking", CATEGORY_COLORS.trekking,
-            "culture",  CATEGORY_COLORS.culture,
-            "walking",  CATEGORY_COLORS.walking,
-            "event",    CATEGORY_COLORS.event,
-            DEFAULT_MARKER,
+            ["%", ["get", "colorIndex"], PALETTE.length],
+            ...PALETTE.flatMap((c, i) => [i, c]),
+            "#888",
           ] as unknown as maplibregl.ExpressionSpecification,
-          "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1],
+          "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1.25],
           "circle-stroke-color": ["case", ["get", "_selected"], "#f4ecd8", "rgba(244,236,216,0.45)"],
           "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
           "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],

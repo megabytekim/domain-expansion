@@ -188,7 +188,7 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
           style={{
             top: "90px",
             width: "240px",
-            maxHeight: "calc(100dvh - 160px)",
+            maxHeight: "calc(100dvh - 200px)",
             background: "rgba(31,29,42,0.96)",
             backdropFilter: "blur(10px)",
           }}
@@ -203,7 +203,7 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
         style={{
           top: "90px",
           width: "240px",
-          maxHeight: "calc(100dvh - 160px)",
+          maxHeight: "calc(100dvh - 200px)",
           background: "rgba(31,29,42,0.96)",
           backdropFilter: "blur(10px)",
         }}

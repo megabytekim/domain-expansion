@@ -51,10 +51,7 @@ html, body {
   background-size: 11px 11px, 17px 17px;
 }
 
-/* 두루마리 결 hairline */
-.scroll-edge {
-  position: relative;
-}
+/* 두루마리 결 hairline — 부모 element는 이미 absolute/relative여야 함 */
 .scroll-edge::before {
   content: "";
   position: absolute;
