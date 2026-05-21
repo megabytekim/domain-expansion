@@ -1,0 +1,207 @@
+# 방명록 (Guestbook) — 디자인 스펙
+
+**대상**: unesco-delta.vercel.app
+**작성일**: 2026-05-21
+**상태**: 디자인 승인됨 (구현 plan 작성 예정)
+
+---
+
+## 1. 목표
+
+- 모든 사용자가 익명으로 한 줄 메시지를 남기고 다른 사용자의 메시지를 볼 수 있는 단순 방명록
+- 데스크탑: 혜초대사 트리거 우측에 별도 트리거
+- 모바일: 혜초대사 책갈피 아래에 별도 트리거
+- Pilgrim Manuscript 디자인 톤 유지
+
+## 2. 결정 사항 (브레인스토밍 결과)
+
+| 항목 | 결정 |
+|---|---|
+| 공개 범위 | 모두 공개 (전통 방명록) |
+| 작성 폼 필드 | **메시지만** (완전 익명, 이름·이메일 받지 않음) |
+| 스팸 방지 | 최소 — 길이 제한 + IP rate limit. 관리자 수동 삭제 |
+| 인프라 | Upstash Redis (Vercel marketplace, free tier) — hyecho-master에 endpoint 추가 |
+
+## 3. 아키텍처
+
+```
+unesco/components/GuestbookWidget.tsx   (Next.js client component, 신규)
+    │ fetch
+    ▼
+hyecho-master/api/index.py              (기존 Starlette ASGI app 확장)
+  ├ GET  /api/guestbook                 ← 최신 50개 조회
+  └ POST /api/guestbook                 ← 새 글 작성
+    │ HTTPS REST
+    ▼
+Upstash Redis                           (free tier, ~10K commands/day)
+  ├ KEY: gb:entries  (LIST)             ← 글 자체 (최근 1000개 보관)
+  └ KEY: gb:rate:<ip_hash>  (STRING, TTL 60s)  ← 분당 1개 rate limit
+```
+
+## 4. 데이터 모델
+
+Redis LIST `gb:entries`의 각 엔트리 (JSON 직렬화):
+
+```json
+{ "message": "한 줄 메시지", "ts": 1716258000000 }
+```
+
+- 별도 ID 없음. `ts`(epoch ms)가 자연 식별자 역할
+- IP 자체는 저장 안 함. 별도 key `gb:rate:<sha256(ip).hex[:16]>`에 카운터만 + TTL 60초 (rate limit 용)
+- `LTRIM 0 999`로 최대 1000개만 유지 (LIST 무한 증가 방지)
+
+## 5. API
+
+### GET `/api/guestbook?limit=50`
+- Redis: `LRANGE gb:entries 0 (limit-1)`
+- 각 엔트리 JSON parse → 배열로 반환
+- 응답: `200` `[{ message, ts }, ...]` (최신순)
+- 빈 list도 `200 []`
+
+### POST `/api/guestbook`
+- 요청: `{ "message": "string" }`
+- 처리:
+  1. message 검증: trim 후 1~280자 (1자 미만 또는 280자 초과 시 `400`)
+  2. IP hash 계산: `sha256(request.client.host).hex[:16]`
+  3. Redis: `INCR gb:rate:<ip_hash>` (생성 시 1) + `EXPIRE 60` (생성 시에만)
+  4. 결과 > 1이면 `429` 응답
+  5. 엔트리 JSON: `{ message: trimmed, ts: now_ms }`
+  6. Redis: `LPUSH gb:entries <json>` + `LTRIM gb:entries 0 999`
+  7. 응답: `201` `{ message, ts }`
+
+### CORS
+이미 hyecho-master의 `_ALLOWED_ORIGIN_REGEX = r"https://unesco(-[\w-]+)?\.vercel\.app"`로 모든 unesco preview/production alias 허용 + `http://localhost:3000` 허용. 추가 작업 불필요.
+
+### Upstash 호출 방식
+`httpx` AsyncClient로 Upstash REST API 직접 호출:
+- `POST https://<endpoint>/lpush/<key>/<value>` 등
+- Authorization: `Bearer <TOKEN>`
+- 추가 의존성 불필요 (httpx는 a2a-sdk에 이미 포함)
+
+## 6. Frontend
+
+### GuestbookWidget.tsx (구조는 ChatWidget과 유사)
+
+**상태**
+- `open: boolean`
+- `entries: { message, ts }[]`
+- `input: string`
+- `sending: boolean`
+- `loadError: boolean`
+
+**효과**
+- 컴포넌트 마운트 시 `GET /api/guestbook` 호출 → `entries` set
+- 열림 상태에서만 새 글이 list 맨 위에 prepend
+
+**트리거 (닫힌 상태)**
+
+데스크탑: 혜초대사 트리거 우측에 인접한 paper card
+```tsx
+className="hidden md:flex absolute bottom-5 left-[268px] z-10 ..."  // 혜초대사 trigger 너비(~248) + 20px gap
+```
+한자 `言` + "방명록" 라벨
+
+모바일: 혜초대사 책갈피 아래
+```tsx
+top: "298px"  // 혜초대사 top(204) + height(80) + 14px gap
+right: "12px"
+width: 80, height: 80
+```
+한자 `言` + "방명록" 라벨
+
+### Panel (열린 상태)
+
+데스크탑: 혜초대사 panel과 동일 위치(좌하단)에 두면 충돌. → 별도 위치 필요. **혜초대사가 닫힌 상태에서만 방명록 열기 가능** (둘 동시에 안 열림) — 같은 좌하단 anchor 사용해도 됨. UX 단순.
+
+또는 방명록 panel을 우하단으로 → 혜초대사와 분리. **권장: 우하단**.
+
+```tsx
+className="hidden md:flex absolute bottom-3 right-3 z-20 ..."
+width: 380px, height: 540px
+```
+
+모바일: 혜초대사와 동일하게 화면 하단 시트 (height 55dvh).
+
+### Panel 내용
+
+```
+┌────────────────────────────────────┐
+│ 言 방명록                       ×  │
+│ 길벗들의 발자취                    │
+├────────────────────────────────────┤
+│                                    │
+│ ┌──────────────────────────┐       │
+│ │ 누군가 다녀간 메시지...   │       │
+│ │ 5/21 14:23               │       │
+│ └──────────────────────────┘       │
+│ ┌──────────────────────────┐       │
+│ │ 다른 메시지              │       │
+│ │ 5/21 12:01               │       │
+│ └──────────────────────────┘       │
+│   ...                              │
+│                                    │
+├────────────────────────────────────┤
+│ [한 줄 남기기...              ] 새김 │
+└────────────────────────────────────┘
+```
+
+- 메시지 카드: paper-200 배경, serif-kr 본문, 단청 적색 작은 timestamp
+- 입력 폼: ChatWidget input과 동일 스타일 (16px font, 16px 이상 → iOS zoom 방지)
+- 작성 버튼 라벨: **"새김"** (Pilgrim 톤 — 글을 새긴다는 의미)
+- 빈 상태: `display-italic` "아직 발자취가 없네. 첫 글을 남겨보게."
+
+## 7. 에러 처리
+
+| 상황 | UX |
+|---|---|
+| GET 실패 (네트워크/500) | "발자취를 읽어올 수 없네…" + retry 버튼 |
+| POST 길이 위반 (400) | 인라인 "한 줄로, 280자 이내로 남겨주시게" |
+| POST rate limit (429) | 인라인 "잠시 후 다시 와주시게" |
+| POST 기타 실패 (500) | "지금은 기록을 새길 수 없네…" |
+| 빈 list | "아직 발자취가 없네. 첫 글을 남겨보게." |
+
+기술 에러 메시지(stack trace 등)는 노출하지 않음 — 모두 페르소나 톤.
+
+## 8. 운영 / 관리자
+
+- **삭제는 별도 API endpoint 없음**. 운영자가 redis-cli 또는 Upstash 웹 콘솔로 직접:
+  ```
+  LREM gb:entries 1 '<entry-json-그대로>'
+  ```
+  또는 전체 비우기: `DEL gb:entries`
+- `hyecho-master/README.md`에 운영 명령 예시 추가 (별도 섹션)
+
+## 9. 환경변수 (hyecho-master 프로젝트에 추가 필요)
+
+| KEY | 위치 | 용도 |
+|---|---|---|
+| `UPSTASH_REDIS_REST_URL` | Vercel env (production, preview, development) | Upstash REST endpoint |
+| `UPSTASH_REDIS_REST_TOKEN` | Vercel env (sensitive) | Upstash 인증 토큰 |
+
+Upstash 셋업: Vercel marketplace → Upstash Redis Integration → 자동으로 위 두 env가 hyecho-master에 주입됨 (수동 set 불필요).
+
+## 10. 테스트
+
+V1 범위 — 단순 기능이라 자동 테스트 생략. 수동 검증 시나리오:
+1. GET 빈 상태 → 빈 list 표시
+2. POST 정상 메시지 → 201 + 즉시 list 맨 위에 표시
+3. POST 1초 이내 두 번째 → 429 + 인라인 메시지
+4. POST 281자 → 400 + 인라인 메시지
+5. POST 빈 문자열 → 400 + 인라인 메시지
+6. 페이지 새로고침 → 작성한 글 그대로 보임 (Redis 영속화 확인)
+7. 데스크탑 트리거 위치 — 혜초대사 트리거와 겹치지 않음
+8. 모바일 책갈피 — 혜초대사 책갈피 아래에 정확히 위치
+
+## 11. 비기능 / 비용
+
+- Upstash free tier (10K commands/day, 256MB) — 추정 사용량 1,200 commands/day (12%)
+- 응답 latency: Upstash 같은 region이면 <100ms (Vercel은 IAD 또는 ICN 라우팅)
+- 14일 idle 시 cold start ~1-2초 — 무시 가능
+
+## 12. 범위 외 (의도적 미포함)
+
+- 좋아요/공감 — V1엔 없음
+- 페이지네이션 — 최신 50개로 충분
+- 작성자 본인 글 삭제 — 익명이라 본인 식별 어려움
+- 욕설/스팸 자동 필터 — 관리자 수동 삭제로 충분
+- 알림 — 익명이라 알림 대상 없음
