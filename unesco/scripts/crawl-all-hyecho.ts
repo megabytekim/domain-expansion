@@ -378,7 +378,13 @@ async function main() {
         departures,
         departuresUpdatedAt: new Date().toISOString(),
       };
-      results.push(product);
+      // Avoid duplicates: if id already in results (재크롤 case), update in place
+      const existingIdx = results.findIndex((r: any) => r.id === product.id);
+      if (existingIdx >= 0) {
+        results[existingIdx] = product;
+      } else {
+        results.push(product);
+      }
       resultsMap.set(product.id, product);
     } catch (e: any) {
       console.error(`  Error: ${e.message}`);
