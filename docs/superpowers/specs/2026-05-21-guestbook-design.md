@@ -54,7 +54,8 @@ Redis LIST `gb:entries`의 각 엔트리 (JSON 직렬화):
 
 ### GET `/api/guestbook?limit=50`
 - Redis: `LRANGE gb:entries 0 (limit-1)`
-- 각 엔트리 JSON parse → 배열로 반환
+- 각 엔트리 JSON parse — try/catch로 손상된 엔트리는 skip + `logger.warning` (운영자가 redis-cli로 수동 push할 때 잘못된 JSON 들어갈 수 있음)
+- 배열로 반환
 - 응답: `200` `[{ message, ts }, ...]` (최신순)
 - 빈 list도 `200 []`
 
@@ -62,11 +63,25 @@ Redis LIST `gb:entries`의 각 엔트리 (JSON 직렬화):
 - 요청: `{ "message": "string" }`
 - 처리:
   1. message 검증: trim 후 1~280자 (1자 미만 또는 280자 초과 시 `400`)
-  2. IP hash 계산: `sha256(request.client.host).hex[:16]`
-  3. Redis: `INCR gb:rate:<ip_hash>` (생성 시 1) + `EXPIRE 60` (생성 시에만)
-  4. 결과 > 1이면 `429` 응답
+  2. **Client IP 추출** (Vercel serverless 환경):
+     - 1순위 `request.headers["x-forwarded-for"]`의 첫 번째 값 (`split(",")[0].strip()`)
+     - 2순위 `request.headers["x-real-ip"]`
+     - fallback `request.client.host`
+     - ⚠️ `request.client.host`만 쓰면 Vercel 내부 proxy IP라 모든 사용자가 한 IP로 잡혀 rate limit이 글로벌 1분 1개가 됨 — 반드시 헤더 우선
+  3. IP hash 계산: `sha256(client_ip).hex[:16]`
+  4. **Rate limit (atomic)** — Upstash `/pipeline`로 두 명령:
+     ```
+     SET gb:rate:<ip_hash> 1 NX EX 60   ← 키 없으면 1로 set + 60초 TTL
+     INCR gb:rate:<ip_hash>              ← 값 증가
+     ```
+     INCR 결과 > 1이면 `429` 응답 (첫 호출이면 SET이 성공해 1, INCR이 2가 되니 — 그래서 INCR 결과 ≥ 2이면 두 번째 시도 의미)
+     - 더 단순한 대안: `INCR` 호출 후 결과가 1이면 `EXPIRE 60` 별도 호출. 단 atomic 아님 → 첫 INCR과 EXPIRE 사이 race 가능. pipeline 권장.
   5. 엔트리 JSON: `{ message: trimmed, ts: now_ms }`
-  6. Redis: `LPUSH gb:entries <json>` + `LTRIM gb:entries 0 999`
+  6. **글 추가 (atomic)** — Upstash `/pipeline`로 두 명령:
+     ```
+     LPUSH gb:entries <json>
+     LTRIM gb:entries 0 999
+     ```
   7. 응답: `201` `{ message, ts }`
 
 ### CORS
@@ -82,16 +97,22 @@ Redis LIST `gb:entries`의 각 엔트리 (JSON 직렬화):
 
 ### GuestbookWidget.tsx (구조는 ChatWidget과 유사)
 
-**상태**
-- `open: boolean`
+**Props (부모에서 주입)**
+- `open: boolean` — 현재 열려있는지 (state는 부모인 `app/page.tsx`가 관리, 아래 *상호 배타 규칙* 참조)
+- `onOpenChange: (open: boolean) => void`
+
+**내부 상태**
 - `entries: { message, ts }[]`
 - `input: string`
-- `sending: boolean`
+- `loading: boolean` — 첫 GET 진행 중 (Upstash cold start 1-2초 대비 spinner 표시용)
+- `sending: boolean` — POST 진행 중
 - `loadError: boolean`
+- `postErrorMsg: string | null` — 인라인 에러 메시지
 
 **효과**
-- 컴포넌트 마운트 시 `GET /api/guestbook` 호출 → `entries` set
-- 열림 상태에서만 새 글이 list 맨 위에 prepend
+- 컴포넌트 마운트 시 `GET /api/guestbook` 호출 → `entries` set, `loading` false 전환
+- 작성 성공 시 응답을 `entries` 맨 위에 prepend
+- 입력 폼은 **single-line `<input type="text">`** (textarea 아님) — 줄바꿈 자동 금지, "한 줄" 의도 강제
 
 **트리거 (닫힌 상태)**
 
@@ -120,7 +141,10 @@ width: 380px, height: 540px
 
 모바일: 혜초대사와 동일한 패턴 — 화면 하단 시트 (height 55dvh).
 
-**상호 배타 규칙**: 모바일에서 혜초대사 panel과 방명록 panel은 같은 영역(하단 시트)을 점유하므로 동시 표시 불가. 방명록 트리거 클릭 시 혜초대사 panel이 열려 있다면 자동으로 혜초대사 panel을 닫고 방명록 panel을 연다. 데스크탑에선 좌/우로 분리되므로 동시 표시 가능.
+**상호 배타 규칙 (모바일)** — 두 panel이 같은 영역(하단 시트)을 점유하므로 동시 표시 불가. 방명록 트리거 클릭 시 혜초대사 panel이 열려 있다면 자동으로 닫고 방명록을 연다. 데스크탑에선 좌/우로 분리되므로 동시 표시 가능.
+
+**구현**: `app/page.tsx`에 `openWidget: "chat" | "guestbook" | null` state를 두고 `ChatWidget`/`GuestbookWidget` 각각에 `open={openWidget === "..."} onOpenChange={(o) => setOpenWidget(o ? "..." : null)}` prop 주입. 두 widget이 서로 모르는 채로도 자연스럽게 상호 배타 동작.
+- 데스크탑에서도 같은 패턴 사용 — 다만 둘 동시 표시 허용하려면 각자 독립 state 가능. **단순화 위해 모바일/데스크탑 모두 1개만 열림**으로 통일 (인지 부하 ↓, 사용자가 "지금 뭐가 열려있는지" 명확).
 
 ### Panel 내용
 
@@ -154,7 +178,9 @@ width: 380px, height: 540px
 
 | 상황 | UX |
 |---|---|
+| GET 로딩 중 (Upstash cold start) | `loading=true` → "발자취를 읽어오는 중…" spinner |
 | GET 실패 (네트워크/500) | "발자취를 읽어올 수 없네…" + retry 버튼 |
+| GET 일부 엔트리 손상 (JSON parse 실패) | 백엔드에서 skip + warning log, 사용자 화면엔 노출 안 함 |
 | POST 길이 위반 (400) | 인라인 "한 줄로, 280자 이내로 남겨주시게" |
 | POST rate limit (429) | 인라인 "잠시 후 다시 와주시게" |
 | POST 기타 실패 (500) | "지금은 기록을 새길 수 없네…" |
@@ -205,3 +231,5 @@ V1 범위 — 단순 기능이라 자동 테스트 생략. 수동 검증 시나�
 - 작성자 본인 글 삭제 — 익명이라 본인 식별 어려움
 - 욕설/스팸 자동 필터 — 관리자 수동 삭제로 충분
 - 알림 — 익명이라 알림 대상 없음
+- ChatWidget ↔ GuestbookWidget 공통 컴포넌트 추출 — 거의 동일 구조지만 V1은 복붙으로 진행. V2에 `BookmarkPanel` 같은 추상화 고려.
+- Backup/Export — Upstash free tier는 자동 백업 없음. 운영자가 필요시 `LRANGE 0 -1` 수동 export.
