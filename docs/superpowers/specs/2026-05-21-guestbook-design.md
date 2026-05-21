@@ -111,16 +111,16 @@ width: 80, height: 80
 
 ### Panel (열린 상태)
 
-데스크탑: 혜초대사 panel과 동일 위치(좌하단)에 두면 충돌. → 별도 위치 필요. **혜초대사가 닫힌 상태에서만 방명록 열기 가능** (둘 동시에 안 열림) — 같은 좌하단 anchor 사용해도 됨. UX 단순.
-
-또는 방명록 panel을 우하단으로 → 혜초대사와 분리. **권장: 우하단**.
+데스크탑: **우하단** — 혜초대사 panel(좌하단)과 분리되어 둘 동시에 열어도 안 겹침. RankingPanel(top 110 ~ bottom calc(100dvh-200))과는 세로 영역 일부 겹치지만 ChatWidget이 RankingPanel보다 위에 떠 있는 것과 동일하게 z-20 사용.
 
 ```tsx
 className="hidden md:flex absolute bottom-3 right-3 z-20 ..."
 width: 380px, height: 540px
 ```
 
-모바일: 혜초대사와 동일하게 화면 하단 시트 (height 55dvh).
+모바일: 혜초대사와 동일한 패턴 — 화면 하단 시트 (height 55dvh).
+
+**상호 배타 규칙**: 모바일에서 혜초대사 panel과 방명록 panel은 같은 영역(하단 시트)을 점유하므로 동시 표시 불가. 방명록 트리거 클릭 시 혜초대사 panel이 열려 있다면 자동으로 혜초대사 panel을 닫고 방명록 panel을 연다. 데스크탑에선 좌/우로 분리되므로 동시 표시 가능.
 
 ### Panel 내용
 
