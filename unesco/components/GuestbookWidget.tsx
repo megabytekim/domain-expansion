@@ -133,7 +133,7 @@ export default function GuestbookWidget({ open, onOpenChange }: GuestbookWidgetP
             onClick={() => onOpenChange(true)}
             className="hidden md:flex absolute bottom-5 z-10 items-center gap-3 px-6 py-3.5 transition-all hover:translate-x-1"
             style={{
-              left: "268px",
+              left: "310px",
               background: "var(--paper-100)",
               color: "var(--ink-deep)",
               borderRadius: "3px",
