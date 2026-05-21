@@ -157,7 +157,7 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
       <div
         className="md:hidden absolute z-10"
         style={{
-          top: "90px",
+          top: "110px",
           right: "12px",
           padding: "2px",
           borderRadius: "4px",
@@ -186,7 +186,7 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
         <div
           className="md:hidden absolute right-3 z-20 flex flex-col rounded-md shadow-2xl scroll-edge paper-grain"
           style={{
-            top: "90px",
+            top: "110px",
             width: "240px",
             maxHeight: "calc(100dvh - 200px)",
             background: "rgba(31,29,42,0.96)",
@@ -201,7 +201,7 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
       <div
         className="hidden md:flex absolute right-3 z-10 flex-col rounded-md shadow-2xl scroll-edge paper-grain"
         style={{
-          top: "90px",
+          top: "110px",
           width: "240px",
           maxHeight: "calc(100dvh - 200px)",
           background: "rgba(31,29,42,0.96)",

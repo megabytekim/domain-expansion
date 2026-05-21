@@ -73,7 +73,7 @@ export default function ChatWidget() {
           <div
             className="md:hidden absolute z-10"
             style={{
-              top: "184px",
+              top: "204px",
               right: "12px",
               padding: "2px",
               borderRadius: "4px",

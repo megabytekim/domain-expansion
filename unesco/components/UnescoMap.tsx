@@ -82,8 +82,8 @@ export default function HyechoMap({
             ...PALETTE.flatMap((c, i) => [i, c]),
             "#888",
           ] as unknown as maplibregl.ExpressionSpecification,
-          "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1.25],
-          "circle-stroke-color": ["case", ["get", "_selected"], "#f4ecd8", "rgba(244,236,216,0.45)"],
+          "circle-stroke-width": ["case", ["get", "_selected"], 2.5, 1.5],
+          "circle-stroke-color": ["case", ["get", "_selected"], "#ffffff", "rgba(255,255,255,0.4)"],
           "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
           "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],
         },
@@ -100,9 +100,9 @@ export default function HyechoMap({
         source: "hyecho-multi",
         paint: {
           "circle-radius": 7,
-          "circle-color": "#14131c",
-          "circle-stroke-width": 1.25,
-          "circle-stroke-color": "#f4ecd8",
+          "circle-color": "#1e293b",
+          "circle-stroke-width": 1.5,
+          "circle-stroke-color": "#ffffff",
           "circle-translate": [6, -6],
         },
       });
@@ -118,7 +118,7 @@ export default function HyechoMap({
           "text-offset": [0.55, -0.55],
         },
         paint: {
-          "text-color": "#f4ecd8",
+          "text-color": "#ffffff",
         },
       });
 
