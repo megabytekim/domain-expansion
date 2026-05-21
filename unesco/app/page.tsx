@@ -8,6 +8,7 @@ import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
 import RankingPanel from "@/components/RankingPanel";
 import ChatWidget from "@/components/ChatWidget";
+import GuestbookWidget from "@/components/GuestbookWidget";
 import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
@@ -42,6 +43,9 @@ function getSearchMatches(
 }
 
 export default function Home() {
+  // 상호 배타: 동시에 하나만 열림 (ChatWidget vs GuestbookWidget)
+  const [openWidget, setOpenWidget] = useState<"chat" | "guestbook" | null>(null);
+
   // 선택 상태
   const [selectedLocation, setSelectedLocation] = useState<SelectedLocation | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
@@ -194,7 +198,14 @@ export default function Home() {
           />
         ) : null}
       </BottomSheet>
-      <ChatWidget />
+      <ChatWidget
+        open={openWidget === "chat"}
+        onOpenChange={(o) => setOpenWidget(o ? "chat" : null)}
+      />
+      <GuestbookWidget
+        open={openWidget === "guestbook"}
+        onOpenChange={(o) => setOpenWidget(o ? "guestbook" : null)}
+      />
     </div>
   );
 }
