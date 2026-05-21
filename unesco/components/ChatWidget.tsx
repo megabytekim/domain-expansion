@@ -10,8 +10,12 @@ interface Message {
 const API_BASE = process.env.NEXT_PUBLIC_HYECHO_API || "http://localhost:9999";
 const STORAGE_KEY = "hyecho-master-ctx";
 
-export default function ChatWidget() {
-  const [open, setOpen] = useState(false);
+interface ChatWidgetProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export default function ChatWidget({ open, onOpenChange }: ChatWidgetProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -82,7 +86,7 @@ export default function ChatWidget() {
             }}
           >
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => onOpenChange(true)}
               className="flex flex-col items-center justify-center gap-0.5"
               style={{
                 width: "80px",
@@ -99,7 +103,7 @@ export default function ChatWidget() {
 
           {/* 데스크탑: 좌하단 — 두루마리 책갈피 형태 (좀 더 큼) */}
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => onOpenChange(true)}
             className="hidden md:flex absolute bottom-5 left-5 z-10 items-center gap-4 px-8 py-5 transition-all hover:translate-x-1"
             style={{
               background: "var(--paper-100)",
@@ -140,7 +144,7 @@ export default function ChatWidget() {
               send={send}
               sending={sending}
               handleKey={handleKey}
-              onClose={() => setOpen(false)}
+              onClose={() => onOpenChange(false)}
               scrollRef={scrollRef}
               inputRef={inputRef}
             />
@@ -169,7 +173,7 @@ export default function ChatWidget() {
               send={send}
               sending={sending}
               handleKey={handleKey}
-              onClose={() => setOpen(false)}
+              onClose={() => onOpenChange(false)}
               scrollRef={scrollRef}
               inputRef={inputRef}
             />

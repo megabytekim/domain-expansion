@@ -39,8 +39,8 @@
 2. `hyecho-master` 프로젝트 → Storage 탭 → "Connect Database"
 3. Upstash Redis (Marketplace) 선택 → "Free" 플랜 → region은 가까운 곳 (예: `iad1` US East)
 4. 프로젝트 연결 시 자동으로 다음 env가 production/preview/development에 주입됨:
-   - `UPSTASH_REDIS_REST_URL`
-   - `UPSTASH_REDIS_REST_TOKEN`
+   - `KV_REST_API_URL`
+   - `KV_REST_API_TOKEN`
    - 그 외 부속 변수들 (`UPSTASH_REDIS_URL` 등 — 사용 안 함)
 
 - [ ] **Step 2: env 주입 검증**
@@ -51,7 +51,7 @@ cd /home/ubuntu/domain-expansion/hyecho-master
 VERCEL_TOKEN=$(cat ~/.vercel-token) npx vercel env ls
 ```
 
-Expected: `UPSTASH_REDIS_REST_URL`과 `UPSTASH_REDIS_REST_TOKEN`이 production/preview/development 3개 환경 모두에 등록됨.
+Expected: `KV_REST_API_URL`과 `KV_REST_API_TOKEN`이 production/preview/development 3개 환경 모두에 등록됨.
 
 - [ ] **Step 3: 로컬 .env에 같은 값 복사 (로컬 dev에서도 사용)**
 
@@ -61,7 +61,7 @@ cd /home/ubuntu/domain-expansion/hyecho-master
 VERCEL_TOKEN=$(cat ~/.vercel-token) npx vercel env pull .env --environment=production --yes
 ```
 
-Expected: `.env` 파일에 `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, 기존 `GEMINI_API_KEY`가 같이 있음. (gitignore로 보호됨.)
+Expected: `.env` 파일에 `KV_REST_API_URL`, `KV_REST_API_TOKEN`, 기존 `GEMINI_API_KEY`가 같이 있음. (gitignore로 보호됨.)
 
 ---
 
@@ -245,8 +245,8 @@ class TestUpstashCall:
                 captured["headers"] = headers
                 return FakeResponse()
 
-        monkeypatch.setenv("UPSTASH_REDIS_REST_URL", "https://example.upstash.io")
-        monkeypatch.setenv("UPSTASH_REDIS_REST_TOKEN", "TESTTOKEN")
+        monkeypatch.setenv("KV_REST_API_URL", "https://example.upstash.io")
+        monkeypatch.setenv("KV_REST_API_TOKEN", "TESTTOKEN")
         monkeypatch.setattr(httpx, "AsyncClient", FakeClient)
 
         result = await guestbook._upstash_call(["GET", "foo"])
@@ -274,8 +274,8 @@ class TestUpstashCall:
                 captured["json"] = json
                 return FakeResponse()
 
-        monkeypatch.setenv("UPSTASH_REDIS_REST_URL", "https://example.upstash.io")
-        monkeypatch.setenv("UPSTASH_REDIS_REST_TOKEN", "TESTTOKEN")
+        monkeypatch.setenv("KV_REST_API_URL", "https://example.upstash.io")
+        monkeypatch.setenv("KV_REST_API_TOKEN", "TESTTOKEN")
         monkeypatch.setattr(httpx, "AsyncClient", FakeClient)
 
         result = await guestbook._upstash_call(
@@ -346,10 +346,10 @@ async def _upstash_call(commands, *, pipeline: bool = False):
 
     Returns the parsed JSON response.
     """
-    base = os.environ.get("UPSTASH_REDIS_REST_URL", "").rstrip("/")
-    token = os.environ.get("UPSTASH_REDIS_REST_TOKEN", "")
+    base = os.environ.get("KV_REST_API_URL", "").rstrip("/")
+    token = os.environ.get("KV_REST_API_TOKEN", "")
     if not base or not token:
-        raise RuntimeError("UPSTASH_REDIS_REST_URL / TOKEN env not set")
+        raise RuntimeError("KV_REST_API_URL / TOKEN env not set")
     url = f"{base}/pipeline" if pipeline else base
     headers = {"Authorization": f"Bearer {token}"}
     async with httpx.AsyncClient(timeout=8.0) as client:
@@ -533,7 +533,7 @@ curl -s http://localhost:9999/api/guestbook
 
 Expected: `[]` (빈 list, Upstash에 데이터 없음).
 
-(만약 `UPSTASH_REDIS_REST_URL` env가 없으면 500 + log "UPSTASH_REDIS_REST_URL / TOKEN env not set" — Task 1을 완료했는지 확인.)
+(만약 `KV_REST_API_URL` env가 없으면 500 + log "KV_REST_API_URL / TOKEN env not set" — Task 1을 완료했는지 확인.)
 
 - [ ] **Step 8: 커밋**
 
@@ -820,7 +820,7 @@ git commit -m "feat(guestbook): POST /api/guestbook + rate limit + 5개 단위 �
 ### Upstash Redis 셋업 (1회)
 1. https://vercel.com/dashboard → `hyecho-master` 프로젝트 → Storage 탭
 2. "Connect Database" → Upstash Redis (Marketplace) → Free 플랜
-3. `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` 자동 주입 확인
+3. `KV_REST_API_URL`, `KV_REST_API_TOKEN` 자동 주입 확인
 4. 로컬 dev: `vercel env pull .env --environment=production`
 
 ### 부적절한 글 삭제

@@ -65,3 +65,29 @@ uv run uvicorn api.index:app --host 0.0.0.0 --port 9999
 - history 길이 cap + sliding summary — 토큰 비용 / context window 보호
 - A2A SSE 스트리밍 + Gemini stream — UX
 - x402 결제 기반 콘텐츠 (paywall 가챠 등)
+
+## 방명록 운영
+
+### Upstash Redis 셋업 (1회)
+1. https://vercel.com/dashboard → `hyecho-master` 프로젝트 → Storage 탭
+2. "Connect Database" → Upstash Redis (Marketplace) → Free 플랜
+3. `KV_REST_API_URL`, `KV_REST_API_TOKEN` 자동 주입 확인
+4. 로컬 dev에서 실제 Upstash 호출하려면: Upstash 대시보드에서 두 값을 복사해 `.env`에 수동 set (`vercel env pull`은 sensitive env를 빈 값으로 마스킹함)
+
+### 부적절한 글 삭제
+관리자는 Upstash 웹 콘솔(또는 redis-cli)에서 직접 삭제:
+
+```
+# 특정 글 1개 삭제 (entry JSON 그대로 매칭)
+LREM gb:entries 1 '{"message":"부적절한 글","ts":1716258000000}'
+
+# 전체 비우기
+DEL gb:entries
+
+# 최근 50개 조회
+LRANGE gb:entries 0 49
+```
+
+### 모니터링
+- Upstash 대시보드에서 commands/day 추이 확인 (무료 한도 10K/day)
+- Vercel 대시보드 → hyecho-master → Logs에서 `/api/guestbook` 호출 추이
