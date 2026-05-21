@@ -103,10 +103,10 @@ async function extractCitiesViaClaude(
   }
 
   const prompt = `${SYSTEM_PROMPT}\n\n---\n페이지 본문:\n${body.slice(0, BODY_MAX_CHARS)}`;
+  args.push(prompt);  // prompt as last argv (avoids stdin timing issue with --print)
 
   try {
     const { stdout } = await execFileP("claude", args, {
-      input: prompt,
       maxBuffer: 1024 * 1024 * 4,
       timeout: CLAUDE_TIMEOUT_MS,
     });
@@ -119,7 +119,9 @@ async function extractCitiesViaClaude(
       cacheRead: data.usage?.cache_read_input_tokens ?? 0,
     };
   } catch (e: any) {
-    console.warn(`  LLM call failed: ${e.message?.slice(0, 200)}`);
+    console.warn(`  LLM call failed: code=${e.code} signal=${e.signal} msg=${e.message?.slice(0, 100)}`);
+    if (e.stderr) console.warn(`  stderr: ${String(e.stderr).slice(0, 500)}`);
+    if (e.stdout) console.warn(`  stdout: ${String(e.stdout).slice(0, 500)}`);
     return { cities: [], cost: 0, cacheRead: 0 };
   }
 }
