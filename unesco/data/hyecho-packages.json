@@ -4956,6 +4956,21 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png",
     "locations": [
       {
+        "name": "알마티 (Almaty)",
+        "lat": 43.222,
+        "lng": 76.8512
+      },
+      {
+        "name": "투르키스탄 (Turkestan)",
+        "lat": 43.2978,
+        "lng": 68.2522
+      },
+      {
+        "name": "심켄트 (Shymkent)",
+        "lat": 42.3417,
+        "lng": 69.5901
+      },
+      {
         "name": "사마르칸트 (Samarkand)",
         "lat": 39.65,
         "lng": 66.96
@@ -4964,6 +4979,31 @@
         "name": "부하라 (Bukhara)",
         "lat": 39.77,
         "lng": 64.42
+      },
+      {
+        "name": "히바 (Khiva)",
+        "lat": 41.3789,
+        "lng": 60.3611
+      },
+      {
+        "name": "이식쿨 (Issyk-Kul)",
+        "lat": 42.5,
+        "lng": 77.0833
+      },
+      {
+        "name": "비슈케크 (Bishkek)",
+        "lat": 42.8746,
+        "lng": 74.5698
+      },
+      {
+        "name": "두샨베 (Dushanbe)",
+        "lat": 38.5598,
+        "lng": 68.787
+      },
+      {
+        "name": "아슈가바트 (Ashgabat)",
+        "lat": 37.9601,
+        "lng": 58.3261
       },
       {
         "name": "타슈켄트 (Tashkent)",
@@ -15207,19 +15247,9 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1767/hyecho_cm9900_30001177.jpg",
     "locations": [
       {
-        "name": "엘 바디 궁전",
-        "lat": 31.6181788,
-        "lng": -7.9864859
-      },
-      {
         "name": "마라케시",
         "lat": 31.6258257,
         "lng": -7.9891608
-      },
-      {
-        "name": "카스바",
-        "lat": 36.7975292,
-        "lng": 10.1670117
       },
       {
         "name": "사하라 사막",
@@ -15365,7 +15395,7 @@
     "id": "hyecho-1777",
     "category": "culture",
     "title": "[신상품]이집트 시나이+요르단 13일",
-    "price": "3,500,000",
+    "price": "9,500,000",
     "duration": "13일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1777",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1777/hyecho_cm9900_30000909.jpg",
@@ -15376,11 +15406,6 @@
         "lng": 31.2357257
       },
       {
-        "name": "문명 박물관",
-        "lat": 30.0039,
-        "lng": 31.2291
-      },
-      {
         "name": "사카라",
         "lat": 29.871,
         "lng": 31.2196
@@ -15389,21 +15414,6 @@
         "name": "기자",
         "lat": 29.9870753,
         "lng": 31.2118063
-      },
-      {
-        "name": "기자 피라미드",
-        "lat": 29.9759851,
-        "lng": 31.1307366
-      },
-      {
-        "name": "올드타운",
-        "lat": 27.9183,
-        "lng": 34.3307
-      },
-      {
-        "name": "소호 광장",
-        "lat": 27.9166,
-        "lng": 34.3293
       },
       {
         "name": "타바",
@@ -15704,16 +15714,6 @@
         "lng": -7.9891608
       },
       {
-        "name": "바히아 궁전",
-        "lat": 31.6216327,
-        "lng": -7.9819376
-      },
-      {
-        "name": "쿠투비아 모스크",
-        "lat": 31.6237506,
-        "lng": -7.9933578
-      },
-      {
         "name": "라밧",
         "lat": 34.0209,
         "lng": -6.8416
@@ -15732,11 +15732,6 @@
         "name": "엘젬",
         "lat": 35.3358188,
         "lng": 10.6873658
-      },
-      {
-        "name": "튀니스 국립 바르도 박물관",
-        "lat": 36.8093571,
-        "lng": 10.1342438
       },
       {
         "name": "시디부사이드",
