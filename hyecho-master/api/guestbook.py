@@ -129,9 +129,12 @@ async def post_handler(request: Request) -> JSONResponse:
     raw_message = body.get("message") if isinstance(body, dict) else None
     message = (raw_message or "").strip() if isinstance(raw_message, str) else ""
     if len(message) < 1 or len(message) > MAX_MESSAGE_LEN:
-        return JSONResponse({"error": "message length 1..280"}, status_code=400)
+        return JSONResponse({"error": f"message length 1..{MAX_MESSAGE_LEN}"}, status_code=400)
 
-    # 2. rate limit (atomic pipeline: SET NX EX 60 + INCR)
+    # 2. rate limit (pipeline: SET NX EX 60 + INCR)
+    # NOTE: Upstash /pipeline is sequential but NOT atomic across commands.
+    # Two truly-concurrent requests from same IP could both pass — acceptable
+    # for personal guestbook. For strict atomicity, use Lua via /eval.
     ip = _client_ip(request)
     rate_key = f"gb:rate:{_ip_hash(ip)}"
     try:
