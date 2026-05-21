@@ -18,10 +18,12 @@ const locationMap = buildLocationMap(products);
 const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
 
 const PRICE_STEP = 500_000;
-const priceMax = Math.ceil(
-  Math.max(...products.map((p) => parsePrice(p.price)), 0) / PRICE_STEP
-) * PRICE_STEP;
-const durationMax = Math.max(...products.map((p) => parseDuration(p.duration)), 1);
+const _prices = products.map((p) => parsePrice(p.price)).filter((v) => v > 0);
+const _durations = products.map((p) => parseDuration(p.duration)).filter((v) => v > 0);
+const priceMin = _prices.length ? Math.floor(Math.min(..._prices) / PRICE_STEP) * PRICE_STEP : 0;
+const priceMax = _prices.length ? Math.ceil(Math.max(..._prices) / PRICE_STEP) * PRICE_STEP : PRICE_STEP;
+const durationMin = _durations.length ? Math.min(..._durations) : 1;
+const durationMax = _durations.length ? Math.max(..._durations) : 1;
 
 function getSearchMatches(
   products: HyechoProduct[],
@@ -117,8 +119,10 @@ export default function Home() {
         onPriceChange={setPriceRange}
         durationRange={durationRange}
         onDurationChange={setDurationRange}
+        priceMin={priceMin}
         priceMax={priceMax}
         priceStep={PRICE_STEP}
+        durationMin={durationMin}
         durationMax={durationMax}
         categories={categories}
         onToggleCategory={handleToggleCategory}
