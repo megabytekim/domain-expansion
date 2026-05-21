@@ -97,23 +97,23 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          {/* 데스크탑: 좌하단 — 두루마리 책갈피 형태 */}
+          {/* 데스크탑: 좌하단 — 두루마리 책갈피 형태 (좀 더 큼) */}
           <button
             onClick={() => setOpen(true)}
-            className="hidden md:flex absolute bottom-5 left-5 z-10 items-center gap-3 px-6 py-3.5 transition-all hover:translate-x-1"
+            className="hidden md:flex absolute bottom-5 left-5 z-10 items-center gap-4 px-8 py-5 transition-all hover:translate-x-1"
             style={{
               background: "var(--paper-100)",
               color: "var(--ink-deep)",
               borderRadius: "3px",
-              boxShadow: "0 8px 28px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(20,19,28,0.08)",
-              borderLeft: "4px solid var(--vermillion)",
+              boxShadow: "0 10px 32px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(20,19,28,0.08)",
+              borderLeft: "5px solid var(--vermillion)",
             }}
             aria-label="혜초대사 열기"
           >
-            <span className="serif-kr font-bold" style={{ fontSize: "26px", lineHeight: 1 }}>師</span>
-            <span className="flex flex-col items-start leading-tight">
-              <span className="display-italic text-[11px] tracking-[0.2em] uppercase" style={{ color: "var(--paper-700)" }}>Ask the Master</span>
-              <span className="serif-kr text-base font-semibold">혜초대사에게 묻기</span>
+            <span className="serif-kr font-bold" style={{ fontSize: "34px", lineHeight: 1 }}>師</span>
+            <span className="flex flex-col items-start leading-tight gap-0.5">
+              <span className="display-italic text-xs tracking-[0.22em] uppercase" style={{ color: "var(--paper-700)" }}>Ask the Master</span>
+              <span className="serif-kr text-lg font-semibold">혜초대사에게 묻기</span>
             </span>
           </button>
         </>
