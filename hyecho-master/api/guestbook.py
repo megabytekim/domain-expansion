@@ -18,6 +18,7 @@ import time
 
 import httpx
 from starlette.requests import Request
+from starlette.responses import JSONResponse
 
 logger = logging.getLogger("hyecho-master.guestbook")
 
@@ -79,3 +80,40 @@ async def _upstash_call(commands: list[Any], *, pipeline: bool = False) -> Any:
         resp = await client.post(url, json=commands, headers=headers)
         resp.raise_for_status()
         return resp.json()
+
+
+# ---------------------------------------------------------------------------
+# GET handler — 엔트리 조회
+# ---------------------------------------------------------------------------
+
+async def fetch_entries(limit: int = DEFAULT_LIMIT) -> list[dict]:
+    """Return latest `limit` entries (most recent first)."""
+    n = max(1, min(limit, MAX_ENTRIES))
+    raw = await _upstash_call(["LRANGE", ENTRIES_KEY, "0", str(n - 1)])
+    result = raw.get("result") if isinstance(raw, dict) else raw
+    out: list[dict] = []
+    for item in (result or []):
+        try:
+            out.append(json.loads(item))
+        except (json.JSONDecodeError, TypeError) as exc:
+            logger.warning("skipping corrupted guestbook entry: %r (%s)", item, exc)
+    return out
+
+
+async def get_handler(request: Request) -> JSONResponse:
+    """GET /api/guestbook?limit=50"""
+    try:
+        limit = int(request.query_params.get("limit", DEFAULT_LIMIT))
+    except ValueError:
+        limit = DEFAULT_LIMIT
+    try:
+        entries = await fetch_entries(limit=limit)
+        return JSONResponse(entries)
+    except Exception:
+        logger.exception("GET /api/guestbook failed")
+        return JSONResponse({"error": "fetch failed"}, status_code=500)
+
+
+async def post_handler(request: Request) -> JSONResponse:
+    """POST /api/guestbook — Task 4에서 구현."""
+    return JSONResponse({"error": "not implemented"}, status_code=501)

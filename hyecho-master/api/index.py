@@ -34,6 +34,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 from starlette.routing import Mount, Route
 
+from api.guestbook import get_handler as guestbook_get_handler, post_handler as guestbook_post_handler
+
 
 # ---------------------------------------------------------------------------
 # 시스템 프롬프트 (별도 파일에서 로드)
@@ -208,6 +210,8 @@ app = Starlette(
     routes=[
         Route("/api/health", _health, methods=["GET"]),
         Route("/api/chat", _chat_endpoint, methods=["POST", "OPTIONS"]),
+        Route("/api/guestbook", guestbook_get_handler, methods=["GET"]),
+        Route("/api/guestbook", guestbook_post_handler, methods=["POST", "OPTIONS"]),
         Mount("/", app=_a2a_app),
     ],
     middleware=middleware,

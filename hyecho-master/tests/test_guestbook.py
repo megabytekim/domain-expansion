@@ -116,3 +116,43 @@ class TestUpstashCall:
         monkeypatch.delenv("KV_REST_API_TOKEN", raising=False)
         with pytest.raises(RuntimeError, match="KV_REST_API_URL"):
             await guestbook._upstash_call(["GET", "foo"])
+
+
+from api.guestbook import ENTRIES_KEY
+
+
+class TestFetchEntries:
+    @pytest.mark.asyncio
+    async def test_returns_parsed_entries_in_lrange_order(self, monkeypatch):
+        async def fake_upstash(commands, pipeline=False):
+            assert commands == ["LRANGE", ENTRIES_KEY, "0", "49"]
+            return {"result": [
+                json.dumps({"message": "최신", "ts": 1716}),
+                json.dumps({"message": "구식", "ts": 1715}),
+            ]}
+        monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
+        entries = await guestbook.fetch_entries(limit=50)
+        assert entries == [
+            {"message": "최신", "ts": 1716},
+            {"message": "구식", "ts": 1715},
+        ]
+
+    @pytest.mark.asyncio
+    async def test_skips_corrupted_entries(self, monkeypatch):
+        async def fake_upstash(commands, pipeline=False):
+            return {"result": [
+                json.dumps({"message": "정상", "ts": 1}),
+                "not-json-{",
+                json.dumps({"message": "정상2", "ts": 2}),
+            ]}
+        monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
+        entries = await guestbook.fetch_entries(limit=50)
+        assert entries == [{"message": "정상", "ts": 1}, {"message": "정상2", "ts": 2}]
+
+    @pytest.mark.asyncio
+    async def test_returns_empty_when_no_entries(self, monkeypatch):
+        async def fake_upstash(commands, pipeline=False):
+            return {"result": []}
+        monkeypatch.setattr(guestbook, "_upstash_call", fake_upstash)
+        entries = await guestbook.fetch_entries(limit=50)
+        assert entries == []
