@@ -90,15 +90,15 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
 
   const panelContent = (
     <>
-      <div className="px-3 pt-3 pb-2 border-b shrink-0 flex items-start justify-between" style={{ borderColor: "var(--ink-border)" }}>
+      <div className="px-3 pt-3 pb-2 md:px-4 md:pt-4 md:pb-3 border-b shrink-0 flex items-start justify-between" style={{ borderColor: "var(--ink-border)" }}>
         <div>
           <div className="flex items-baseline gap-2">
-            <span className="serif-kr text-sm" style={{ color: "var(--paper-100)", letterSpacing: "0.04em" }}>인기 순위</span>
+            <span className="serif-kr text-sm md:text-base" style={{ color: "var(--paper-100)", letterSpacing: "0.04em" }}>인기 순위</span>
             {dataDate && (
-              <span className="text-[10px] tracking-wider" style={{ color: "var(--paper-500)" }}>{dataDate} 기준</span>
+              <span className="text-[10px] md:text-xs tracking-wider" style={{ color: "var(--paper-500)" }}>{dataDate} 기준</span>
             )}
           </div>
-          <p className="text-[11px] mt-1 leading-snug" style={{ color: "var(--paper-500)" }}>
+          <p className="text-[11px] md:text-xs mt-1 leading-snug" style={{ color: "var(--paper-500)" }}>
             <span className="display-italic">90일 예약률 × √예약자수</span>
           </p>
         </div>
@@ -122,24 +122,24 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
             <li key={item.product.id} style={{ borderTop: idx === 0 ? "none" : "1px solid var(--ink-border)" }}>
               <button
                 onClick={() => { onSelectProduct(item.product.id); setMobileOpen(false); }}
-                className="w-full text-left px-3 py-2 transition-colors flex items-start gap-2 hover:bg-[rgba(244,236,216,0.04)]"
+                className="w-full text-left px-3 py-2 md:px-4 md:py-2.5 transition-colors flex items-start gap-2 md:gap-2.5 hover:bg-[rgba(244,236,216,0.04)]"
               >
                 <span
-                  className="display-italic text-base mt-0.5 shrink-0 w-5 text-center leading-none"
+                  className="display-italic text-base md:text-xl mt-0.5 shrink-0 w-5 md:w-6 text-center leading-none"
                   style={{ color: isTop ? "var(--vermillion)" : "var(--paper-500)" }}
                 >
                   {idx + 1}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="serif-kr text-[12px] leading-tight line-clamp-2" style={{ color: "var(--paper-100)" }}>{item.product.title}</p>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <div className="flex-1 h-px" style={{ background: "rgba(244,236,216,0.12)" }}>
-                      <div className="h-px" style={{ width: `${barPct}%`, background: "var(--vermillion)" }} />
+                  <p className="serif-kr text-[12px] md:text-sm leading-tight md:leading-snug line-clamp-2" style={{ color: "var(--paper-100)" }}>{item.product.title}</p>
+                  <div className="flex items-center gap-2 mt-1.5 md:mt-2">
+                    <div className="flex-1 h-px md:h-[2px]" style={{ background: "rgba(244,236,216,0.12)" }}>
+                      <div className="h-px md:h-[2px]" style={{ width: `${barPct}%`, background: "var(--vermillion)" }} />
                     </div>
-                    <span className="text-[10px] shrink-0 tabular-nums" style={{ color: "var(--vermillion)" }}>{item.resvCnt}명</span>
+                    <span className="text-[10px] md:text-xs shrink-0 tabular-nums font-medium" style={{ color: "var(--vermillion)" }}>{item.resvCnt}명</span>
                   </div>
                   {item.nextDate && (
-                    <p className="text-[10px] mt-1 tracking-wide" style={{ color: "var(--paper-500)" }}>다음 출발 {formatDate(item.nextDate)}</p>
+                    <p className="text-[10px] md:text-xs mt-1 md:mt-1.5 tracking-wide" style={{ color: "var(--paper-500)" }}>다음 출발 {formatDate(item.nextDate)}</p>
                   )}
                 </div>
               </button>
@@ -197,12 +197,12 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
         </div>
       )}
 
-      {/* 데스크탑 패널 — 항상 표시 */}
+      {/* 데스크탑 패널 — 항상 표시 (모바일보다 넓게) */}
       <div
         className="hidden md:flex absolute right-3 z-10 flex-col rounded-md shadow-2xl scroll-edge paper-grain"
         style={{
           top: "110px",
-          width: "240px",
+          width: "300px",
           maxHeight: "calc(100dvh - 200px)",
           background: "rgba(31,29,42,0.96)",
           backdropFilter: "blur(10px)",
