@@ -7,12 +7,12 @@ interface SiteDetailProps {
   onCityTagClick: (lat: number, lng: number) => void;
 }
 
-const PROC_LABEL: Record<string, { label: string; className: string }> = {
-  "01": { label: "확정", className: "text-emerald-400" },
-  "00": { label: "예정", className: "text-yellow-400" },
-  "05": { label: "마감", className: "text-gray-500" },
-  "40": { label: "완판", className: "text-red-400" },
-  "0000": { label: "대기", className: "text-blue-400" },
+const PROC_LABEL: Record<string, { label: string; color: string }> = {
+  "01": { label: "확정", color: "var(--jade)" },
+  "00": { label: "예정", color: "#c9a86a" },
+  "05": { label: "마감", color: "var(--paper-500)" },
+  "40": { label: "완판", color: "var(--vermillion)" },
+  "0000": { label: "대기", color: "#7a9aa3" },
 };
 
 function formatDate(yyyymmdd: string) {
@@ -26,7 +26,7 @@ function DepartureTable({ departures }: { departures: Departure[] }) {
   const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
 
   if (departures.length === 0) {
-    return <p className="text-xs text-gray-500 py-2">출발일 정보 없음</p>;
+    return <p className="text-xs py-2 display-italic" style={{ color: "var(--paper-500)" }}>출발일 정보 없음</p>;
   }
 
   const rows = [...departures].sort((a, b) => a.startDay.localeCompare(b.startDay));
@@ -34,31 +34,31 @@ function DepartureTable({ departures }: { departures: Departure[] }) {
   return (
     <div className="overflow-auto -mx-1" style={{ maxHeight: "240px" }}>
       <table className="w-full text-xs border-collapse">
-        <thead className="sticky top-0 bg-gray-900">
-          <tr className="text-gray-500 border-b border-gray-700">
-            <th className="text-left py-1 px-1 font-normal">출발일</th>
-            <th className="text-right py-1 px-1 font-normal">정원</th>
-            <th className="text-right py-1 px-1 font-normal">예약</th>
-            <th className="text-right py-1 px-1 font-normal">잔여</th>
-            <th className="text-right py-1 px-1 font-normal">상태</th>
+        <thead className="sticky top-0" style={{ background: "var(--ink-deep)" }}>
+          <tr style={{ borderBottom: "1px solid var(--ink-border)" }}>
+            <th className="text-left py-1.5 px-1 font-normal display-italic tracking-wider" style={{ color: "var(--paper-500)" }}>출발일</th>
+            <th className="text-right py-1.5 px-1 font-normal display-italic tracking-wider" style={{ color: "var(--paper-500)" }}>정원</th>
+            <th className="text-right py-1.5 px-1 font-normal display-italic tracking-wider" style={{ color: "var(--paper-500)" }}>예약</th>
+            <th className="text-right py-1.5 px-1 font-normal display-italic tracking-wider" style={{ color: "var(--paper-500)" }}>잔여</th>
+            <th className="text-right py-1.5 px-1 font-normal display-italic tracking-wider" style={{ color: "var(--paper-500)" }}>상태</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((dep) => {
             const isPast = dep.startDay < today || dep.procCd === "05";
-            const status = PROC_LABEL[dep.procCd] ?? { label: dep.procCd, className: "text-gray-400" };
+            const status = PROC_LABEL[dep.procCd] ?? { label: dep.procCd, color: "var(--paper-500)" };
             return (
               <tr
                 key={dep.eventSeq}
-                className={`border-b border-gray-800 ${isPast ? "opacity-40" : ""}`}
+                style={{ borderBottom: "1px solid rgba(244,236,216,0.06)", opacity: isPast ? 0.4 : 1 }}
               >
-                <td className="py-1 px-1 text-gray-200">{formatDate(dep.startDay)}</td>
-                <td className="py-1 px-1 text-right text-gray-400">{dep.personCnt}</td>
-                <td className="py-1 px-1 text-right text-gray-400">{dep.resvCnt}</td>
-                <td className={`py-1 px-1 text-right font-medium ${dep.restCnt <= 3 && !isPast ? "text-red-400" : "text-gray-300"}`}>
+                <td className="py-1 px-1 serif-kr tabular-nums" style={{ color: "var(--paper-100)" }}>{formatDate(dep.startDay)}</td>
+                <td className="py-1 px-1 text-right tabular-nums" style={{ color: "var(--paper-500)" }}>{dep.personCnt}</td>
+                <td className="py-1 px-1 text-right tabular-nums" style={{ color: "var(--paper-500)" }}>{dep.resvCnt}</td>
+                <td className="py-1 px-1 text-right font-medium tabular-nums" style={{ color: dep.restCnt <= 3 && !isPast ? "var(--vermillion)" : "var(--paper-200)" }}>
                   {dep.restCnt}
                 </td>
-                <td className={`py-1 px-1 text-right ${status.className}`}>{status.label}</td>
+                <td className="py-1 px-1 text-right serif-kr" style={{ color: status.color }}>{status.label}</td>
               </tr>
             );
           })}
@@ -70,13 +70,14 @@ function DepartureTable({ departures }: { departures: Departure[] }) {
 
 export default function SiteDetail({ product, locationCount, onBack, onCityTagClick }: SiteDetailProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {/* 뒤로가기 */}
       {locationCount > 1 && (
-        <div className="sticky top-0 z-10 -mx-4 px-4 py-1.5 bg-gray-900">
+        <div className="sticky top-0 z-10 -mx-4 px-4 py-1.5" style={{ background: "var(--ink-deep)" }}>
           <button
             onClick={onBack}
-            className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
+            className="text-xs display-italic tracking-wider transition-opacity hover:opacity-70"
+            style={{ color: "var(--vermillion)" }}
           >
             ← 목록으로
           </button>
@@ -85,39 +86,54 @@ export default function SiteDetail({ product, locationCount, onBack, onCityTagCl
 
       {/* 상품 이미지 */}
       {product.imageUrl && (
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          className="w-full h-40 object-cover rounded-lg"
-          loading="lazy"
-        />
+        <div className="relative -mx-4">
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="w-full h-48 object-cover"
+            loading="lazy"
+          />
+          {/* sepia 오버레이 (하단 그라데이션) */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
+            style={{ background: "linear-gradient(to top, var(--ink-deep), transparent)" }}
+          />
+        </div>
       )}
 
       {/* 제목 */}
-      <h2 className="text-lg font-bold text-white leading-snug">{product.title}</h2>
+      <h2 className="serif-kr text-xl font-bold leading-snug" style={{ color: "var(--paper-100)" }}>{product.title}</h2>
 
       {/* 가격 + 기간 */}
-      <div className="flex gap-4 text-sm">
+      <div className="flex items-baseline gap-4 pb-2" style={{ borderBottom: "1px solid var(--ink-border)" }}>
         {product.price && (
-          <span className="text-emerald-400 font-medium">₩{product.price}</span>
+          <span className="serif-kr text-2xl font-bold tabular-nums" style={{ color: "var(--vermillion)" }}>
+            ₩{product.price}
+          </span>
         )}
         {product.duration && (
-          <span className="text-gray-400">{product.duration}</span>
+          <span className="display-italic text-base tracking-wider" style={{ color: "var(--paper-500)" }}>{product.duration}</span>
         )}
       </div>
 
       {/* 경유 도시 태그 */}
       {product.locations.length > 0 && (
         <div>
-          <p className="text-xs text-gray-500 mb-1.5">지도에서 보기 →</p>
+          <p className="display-italic text-[11px] tracking-[0.18em] uppercase mb-2" style={{ color: "var(--paper-500)" }}>지도에서 보기</p>
           <div className="flex flex-wrap gap-1.5">
-          {product.locations.map((loc) => (
+          {product.locations.map((loc, idx) => (
             <button
               key={`${loc.name}-${loc.lat}-${loc.lng}`}
               onClick={() => onCityTagClick(loc.lat, loc.lng)}
-              className="px-2 py-0.5 rounded-full text-xs transition-opacity hover:opacity-70"
-              style={{ background: "rgba(30,58,138,0.5)", color: "#93c5fd", border: "1px solid rgba(96,165,250,0.3)" }}
+              className="serif-kr text-xs transition-opacity hover:opacity-70 px-2.5 py-1"
+              style={{
+                background: "rgba(244,236,216,0.04)",
+                color: "var(--paper-100)",
+                border: "1px solid rgba(244,236,216,0.18)",
+                borderRadius: "2px",
+              }}
             >
+              <span className="display-italic mr-1" style={{ color: "var(--paper-500)" }}>{idx + 1}.</span>
               {loc.name}
             </button>
           ))}
@@ -127,11 +143,11 @@ export default function SiteDetail({ product, locationCount, onBack, onCityTagCl
 
       {/* 출발 일정 */}
       <div>
-        <div className="flex items-baseline gap-1.5 mb-1.5">
-          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">출발 일정</h3>
+        <div className="flex items-baseline gap-2 mb-2">
+          <h3 className="serif-kr text-sm font-semibold tracking-wide" style={{ color: "var(--paper-100)" }}>출발 일정</h3>
           {product.departuresUpdatedAt && (() => {
             const d = new Date(product.departuresUpdatedAt!);
-            return <span className="text-xs text-gray-600">{d.getMonth() + 1}/{d.getDate()} 기준</span>;
+            return <span className="display-italic text-[11px]" style={{ color: "var(--paper-500)" }}>{d.getMonth() + 1}/{d.getDate()} 기준</span>;
           })()}
         </div>
         <DepartureTable departures={product.departures ?? []} />
@@ -142,7 +158,13 @@ export default function SiteDetail({ product, locationCount, onBack, onCityTagCl
         href={product.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-emerald-100 text-sm font-medium rounded-lg transition-colors"
+        className="inline-flex items-center gap-2 px-5 py-2.5 serif-kr text-sm font-medium transition-all hover:translate-x-1"
+        style={{
+          background: "var(--paper-100)",
+          color: "var(--ink-deep)",
+          borderRadius: "2px",
+          borderLeft: "3px solid var(--vermillion)",
+        }}
       >
         혜초여행에서 보기 →
       </a>

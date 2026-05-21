@@ -3,11 +3,12 @@
 import { useState } from "react";
 import type { CategoryFilter, HyechoProduct } from "@/lib/types";
 
+// Pilgrim Manuscript: 마커 sepia 4색과 동일
 const CATEGORY_CONFIG: { key: CategoryFilter; label: string; color: string; bg: string; border: string }[] = [
-  { key: "trekking", label: "트레킹", color: "#22c55e", bg: "rgba(34,197,94,0.15)", border: "rgba(34,197,94,0.4)" },
-  { key: "culture", label: "문화·역사", color: "#fbbf24", bg: "rgba(251,191,36,0.15)", border: "rgba(251,191,36,0.4)" },
-  { key: "walking", label: "도보여행", color: "#60a5fa", bg: "rgba(96,165,250,0.15)", border: "rgba(96,165,250,0.4)" },
-  { key: "event", label: "기획상품", color: "#f472b6", bg: "rgba(244,114,182,0.15)", border: "rgba(244,114,182,0.4)" },
+  { key: "trekking", label: "트레킹",   color: "#7a9aa3", bg: "rgba(122,154,163,0.16)", border: "rgba(122,154,163,0.45)" },
+  { key: "culture",  label: "문화·역사", color: "#c47a3b", bg: "rgba(196,122,59,0.16)",  border: "rgba(196,122,59,0.45)" },
+  { key: "walking",  label: "도보여행",  color: "#5f8d76", bg: "rgba(95,141,118,0.16)", border: "rgba(95,141,118,0.45)" },
+  { key: "event",    label: "기획상품",  color: "#b85450", bg: "rgba(184,84,80,0.16)",  border: "rgba(184,84,80,0.45)" },
 ];
 
 function formatPriceRange(a: number, b: number, dataMin: number, dataMax: number): string {
@@ -73,7 +74,7 @@ export default function SearchBar({
       {/* 검색창 + 필터 버튼 */}
       <div className="flex gap-1.5">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm backdrop-blur-sm"
-          style={{ background: "rgba(15,23,42,0.85)", border: "1px solid #334155", flex: 1, minWidth: 180 }}>
+          style={{ background: "rgba(20,19,28,0.88)", border: "1px solid rgba(244,236,216,0.12)", flex: 1, minWidth: 180 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2.5">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
@@ -92,7 +93,7 @@ export default function SearchBar({
           onClick={() => setFilterOpen((o) => !o)}
           className="px-3 py-1.5 rounded-full text-xs backdrop-blur-sm transition-all"
           style={{
-            background: hasActiveFilter ? "rgba(96,165,250,0.2)" : "rgba(15,23,42,0.85)",
+            background: hasActiveFilter ? "rgba(96,165,250,0.2)" : "rgba(20,19,28,0.88)",
             color: hasActiveFilter ? "#60a5fa" : "#94a3b8",
             border: `1px solid ${hasActiveFilter ? "rgba(96,165,250,0.5)" : "#334155"}`,
           }}
@@ -105,7 +106,7 @@ export default function SearchBar({
       {searchQuery.trim() && searchMatches.length > 0 && (
         <div
           className="rounded-xl overflow-hidden backdrop-blur-sm"
-          style={{ background: "rgba(15,23,42,0.95)", border: "1px solid #334155" }}
+          style={{ background: "rgba(20,19,28,0.95)", border: "1px solid rgba(244,236,216,0.12)" }}
         >
           {searchMatches.map((p) => (
             <button
@@ -124,7 +125,7 @@ export default function SearchBar({
       {searchQuery.trim() && searchMatches.length === 0 && (
         <div
           className="px-3 py-2 rounded-xl text-xs text-gray-500 backdrop-blur-sm"
-          style={{ background: "rgba(15,23,42,0.95)", border: "1px solid #334155" }}
+          style={{ background: "rgba(20,19,28,0.95)", border: "1px solid rgba(244,236,216,0.12)" }}
         >
           검색 결과 없음
         </div>
@@ -156,7 +157,7 @@ export default function SearchBar({
       {filterOpen && (
         <div
           className="rounded-xl p-4 flex flex-col gap-4 backdrop-blur-sm"
-          style={{ background: "rgba(15,23,42,0.95)", border: "1px solid #334155", minWidth: 240 }}
+          style={{ background: "rgba(20,19,28,0.95)", border: "1px solid rgba(244,236,216,0.12)", minWidth: 240 }}
         >
           {/* 가격 */}
           <div>

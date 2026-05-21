@@ -90,58 +90,56 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
 
   const panelContent = (
     <>
-      <div className="px-3 py-2 border-b border-white/10 shrink-0 flex items-center justify-between">
+      <div className="px-3 pt-3 pb-2 border-b shrink-0 flex items-start justify-between" style={{ borderColor: "var(--ink-border)" }}>
         <div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">인기 순위</span>
+          <div className="flex items-baseline gap-2">
+            <span className="serif-kr text-sm" style={{ color: "var(--paper-100)", letterSpacing: "0.04em" }}>인기 순위</span>
             {dataDate && (
-              <span className="text-xs text-gray-600">{dataDate} 기준</span>
+              <span className="text-[10px] tracking-wider" style={{ color: "var(--paper-500)" }}>{dataDate} 기준</span>
             )}
           </div>
-          <p className="text-xs text-gray-600 mt-0.5 leading-snug">
-            90일 예약률 × √예약자수<br />
-            <span className="text-gray-700">데이터 적으면 전체 평균으로 보정</span>
+          <p className="text-[11px] mt-1 leading-snug" style={{ color: "var(--paper-500)" }}>
+            <span className="display-italic">90일 예약률 × √예약자수</span>
           </p>
         </div>
         {/* 모바일에서만 닫기 버튼 */}
         <button
           onClick={() => setMobileOpen(false)}
-          className="md:hidden text-gray-500 hover:text-gray-300 text-lg leading-none ml-2"
+          className="md:hidden text-lg leading-none ml-2"
+          style={{ color: "var(--paper-500)" }}
           aria-label="닫기"
         >
           ×
         </button>
       </div>
-      <ul className="divide-y divide-white/5 overflow-y-auto">
+      <ul className="overflow-y-auto" style={{ borderColor: "var(--ink-border)" }}>
         {(() => {
           const maxScore = ranked[0]?.score ?? 1;
           return ranked.map((item, idx) => {
           const barPct = Math.round((item.score / maxScore) * 100);
+          const isTop = idx < 3;
           return (
-            <li key={item.product.id}>
+            <li key={item.product.id} style={{ borderTop: idx === 0 ? "none" : "1px solid var(--ink-border)" }}>
               <button
                 onClick={() => { onSelectProduct(item.product.id); setMobileOpen(false); }}
-                className="w-full text-left px-3 py-2 hover:bg-white/5 transition-colors flex items-start gap-2"
+                className="w-full text-left px-3 py-2 transition-colors flex items-start gap-2 hover:bg-[rgba(244,236,216,0.04)]"
               >
                 <span
-                  className="text-xs font-bold mt-0.5 shrink-0 w-5 text-center"
-                  style={{ color: idx < 3 ? "#fbbf24" : "#6b7280" }}
+                  className="display-italic text-base mt-0.5 shrink-0 w-5 text-center leading-none"
+                  style={{ color: isTop ? "var(--vermillion)" : "var(--paper-500)" }}
                 >
                   {idx + 1}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs text-gray-200 leading-tight line-clamp-2">{item.product.title}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="flex-1 h-1 rounded-full bg-gray-700 overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-emerald-500"
-                        style={{ width: `${barPct}%` }}
-                      />
+                  <p className="serif-kr text-[12px] leading-tight line-clamp-2" style={{ color: "var(--paper-100)" }}>{item.product.title}</p>
+                  <div className="flex items-center gap-2 mt-1.5">
+                    <div className="flex-1 h-px" style={{ background: "rgba(244,236,216,0.12)" }}>
+                      <div className="h-px" style={{ width: `${barPct}%`, background: "var(--vermillion)" }} />
                     </div>
-                    <span className="text-xs text-emerald-400 shrink-0">{item.resvCnt}명</span>
+                    <span className="text-[10px] shrink-0 tabular-nums" style={{ color: "var(--vermillion)" }}>{item.resvCnt}명</span>
                   </div>
                   {item.nextDate && (
-                    <p className="text-xs text-gray-500 mt-0.5">다음 출발 {formatDate(item.nextDate)}</p>
+                    <p className="text-[10px] mt-1 tracking-wide" style={{ color: "var(--paper-500)" }}>다음 출발 {formatDate(item.nextDate)}</p>
                   )}
                 </div>
               </button>
@@ -161,39 +159,38 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
         style={{
           top: "90px",
           right: "12px",
-          padding: "3px",
-          borderRadius: "16px",
-          background: "conic-gradient(from 0deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff, #ff6b6b)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.28)",
+          padding: "2px",
+          borderRadius: "4px",
+          background: "linear-gradient(180deg, rgba(192,57,43,0.9), rgba(192,57,43,0.55))",
+          boxShadow: "0 6px 22px rgba(0,0,0,0.45)",
         }}
       >
         <button
           onClick={() => { setMobileOpen(true); onPanelOpen?.(); }}
-          className="flex flex-col items-center justify-center gap-0.5 rounded-xl"
+          className="flex flex-col items-center justify-center gap-0.5"
           style={{
             width: "80px",
             height: "80px",
-            background: "rgba(255,255,255,0.97)",
-            backdropFilter: "blur(8px)",
+            background: "var(--paper-100)",
+            borderRadius: "3px",
           }}
           aria-label="인기순위 열기"
         >
-          <span style={{ fontSize: "30px", lineHeight: 1 }}>🏆</span>
-          <span className="text-sm font-semibold text-gray-700 mt-1">인기순</span>
+          <span className="serif-kr" style={{ fontSize: "28px", lineHeight: 1, color: "var(--ink-deep)", fontWeight: 700 }}>頂</span>
+          <span className="text-[10px] mt-1 tracking-[0.25em]" style={{ color: "var(--ink-deep)" }}>인기순</span>
         </button>
       </div>
 
       {/* 모바일 패널 (오픈 시) */}
       {mobileOpen && (
         <div
-          className="md:hidden absolute right-3 z-20 flex flex-col rounded-xl shadow-2xl"
+          className="md:hidden absolute right-3 z-20 flex flex-col rounded-md shadow-2xl scroll-edge paper-grain"
           style={{
             top: "90px",
-            width: "220px",
+            width: "240px",
             maxHeight: "calc(100dvh - 160px)",
-            background: "rgba(15,23,42,0.92)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(31,29,42,0.96)",
+            backdropFilter: "blur(10px)",
           }}
         >
           {panelContent}
@@ -202,14 +199,13 @@ export default function RankingPanel({ products, onSelectProduct, onPanelOpen }:
 
       {/* 데스크탑 패널 — 항상 표시 */}
       <div
-        className="hidden md:flex absolute right-3 z-10 flex-col rounded-xl shadow-2xl"
+        className="hidden md:flex absolute right-3 z-10 flex-col rounded-md shadow-2xl scroll-edge paper-grain"
         style={{
           top: "90px",
-          width: "220px",
+          width: "240px",
           maxHeight: "calc(100dvh - 160px)",
-          background: "rgba(15,23,42,0.92)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(31,29,42,0.96)",
+          backdropFilter: "blur(10px)",
         }}
       >
         {panelContent}
