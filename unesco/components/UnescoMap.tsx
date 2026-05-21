@@ -48,9 +48,11 @@ export default function HyechoMap({
   const onSelectRef = useRef(onLocationSelect);
   const locationMapRef = useRef(locationMap);
   const popupRef = useRef<maplibregl.Popup | null>(null);
+  const selectedProductIdRef = useRef<string | null>(null);
 
   useEffect(() => { onSelectRef.current = onLocationSelect; }, [onLocationSelect]);
   useEffect(() => { locationMapRef.current = locationMap; }, [locationMap]);
+  useEffect(() => { selectedProductIdRef.current = selectedProductId; }, [selectedProductId]);
 
   // 지도 초기화
   useEffect(() => {
@@ -184,6 +186,8 @@ export default function HyechoMap({
       popupRef.current = popup;
 
       map.on("mousemove", "markers", (e) => {
+        // Drill-in 모드(상품 선택됨)에선 dim된 centroid의 popup 숨김 — 5개 expanded marker만 의미 있음
+        if (selectedProductIdRef.current) return;
         const feature = e.features?.[0];
         if (!feature) return;
         const title = feature.properties?.productTitle ?? "";
@@ -195,6 +199,22 @@ export default function HyechoMap({
 
       map.on("mouseleave", "markers", () => {
         popup.remove();
+      });
+
+      // Expanded marker(drill-in 모드의 도시 마커): hover 시 도시명 popup
+      map.on("mouseenter", "expanded-markers", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "expanded-markers", () => {
+        map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+      map.on("mousemove", "expanded-markers", (e) => {
+        const feature = e.features?.[0];
+        if (!feature) return;
+        const name = feature.properties?.locationName ?? "";
+        const span = document.createElement("span");
+        span.style.cssText = "font-size:13px;color:#f4ecd8;font-weight:600;white-space:nowrap;max-width:240px;display:block;overflow:hidden;text-overflow:ellipsis";
+        span.textContent = name;
+        popup.setLngLat(e.lngLat).setDOMContent(span).addTo(map);
       });
     });
 
