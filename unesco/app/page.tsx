@@ -8,14 +8,16 @@ import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
 import RankingPanel from "@/components/RankingPanel";
 import ChatWidget from "@/components/ChatWidget";
-import { productsToGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
-import type { HyechoProduct, SelectedLocation, CategoryFilter } from "@/lib/types";
+import { productsToGeoJSON, productLocationsGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
+import type { HyechoProduct, SelectedLocation, CategoryFilter, MarkerGeoJSON } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
 
 const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
 const locationMap = buildLocationMap(products);
 const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
+const productIndexMap: Map<string, number> = new Map(products.map((p, i) => [p.id, i]));
+const EMPTY_GEOJSON: MarkerGeoJSON = { type: "FeatureCollection", features: [] };
 
 const PRICE_STEP = 500_000;
 const _prices = products.map((p) => parsePrice(p.price)).filter((v) => v > 0);
@@ -105,6 +107,14 @@ export default function Home() {
     ? products.find((p) => p.id === selectedProductId) ?? null
     : null;
 
+  // Drill-in: 선택된 product의 모든 locations를 별도 GeoJSON으로 → UnescoMap의 expanded layer
+  const expandedGeoJSON = useMemo(() => {
+    if (!selectedProductId) return EMPTY_GEOJSON;
+    const idx = productIndexMap.get(selectedProductId);
+    if (idx === undefined) return EMPTY_GEOJSON;
+    return productLocationsGeoJSON(products[idx], idx);
+  }, [selectedProductId]);
+
   // ProductList 표시 중일 때 해당 위치 상품 ID set (마커 opacity 제어용)
   const selectedLocationProductIds = useMemo(() => {
     if (!selectedLocation) return null;
@@ -172,6 +182,7 @@ export default function Home() {
       <HyechoMap
         data={geoData}
         multiGeoJSON={multiGeoJSON}
+        expandedGeoJSON={expandedGeoJSON}
         filteredProductIds={filteredProductIds}
         selectedProductId={selectedProductId}
         selectedLocationProductIds={selectedLocationProductIds}

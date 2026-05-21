@@ -1,35 +1,88 @@
-import type { HyechoProduct, MarkerGeoJSON, CategoryFilter, MultiLocationGeoJSON } from "./types";
+import type { HyechoLocation, HyechoProduct, MarkerGeoJSON, CategoryFilter, MultiLocationGeoJSON } from "./types";
 
-export function productsToGeoJSON(products: HyechoProduct[]): MarkerGeoJSON {
-  const features = [];
-
-  for (let i = 0; i < products.length; i++) {
-    const product = products[i];
-    for (const loc of product.locations) {
-      features.push({
-        type: "Feature" as const,
-        geometry: {
-          type: "Point" as const,
-          coordinates: [loc.lng, loc.lat] as [number, number],
-        },
-        properties: {
-          productId: product.id,
-          productTitle: product.title,
-          productPrice: product.price,
-          productDuration: product.duration,
-          productUrl: product.url,
-          productImageUrl: product.imageUrl,
-          productCategory: product.category,
-          locationName: loc.name,
-          colorIndex: i,
-          lat: loc.lat,
-          lng: loc.lng,
-        },
-      });
+/**
+ * 평균 좌표에 가장 가까운 실제 location (medoid).
+ * 평균(centroid) 대신 medoid를 쓰는 이유: 다국가/광역 패키지에서 평균은 무인지대(대양·산속)로 떨어지지만,
+ * medoid는 실제 방문 도시라 마커 hover popup의 product title이 의미적으로 정합.
+ */
+export function productMedoid(product: HyechoProduct): HyechoLocation {
+  const locs = product.locations;
+  if (locs.length <= 1) return locs[0];
+  const avgLat = locs.reduce((s, l) => s + l.lat, 0) / locs.length;
+  const avgLng = locs.reduce((s, l) => s + l.lng, 0) / locs.length;
+  let best = locs[0];
+  let bestDist = Infinity;
+  for (const l of locs) {
+    const dLat = l.lat - avgLat;
+    const dLng = l.lng - avgLng;
+    const dist = dLat * dLat + dLng * dLng;
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = l;
     }
   }
+  return best;
+}
 
+/** product 1개 = feature 1개 (medoid 좌표). 기본 view용 마커. */
+export function productsToGeoJSON(products: HyechoProduct[]): MarkerGeoJSON {
+  const features: MarkerGeoJSON["features"] = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    if (product.locations.length === 0) continue;
+    const loc = productMedoid(product);
+    features.push({
+      type: "Feature" as const,
+      geometry: {
+        type: "Point" as const,
+        coordinates: [loc.lng, loc.lat] as [number, number],
+      },
+      properties: {
+        productId: product.id,
+        productTitle: product.title,
+        productPrice: product.price,
+        productDuration: product.duration,
+        productUrl: product.url,
+        productImageUrl: product.imageUrl,
+        productCategory: product.category,
+        locationName: loc.name,
+        colorIndex: i,
+        lat: loc.lat,
+        lng: loc.lng,
+      },
+    });
+  }
   return { type: "FeatureCollection", features };
+}
+
+/** 단일 product의 모든 locations를 GeoJSON으로 — drill-in (expanded view) 용. */
+export function productLocationsGeoJSON(
+  product: HyechoProduct,
+  colorIndex: number
+): MarkerGeoJSON {
+  return {
+    type: "FeatureCollection",
+    features: product.locations.map((loc) => ({
+      type: "Feature" as const,
+      geometry: {
+        type: "Point" as const,
+        coordinates: [loc.lng, loc.lat] as [number, number],
+      },
+      properties: {
+        productId: product.id,
+        productTitle: product.title,
+        productPrice: product.price,
+        productDuration: product.duration,
+        productUrl: product.url,
+        productImageUrl: product.imageUrl,
+        productCategory: product.category,
+        locationName: loc.name,
+        colorIndex,
+        lat: loc.lat,
+        lng: loc.lng,
+      },
+    })),
+  };
 }
 
 /** "9,200,000" → 9200000, 파싱 실패 시 0 */

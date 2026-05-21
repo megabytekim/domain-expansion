@@ -23,6 +23,7 @@ const PALETTE = [
 interface HyechoMapProps {
   data: MarkerGeoJSON;
   multiGeoJSON: MultiLocationGeoJSON;
+  expandedGeoJSON: MarkerGeoJSON; // drill-in: 선택 product의 모든 locations
   filteredProductIds: Set<string>;
   selectedProductId: string | null;
   selectedLocationProductIds: Set<string> | null; // ProductList 표시 중일 때 해당 위치의 상품들
@@ -34,6 +35,7 @@ interface HyechoMapProps {
 export default function HyechoMap({
   data,
   multiGeoJSON,
+  expandedGeoJSON,
   filteredProductIds,
   selectedProductId,
   selectedLocationProductIds,
@@ -126,6 +128,28 @@ export default function HyechoMap({
         },
       });
 
+      // Drill-in: 선택 product의 모든 locations (expanded layer)
+      map.addSource("hyecho-expanded", {
+        type: "geojson",
+        data: { type: "FeatureCollection", features: [] },
+      });
+      map.addLayer({
+        id: "expanded-markers",
+        type: "circle",
+        source: "hyecho-expanded",
+        paint: {
+          "circle-radius": 9,
+          "circle-color": [
+            "match",
+            ["%", ["get", "colorIndex"], PALETTE.length],
+            ...PALETTE.flatMap((c, i) => [i, c]),
+            "#888",
+          ] as unknown as maplibregl.ExpressionSpecification,
+          "circle-stroke-width": 2.5,
+          "circle-stroke-color": "#ffffff",
+        },
+      });
+
       // 마커 클릭
       map.on("click", "markers", (e) => {
         const feature = e.features?.[0];
@@ -194,6 +218,27 @@ export default function HyechoMap({
     else map.once("load", apply);
   }, [flyToTarget]);
 
+  // Drill-in: 선택 product의 expanded GeoJSON 갱신 + fitBounds
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const apply = () => {
+      const src = map.getSource("hyecho-expanded") as maplibregl.GeoJSONSource | undefined;
+      if (!src) return;
+      src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
+      if (expandedGeoJSON.features.length >= 2) {
+        const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
+        const bounds = new maplibregl.LngLatBounds(first, first);
+        for (const f of expandedGeoJSON.features) {
+          bounds.extend(f.geometry.coordinates as [number, number]);
+        }
+        map.fitBounds(bounds, { padding: 80, maxZoom: 8, duration: 800 });
+      }
+    };
+    if (map.isStyleLoaded()) apply();
+    else map.once("load", apply);
+  }, [expandedGeoJSON]);
+
   // 필터/선택 상태 → 마커 opacity 업데이트
   useEffect(() => {
     const map = mapRef.current;
@@ -210,8 +255,8 @@ export default function HyechoMap({
 
         let opacity: number;
         if (selectedProductId) {
-          // 상품 상세: 해당 상품 마커만 강조
-          opacity = isSelected ? 1.0 : 0.3;
+          // Drill-in: 모든 centroid를 dim (expanded layer가 그 위에 표시됨)
+          opacity = 0.15;
         } else if (selectedLocationProductIds) {
           // 위치 목록(ProductList): 해당 위치 상품들만 강조
           opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
