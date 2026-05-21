@@ -654,6 +654,27 @@ implementation은 Lightsail의 claude 세션에서 이어 작업할 예정. 거�
 
 10. ✅ **resolved 2026-05-21 — `--resume`으로 cache 재활용**: 같은 session-id로 후속 호출하면 cache_read로 처리되어 5-6× 절감. 다만 conversation history가 turn마다 ~6k tokens 추가되므로 haiku 200k context 안전 마진 위해 **15-20개 호출마다 새 session-id로 chunk**.
 
+## Implementation 진행 상황 (2026-05-21)
+
+✅ **branch `crawler-lightsail-llm`에 구현 + dry run 1회 완료**:
+- `scripts/crawl-all-hyecho.ts`: bodyText `/tmp/crawl-bodies/{id}.txt` 저장 + `--products N` 인자 + locations ≤ 1 재크롤
+- `scripts/llm-extract.ts`: haiku + `--json-schema` + `--resume` chunked sessions + Nominatim mutex
+- `scripts/validate-and-report.ts`: long-duration-single-city / price-1-3-pattern / landmark-as-city + gh CLI Issue 발행
+- `scripts/crawl.sh`: orchestrator + safety net 4-검사
+- 환경: claude CLI 2.1.142, Playwright chromium-1217, jq 1.6, gh 2.4.0
+
+### Dry run (--products 5)에서 확인된 사실
+- llm-extract `--json-schema` strict output: 동작 ✅
+- session `--resume` cache_read 재활용: 5-6× 절감 ✅
+- single-location 1개 → 10개 확장: 동작 ✅ (센다이 → 동북 트레킹 일정 순서 정확)
+- safety net + validate-and-report: 49건 단일 도시 정확 검출 ✅
+
+### 미해결 / 다음 라운드
+- `fetch-unesco.ts` HTTP 403 — UNESCO XML 서버 차단/URL 변경 (별개 이슈)
+- 첫 실 dry run (`--dry-run` 전체) — single-location 67개 재크롤 + LLM 비용/시간 측정
+- systemd unit/timer 활성화 + GitHub Actions `on.schedule` 비활성화
+- `~/.env` GITHUB_PAT 정리 (Issue 자동 발행용)
+
 ## 참고: 현재 데이터 통계 (2026-05-21 스냅샷)
 
 | locations 수 | 패키지 수 | 비율 |
