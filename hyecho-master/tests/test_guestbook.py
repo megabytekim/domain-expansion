@@ -2,7 +2,6 @@
 
 import json
 import pytest
-from unittest.mock import AsyncMock
 from starlette.requests import Request
 
 from api import guestbook
@@ -110,3 +109,10 @@ class TestUpstashCall:
         assert captured["url"] == "https://example.upstash.io/pipeline"
         assert captured["json"] == [["LPUSH", "k", "v"], ["LTRIM", "k", "0", "999"]]
         assert result == [{"result": 1}, {"result": "OK"}]
+
+    @pytest.mark.asyncio
+    async def test_raises_when_env_not_set(self, monkeypatch):
+        monkeypatch.delenv("KV_REST_API_URL", raising=False)
+        monkeypatch.delenv("KV_REST_API_TOKEN", raising=False)
+        with pytest.raises(RuntimeError, match="KV_REST_API_URL"):
+            await guestbook._upstash_call(["GET", "foo"])

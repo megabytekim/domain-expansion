@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import hashlib
+from typing import Any
 import json
 import logging
 import os
@@ -60,7 +61,7 @@ def _ip_hash(ip: str) -> str:
 # Upstash REST helper
 # ---------------------------------------------------------------------------
 
-async def _upstash_call(commands, *, pipeline: bool = False):
+async def _upstash_call(commands: list[Any], *, pipeline: bool = False) -> Any:
     """Upstash REST API call.
 
     pipeline=False: commands = ["LPUSH", "key", "value"] → POST /
