@@ -40,8 +40,9 @@ export default function GuestbookWidget({ open, onOpenChange }: GuestbookWidgetP
     try {
       const res = await fetch(`${API_BASE}/api/guestbook`);
       if (!res.ok) throw new Error(String(res.status));
-      const data: Entry[] = await res.json();
-      setEntries(data);
+      const data: unknown = await res.json();
+      if (!Array.isArray(data)) throw new Error("unexpected response shape");
+      setEntries(data as Entry[]);
     } catch {
       setLoadError(true);
     } finally {
@@ -237,9 +238,9 @@ function Panel({ entries, input, setInput, submit, sending, loading, loadError, 
             아직 발자취가 없네.<br />첫 글을 남겨보게.
           </p>
         )}
-        {!loading && !loadError && entries.map((e) => (
+        {!loading && !loadError && entries.map((e, idx) => (
           <div
-            key={e.ts}
+            key={`${e.ts}-${idx}`}
             className="px-3 py-2 serif-kr leading-relaxed text-sm whitespace-pre-wrap"
             style={{
               background: "rgba(244,236,216,0.04)",
