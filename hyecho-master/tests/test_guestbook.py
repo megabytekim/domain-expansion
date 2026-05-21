@@ -199,3 +199,112 @@ class TestGetHandler:
         response = await guestbook.get_handler(request)
 
         assert response.status_code == 500
+
+
+class TestPostHandler:
+    """In-memory fake Upstash + Starlette Request body injection."""
+
+    @pytest.fixture
+    def fake_upstash(self, monkeypatch):
+        """Stateful in-memory fake that simulates SET NX EX, INCR, LPUSH, LTRIM."""
+        state = {"calls": [], "rate": {}, "entries": []}
+
+        async def fake(commands, pipeline=False):
+            state["calls"].append({"commands": commands, "pipeline": pipeline})
+            if pipeline:
+                results = []
+                for cmd in commands:
+                    op = cmd[0]
+                    if op == "SET":
+                        key = cmd[1]
+                        # detect NX
+                        if "NX" in cmd and key in state["rate"]:
+                            results.append({"result": None})
+                        else:
+                            state["rate"][key] = cmd[2]
+                            results.append({"result": "OK"})
+                    elif op == "INCR":
+                        key = cmd[1]
+                        state["rate"][key] = int(state["rate"].get(key, 0)) + 1
+                        results.append({"result": state["rate"][key]})
+                    elif op == "LPUSH":
+                        state["entries"].insert(0, cmd[2])
+                        results.append({"result": len(state["entries"])})
+                    elif op == "LTRIM":
+                        state["entries"] = state["entries"][: int(cmd[3]) + 1]
+                        results.append({"result": "OK"})
+                    else:
+                        results.append({"result": None})
+                return results
+            else:
+                op = commands[0]
+                if op == "LRANGE":
+                    return {"result": list(state["entries"])}
+                return {"result": None}
+
+        monkeypatch.setattr(guestbook, "_upstash_call", fake)
+        return state
+
+    def _post_request(self, body_dict: dict, ip: str = "1.2.3.4"):
+        """Build a Starlette Request with JSON body and X-Forwarded-For."""
+        body = json.dumps(body_dict).encode()
+        scope = {
+            "type": "http",
+            "method": "POST",
+            "headers": [
+                (b"x-forwarded-for", ip.encode()),
+                (b"content-type", b"application/json"),
+            ],
+            "query_string": b"",
+        }
+        req = Request(scope)
+        async def receive():
+            return {"type": "http.request", "body": body, "more_body": False}
+        req._receive = receive
+        return req
+
+    @pytest.mark.asyncio
+    async def test_accepts_valid_message(self, fake_upstash):
+        req = self._post_request({"message": "안녕"})
+        resp = await guestbook.post_handler(req)
+        assert resp.status_code == 201
+        assert len(fake_upstash["entries"]) == 1
+        entry = json.loads(fake_upstash["entries"][0])
+        assert entry["message"] == "안녕"
+        assert isinstance(entry["ts"], int)
+
+    @pytest.mark.asyncio
+    async def test_rejects_empty_message(self, fake_upstash):
+        req = self._post_request({"message": "   "})
+        resp = await guestbook.post_handler(req)
+        assert resp.status_code == 400
+        assert len(fake_upstash["entries"]) == 0
+
+    @pytest.mark.asyncio
+    async def test_rejects_too_long_message(self, fake_upstash):
+        req = self._post_request({"message": "x" * 281})
+        resp = await guestbook.post_handler(req)
+        assert resp.status_code == 400
+
+    @pytest.mark.asyncio
+    async def test_rate_limits_second_request_within_60s(self, fake_upstash):
+        req1 = self._post_request({"message": "first"})
+        resp1 = await guestbook.post_handler(req1)
+        assert resp1.status_code == 201
+
+        req2 = self._post_request({"message": "second"})
+        resp2 = await guestbook.post_handler(req2)
+        assert resp2.status_code == 429
+        # 두 번째는 entry 추가 안 됨
+        assert len(fake_upstash["entries"]) == 1
+
+    @pytest.mark.asyncio
+    async def test_different_ips_are_independent(self, fake_upstash):
+        req1 = self._post_request({"message": "hi"}, ip="1.2.3.4")
+        resp1 = await guestbook.post_handler(req1)
+
+        req2 = self._post_request({"message": "hi"}, ip="5.6.7.8")
+        resp2 = await guestbook.post_handler(req2)
+
+        assert resp1.status_code == 201
+        assert resp2.status_code == 201

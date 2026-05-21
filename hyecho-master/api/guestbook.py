@@ -115,5 +115,59 @@ async def get_handler(request: Request) -> JSONResponse:
 
 
 async def post_handler(request: Request) -> JSONResponse:
-    """POST /api/guestbook — Task 4에서 구현."""
-    return JSONResponse({"error": "not implemented"}, status_code=501)
+    """POST /api/guestbook — { message } 받아 새 글 작성.
+
+    - 280자 제한
+    - 분당 1개 rate limit (IP 기준)
+    """
+    # 1. body parse
+    try:
+        body = await request.json()
+    except Exception:
+        return JSONResponse({"error": "invalid json"}, status_code=400)
+
+    raw_message = body.get("message") if isinstance(body, dict) else None
+    message = (raw_message or "").strip() if isinstance(raw_message, str) else ""
+    if len(message) < 1 or len(message) > MAX_MESSAGE_LEN:
+        return JSONResponse({"error": "message length 1..280"}, status_code=400)
+
+    # 2. rate limit (atomic pipeline: SET NX EX 60 + INCR)
+    ip = _client_ip(request)
+    rate_key = f"gb:rate:{_ip_hash(ip)}"
+    try:
+        pipe_result = await _upstash_call(
+            [
+                ["SET", rate_key, "0", "NX", "EX", str(RATE_LIMIT_TTL)],
+                ["INCR", rate_key],
+            ],
+            pipeline=True,
+        )
+    except Exception:
+        logger.exception("rate-limit pipeline failed")
+        return JSONResponse({"error": "rate limit failed"}, status_code=500)
+
+    # pipe_result is list of {"result": ...}
+    try:
+        incr_value = int(pipe_result[1]["result"])
+    except (KeyError, TypeError, IndexError, ValueError):
+        logger.error("unexpected pipeline result: %r", pipe_result)
+        return JSONResponse({"error": "rate limit malformed"}, status_code=500)
+    if incr_value > 1:
+        return JSONResponse({"error": "rate limited"}, status_code=429)
+
+    # 3. 작성 (atomic pipeline: LPUSH + LTRIM)
+    entry = {"message": message, "ts": int(time.time() * 1000)}
+    entry_json = json.dumps(entry, ensure_ascii=False)
+    try:
+        await _upstash_call(
+            [
+                ["LPUSH", ENTRIES_KEY, entry_json],
+                ["LTRIM", ENTRIES_KEY, "0", str(MAX_ENTRIES - 1)],
+            ],
+            pipeline=True,
+        )
+    except Exception:
+        logger.exception("write pipeline failed")
+        return JSONResponse({"error": "write failed"}, status_code=500)
+
+    return JSONResponse(entry, status_code=201)
