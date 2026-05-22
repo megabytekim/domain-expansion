@@ -10,14 +10,13 @@ import SearchBar from "@/components/SearchBar";
 import RankingPanel from "@/components/RankingPanel";
 import ChatWidget from "@/components/ChatWidget";
 import GuestbookWidget from "@/components/GuestbookWidget";
-import { productsToGeoJSON, productLocationsGeoJSON, buildLocationMap, filterProducts, buildMultiLocationGeoJSON, parsePrice, parseDuration } from "@/lib/merge-data";
+import { productsToGeoJSON, productLocationsGeoJSON, buildLocationMap, filterProducts, parsePrice, parseDuration } from "@/lib/merge-data";
 import type { HyechoProduct, SelectedLocation, CategoryFilter, MarkerGeoJSON } from "@/lib/types";
 import rawProducts from "@/data/hyecho-packages.json";
 
 const products = rawProducts as unknown as HyechoProduct[];
 const geoData = productsToGeoJSON(products);
 const locationMap = buildLocationMap(products);
-const multiGeoJSON = buildMultiLocationGeoJSON(locationMap);
 const productIndexMap: Map<string, number> = new Map(products.map((p, i) => [p.id, i]));
 const EMPTY_GEOJSON: MarkerGeoJSON = { type: "FeatureCollection", features: [] };
 
@@ -210,7 +209,6 @@ export default function Home() {
       )}
       <HyechoMap
         data={geoData}
-        multiGeoJSON={multiGeoJSON}
         expandedGeoJSON={expandedGeoJSON}
         filteredProductIds={filteredProductIds}
         selectedProductId={selectedProductId}

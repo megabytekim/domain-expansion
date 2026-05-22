@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
-import type { MarkerGeoJSON, SelectedLocation, MultiLocationGeoJSON } from "@/lib/types";
+import type { MarkerGeoJSON, SelectedLocation } from "@/lib/types";
 import type { HyechoProduct } from "@/lib/types";
 import { locKey } from "@/lib/merge-data";
 
@@ -22,7 +22,6 @@ const PALETTE = [
 
 interface HyechoMapProps {
   data: MarkerGeoJSON;
-  multiGeoJSON: MultiLocationGeoJSON;
   expandedGeoJSON: MarkerGeoJSON; // drill-in: 선택 product의 모든 locations
   filteredProductIds: Set<string>;
   selectedProductId: string | null;
@@ -34,7 +33,6 @@ interface HyechoMapProps {
 
 export default function HyechoMap({
   data,
-  multiGeoJSON,
   expandedGeoJSON,
   filteredProductIds,
   selectedProductId,
@@ -94,42 +92,6 @@ export default function HyechoMap({
           "circle-stroke-color": ["case", ["get", "_selected"], "#ffffff", "rgba(255,255,255,0.4)"],
           "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
           "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],
-        },
-      });
-
-      // 복수 상품 위치 뱃지
-      map.addSource("hyecho-multi", {
-        type: "geojson",
-        data: multiGeoJSON as unknown as GeoJSON.FeatureCollection,
-      });
-      map.addLayer({
-        id: "multi-badge-bg",
-        type: "circle",
-        source: "hyecho-multi",
-        paint: {
-          "circle-radius": 7,
-          "circle-color": "#1e293b",
-          "circle-stroke-width": 1.5,
-          "circle-stroke-color": "#ffffff",
-          "circle-translate": [6, -6],
-          "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
-          "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],
-        },
-      });
-      map.addLayer({
-        id: "multi-badge-text",
-        type: "symbol",
-        source: "hyecho-multi",
-        layout: {
-          "text-field": ["to-string", ["get", "count"]],
-          "text-size": 9,
-          "text-allow-overlap": true,
-          "text-ignore-placement": true,
-          "text-offset": [0.55, -0.55],
-        },
-        paint: {
-          "text-color": "#ffffff",
-          "text-opacity": ["coalesce", ["get", "_opacity"], 1.0],
         },
       });
 
@@ -334,22 +296,6 @@ export default function HyechoMap({
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
   }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds]);
-
-  // multi-badge: drill-in 시 source data를 비워서 모두 숨김
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    const apply = () => {
-      const src = map.getSource("hyecho-multi") as maplibregl.GeoJSONSource | undefined;
-      if (!src) return;
-      src.setData({
-        type: "FeatureCollection",
-        features: selectedProductId ? [] : multiGeoJSON.features,
-      } as unknown as GeoJSON.FeatureCollection);
-    };
-    if (map.isStyleLoaded()) apply();
-    else map.once("load", apply);
-  }, [multiGeoJSON, selectedProductId]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }
