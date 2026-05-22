@@ -180,30 +180,53 @@ export default function Home() {
         onSelectMatch={(id) => { setSelectedProductId(id); setSelectedLocation(null); setSheetState("full"); setSearchQuery(""); }}
       />
       <RankingPanel products={products} onSelectProduct={handleRankingSelect} onPanelOpen={() => setSheetState("closed")} />
-      {selectedProductId && (
-        <button
-          onClick={() => {
-            setSelectedProductId(null);
-            setSelectedLocation(null);
-            setSheetState("closed");
-          }}
-          aria-label="전체 지도로 돌아가기"
-          className="absolute z-30 serif-kr font-semibold shadow-2xl transition-all hover:scale-105 flex items-center gap-3 px-10 py-5 text-lg md:text-2xl"
-          style={{
-            bottom: "32px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "var(--paper-100)",
-            color: "var(--ink-deep)",
-            borderRadius: "999px",
-            borderLeft: "5px solid var(--vermillion)",
-            borderRight: "5px solid var(--vermillion)",
-          }}
-        >
-          <span className="text-3xl">🌍</span>
-          <span>전체 지도로</span>
-        </button>
-      )}
+      {selectedProductId && (() => {
+        const reset = () => {
+          setSelectedProductId(null);
+          setSelectedLocation(null);
+          setSheetState("closed");
+        };
+        return (
+          <>
+            {/* 모바일: 좌상단 작게 */}
+            <button
+              onClick={reset}
+              aria-label="전체 지도로 돌아가기"
+              className="md:hidden absolute z-30 serif-kr font-medium shadow-lg transition-all hover:opacity-90 flex items-center gap-1.5 px-3 py-1.5 text-xs"
+              style={{
+                top: "104px",
+                left: "12px",
+                background: "var(--paper-100)",
+                color: "var(--ink-deep)",
+                borderRadius: "999px",
+                borderLeft: "3px solid var(--vermillion)",
+              }}
+            >
+              <span>🌍</span>
+              <span>전체 지도</span>
+            </button>
+            {/* 데스크탑: 하단 중앙 크게 */}
+            <button
+              onClick={reset}
+              aria-label="전체 지도로 돌아가기"
+              className="hidden md:flex absolute z-30 serif-kr font-semibold shadow-2xl transition-all hover:scale-105 items-center gap-3 px-10 py-5 text-2xl"
+              style={{
+                bottom: "32px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "var(--paper-100)",
+                color: "var(--ink-deep)",
+                borderRadius: "999px",
+                borderLeft: "5px solid var(--vermillion)",
+                borderRight: "5px solid var(--vermillion)",
+              }}
+            >
+              <span className="text-3xl">🌍</span>
+              <span>전체 지도로</span>
+            </button>
+          </>
+        );
+      })()}
       <HyechoMap
         data={geoData}
         expandedGeoJSON={expandedGeoJSON}
