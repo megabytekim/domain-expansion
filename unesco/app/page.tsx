@@ -188,18 +188,20 @@ export default function Home() {
             setSelectedLocation(null);
             setSheetState("closed");
           }}
-          className="absolute z-30 px-3 py-1.5 serif-kr text-xs md:text-sm shadow-lg transition-opacity hover:opacity-90 flex items-center gap-1.5"
+          aria-label="전체 지도로 돌아가기"
+          className="absolute z-30 serif-kr font-medium shadow-2xl transition-all hover:scale-105 flex items-center gap-2.5 px-6 py-3 text-base md:text-lg"
           style={{
-            top: "16px",
-            right: "120px",
+            bottom: "24px",
+            left: "50%",
+            transform: "translateX(-50%)",
             background: "var(--paper-100)",
             color: "var(--ink-deep)",
-            borderRadius: "2px",
-            borderLeft: "3px solid var(--vermillion)",
+            borderRadius: "999px",
+            borderLeft: "4px solid var(--vermillion)",
           }}
         >
-          <span>🌍</span>
-          <span>전체 지도</span>
+          <span className="text-xl">🌍</span>
+          <span>전체 지도로</span>
         </button>
       )}
       {sheetState !== "closed" && (

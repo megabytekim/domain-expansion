@@ -112,6 +112,8 @@ export default function HyechoMap({
           "circle-stroke-width": 1.5,
           "circle-stroke-color": "#ffffff",
           "circle-translate": [6, -6],
+          "circle-opacity": ["coalesce", ["get", "_opacity"], 1.0],
+          "circle-stroke-opacity": ["coalesce", ["get", "_opacity"], 1.0],
         },
       });
       map.addLayer({
@@ -127,6 +129,7 @@ export default function HyechoMap({
         },
         paint: {
           "text-color": "#ffffff",
+          "text-opacity": ["coalesce", ["get", "_opacity"], 1.0],
         },
       });
 
@@ -302,8 +305,8 @@ export default function HyechoMap({
 
         let opacity: number;
         if (selectedProductId) {
-          // Drill-in: 다른 centroid는 살짝만 흐리게 (살짝 보이도록)
-          opacity = isSelected ? 1.0 : 0.4;
+          // Drill-in: 선택된 product 외 centroid는 완전히 숨김
+          opacity = isSelected ? 1.0 : 0;
         } else if (selectedLocationProductIds) {
           // 위치 목록(ProductList): 해당 위치 상품들만 강조
           opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
@@ -331,6 +334,23 @@ export default function HyechoMap({
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
   }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds]);
+
+  // multi-badge layer: drill-in 시 모두 숨김
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const apply = () => {
+      const src = map.getSource("hyecho-multi") as maplibregl.GeoJSONSource | undefined;
+      if (!src) return;
+      const features = multiGeoJSON.features.map((f) => ({
+        ...f,
+        properties: { ...f.properties, _opacity: selectedProductId ? 0 : 1 },
+      }));
+      src.setData({ type: "FeatureCollection", features } as unknown as GeoJSON.FeatureCollection);
+    };
+    if (map.isStyleLoaded()) apply();
+    else map.once("load", apply);
+  }, [multiGeoJSON, selectedProductId]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }
