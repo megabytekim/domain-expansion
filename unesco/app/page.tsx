@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from "react";
 import HyechoMap from "@/components/UnescoMap";
 import BottomSheet from "@/components/BottomSheet";
+import SidePanel from "@/components/SidePanel";
 import SiteDetail from "@/components/SiteDetail";
 import ProductList from "@/components/ProductList";
 import SearchBar from "@/components/SearchBar";
@@ -194,7 +195,27 @@ export default function Home() {
         onLocationSelect={handleLocationSelect}
         flyToTarget={flyToTarget}
       />
-      <BottomSheet state={sheetState} onStateChange={setSheetState}>
+      {/* 모바일: BottomSheet (md 미만에서만) */}
+      <div className="md:hidden">
+        <BottomSheet state={sheetState} onStateChange={setSheetState}>
+          {selectedProduct ? (
+            <SiteDetail
+              product={selectedProduct}
+              locationCount={selectedLocation?.products.length ?? 1}
+              onBack={handleBack}
+              onCityTagClick={handleCityTagClick}
+            />
+          ) : selectedLocation ? (
+            <ProductList
+              location={selectedLocation}
+              onSelectProduct={setSelectedProductId}
+            />
+          ) : null}
+        </BottomSheet>
+      </div>
+
+      {/* 데스크탑: 좌측 SidePanel */}
+      <SidePanel open={sheetState !== "closed" && (!!selectedProduct || !!selectedLocation)} onClose={() => setSheetState("closed")}>
         {selectedProduct ? (
           <SiteDetail
             product={selectedProduct}
@@ -208,7 +229,7 @@ export default function Home() {
             onSelectProduct={setSelectedProductId}
           />
         ) : null}
-      </BottomSheet>
+      </SidePanel>
       <ChatWidget
         open={openWidget === "chat"}
         onOpenChange={(o) => setOpenWidget(o ? "chat" : null)}
