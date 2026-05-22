@@ -189,18 +189,19 @@ export default function Home() {
             setSheetState("closed");
           }}
           aria-label="전체 지도로 돌아가기"
-          className="absolute z-30 serif-kr font-medium shadow-2xl transition-all hover:scale-105 flex items-center gap-2.5 px-6 py-3 text-base md:text-lg"
+          className="absolute z-30 serif-kr font-semibold shadow-2xl transition-all hover:scale-105 flex items-center gap-3 px-10 py-5 text-lg md:text-2xl"
           style={{
-            bottom: "24px",
+            bottom: "32px",
             left: "50%",
             transform: "translateX(-50%)",
             background: "var(--paper-100)",
             color: "var(--ink-deep)",
             borderRadius: "999px",
-            borderLeft: "4px solid var(--vermillion)",
+            borderLeft: "5px solid var(--vermillion)",
+            borderRight: "5px solid var(--vermillion)",
           }}
         >
-          <span className="text-xl">🌍</span>
+          <span className="text-3xl">🌍</span>
           <span>전체 지도로</span>
         </button>
       )}
