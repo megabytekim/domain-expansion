@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Serif_KR, Noto_Sans_KR, Cormorant_Garamond } from "next/font/google";
+import AutoReload from "@/components/AutoReload";
 import "./globals.css";
 
 const serif = Noto_Serif_KR({
@@ -37,7 +38,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
-      <body className="h-screen w-screen overflow-hidden font-sans">{children}</body>
+      <body className="h-screen w-screen overflow-hidden font-sans">
+        <AutoReload />
+        {children}
+      </body>
     </html>
   );
 }
