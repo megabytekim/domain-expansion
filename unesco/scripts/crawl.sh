@@ -57,7 +57,8 @@ fi
 
 echo ""
 echo "--- 2/4 fetch-unesco.ts ---"
-npx tsx scripts/fetch-unesco.ts
+# UNESCO 사이트 HTTP 403 (Task #40)으로 실패 가능 — non-blocking.
+npx tsx scripts/fetch-unesco.ts || echo "(fetch-unesco failed — continuing)"
 
 if [[ "$SKIP_LLM" == "false" ]]; then
   echo ""
