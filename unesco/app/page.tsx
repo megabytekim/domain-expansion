@@ -204,9 +204,6 @@ export default function Home() {
           <span>전체 지도로</span>
         </button>
       )}
-      {sheetState !== "closed" && (
-        <div className="absolute inset-0 z-[5]" onClick={() => setSheetState("closed")} />
-      )}
       <HyechoMap
         data={geoData}
         expandedGeoJSON={expandedGeoJSON}
