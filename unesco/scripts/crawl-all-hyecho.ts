@@ -152,9 +152,11 @@ async function fetchWithRetry(url: string, retries = 3, baseDelay = 1200): Promi
 
 /** 상품의 전체 향후 출발일 데이터를 API 2단계로 수집 */
 async function fetchDepartures(goodSeq: string) {
+  // 혜초 API의 getGoodsEventList는 startDay 파라미터를 무시하고 전체 향후 출발일을 반환한다.
+  // monthList N개 호출하면 같은 eventSeq가 N번 push되므로 Set으로 dedupe.
   const departures: any[] = [];
+  const seen = new Set<number>();
   try {
-    // 1단계: 출발 월 목록
     await sleep(400 + Math.random() * 400);
     const monthRes = await fetchWithRetry(
       `${HYECHO_BASE}/goods/getGoodsEventMonthList.json?goodSeq=${goodSeq}`
@@ -162,9 +164,8 @@ async function fetchDepartures(goodSeq: string) {
     const monthData = await monthRes.json();
     if (monthData.message !== "SUCCESS" || !monthData.list?.length) return departures;
 
-    // 2단계: 월별 출발일 상세
     for (const month of monthData.list) {
-      await sleep(500 + Math.random() * 400); // 500-900ms per month (rate limit 방지)
+      await sleep(500 + Math.random() * 400);
       try {
         const evRes = await fetchWithRetry(
           `${HYECHO_BASE}/goods/getGoodsEventList.json?goodSeq=${goodSeq}&startDay=${month.eventStartMonth}01`
@@ -172,7 +173,9 @@ async function fetchDepartures(goodSeq: string) {
         const evData = await evRes.json();
         if (evData.message !== "SUCCESS") continue;
         for (const v of evData.list ?? []) {
-          if (v.procCd === "99") continue; // 취소 제외
+          if (v.procCd === "99") continue;
+          if (seen.has(v.eventSeq)) continue;
+          seen.add(v.eventSeq);
           departures.push({
             eventSeq: v.eventSeq,
             startDay: v.startDay,
