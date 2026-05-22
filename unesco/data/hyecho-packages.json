@@ -31,16 +31,6 @@
         "saleAmt": 2090000
       },
       {
-        "eventSeq": 41921,
-        "startDay": "20260613",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 8,
-        "procCd": "00",
-        "saleAmt": 1890000
-      },
-      {
         "eventSeq": 41922,
         "startDay": "20260620",
         "personCnt": 12,
@@ -125,8 +115,8 @@
         "startDay": "20260815",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 3,
+        "resvCnt": 10,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 1990000
       },
@@ -135,8 +125,8 @@
         "startDay": "20260822",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 9,
+        "resvCnt": 2,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 1850000
       },
@@ -175,18 +165,18 @@
         "startDay": "20260918",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 4,
+        "resvCnt": 7,
+        "restCnt": 5,
         "procCd": "00",
         "saleAmt": 1890000
       },
       {
         "eventSeq": 30001186,
         "startDay": "20261017",
-        "personCnt": 12,
+        "personCnt": 14,
         "minPersonCnt": 8,
         "resvCnt": 8,
-        "restCnt": 4,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 1950000
       },
@@ -205,8 +195,8 @@
         "startDay": "20261031",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 10,
+        "resvCnt": 4,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 1950000
       },
@@ -251,7 +241,7 @@
         "saleAmt": 1890000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:32.534Z"
+    "departuresUpdatedAt": "2026-05-22T02:03:51.451Z"
   },
   {
     "id": "hyecho-3089",
@@ -289,9 +279,9 @@
         "startDay": "20260627",
         "personCnt": 18,
         "minPersonCnt": 12,
-        "resvCnt": 10,
-        "restCnt": 8,
-        "procCd": "40",
+        "resvCnt": 11,
+        "restCnt": 7,
+        "procCd": "05",
         "saleAmt": 18900000
       },
       {
@@ -305,7 +295,7 @@
         "saleAmt": 18900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:35.159Z"
+    "departuresUpdatedAt": "2026-05-22T02:03:53.694Z"
   },
   {
     "id": "hyecho-2631",
@@ -369,7 +359,7 @@
         "saleAmt": 8500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:39.092Z"
+    "departuresUpdatedAt": "2026-05-22T02:03:56.781Z"
   },
   {
     "id": "hyecho-30000123",
@@ -381,9 +371,49 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000123/hyecho_cm9900_30003090.jpg",
     "locations": [
       {
-        "name": "센다이 (Sendai)",
-        "lat": 38.27,
-        "lng": 140.87
+        "name": "마츠시마 (Matsushima)",
+        "lat": 38.3801612,
+        "lng": 141.067129
+      },
+      {
+        "name": "미나미산리쿠 (Minamisanriku)",
+        "lat": 38.6805493,
+        "lng": 141.4624307
+      },
+      {
+        "name": "게센누마 (Kesennuma)",
+        "lat": 38.9080078,
+        "lng": 141.5698223
+      },
+      {
+        "name": "하나마키 (Hanamaki)",
+        "lat": 39.3884038,
+        "lng": 141.1169618
+      },
+      {
+        "name": "후다이무라 (Fudaimura)",
+        "lat": 40.0051942,
+        "lng": 141.8859169
+      },
+      {
+        "name": "하치노헤 (Hachinohe)",
+        "lat": 40.5122388,
+        "lng": 141.4882959
+      },
+      {
+        "name": "다네사시 (Tanesashi)",
+        "lat": 40.5070498,
+        "lng": 141.6072643
+      },
+      {
+        "name": "아오모리 (Aomori)",
+        "lat": 40.886943,
+        "lng": 140.590121
+      },
+      {
+        "name": "히로사키 (Hirosaki)",
+        "lat": 40.6030543,
+        "lng": 140.4640389
       }
     ],
     "departures": [
@@ -468,7 +498,7 @@
         "saleAmt": 4100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:43.090Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:07.376Z"
   },
   {
     "id": "hyecho-3060",
@@ -480,9 +510,29 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3060/hyecho_cm9900_30002900.jpg",
     "locations": [
       {
-        "name": "돌로미테 (Dolomites)",
-        "lat": 46.41,
-        "lng": 11.84
+        "name": "브레시아 (Brescia)",
+        "lat": 45.7795805,
+        "lng": 10.425873
+      },
+      {
+        "name": "발 가르데나 (Val Gardena)",
+        "lat": 46.5760331,
+        "lng": 11.6483076
+      },
+      {
+        "name": "코르티나 담페초 (Cortina d'Ampezzo)",
+        "lat": 46.5685125,
+        "lng": 12.1323186
+      },
+      {
+        "name": "자이스 암 숨른 (Seis am Schlern)",
+        "lat": 46.5437283,
+        "lng": 11.5630324
+      },
+      {
+        "name": "아라듰바 (Arabba)",
+        "lat": 46.4971763,
+        "lng": 11.8740902
       }
     ],
     "departures": [
@@ -491,7 +541,7 @@
         "startDay": "20260623",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 16,
+        "resvCnt": 17,
         "restCnt": 0,
         "procCd": "40",
         "saleAmt": 9500000
@@ -499,11 +549,11 @@
       {
         "eventSeq": 41854,
         "startDay": "20260625",
-        "personCnt": 17,
+        "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 15,
-        "restCnt": 2,
-        "procCd": "01",
+        "resvCnt": 16,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 8500000
       },
       {
@@ -511,7 +561,7 @@
         "startDay": "20260625",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 17,
+        "resvCnt": 16,
         "restCnt": 0,
         "procCd": "40",
         "saleAmt": 9500000
@@ -551,9 +601,9 @@
         "startDay": "20260703",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 14,
-        "restCnt": 2,
-        "procCd": "01",
+        "resvCnt": 16,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 9500000
       },
       {
@@ -579,9 +629,9 @@
       {
         "eventSeq": 42187,
         "startDay": "20260719",
-        "personCnt": 16,
+        "personCnt": 17,
         "minPersonCnt": 12,
-        "resvCnt": 16,
+        "resvCnt": 17,
         "restCnt": 0,
         "procCd": "40",
         "saleAmt": 9500000
@@ -641,9 +691,9 @@
         "startDay": "20260826",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 16,
-        "restCnt": 0,
-        "procCd": "40",
+        "resvCnt": 15,
+        "restCnt": 1,
+        "procCd": "01",
         "saleAmt": 8900000
       },
       {
@@ -681,13 +731,13 @@
         "startDay": "20260922",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 14,
-        "restCnt": 2,
+        "resvCnt": 15,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 9300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:47.479Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:17.891Z"
   },
   {
     "id": "hyecho-2806",
@@ -699,9 +749,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2806/hyecho_cm9900_30001167.jpg",
     "locations": [
       {
-        "name": "시즈오카",
-        "lat": 34.9716454,
-        "lng": 138.3885902
+        "name": "시즐오카 (Shizuoka)",
+        "lat": 34.9751974,
+        "lng": 138.3831697
+      },
+      {
+        "name": "후지산 (Mt. Fuji)",
+        "lat": 35.3628384,
+        "lng": 138.7307677
       }
     ],
     "departures": [
@@ -750,8 +805,8 @@
         "startDay": "20260725",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 6,
-        "restCnt": 11,
+        "resvCnt": 9,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 1450000
       },
@@ -780,8 +835,8 @@
         "startDay": "20260806",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 1,
+        "resvCnt": 15,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 1350000
       },
@@ -800,8 +855,8 @@
         "startDay": "20260813",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 16,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 1350000
       },
@@ -840,8 +895,8 @@
         "startDay": "20260827",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 7,
-        "restCnt": 10,
+        "resvCnt": 9,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 1300000
       },
@@ -876,7 +931,7 @@
         "saleAmt": 1300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:51.235Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:26.710Z"
   },
   {
     "id": "hyecho-2422",
@@ -888,9 +943,19 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2422/hyecho_cm9900_30000621.jpg",
     "locations": [
       {
-        "name": "비쉬케크 (Bishkek)",
-        "lat": 42.87,
-        "lng": 74.59
+        "name": "비썄케크 (Bishkek)",
+        "lat": 42.8761424,
+        "lng": 74.6036724
+      },
+      {
+        "name": "카라콜 (Karakol)",
+        "lat": 42.4917441,
+        "lng": 78.396857
+      },
+      {
+        "name": "알틴아라샤른 (Altyn Arashan)",
+        "lat": 42.3727995,
+        "lng": 78.6117295
       }
     ],
     "departures": [
@@ -899,27 +964,27 @@
         "startDay": "20260625",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 12,
+        "resvCnt": 0,
+        "restCnt": 16,
         "procCd": "00",
         "saleAmt": 3650000
       },
       {
         "eventSeq": 30000350,
         "startDay": "20260627",
-        "personCnt": 19,
+        "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 18,
-        "restCnt": 1,
+        "resvCnt": 20,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 3900000
       },
       {
         "eventSeq": 30000471,
         "startDay": "20260702",
-        "personCnt": 19,
+        "personCnt": 17,
         "minPersonCnt": 8,
-        "resvCnt": 19,
+        "resvCnt": 17,
         "restCnt": 0,
         "procCd": "01",
         "saleAmt": 3600000
@@ -959,8 +1024,8 @@
         "startDay": "20260716",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 9,
+        "resvCnt": 10,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 3750000
       },
@@ -979,7 +1044,7 @@
         "startDay": "20260723",
         "personCnt": 19,
         "minPersonCnt": 8,
-        "resvCnt": 19,
+        "resvCnt": 20,
         "restCnt": 0,
         "procCd": "01",
         "saleAmt": 3600000
@@ -1019,8 +1084,8 @@
         "startDay": "20260806",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 14,
+        "resvCnt": 5,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 3750000
       },
@@ -1179,13 +1244,13 @@
         "startDay": "20261003",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 12,
-        "procCd": "00",
+        "resvCnt": 8,
+        "restCnt": 10,
+        "procCd": "01",
         "saleAmt": 4250000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:17:56.528Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:38.747Z"
   },
   {
     "id": "hyecho-2475",
@@ -1211,9 +1276,9 @@
       {
         "eventSeq": 41733,
         "startDay": "20260523",
-        "personCnt": 22,
+        "personCnt": 21,
         "minPersonCnt": 8,
-        "resvCnt": 22,
+        "resvCnt": 21,
         "restCnt": 0,
         "procCd": "05",
         "saleAmt": 1950000
@@ -1221,30 +1286,20 @@
       {
         "eventSeq": 41732,
         "startDay": "20260530",
-        "personCnt": 14,
+        "personCnt": 12,
         "minPersonCnt": 8,
         "resvCnt": 12,
-        "restCnt": 2,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 1950000
-      },
-      {
-        "eventSeq": 41930,
-        "startDay": "20260613",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 10,
-        "procCd": "00",
-        "saleAmt": 1750000
       },
       {
         "eventSeq": 41931,
         "startDay": "20260620",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 3,
-        "restCnt": 11,
+        "resvCnt": 2,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 1750000
       },
@@ -1253,8 +1308,8 @@
         "startDay": "20260627",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 1,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 1750000
       },
@@ -1303,8 +1358,8 @@
         "startDay": "20260801",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 10,
+        "resvCnt": 0,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 1690000
       },
@@ -1323,9 +1378,9 @@
         "startDay": "20260815",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 6,
-        "procCd": "01",
+        "resvCnt": 7,
+        "restCnt": 7,
+        "procCd": "00",
         "saleAmt": 1950000
       },
       {
@@ -1383,9 +1438,9 @@
         "startDay": "20261017",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 3,
-        "restCnt": 11,
-        "procCd": "00",
+        "resvCnt": 8,
+        "restCnt": 6,
+        "procCd": "01",
         "saleAmt": 1790000
       },
       {
@@ -1449,7 +1504,7 @@
         "saleAmt": 1690000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:03.516Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:44.855Z"
   },
   {
     "id": "hyecho-3172",
@@ -1461,19 +1516,39 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3172/hyecho_cm9900_30002043.jpg",
     "locations": [
       {
-        "name": "밴프 (Banff)",
-        "lat": 51.18,
-        "lng": -115.57
+        "name": "캠리게리 (Calgary)",
+        "lat": 51.0456064,
+        "lng": -114.057541
+      },
+      {
+        "name": "재스퍼 (Jasper)",
+        "lat": 30.7485258,
+        "lng": -94.000884
+      },
+      {
+        "name": "골든 (Golden)",
+        "lat": 39.7546349,
+        "lng": -105.22058
+      },
+      {
+        "name": "밸프 (Banff)",
+        "lat": 51.175076,
+        "lng": -115.5720773
+      },
+      {
+        "name": "레이크루이스 (Lake Louise)",
+        "lat": 51.4249668,
+        "lng": -116.177535
       }
     ],
     "departures": [
       {
         "eventSeq": 41849,
         "startDay": "20260620",
-        "personCnt": 20,
+        "personCnt": 16,
         "minPersonCnt": 10,
         "resvCnt": 15,
-        "restCnt": 5,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 7200000
       },
@@ -1482,8 +1557,8 @@
         "startDay": "20260627",
         "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 14,
-        "restCnt": 4,
+        "resvCnt": 11,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 7300000
       },
@@ -1492,8 +1567,8 @@
         "startDay": "20260704",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 4,
+        "resvCnt": 12,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 7400000
       },
@@ -1502,8 +1577,8 @@
         "startDay": "20260711",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 10,
-        "restCnt": 10,
+        "resvCnt": 12,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 7400000
       },
@@ -1582,13 +1657,13 @@
         "startDay": "20261003",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 18,
-        "restCnt": 6,
+        "resvCnt": 16,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 7900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:08.723Z"
+    "departuresUpdatedAt": "2026-05-22T02:04:56.444Z"
   },
   {
     "id": "hyecho-2486",
@@ -1666,8 +1741,8 @@
         "startDay": "20260709",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 8,
+        "resvCnt": 8,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 2150000
       },
@@ -1686,8 +1761,8 @@
         "startDay": "20260723",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 3,
+        "resvCnt": 12,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 2150000
       },
@@ -1696,9 +1771,9 @@
         "startDay": "20260730",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 4,
-        "procCd": "01",
+        "resvCnt": 12,
+        "restCnt": 2,
+        "procCd": "05",
         "saleAmt": 2350000
       },
       {
@@ -1756,8 +1831,8 @@
         "startDay": "20260903",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 7,
-        "restCnt": 7,
+        "resvCnt": 5,
+        "restCnt": 9,
         "procCd": "00",
         "saleAmt": 2250000
       },
@@ -1876,8 +1951,8 @@
         "startDay": "20261105",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 2,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 2150000
       },
@@ -1942,7 +2017,7 @@
         "saleAmt": 2150000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:15.515Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:01.918Z"
   },
   {
     "id": "hyecho-2640",
@@ -2296,84 +2371,24 @@
         "saleAmt": 3700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:20.299Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:05.088Z"
   },
   {
     "id": "hyecho-3132",
     "category": "trekking",
-    "title": "동남아 최고봉 키나발루(4,095m)등정 5일",
+    "title": "동남아 최고봉 키나발루(4,095m)등정 5일[LJ 또는 7C]",
     "price": "2,250,000",
     "duration": "5일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3132&eventSeq=30001859",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3132/hyecho_cm9900_30002006.jpg",
     "locations": [
       {
-        "name": "키나발루 (Mt. Kinabalu)",
-        "lat": 6.08,
-        "lng": 116.56
+        "name": "코타키나발루 (Kota Kinabalu)",
+        "lat": 5.9780066,
+        "lng": 116.0728988
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41643,
-        "startDay": "20260521",
-        "personCnt": 8,
-        "minPersonCnt": 4,
-        "resvCnt": 5,
-        "restCnt": 3,
-        "procCd": "01",
-        "saleAmt": 2590000
-      },
-      {
-        "eventSeq": 30001865,
-        "startDay": "20260522",
-        "personCnt": 4,
-        "minPersonCnt": 4,
-        "resvCnt": 1,
-        "restCnt": 3,
-        "procCd": "00",
-        "saleAmt": 2450000
-      },
-      {
-        "eventSeq": 30001866,
-        "startDay": "20260523",
-        "personCnt": 4,
-        "minPersonCnt": 4,
-        "resvCnt": 2,
-        "restCnt": 2,
-        "procCd": "00",
-        "saleAmt": 2650000
-      },
-      {
-        "eventSeq": 30001848,
-        "startDay": "20260524",
-        "personCnt": 4,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 4,
-        "procCd": "00",
-        "saleAmt": 2290000
-      },
-      {
-        "eventSeq": 30001864,
-        "startDay": "20260525",
-        "personCnt": 4,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 4,
-        "procCd": "00",
-        "saleAmt": 2290000
-      },
-      {
-        "eventSeq": 30000626,
-        "startDay": "20260526",
-        "personCnt": 8,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 8,
-        "procCd": "00",
-        "saleAmt": 2250000
-      },
       {
         "eventSeq": 41723,
         "startDay": "20260527",
@@ -2477,12 +2492,12 @@
       {
         "eventSeq": 30001003,
         "startDay": "20260610",
-        "personCnt": 5,
-        "minPersonCnt": 6,
-        "resvCnt": 7,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 2250000
+        "personCnt": 7,
+        "minPersonCnt": 4,
+        "resvCnt": 5,
+        "restCnt": 2,
+        "procCd": "01",
+        "saleAmt": 2190000
       },
       {
         "eventSeq": 30001849,
@@ -3255,7 +3270,7 @@
         "saleAmt": 2690000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:27.495Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:20.407Z"
   },
   {
     "id": "hyecho-2672",
@@ -3429,7 +3444,7 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:32.030Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:23.629Z"
   },
   {
     "id": "hyecho-2658",
@@ -3441,22 +3456,37 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2658/hyecho_cm9900_30001757.jpg",
     "locations": [
       {
-        "name": "무스탕 (Mustang)",
-        "lat": 29.18,
-        "lng": 83.77
+        "name": "캠트만두 (Kathmandu)",
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "따뛄파니 (Tatopani)",
+        "lat": 29.1337001,
+        "lng": 82.1494936
+      },
+      {
+        "name": "건그베니 (Kagbeni)",
+        "lat": 28.8377595,
+        "lng": 83.7843101
+      },
+      {
+        "name": "게미 (Ghami)",
+        "lat": 29.0630827,
+        "lng": 83.8730104
+      },
+      {
+        "name": "닭마르 (Dakmar)",
+        "lat": 34.3322483,
+        "lng": 77.0573419
+      },
+      {
+        "name": "로만탕 (Lo Manthang)",
+        "lat": 29.1828351,
+        "lng": 83.9563037
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41531,
-        "startDay": "20260519",
-        "personCnt": 20,
-        "minPersonCnt": 8,
-        "resvCnt": 20,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 6300000
-      },
       {
         "eventSeq": 30000692,
         "startDay": "20260915",
@@ -3478,7 +3508,7 @@
         "saleAmt": 6500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:34.896Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:29.702Z"
   },
   {
     "id": "hyecho-2895",
@@ -3509,9 +3539,9 @@
       {
         "eventSeq": 30000161,
         "startDay": "20260528",
-        "personCnt": 17,
+        "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 17,
+        "resvCnt": 16,
         "restCnt": 0,
         "procCd": "05",
         "saleAmt": 2200000
@@ -3531,8 +3561,8 @@
         "startDay": "20260912",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2400000
       },
@@ -3551,8 +3581,8 @@
         "startDay": "20260926",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
+        "resvCnt": 5,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 2700000
       },
@@ -3651,8 +3681,8 @@
         "startDay": "20261031",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2450000
       },
@@ -3767,7 +3797,7 @@
         "saleAmt": 2450000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:39.785Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:34.097Z"
   },
   {
     "id": "hyecho-30000096",
@@ -3780,8 +3810,13 @@
     "locations": [
       {
         "name": "마나도 (Manado)",
-        "lat": 1.49,
-        "lng": 124.84
+        "lat": 1.4900447,
+        "lng": 124.8407673
+      },
+      {
+        "name": "부나켰 (Bunaken)",
+        "lat": 1.5977149,
+        "lng": 124.7791909
       }
     ],
     "departures": [
@@ -3966,7 +4001,7 @@
         "saleAmt": 1790000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:48.001Z"
+    "departuresUpdatedAt": "2026-05-22T02:05:51.271Z"
   },
   {
     "id": "hyecho-2750",
@@ -3975,12 +4010,32 @@
     "price": "3,650,000",
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2750",
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2899/hyecho_cm9900_30001059.jpg",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2899/hyecho_cm9900_30001070.jpg",
     "locations": [
       {
-        "name": "레 (Leh, Ladakh)",
-        "lat": 34.16,
-        "lng": 77.58
+        "name": "델리 (Delhi)",
+        "lat": 28.6138954,
+        "lng": 77.2090057
+      },
+      {
+        "name": "레 (Leh)",
+        "lat": 34.1642029,
+        "lng": 77.5848133
+      },
+      {
+        "name": "리키르 (Likir)",
+        "lat": 34.2926459,
+        "lng": 77.2170627
+      },
+      {
+        "name": "헤미스수파첸 (Hemis Shukpachan)",
+        "lat": 34.3159127,
+        "lng": 77.0774147
+      },
+      {
+        "name": "라마유르 (Lamayuru)",
+        "lat": 34.2827066,
+        "lng": 76.773959
       }
     ],
     "departures": [
@@ -3999,8 +4054,8 @@
         "startDay": "20260625",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 7,
+        "restCnt": 7,
         "procCd": "00",
         "saleAmt": 3650000
       },
@@ -4055,7 +4110,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:52.259Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:00.738Z"
   },
   {
     "id": "hyecho-2489",
@@ -4093,18 +4148,18 @@
         "startDay": "20260522",
         "personCnt": 15,
         "minPersonCnt": 8,
-        "resvCnt": 15,
-        "restCnt": 0,
+        "resvCnt": 14,
+        "restCnt": 1,
         "procCd": "05",
         "saleAmt": 2690000
       },
       {
         "eventSeq": 41713,
         "startDay": "20260530",
-        "personCnt": 11,
+        "personCnt": 10,
         "minPersonCnt": 8,
         "resvCnt": 10,
-        "restCnt": 1,
+        "restCnt": 0,
         "procCd": "05",
         "saleAmt": 2690000
       },
@@ -4223,9 +4278,9 @@
         "startDay": "20260828",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 9,
-        "procCd": "01",
+        "resvCnt": 8,
+        "restCnt": 6,
+        "procCd": "00",
         "saleAmt": 2490000
       },
       {
@@ -4269,7 +4324,7 @@
         "saleAmt": 2590000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:18:58.849Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:05.874Z"
   },
   {
     "id": "hyecho-2392",
@@ -4313,21 +4368,21 @@
         "saleAmt": 8300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:00.589Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:07.522Z"
   },
   {
     "id": "hyecho-2388",
     "category": "trekking",
     "title": "[킬리만자로] 마랑구루트(산장)+워킹사파리 9일",
-    "price": "6,900,000",
+    "price": "7,000,000",
     "duration": "9일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2388&eventSeq=42000",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2388/hyecho_cm9900_30002838.jpg",
     "locations": [
       {
-        "name": "킬리만자로 (Kilimanjaro)",
-        "lat": -3.08,
-        "lng": 37.35
+        "name": "모시 (Moshi)",
+        "lat": -3.3486456,
+        "lng": 37.3435249
       }
     ],
     "departures": [
@@ -4366,8 +4421,8 @@
         "startDay": "20261002",
         "personCnt": 23,
         "minPersonCnt": 10,
-        "resvCnt": 21,
-        "restCnt": 2,
+        "resvCnt": 22,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 7200000
       },
@@ -4382,7 +4437,7 @@
         "saleAmt": 7200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:05.882Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:19.421Z"
   },
   {
     "id": "hyecho-2378",
@@ -4394,9 +4449,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2378/hyecho_cm9900_30002839.jpg",
     "locations": [
       {
+        "name": "모시 (Moshi)",
+        "lat": -3.3486456,
+        "lng": 37.3435249
+      },
+      {
         "name": "응고롱고로 (Ngorongoro)",
-        "lat": -3.22,
-        "lng": 35.45
+        "lat": -3.0735158,
+        "lng": 35.4205768
       }
     ],
     "departures": [
@@ -4411,7 +4471,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:07.586Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:25.269Z"
   },
   {
     "id": "hyecho-1951",
@@ -4485,7 +4545,7 @@
         "saleAmt": 10300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:10.706Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:27.679Z"
   },
   {
     "id": "hyecho-2082",
@@ -4497,9 +4557,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2082/hyecho_cm9900_30000301.jpg",
     "locations": [
       {
-        "name": "나고야",
-        "lat": 35.170952,
-        "lng": 136.8829402
+        "name": "가미코지 (Kamikochi)",
+        "lat": 36.2462449,
+        "lng": 137.6355354
+      },
+      {
+        "name": "나고야 (Nagoya)",
+        "lat": 35.1851045,
+        "lng": 136.8998438
       }
     ],
     "departures": [
@@ -4516,11 +4581,11 @@
       {
         "eventSeq": 30000733,
         "startDay": "20260625",
-        "personCnt": 19,
+        "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 15,
-        "restCnt": 4,
-        "procCd": "01",
+        "resvCnt": 18,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 2350000
       },
       {
@@ -4528,8 +4593,8 @@
         "startDay": "20260723",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 11,
-        "restCnt": 6,
+        "resvCnt": 12,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2500000
       },
@@ -4574,7 +4639,7 @@
         "saleAmt": 2600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:15.059Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:37.388Z"
   },
   {
     "id": "hyecho-1938",
@@ -4602,16 +4667,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41562,
-        "startDay": "20260518",
-        "personCnt": 19,
-        "minPersonCnt": 12,
-        "resvCnt": 19,
-        "restCnt": 0,
-        "procCd": "40",
-        "saleAmt": 9300000
-      },
       {
         "eventSeq": 42427,
         "startDay": "20260819",
@@ -4643,7 +4698,7 @@
         "saleAmt": 9400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:19.275Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:39.693Z"
   },
   {
     "id": "hyecho-1931",
@@ -4677,7 +4732,7 @@
         "saleAmt": 7700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:20.871Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:40.932Z"
   },
   {
     "id": "hyecho-2246",
@@ -4731,7 +4786,7 @@
         "saleAmt": 8200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:23.628Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:42.831Z"
   },
   {
     "id": "hyecho-1967",
@@ -4800,7 +4855,7 @@
         "saleAmt": 10100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:26.926Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:45.465Z"
   },
   {
     "id": "hyecho-2251",
@@ -4824,16 +4879,6 @@
     ],
     "departures": [
       {
-        "eventSeq": 41653,
-        "startDay": "20260522",
-        "personCnt": 18,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 18,
-        "procCd": "00",
-        "saleAmt": 3800000
-      },
-      {
         "eventSeq": 41895,
         "startDay": "20260605",
         "personCnt": 18,
@@ -4848,8 +4893,8 @@
         "startDay": "20260619",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 9,
+        "resvCnt": 8,
+        "restCnt": 10,
         "procCd": "01",
         "saleAmt": 3700000
       },
@@ -4868,8 +4913,8 @@
         "startDay": "20260717",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 9,
+        "resvCnt": 10,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 4100000
       },
@@ -4888,8 +4933,8 @@
         "startDay": "20260814",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 7,
+        "resvCnt": 9,
+        "restCnt": 9,
         "procCd": "01",
         "saleAmt": 4150000
       },
@@ -4944,7 +4989,7 @@
         "saleAmt": 3700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:33.118Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:49.641Z"
   },
   {
     "id": "hyecho-1844",
@@ -5063,7 +5108,7 @@
         "saleAmt": 8700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:35.708Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:51.524Z"
   },
   {
     "id": "hyecho-1858",
@@ -5086,16 +5131,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41640,
-        "startDay": "20260521",
-        "personCnt": 13,
-        "minPersonCnt": 8,
-        "resvCnt": 13,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 4650000
-      },
       {
         "eventSeq": 41881,
         "startDay": "20260625",
@@ -5237,7 +5272,7 @@
         "saleAmt": 4800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:41.728Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:55.679Z"
   },
   {
     "id": "hyecho-30000064",
@@ -5271,7 +5306,7 @@
         "saleAmt": 9100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:43.480Z"
+    "departuresUpdatedAt": "2026-05-22T02:06:56.968Z"
   },
   {
     "id": "hyecho-2139",
@@ -5329,8 +5364,8 @@
         "startDay": "20260714",
         "personCnt": 9,
         "minPersonCnt": 0,
-        "resvCnt": 4,
-        "restCnt": 5,
+        "resvCnt": 5,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 3290000
       },
@@ -5435,7 +5470,7 @@
         "saleAmt": 3090000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:47.453Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:00.614Z"
   },
   {
     "id": "hyecho-1910",
@@ -5559,16 +5594,6 @@
         "saleAmt": 1650000
       },
       {
-        "eventSeq": 30002087,
-        "startDay": "20270313",
-        "personCnt": 20,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
-        "procCd": "00",
-        "saleAmt": 1650000
-      },
-      {
         "eventSeq": 30002088,
         "startDay": "20270320",
         "personCnt": 20,
@@ -5679,7 +5704,7 @@
         "saleAmt": 1650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:54.362Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:05.807Z"
   },
   {
     "id": "hyecho-2272",
@@ -5718,7 +5743,7 @@
         "saleAmt": 11800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:55.824Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:07.014Z"
   },
   {
     "id": "hyecho-1986",
@@ -5752,7 +5777,7 @@
         "saleAmt": 9500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:19:57.844Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:08.191Z"
   },
   {
     "id": "hyecho-1816",
@@ -5784,16 +5809,6 @@
         "restCnt": 10,
         "procCd": "01",
         "saleAmt": 3750000
-      },
-      {
-        "eventSeq": 42054,
-        "startDay": "20260616",
-        "personCnt": 20,
-        "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 20,
-        "procCd": "00",
-        "saleAmt": 3850000
       },
       {
         "eventSeq": 42355,
@@ -5876,7 +5891,7 @@
         "saleAmt": 3750000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:03.350Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:12.421Z"
   },
   {
     "id": "hyecho-1992",
@@ -5935,7 +5950,7 @@
         "saleAmt": 10600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:07.133Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:15.210Z"
   },
   {
     "id": "hyecho-2273",
@@ -5947,9 +5962,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2273/hyecho_cm9900_30002178.jpg",
     "locations": [
       {
-        "name": "힐로",
-        "lat": 19.7073734,
-        "lng": -155.08158
+        "name": "캰우아이 (Kauai)",
+        "lat": 22.0503838,
+        "lng": -159.5588624
+      },
+      {
+        "name": "빅아일랜드 (Big Island)",
+        "lat": 19.5895548,
+        "lng": -155.4486983
+      },
+      {
+        "name": "마우이 (Maui)",
+        "lat": 20.8029568,
+        "lng": -156.3106833
+      },
+      {
+        "name": "오아부 (Oahu)",
+        "lat": 21.4834365,
+        "lng": -158.0365105
       }
     ],
     "departures": [
@@ -6084,7 +6114,7 @@
         "saleAmt": 9800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:11.448Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:25.346Z"
   },
   {
     "id": "hyecho-1989",
@@ -6132,8 +6162,8 @@
         "startDay": "20260620",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 17,
-        "restCnt": 3,
+        "resvCnt": 16,
+        "restCnt": 4,
         "procCd": "40",
         "saleAmt": 21900000
       },
@@ -6142,13 +6172,13 @@
         "startDay": "20260902",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 14,
-        "restCnt": 6,
+        "resvCnt": 16,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 21900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:13.972Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:27.388Z"
   },
   {
     "id": "hyecho-2296",
@@ -6182,7 +6212,7 @@
         "saleAmt": 26000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:15.624Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:28.905Z"
   },
   {
     "id": "hyecho-1856",
@@ -6255,8 +6285,8 @@
         "startDay": "20260716",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 16,
+        "resvCnt": 1,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2850000
       },
@@ -6285,8 +6315,8 @@
         "startDay": "20260726",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 12,
-        "restCnt": 4,
+        "resvCnt": 16,
+        "restCnt": 0,
         "procCd": "01",
         "saleAmt": 2850000
       },
@@ -6305,8 +6335,8 @@
         "startDay": "20260802",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 16,
+        "resvCnt": 2,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 2850000
       },
@@ -6345,8 +6375,8 @@
         "startDay": "20260816",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 16,
+        "resvCnt": 1,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2850000
       },
@@ -6471,7 +6501,7 @@
         "saleAmt": 2800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:21.670Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:34.405Z"
   },
   {
     "id": "hyecho-1925",
@@ -6509,8 +6539,8 @@
         "startDay": "20260625",
         "personCnt": 15,
         "minPersonCnt": 10,
-        "resvCnt": 13,
-        "restCnt": 2,
+        "resvCnt": 10,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 3300000
       },
@@ -6539,8 +6569,8 @@
         "startDay": "20260820",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 16,
+        "resvCnt": 2,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 3500000
       },
@@ -6565,7 +6595,7 @@
         "saleAmt": 3400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:27.261Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:38.855Z"
   },
   {
     "id": "hyecho-1916",
@@ -6729,7 +6759,7 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:31.766Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:42.656Z"
   },
   {
     "id": "hyecho-3325",
@@ -6741,9 +6771,44 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3350/hyecho_cm9900_30002880.jpg",
     "locations": [
       {
-        "name": "산티아고 데 콤포스텔라 (Santiago)",
-        "lat": 42.88,
-        "lng": -8.54
+        "name": "바르셌로나 (Barcelona)",
+        "lat": 41.3825802,
+        "lng": 2.177073
+      },
+      {
+        "name": "루르드 (Lourdes)",
+        "lat": 43.0940904,
+        "lng": -0.0464975
+      },
+      {
+        "name": "팩플로나 (Pamplona)",
+        "lat": 42.815686,
+        "lng": -1.6522353
+      },
+      {
+        "name": "부르고스 (Burgos)",
+        "lat": 42.3448498,
+        "lng": -3.6812477
+      },
+      {
+        "name": "레온 (León)",
+        "lat": 45.7578137,
+        "lng": 4.8320114
+      },
+      {
+        "name": "비야프랑고 델 비에르조 (Villafranca del Bierzo)",
+        "lat": 42.6952561,
+        "lng": -6.7930716
+      },
+      {
+        "name": "루고 (Lugo)",
+        "lat": 43.0395266,
+        "lng": -7.4567985
+      },
+      {
+        "name": "산티아고 데 콘포스텔라 (Santiago de Compostela)",
+        "lat": 42.9064576,
+        "lng": -8.5192983
       }
     ],
     "departures": [
@@ -6762,8 +6827,8 @@
         "startDay": "20260915",
         "personCnt": 25,
         "minPersonCnt": 15,
-        "resvCnt": 19,
-        "restCnt": 6,
+        "resvCnt": 21,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 6900000
       },
@@ -6772,8 +6837,8 @@
         "startDay": "20260928",
         "personCnt": 25,
         "minPersonCnt": 15,
-        "resvCnt": 3,
-        "restCnt": 22,
+        "resvCnt": 10,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 6900000
       },
@@ -6788,7 +6853,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:34.074Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:49.825Z"
   },
   {
     "id": "hyecho-30000099",
@@ -6831,27 +6896,67 @@
         "startDay": "20260911",
         "personCnt": 25,
         "minPersonCnt": 15,
-        "resvCnt": 1,
-        "restCnt": 24,
+        "resvCnt": 5,
+        "restCnt": 20,
         "procCd": "00",
         "saleAmt": 7100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:35.656Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:50.800Z"
   },
   {
     "id": "hyecho-3347",
     "category": "walking",
     "title": "[한필석+가이드 동행] 산티아고 하이라이트 순례길 17일",
-    "price": "7,300,000",
+    "price": "7,100,000",
     "duration": "17일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3347",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3347/hyecho_cm9900_30002741.jpg",
     "locations": [
       {
-        "name": "산티아고 데 콤포스텔라 (Santiago)",
-        "lat": 42.88,
-        "lng": -8.54
+        "name": "팩플로나 (Pamplona)",
+        "lat": 42.815686,
+        "lng": -1.6522353
+      },
+      {
+        "name": "부르고스 (Burgos)",
+        "lat": 42.3448498,
+        "lng": -3.6812477
+      },
+      {
+        "name": "레온 (León)",
+        "lat": 45.7578137,
+        "lng": 4.8320114
+      },
+      {
+        "name": "폰페라다 (Ponferrada)",
+        "lat": 42.4984436,
+        "lng": -6.5663176
+      },
+      {
+        "name": "루고 (Lugo)",
+        "lat": 43.0395266,
+        "lng": -7.4567985
+      },
+      {
+        "name": "산티아고 데 콘포스텔라 (Santiago de Compostela)",
+        "lat": 42.9064576,
+        "lng": -8.5192983
+      },
+      {
+        "name": "피니스테레 (Finisterre)",
+        "lat": 48.2451153,
+        "lng": -4.0440902
+      },
+      {
+        "name": "포르투 (Porto)",
+        "lat": 41.1502195,
+        "lng": -8.6103497
+      },
+      {
+        "name": "파티마 (Fatima)",
+        "lat": 39.6255498,
+        "lng": -8.6659081
       }
     ],
     "departures": [
@@ -6864,9 +6969,19 @@
         "restCnt": 16,
         "procCd": "00",
         "saleAmt": 7100000
+      },
+      {
+        "eventSeq": 30002192,
+        "startDay": "20270422",
+        "personCnt": 25,
+        "minPersonCnt": 20,
+        "resvCnt": 0,
+        "restCnt": 25,
+        "procCd": "00",
+        "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:37.304Z"
+    "departuresUpdatedAt": "2026-05-22T02:07:57.807Z"
   },
   {
     "id": "hyecho-3361",
@@ -6878,22 +6993,127 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3361/hyecho_cm9900_30000571.jpg",
     "locations": [
       {
-        "name": "산티아고 데 콤포스텔라 (Santiago)",
-        "lat": 42.88,
-        "lng": -8.54
+        "name": "루르드 (Lourdes)",
+        "lat": 43.0940904,
+        "lng": -0.0464975
+      },
+      {
+        "name": "생장 (St. Jean Pied de Port)",
+        "lat": 43.1629528,
+        "lng": -1.2380528
+      },
+      {
+        "name": "론세스바예스 (Roncesvalles)",
+        "lat": 43.0091669,
+        "lng": -1.3201731
+      },
+      {
+        "name": "수비리 (Zubiri)",
+        "lat": 42.9305828,
+        "lng": -1.5043222
+      },
+      {
+        "name": "팜플로나 (Pamplona)",
+        "lat": 42.815686,
+        "lng": -1.6522353
+      },
+      {
+        "name": "뿌엔떼 라 레이나 (Puente la Reina)",
+        "lat": 42.6914331,
+        "lng": -1.8123198
+      },
+      {
+        "name": "에스떼야 (Estella)",
+        "lat": 42.6626058,
+        "lng": -2.022023
+      },
+      {
+        "name": "로스 아르꼬스 (Los Arcos)",
+        "lat": 42.5697418,
+        "lng": -2.1923085
+      },
+      {
+        "name": "로그로뇨 (Logrono)",
+        "lat": 42.4661196,
+        "lng": -2.4396676
+      },
+      {
+        "name": "나헤라 (Najera)",
+        "lat": 42.416745,
+        "lng": -2.7336874
+      },
+      {
+        "name": "산토도밍고 데 라 칼사다 (Santo Domingo de la Calzada)",
+        "lat": 42.4406711,
+        "lng": -2.9536395
+      },
+      {
+        "name": "벨로라도 (Belorado)",
+        "lat": 42.4267072,
+        "lng": -3.1964952
+      },
+      {
+        "name": "부르고스 (Burgos)",
+        "lat": 42.3448498,
+        "lng": -3.6812477
+      },
+      {
+        "name": "오르니요스 델 까미노 (Hornillos del Camino)",
+        "lat": 42.3385369,
+        "lng": -3.9259523
+      },
+      {
+        "name": "까스트로헤리스 (Castrojeriz)",
+        "lat": 42.2883697,
+        "lng": -4.1406403
+      },
+      {
+        "name": "프로미스타 (Fromista)",
+        "lat": 42.2676867,
+        "lng": -4.4055039
+      },
+      {
+        "name": "까리온 데 로스 꼰데스 (Carrión de los Condes)",
+        "lat": 42.3385404,
+        "lng": -4.6017128
+      },
+      {
+        "name": "테라디요스 데 로스 템플라리오스 (Terradillos de los Templarios)",
+        "lat": 42.3629914,
+        "lng": -4.8906159
+      },
+      {
+        "name": "베르시아노스 델 까미노 (Bercianos del Camino)",
+        "lat": 42.3873217,
+        "lng": -5.1347761
+      },
+      {
+        "name": "만시야 데 라스 물라스 (Mansilla de las Mulas)",
+        "lat": 42.4991013,
+        "lng": -5.4169163
+      },
+      {
+        "name": "산티아고 데 콤포스텔라 (Santiago de Compostela)",
+        "lat": 42.9064576,
+        "lng": -8.5192983
+      },
+      {
+        "name": "피니스테레 (Finisterre)",
+        "lat": 48.2451153,
+        "lng": -4.0440902
+      },
+      {
+        "name": "무씨아 (Muxía)",
+        "lat": 43.0654819,
+        "lng": -9.177681
+      },
+      {
+        "name": "마드리드 (Madrid)",
+        "lat": 40.416782,
+        "lng": -3.703507
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41655,
-        "startDay": "20260518",
-        "personCnt": 25,
-        "minPersonCnt": 20,
-        "resvCnt": 25,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 9600000
-      },
       {
         "eventSeq": 42653,
         "startDay": "20260915",
@@ -6905,7 +7125,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:39.806Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:03.154Z"
   },
   {
     "id": "hyecho-3360",
@@ -6954,7 +7174,7 @@
         "saleAmt": 7200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:42.307Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:05.465Z"
   },
   {
     "id": "hyecho-3351",
@@ -6998,7 +7218,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:44.929Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:07.639Z"
   },
   {
     "id": "hyecho-3109",
@@ -7069,11 +7289,11 @@
       {
         "eventSeq": 41893,
         "startDay": "20260611",
-        "personCnt": 12,
+        "personCnt": 8,
         "minPersonCnt": 10,
         "resvCnt": 8,
-        "restCnt": 4,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 13400000
       },
       {
@@ -7087,7 +7307,7 @@
         "saleAmt": 12900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:47.669Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:09.530Z"
   },
   {
     "id": "hyecho-3028",
@@ -7165,13 +7385,13 @@
         "startDay": "20260813",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 0,
-        "procCd": "40",
+        "resvCnt": 15,
+        "restCnt": 1,
+        "procCd": "01",
         "saleAmt": 9300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:51.288Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:12.912Z"
   },
   {
     "id": "hyecho-3078",
@@ -7183,9 +7403,34 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3078/hyecho_cm9900_30002803.jpg",
     "locations": [
       {
-        "name": "피레네 (Pyrenees)",
-        "lat": 42.65,
-        "lng": 0.89
+        "name": "바르셀로나 (Barcelona)",
+        "lat": 41.3825802,
+        "lng": 2.177073
+      },
+      {
+        "name": "소르트 (Sort)",
+        "lat": 42.4114509,
+        "lng": 1.1298362
+      },
+      {
+        "name": "아인사 (Ainsa)",
+        "lat": 42.4171898,
+        "lng": 0.1386444
+      },
+      {
+        "name": "루르드 (Lourdes)",
+        "lat": 43.0940904,
+        "lng": -0.0464975
+      },
+      {
+        "name": "가바르니 (Gavarnie)",
+        "lat": 42.7322036,
+        "lng": -0.0093524
+      },
+      {
+        "name": "레리다 (Lleida)",
+        "lat": 41.6147605,
+        "lng": 0.6267842
       }
     ],
     "departures": [
@@ -7210,7 +7455,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:53.883Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:19.510Z"
   },
   {
     "id": "hyecho-3030",
@@ -7221,6 +7466,11 @@
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3030&eventSeq=41855",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3030/hyecho_cm9900_30002888.jpg",
     "locations": [
+      {
+        "name": "두바이",
+        "lat": 25.0742823,
+        "lng": 55.1885387
+      },
       {
         "name": "베니스",
         "lat": 45.4408,
@@ -7233,8 +7483,8 @@
         "startDay": "20260622",
         "personCnt": 14,
         "minPersonCnt": 12,
-        "resvCnt": 13,
-        "restCnt": 1,
+        "resvCnt": 12,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 7900000
       },
@@ -7273,8 +7523,8 @@
         "startDay": "20260706",
         "personCnt": 14,
         "minPersonCnt": 12,
-        "resvCnt": 14,
-        "restCnt": 0,
+        "resvCnt": 12,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 8100000
       },
@@ -7329,7 +7579,7 @@
         "saleAmt": 7900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:20:57.529Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:28.836Z"
   },
   {
     "id": "hyecho-3029",
@@ -7341,9 +7591,39 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3029/hyecho_cm9900_30002886.jpg",
     "locations": [
       {
-        "name": "샤모니 (Chamonix)",
-        "lat": 45.92,
-        "lng": 6.87
+        "name": "샤모니 (Chamonix-Mont-Blanc)",
+        "lat": 45.9230969,
+        "lng": 6.8700009
+      },
+      {
+        "name": "트리앙 (Trient)",
+        "lat": 46.0664228,
+        "lng": 11.1257601
+      },
+      {
+        "name": "샤마페 (Champex)",
+        "lat": 45.768648,
+        "lng": 6.9818982
+      },
+      {
+        "name": "구르마이여르 (Courmayeur)",
+        "lat": 45.8316548,
+        "lng": 6.9461565
+      },
+      {
+        "name": "부르그 생 모리스 (Bourg-Saint-Maurice)",
+        "lat": 45.6186105,
+        "lng": 6.7695277
+      },
+      {
+        "name": "레콤타민 (Contamines-Montjoie)",
+        "lat": 45.797122,
+        "lng": 6.7053881
+      },
+      {
+        "name": "생 제르방 (Saint-Gervais)",
+        "lat": 45.2022356,
+        "lng": 5.4820229
       }
     ],
     "departures": [
@@ -7352,9 +7632,9 @@
         "startDay": "20260623",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 12,
-        "restCnt": 2,
-        "procCd": "01",
+        "resvCnt": 14,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 7900000
       },
       {
@@ -7372,9 +7652,9 @@
         "startDay": "20260630",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 13,
-        "restCnt": 1,
-        "procCd": "01",
+        "resvCnt": 14,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 7900000
       },
       {
@@ -7422,8 +7702,8 @@
         "startDay": "20260721",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 12,
-        "restCnt": 2,
+        "resvCnt": 13,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 7900000
       },
@@ -7432,9 +7712,9 @@
         "startDay": "20260724",
         "personCnt": 14,
         "minPersonCnt": 10,
-        "resvCnt": 14,
-        "restCnt": 0,
-        "procCd": "40",
+        "resvCnt": 12,
+        "restCnt": 2,
+        "procCd": "01",
         "saleAmt": 7900000
       },
       {
@@ -7454,7 +7734,7 @@
         "minPersonCnt": 10,
         "resvCnt": 14,
         "restCnt": 0,
-        "procCd": "01",
+        "procCd": "40",
         "saleAmt": 7900000
       },
       {
@@ -7478,7 +7758,7 @@
         "saleAmt": 7700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:01.837Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:39.367Z"
   },
   {
     "id": "hyecho-2763",
@@ -7490,9 +7770,34 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2763/hyecho_cm9900_30001670.jpg",
     "locations": [
       {
-        "name": "돌포 (Dolpo)",
-        "lat": 29,
-        "lng": 82.8
+        "name": "카트만두 (Kathmandu)",
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "네팔간지 (Nepalgunj)",
+        "lat": 28.1023045,
+        "lng": 81.6622794
+      },
+      {
+        "name": "첽카 (Chhepka)",
+        "lat": 29.0567465,
+        "lng": 82.8970599
+      },
+      {
+        "name": "링모 (Ringmo)",
+        "lat": 29.9356523,
+        "lng": 98.0853265
+      },
+      {
+        "name": "셔이곳파 (Shey Gompa)",
+        "lat": 29.3524157,
+        "lng": 82.9655145
+      },
+      {
+        "name": "포카라 (Pokhara)",
+        "lat": 28.209538,
+        "lng": 83.991402
       }
     ],
     "departures": [
@@ -7527,21 +7832,31 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:04.498Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:46.161Z"
   },
   {
     "id": "hyecho-2639",
     "category": "trekking",
-    "title": "[안나푸르나] 푼힐/베이스캠프 트레킹 12일 #추석연휴",
-    "price": "4,400,000",
-    "duration": "12일",
+    "title": "[안나푸르나] 푼힐/베이스캠프 트레킹 11일(환승/SQ) #추석연휴",
+    "price": "4,100,000",
+    "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2639&eventSeq=42748",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2639/hyecho_cm9900_30002910.jpg",
     "locations": [
       {
-        "name": "안나푸르나 (Annapurna)",
-        "lat": 28.6,
-        "lng": 83.82
+        "name": "밤부",
+        "lat": 28.44,
+        "lng": 83.85
+      },
+      {
+        "name": "포카라",
+        "lat": 28.2096,
+        "lng": 83.9856
+      },
+      {
+        "name": "카트만두",
+        "lat": 27.708317,
+        "lng": 85.3205817
       }
     ],
     "departures": [
@@ -7590,8 +7905,8 @@
         "startDay": "20261010",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 14,
-        "restCnt": 2,
+        "resvCnt": 12,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 4100000
       },
@@ -7620,8 +7935,8 @@
         "startDay": "20261024",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 12,
-        "restCnt": 4,
+        "resvCnt": 13,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 4100000
       },
@@ -7630,8 +7945,8 @@
         "startDay": "20261031",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 13,
-        "restCnt": 3,
+        "resvCnt": 14,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 4100000
       },
@@ -7640,8 +7955,8 @@
         "startDay": "20261107",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 4,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 4100000
       },
@@ -7710,9 +8025,9 @@
         "startDay": "20261205",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 11,
-        "procCd": "00",
+        "resvCnt": 8,
+        "restCnt": 8,
+        "procCd": "01",
         "saleAmt": 4000000
       },
       {
@@ -7746,7 +8061,7 @@
         "saleAmt": 4000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:08.752Z"
+    "departuresUpdatedAt": "2026-05-22T02:08:56.932Z"
   },
   {
     "id": "hyecho-2632",
@@ -7758,9 +8073,29 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2486/hyecho_cm9900_30002662.jpg",
     "locations": [
       {
+        "name": "이닝 (Yining)",
+        "lat": 43.9052027,
+        "lng": 81.2747797
+      },
+      {
+        "name": "샤타고도 (Xiata)",
+        "lat": 26.8302,
+        "lng": 109.128
+      },
+      {
+        "name": "궁류현 (Gongliu)",
+        "lat": 43.4801666,
+        "lng": 82.2289633
+      },
+      {
+        "name": "청수화 (Qingshui)",
+        "lat": 34.729233,
+        "lng": 106.1177158
+      },
+      {
         "name": "우루무치 (Urumqi)",
-        "lat": 43.83,
-        "lng": 87.61
+        "lat": 43.8244074,
+        "lng": 87.6139038
       }
     ],
     "departures": [
@@ -7771,7 +8106,7 @@
         "minPersonCnt": 10,
         "resvCnt": 14,
         "restCnt": 0,
-        "procCd": "40",
+        "procCd": "05",
         "saleAmt": 4800000
       },
       {
@@ -7781,7 +8116,7 @@
         "minPersonCnt": 10,
         "resvCnt": 14,
         "restCnt": 0,
-        "procCd": "40",
+        "procCd": "05",
         "saleAmt": 4750000
       },
       {
@@ -7795,7 +8130,7 @@
         "saleAmt": 5000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:12.220Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:06.365Z"
   },
   {
     "id": "hyecho-2618",
@@ -7807,9 +8142,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2618/hyecho_cm9900_30002196.jpg",
     "locations": [
       {
-        "name": "레 (Leh, Ladakh)",
-        "lat": 34.16,
-        "lng": 77.58
+        "name": "델리 (Delhi)",
+        "lat": 28.6138954,
+        "lng": 77.2090057
+      },
+      {
+        "name": "레 (Leh)",
+        "lat": 34.1642029,
+        "lng": 77.5848133
+      },
+      {
+        "name": "음뢭 (Umlung)",
+        "lat": 33.8687719,
+        "lng": 77.4637938
+      },
+      {
+        "name": "토춘다 (Tachungtse)",
+        "lat": 33.8111671,
+        "lng": 77.5336397
       }
     ],
     "departures": [
@@ -7864,7 +8214,7 @@
         "saleAmt": 4200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:16.538Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:15.900Z"
   },
   {
     "id": "hyecho-2599",
@@ -7907,8 +8257,8 @@
         "startDay": "20260619",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 9,
-        "restCnt": 7,
+        "resvCnt": 7,
+        "restCnt": 9,
         "procCd": "00",
         "saleAmt": 7400000
       },
@@ -7927,8 +8277,8 @@
         "startDay": "20260724",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 4,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 7400000
       },
@@ -7973,7 +8323,7 @@
         "saleAmt": 7600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:23.177Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:20.339Z"
   },
   {
     "id": "hyecho-2616",
@@ -8004,15 +8354,15 @@
       {
         "eventSeq": 42084,
         "startDay": "20260703",
-        "personCnt": 14,
+        "personCnt": 12,
         "minPersonCnt": 10,
         "resvCnt": 12,
-        "restCnt": 2,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:24.663Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:22.013Z"
   },
   {
     "id": "hyecho-30000054",
@@ -8055,9 +8405,9 @@
         "startDay": "20260722",
         "personCnt": 15,
         "minPersonCnt": 10,
-        "resvCnt": 12,
-        "restCnt": 3,
-        "procCd": "01",
+        "resvCnt": 15,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 6100000
       },
       {
@@ -8071,42 +8421,37 @@
         "saleAmt": 6100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:28.346Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:24.929Z"
   },
   {
     "id": "hyecho-30000104",
     "category": "trekking",
     "title": "[신상품]샹그릴라 하이라이트+하바설산 파노라마 트레킹 6일",
-    "price": "2,090,000",
+    "price": "1,950,000",
     "duration": "6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000104&eventSeq=30000839",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000104/hyecho_cm9900_30002550.jpeg",
     "locations": [
       {
-        "name": "샹그릴라 (Shangri-La)",
-        "lat": 27.83,
-        "lng": 99.71
+        "name": "성도 (Chengdu)",
+        "lat": 30.659867,
+        "lng": 104.063315
+      },
+      {
+        "name": "생그릴라 (Shangri-la)",
+        "lat": 27.8717021,
+        "lng": 99.8365499
       }
     ],
     "departures": [
       {
         "eventSeq": 30000843,
         "startDay": "20260528",
-        "personCnt": 14,
+        "personCnt": 10,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 3,
-        "procCd": "01",
-        "saleAmt": 1950000
-      },
-      {
-        "eventSeq": 30000844,
-        "startDay": "20260611",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
+        "resvCnt": 10,
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 1950000
       },
       {
@@ -8114,8 +8459,8 @@
         "startDay": "20260618",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 7,
-        "restCnt": 7,
+        "resvCnt": 8,
+        "restCnt": 6,
         "procCd": "01",
         "saleAmt": 2050000
       },
@@ -8230,7 +8575,7 @@
         "saleAmt": 1990000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:33.873Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:36.729Z"
   },
   {
     "id": "hyecho-2476",
@@ -8242,9 +8587,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2476/hyecho_cm9900_30001918.jpg",
     "locations": [
       {
-        "name": "백두산 (Changbai Mountain)",
-        "lat": 42,
-        "lng": 128.08
+        "name": "심양 (Shenyang)",
+        "lat": 41.8026095,
+        "lng": 123.4279105
+      },
+      {
+        "name": "송강하 (Songjiang-ha)",
+        "lat": 35.7766357,
+        "lng": 114.3008121
+      },
+      {
+        "name": "통화 (Tonghua)",
+        "lat": 42.123889,
+        "lng": 125.848333
+      },
+      {
+        "name": "집안 (Jian)",
+        "lat": 27.0431288,
+        "lng": 114.9034181
       }
     ],
     "departures": [
@@ -8269,16 +8629,6 @@
         "saleAmt": 1550000
       },
       {
-        "eventSeq": 41976,
-        "startDay": "20260613",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 1650000
-      },
-      {
         "eventSeq": 41972,
         "startDay": "20260619",
         "personCnt": 15,
@@ -8287,16 +8637,6 @@
         "restCnt": 0,
         "procCd": "05",
         "saleAmt": 1490000
-      },
-      {
-        "eventSeq": 41977,
-        "startDay": "20260620",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 1690000
       },
       {
         "eventSeq": 30000884,
@@ -8311,10 +8651,10 @@
       {
         "eventSeq": 30000749,
         "startDay": "20260625",
-        "personCnt": 20,
+        "personCnt": 19,
         "minPersonCnt": 8,
-        "resvCnt": 18,
-        "restCnt": 2,
+        "resvCnt": 19,
+        "restCnt": 0,
         "procCd": "05",
         "saleAmt": 1490000
       },
@@ -8323,8 +8663,8 @@
         "startDay": "20260627",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 10,
-        "restCnt": 4,
+        "resvCnt": 12,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 1650000
       },
@@ -8345,7 +8685,7 @@
         "minPersonCnt": 8,
         "resvCnt": 8,
         "restCnt": 6,
-        "procCd": "00",
+        "procCd": "01",
         "saleAmt": 1790000
       },
       {
@@ -8393,9 +8733,9 @@
         "startDay": "20260724",
         "personCnt": 21,
         "minPersonCnt": 8,
-        "resvCnt": 21,
-        "restCnt": 0,
-        "procCd": "05",
+        "resvCnt": 19,
+        "restCnt": 2,
+        "procCd": "01",
         "saleAmt": 1650000
       },
       {
@@ -8411,10 +8751,10 @@
       {
         "eventSeq": 42213,
         "startDay": "20260731",
-        "personCnt": 12,
+        "personCnt": 11,
         "minPersonCnt": 8,
         "resvCnt": 11,
-        "restCnt": 1,
+        "restCnt": 0,
         "procCd": "05",
         "saleAmt": 1690000
       },
@@ -8433,9 +8773,9 @@
         "startDay": "20260807",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 8,
-        "procCd": "01",
+        "resvCnt": 4,
+        "restCnt": 10,
+        "procCd": "00",
         "saleAmt": 1750000
       },
       {
@@ -8533,8 +8873,8 @@
         "startDay": "20260905",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 2,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 1450000
       },
@@ -8719,13 +9059,13 @@
         "saleAmt": 1390000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:40.601Z"
+    "departuresUpdatedAt": "2026-05-22T02:09:50.379Z"
   },
   {
     "id": "hyecho-2477",
     "category": "trekking",
     "title": "장가계(양가계-황석채-천문산) 트레킹 6일",
-    "price": "2,050,000",
+    "price": "1,850,000",
     "duration": "6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2477&eventSeq=41952",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2477/hyecho_cm9900_30001903.jpg",
@@ -8737,26 +9077,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000584,
-        "startDay": "20260520",
-        "personCnt": 14,
-        "minPersonCnt": 8,
-        "resvCnt": 14,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 2090000
-      },
-      {
-        "eventSeq": 41913,
-        "startDay": "20260618",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 10,
-        "procCd": "00",
-        "saleAmt": 1890000
-      },
       {
         "eventSeq": 42259,
         "startDay": "20260723",
@@ -8898,7 +9218,7 @@
         "saleAmt": 1990000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:47.342Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:01.640Z"
   },
   {
     "id": "hyecho-2809",
@@ -8910,9 +9230,29 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2809/hyecho_cm9900_30001378.jpg",
     "locations": [
       {
-        "name": "마쓰모토 (Matsumoto)",
-        "lat": 36.24,
-        "lng": 137.97
+        "name": "나카부사 (Nakabusa)",
+        "lat": 34.2629342,
+        "lng": 135.3179548
+      },
+      {
+        "name": "츠바쿠로 (Tsubakuro)",
+        "lat": 33.6261707,
+        "lng": 130.5115944
+      },
+      {
+        "name": "야리가다케 (Yarigatake)",
+        "lat": 36.731328,
+        "lng": 137.7553698
+      },
+      {
+        "name": "나고야 (Nagoya)",
+        "lat": 35.1851045,
+        "lng": 136.8998438
+      },
+      {
+        "name": "다카야마 (Takayama)",
+        "lat": 36.1396246,
+        "lng": 137.2510322
       }
     ],
     "departures": [
@@ -8961,8 +9301,8 @@
         "startDay": "20260805",
         "personCnt": 19,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 18,
+        "resvCnt": 2,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 2200000
       },
@@ -8971,9 +9311,9 @@
         "startDay": "20260812",
         "personCnt": 19,
         "minPersonCnt": 10,
-        "resvCnt": 2,
-        "restCnt": 17,
-        "procCd": "00",
+        "resvCnt": 10,
+        "restCnt": 9,
+        "procCd": "01",
         "saleAmt": 2100000
       },
       {
@@ -9021,8 +9361,8 @@
         "startDay": "20260916",
         "personCnt": 19,
         "minPersonCnt": 10,
-        "resvCnt": 4,
-        "restCnt": 15,
+        "resvCnt": 5,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 2050000
       },
@@ -9031,13 +9371,13 @@
         "startDay": "20260930",
         "personCnt": 19,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 18,
+        "resvCnt": 0,
+        "restCnt": 19,
         "procCd": "00",
         "saleAmt": 2300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:50.730Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:10.423Z"
   },
   {
     "id": "hyecho-2920",
@@ -9100,8 +9440,8 @@
         "startDay": "20260724",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 16,
+        "resvCnt": 2,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 2300000
       },
@@ -9140,8 +9480,8 @@
         "startDay": "20260814",
         "personCnt": 24,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 23,
+        "resvCnt": 0,
+        "restCnt": 24,
         "procCd": "00",
         "saleAmt": 2500000
       },
@@ -9190,8 +9530,8 @@
         "startDay": "20260904",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 13,
-        "restCnt": 4,
+        "resvCnt": 12,
+        "restCnt": 5,
         "procCd": "01",
         "saleAmt": 2150000
       },
@@ -9206,7 +9546,7 @@
         "saleAmt": 2150000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:21:54.071Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:13.245Z"
   },
   {
     "id": "hyecho-2899",
@@ -9297,19 +9637,19 @@
       {
         "eventSeq": 30000108,
         "startDay": "20260603",
-        "personCnt": 17,
+        "personCnt": 12,
         "minPersonCnt": 10,
         "resvCnt": 12,
-        "restCnt": 5,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 2550000
       },
       {
         "eventSeq": 30000102,
         "startDay": "20260604",
-        "personCnt": 15,
+        "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 15,
+        "resvCnt": 16,
         "restCnt": 0,
         "procCd": "05",
         "saleAmt": 2300000
@@ -9369,9 +9709,9 @@
         "startDay": "20260618",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 15,
-        "restCnt": 2,
-        "procCd": "01",
+        "resvCnt": 17,
+        "restCnt": 0,
+        "procCd": "05",
         "saleAmt": 2200000
       },
       {
@@ -9389,8 +9729,8 @@
         "startDay": "20260625",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 16,
-        "restCnt": 1,
+        "resvCnt": 10,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 2200000
       },
@@ -9579,8 +9919,8 @@
         "startDay": "20260925",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 2,
-        "restCnt": 15,
+        "resvCnt": 4,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 2600000
       },
@@ -9685,7 +10025,7 @@
         "saleAmt": 1800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:00.340Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:18.247Z"
   },
   {
     "id": "hyecho-2854",
@@ -9721,11 +10061,11 @@
       {
         "eventSeq": 30000273,
         "startDay": "20260530",
-        "personCnt": 17,
+        "personCnt": 10,
         "minPersonCnt": 10,
-        "resvCnt": 12,
-        "restCnt": 5,
-        "procCd": "01",
+        "resvCnt": 10,
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 2250000
       },
       {
@@ -9783,8 +10123,8 @@
         "startDay": "20260712",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 4,
-        "restCnt": 13,
+        "resvCnt": 6,
+        "restCnt": 11,
         "procCd": "00",
         "saleAmt": 1700000
       },
@@ -9813,8 +10153,8 @@
         "startDay": "20260726",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 9,
+        "resvCnt": 11,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 1750000
       },
@@ -9901,10 +10241,10 @@
       {
         "eventSeq": 30000261,
         "startDay": "20260823",
-        "personCnt": 15,
+        "personCnt": 23,
         "minPersonCnt": 10,
         "resvCnt": 14,
-        "restCnt": 1,
+        "restCnt": 9,
         "procCd": "01",
         "saleAmt": 1700000
       },
@@ -9923,8 +10263,8 @@
         "startDay": "20260905",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 9,
+        "resvCnt": 9,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 1750000
       },
@@ -9999,7 +10339,7 @@
         "saleAmt": 1850000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:06.289Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:24.307Z"
   },
   {
     "id": "hyecho-2940",
@@ -10147,8 +10487,8 @@
         "startDay": "20260928",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 16,
+        "resvCnt": 0,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 3650000
       },
@@ -10193,7 +10533,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:10.681Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:27.855Z"
   },
   {
     "id": "hyecho-3198",
@@ -10205,9 +10545,49 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3198/hyecho_cm9900_30002055.jpg",
     "locations": [
       {
-        "name": "밴쿠버 (Vancouver)",
-        "lat": 49.28,
-        "lng": -123.12
+        "name": "토론토 (Toronto)",
+        "lat": 43.6534817,
+        "lng": -79.3839347
+      },
+      {
+        "name": "퀴벡 (Quebec)",
+        "lat": 52.4760892,
+        "lng": -71.8258668
+      },
+      {
+        "name": "라말베 (La Malbaie)",
+        "lat": 47.657525,
+        "lng": -70.153885
+      },
+      {
+        "name": "몬트리올 (Montreal)",
+        "lat": 45.5031824,
+        "lng": -73.5698065
+      },
+      {
+        "name": "몬망트랑블랑 (Mont-Tremblant)",
+        "lat": 46.11588,
+        "lng": -74.5891426
+      },
+      {
+        "name": "오타와 (Ottawa)",
+        "lat": 45.4208777,
+        "lng": -75.6901106
+      },
+      {
+        "name": "펙늜브로크 (Pembroke)",
+        "lat": 45.8209741,
+        "lng": -77.1115433
+      },
+      {
+        "name": "알곤등퀴 (Algonquin)",
+        "lat": 42.1655801,
+        "lng": -88.2942493
+      },
+      {
+        "name": "나이아가라 (Niagara Falls)",
+        "lat": 43.084841,
+        "lng": -79.0701786
       }
     ],
     "departures": [
@@ -10232,7 +10612,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:12.558Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:34.315Z"
   },
   {
     "id": "hyecho-3184",
@@ -10247,11 +10627,6 @@
         "name": "라스베가스",
         "lat": 36.1699,
         "lng": -115.1398
-      },
-      {
-        "name": "워싱턴",
-        "lat": 38.8950982,
-        "lng": -77.0363849
       },
       {
         "name": "모압",
@@ -10285,13 +10660,13 @@
         "startDay": "20261002",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 12,
+        "resvCnt": 10,
+        "restCnt": 10,
         "procCd": "01",
         "saleAmt": 9800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:15.199Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:36.501Z"
   },
   {
     "id": "hyecho-3204",
@@ -10303,9 +10678,49 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3204/hyecho_cm9900_30002413.jpg",
     "locations": [
       {
-        "name": "밴프 (Banff)",
-        "lat": 51.18,
-        "lng": -115.57
+        "name": "캠닭게리 (Calgary)",
+        "lat": 51.0456064,
+        "lng": -114.057541
+      },
+      {
+        "name": "캠른모어 (Canmore)",
+        "lat": 51.0866897,
+        "lng": -115.3481135
+      },
+      {
+        "name": "재스퍼 (Jasper)",
+        "lat": 30.7485258,
+        "lng": -94.000884
+      },
+      {
+        "name": "히남턴 (Hinton)",
+        "lat": 53.3990512,
+        "lng": -117.5886772
+      },
+      {
+        "name": "골든 (Golden)",
+        "lat": 39.7546349,
+        "lng": -105.22058
+      },
+      {
+        "name": "라디움 핵스프링스 (Radium Hot Springs)",
+        "lat": 50.6200728,
+        "lng": -116.0760592
+      },
+      {
+        "name": "레이크 루이스 (Lake Louise)",
+        "lat": 51.4249668,
+        "lng": -116.177535
+      },
+      {
+        "name": "모레인 레이크 (Moraine Lake)",
+        "lat": 51.3215664,
+        "lng": -116.1859853
+      },
+      {
+        "name": "밸프 (Banff)",
+        "lat": 51.175076,
+        "lng": -115.5720773
       }
     ],
     "departures": [
@@ -10330,7 +10745,7 @@
         "saleAmt": 7900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:17.915Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:43.850Z"
   },
   {
     "id": "hyecho-3232",
@@ -10369,7 +10784,7 @@
         "saleAmt": 9600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:19.553Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:45.404Z"
   },
   {
     "id": "hyecho-3270",
@@ -10408,7 +10823,7 @@
         "saleAmt": 12200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:21.366Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:46.626Z"
   },
   {
     "id": "hyecho-3230",
@@ -10456,7 +10871,7 @@
         "startDay": "20270203",
         "personCnt": 18,
         "minPersonCnt": 12,
-        "resvCnt": 19,
+        "resvCnt": 18,
         "restCnt": 0,
         "procCd": "40",
         "saleAmt": 13500000
@@ -10472,7 +10887,7 @@
         "saleAmt": 13100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:25.435Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:49.288Z"
   },
   {
     "id": "hyecho-3260",
@@ -10484,9 +10899,39 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3260/hyecho_cm9900_30001023.jpg",
     "locations": [
       {
-        "name": "쿠스코",
+        "name": "리마 (Lima)",
+        "lat": -12.0459808,
+        "lng": -77.0305912
+      },
+      {
+        "name": "쿠스코 (Cusco)",
         "lat": -13.5170887,
         "lng": -71.9785356
+      },
+      {
+        "name": "우루밤바 (Urubamba)",
+        "lat": -13.2292798,
+        "lng": -72.2646684
+      },
+      {
+        "name": "라파즈 (La Paz)",
+        "lat": -16.4955455,
+        "lng": -68.1336229
+      },
+      {
+        "name": "우유니 (Uyuni)",
+        "lat": -20.4628406,
+        "lng": -66.8239072
+      },
+      {
+        "name": "산 페드로 데 아타카마 (San Pedro de Atacama)",
+        "lat": -23.3545489,
+        "lng": -67.9026571
+      },
+      {
+        "name": "부에노스 아이레스 (Buenos Aires)",
+        "lat": -34.6095579,
+        "lng": -58.3887904
       }
     ],
     "departures": [
@@ -10505,8 +10950,8 @@
         "startDay": "20270106",
         "personCnt": 18,
         "minPersonCnt": 12,
-        "resvCnt": 18,
-        "restCnt": 0,
+        "resvCnt": 17,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 27500000
       },
@@ -10525,13 +10970,13 @@
         "startDay": "20270307",
         "personCnt": 18,
         "minPersonCnt": 14,
-        "resvCnt": 0,
-        "restCnt": 18,
+        "resvCnt": 1,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 27000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:28.958Z"
+    "departuresUpdatedAt": "2026-05-22T02:10:57.755Z"
   },
   {
     "id": "hyecho-2472",
@@ -10543,9 +10988,19 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2472/hyecho_cm9900_30001656.jpg",
     "locations": [
       {
-        "name": "두샨베 (Dushanbe)",
-        "lat": 38.56,
-        "lng": 68.77
+        "name": "두샤늘베 (Dushanbe)",
+        "lat": 38.5762709,
+        "lng": 68.7863573
+      },
+      {
+        "name": "아른투치 (Artuch)",
+        "lat": 39.2719306,
+        "lng": 68.1641589
+      },
+      {
+        "name": "알라우디른 호수 (Alauddin Lake)",
+        "lat": 39.2374624,
+        "lng": 68.2566315
       }
     ],
     "departures": [
@@ -10570,7 +11025,7 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:31.845Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:05.109Z"
   },
   {
     "id": "hyecho-2409",
@@ -10583,8 +11038,23 @@
     "locations": [
       {
         "name": "울란바토르 (Ulaanbaatar)",
-        "lat": 47.92,
-        "lng": 106.91
+        "lat": 47.9184676,
+        "lng": 106.9177016
+      },
+      {
+        "name": "테르뇙 국립공원 (Terelj National Park)",
+        "lat": 47.8884317,
+        "lng": 107.422822
+      },
+      {
+        "name": "멌른 (Murun)",
+        "lat": 49.6284811,
+        "lng": 100.1745571
+      },
+      {
+        "name": "하트갈 (Hargal)",
+        "lat": 49.9096239,
+        "lng": 102.7375336
       }
     ],
     "departures": [
@@ -10643,8 +11113,8 @@
         "startDay": "20260801",
         "personCnt": 14,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 14,
+        "resvCnt": 6,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 3750000
       },
@@ -10679,21 +11149,26 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:35.037Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:13.700Z"
   },
   {
     "id": "hyecho-2415",
     "category": "trekking",
     "title": "[몽골항공]몽골 테를지국립공원+체체궁봉 트레킹 5일",
-    "price": "2,150,000",
+    "price": "2,250,000",
     "duration": "5일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2415",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2415/hyecho_cm9900_30003033.jpeg",
     "locations": [
       {
-        "name": "울란바토르",
+        "name": "울란바토르 (Ulaanbaatar)",
         "lat": 47.9184676,
         "lng": 106.9177016
+      },
+      {
+        "name": "테를지국립공원 (Terelj National Park)",
+        "lat": 47.8884317,
+        "lng": 107.422822
       }
     ],
     "departures": [
@@ -10760,9 +11235,9 @@
       {
         "eventSeq": 42340,
         "startDay": "20260729",
-        "personCnt": 21,
+        "personCnt": 23,
         "minPersonCnt": 8,
-        "resvCnt": 21,
+        "resvCnt": 23,
         "restCnt": 0,
         "procCd": "05",
         "saleAmt": 2450000
@@ -10868,44 +11343,39 @@
         "saleAmt": 2490000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:39.207Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:23.935Z"
   },
   {
     "id": "hyecho-2466",
     "category": "trekking",
     "title": "[4명 이상 출발][로드트립]고비사막 트레킹 6일",
-    "price": "3,290,000",
+    "price": "3,150,000",
     "duration": "6일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2466&eventSeq=42036",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2466/hyecho_cm9900_30001858.jpg",
     "locations": [
       {
-        "name": "고비사막 (Gobi)",
-        "lat": 43.5,
-        "lng": 105
+        "name": "달란자드가드 (Dalanzadgad)",
+        "lat": 43.5717042,
+        "lng": 104.4259502
+      },
+      {
+        "name": "홍고린엘스 (Khongoryn Els)",
+        "lat": 43.7707556,
+        "lng": 102.171931
+      },
+      {
+        "name": "바얀작 (Bayanzag)",
+        "lat": 44.1403033,
+        "lng": 103.7234879
+      },
+      {
+        "name": "만달고비 (Mandalgovi)",
+        "lat": 45.7630435,
+        "lng": 106.2704145
       }
     ],
     "departures": [
-      {
-        "eventSeq": 42037,
-        "startDay": "20260611",
-        "personCnt": 14,
-        "minPersonCnt": 4,
-        "resvCnt": 0,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 3150000
-      },
-      {
-        "eventSeq": 42031,
-        "startDay": "20260612",
-        "personCnt": 14,
-        "minPersonCnt": 4,
-        "resvCnt": 2,
-        "restCnt": 12,
-        "procCd": "00",
-        "saleAmt": 3790000
-      },
       {
         "eventSeq": 42038,
         "startDay": "20260618",
@@ -10931,8 +11401,8 @@
         "startDay": "20260625",
         "personCnt": 14,
         "minPersonCnt": 4,
-        "resvCnt": 4,
-        "restCnt": 10,
+        "resvCnt": 5,
+        "restCnt": 9,
         "procCd": "00",
         "saleAmt": 3150000
       },
@@ -10941,9 +11411,9 @@
         "startDay": "20260626",
         "personCnt": 14,
         "minPersonCnt": 4,
-        "resvCnt": 2,
-        "restCnt": 12,
-        "procCd": "00",
+        "resvCnt": 5,
+        "restCnt": 9,
+        "procCd": "01",
         "saleAmt": 3790000
       },
       {
@@ -11001,9 +11471,9 @@
         "startDay": "20260717",
         "personCnt": 14,
         "minPersonCnt": 4,
-        "resvCnt": 3,
-        "restCnt": 11,
-        "procCd": "00",
+        "resvCnt": 6,
+        "restCnt": 8,
+        "procCd": "01",
         "saleAmt": 3990000
       },
       {
@@ -11041,8 +11511,8 @@
         "startDay": "20260731",
         "personCnt": 14,
         "minPersonCnt": 4,
-        "resvCnt": 9,
-        "restCnt": 5,
+        "resvCnt": 7,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 3990000
       },
@@ -11207,7 +11677,7 @@
         "saleAmt": 3990000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:43.331Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:34.254Z"
   },
   {
     "id": "hyecho-2467",
@@ -11219,9 +11689,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2467/hyecho_cm9900_30001672.jpeg",
     "locations": [
       {
-        "name": "비쉬케크 (Bishkek)",
-        "lat": 42.87,
-        "lng": 74.59
+        "name": "비스케크 (Bishkek)",
+        "lat": 42.8761424,
+        "lng": 74.6036724
+      },
+      {
+        "name": "건라켜 (Karakol)",
+        "lat": 42.4917441,
+        "lng": 78.396857
+      },
+      {
+        "name": "알틴아라샤른 (Altyn Arashan)",
+        "lat": 42.3727995,
+        "lng": 78.6117295
+      },
+      {
+        "name": "초른아타 (Cholpon-Ata)",
+        "lat": 42.6417055,
+        "lng": 77.0665164
       }
     ],
     "departures": [
@@ -11230,8 +11715,8 @@
         "startDay": "20260623",
         "personCnt": 10,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 6,
+        "resvCnt": 5,
+        "restCnt": 5,
         "procCd": "00",
         "saleAmt": 3050000
       },
@@ -11366,7 +11851,7 @@
         "saleAmt": 3250000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:48.470Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:45.695Z"
   },
   {
     "id": "hyecho-30000134",
@@ -11378,7 +11863,12 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000134/hyecho_cm9900_30003023.jpg",
     "locations": [
       {
-        "name": "울란바토르",
+        "name": "테를지국립공원 (Terelj National Park)",
+        "lat": 47.8884317,
+        "lng": 107.422822
+      },
+      {
+        "name": "울란바토르 (Ulaanbaatar)",
         "lat": 47.9184676,
         "lng": 106.9177016
       }
@@ -11407,10 +11897,10 @@
       {
         "eventSeq": 30001720,
         "startDay": "20260702",
-        "personCnt": 12,
+        "personCnt": 14,
         "minPersonCnt": 8,
         "resvCnt": 11,
-        "restCnt": 1,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 2390000
       },
@@ -11545,7 +12035,7 @@
         "saleAmt": 2590000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:53.525Z"
+    "departuresUpdatedAt": "2026-05-22T02:11:57.369Z"
   },
   {
     "id": "hyecho-3130",
@@ -11568,16 +12058,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 41667,
-        "startDay": "20260519",
-        "personCnt": 8,
-        "minPersonCnt": 10,
-        "resvCnt": 8,
-        "restCnt": 0,
-        "procCd": "05",
-        "saleAmt": 3450000
-      },
       {
         "eventSeq": 41906,
         "startDay": "20260602",
@@ -11639,21 +12119,36 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:22:59.374Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:00.482Z"
   },
   {
     "id": "hyecho-3133",
     "category": "trekking",
     "title": "[이지트레킹][홍콩] 백만불 야경과 3대 해안 BEST 트레킹 4일",
-    "price": "2,190,000",
+    "price": "1,890,000",
     "duration": "4일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=3133",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3133/hyecho_cm9900_30002574.jpg",
     "locations": [
       {
-        "name": "홍콩 (Hong Kong)",
-        "lat": 22.32,
-        "lng": 114.17
+        "name": "란타우 (Lantau)",
+        "lat": 22.2935438,
+        "lng": 113.9601086
+      },
+      {
+        "name": "침사추이 (Tsim Sha Tsui)",
+        "lat": 22.2985604,
+        "lng": 114.1736032
+      },
+      {
+        "name": "사이쿡 (Sai Kung)",
+        "lat": 22.3822489,
+        "lng": 114.2728277
+      },
+      {
+        "name": "빅크토리아 피크 (Victoria Peak)",
+        "lat": 22.2760386,
+        "lng": 114.1454573
       }
     ],
     "departures": [
@@ -11798,7 +12293,7 @@
         "saleAmt": 1890000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:01.883Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:07.512Z"
   },
   {
     "id": "hyecho-30000067",
@@ -11810,9 +12305,34 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000067/hyecho_cm9900_30002916.jpg",
     "locations": [
       {
+        "name": "암만 (Amman)",
+        "lat": 31.9515694,
+        "lng": 35.9239625
+      },
+      {
+        "name": "제라시 (Jerash)",
+        "lat": 32.278448,
+        "lng": 35.8896803
+      },
+      {
+        "name": "사해 (Dead Sea)",
+        "lat": 31.5414738,
+        "lng": 35.4787059
+      },
+      {
         "name": "페트라 (Petra)",
-        "lat": 30.33,
-        "lng": 35.44
+        "lat": 30.3258363,
+        "lng": 35.4745669
+      },
+      {
+        "name": "와디맼 (Wadi Rum)",
+        "lat": 29.5084443,
+        "lng": 35.3362154
+      },
+      {
+        "name": "아카바 (Aqaba)",
+        "lat": 29.5266483,
+        "lng": 35.0075433
       }
     ],
     "departures": [
@@ -11827,7 +12347,7 @@
         "saleAmt": 6600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:03.647Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:12.937Z"
   },
   {
     "id": "hyecho-2390",
@@ -11840,8 +12360,18 @@
     "locations": [
       {
         "name": "카트만두 (Kathmandu)",
-        "lat": 27.71,
-        "lng": 85.32
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "라메차패 (Ramechap)",
+        "lat": 27.7227858,
+        "lng": 85.3386375
+      },
+      {
+        "name": "고테 (Gote)",
+        "lat": 16.6905127,
+        "lng": 74.0255356
       }
     ],
     "departures": [
@@ -11856,7 +12386,7 @@
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:12.834Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:21.534Z"
   },
   {
     "id": "hyecho-30000105",
@@ -11905,7 +12435,7 @@
         "saleAmt": 8500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:14.395Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:22.849Z"
   },
   {
     "id": "hyecho-2778",
@@ -12089,7 +12619,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:19.551Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:27.246Z"
   },
   {
     "id": "hyecho-2792",
@@ -12148,7 +12678,7 @@
         "saleAmt": 11700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:22.958Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:29.678Z"
   },
   {
     "id": "hyecho-2798",
@@ -12194,10 +12724,10 @@
       {
         "eventSeq": 30000753,
         "startDay": "20261125",
-        "personCnt": 15,
+        "personCnt": 17,
         "minPersonCnt": 10,
         "resvCnt": 15,
-        "restCnt": 0,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 11500000
       },
@@ -12212,7 +12742,7 @@
         "saleAmt": 11500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:25.335Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:32.111Z"
   },
   {
     "id": "hyecho-2796",
@@ -12224,9 +12754,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2778/hyecho_cm9900_30002213.jpg",
     "locations": [
       {
-        "name": "시드니",
+        "name": "시드니 (Sydney)",
         "lat": -33.8698439,
         "lng": 151.2082848
+      },
+      {
+        "name": "론체스턴 (Launceston)",
+        "lat": -41.4340813,
+        "lng": 147.1373496
       }
     ],
     "departures": [
@@ -12241,7 +12776,7 @@
         "saleAmt": 7800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:27.311Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:37.536Z"
   },
   {
     "id": "hyecho-3076",
@@ -12253,9 +12788,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3076/hyecho_cm9900_30002821.jpg",
     "locations": [
       {
-        "name": "샤모니 (Chamonix)",
-        "lat": 45.92,
-        "lng": 6.87
+        "name": "인터라켐 (Interlaken)",
+        "lat": 46.6855231,
+        "lng": 7.8585139
+      },
+      {
+        "name": "베트메르알프 (Bettmeralp)",
+        "lat": 46.3905924,
+        "lng": 8.0627954
+      },
+      {
+        "name": "그린델발트 (Grindelwald)",
+        "lat": 46.6242733,
+        "lng": 8.0367462
+      },
+      {
+        "name": "취리히 (Zurich)",
+        "lat": 47.3744489,
+        "lng": 8.5410422
       }
     ],
     "departures": [
@@ -12270,7 +12820,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:29.348Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:43.513Z"
   },
   {
     "id": "hyecho-3277",
@@ -12282,9 +12832,54 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3277/hyecho_cm9900_30002955.jpg",
     "locations": [
       {
+        "name": "리마 (Lima)",
+        "lat": -12.0459808,
+        "lng": -77.0305912
+      },
+      {
         "name": "쿠스코 (Cusco)",
-        "lat": -13.53,
-        "lng": -71.97
+        "lat": -13.5170887,
+        "lng": -71.9785356
+      },
+      {
+        "name": "우루밤바 (Urubamba)",
+        "lat": -13.2292798,
+        "lng": -72.2646684
+      },
+      {
+        "name": "아구아 갤리엔테스 (Agua Calientes)",
+        "lat": 5.1778401,
+        "lng": -73.6908973
+      },
+      {
+        "name": "푸노 (Puno)",
+        "lat": -15,
+        "lng": -70
+      },
+      {
+        "name": "라파스 (La Paz)",
+        "lat": -16.4955455,
+        "lng": -68.1336229
+      },
+      {
+        "name": "우유니 (Uyuni)",
+        "lat": -20.4628406,
+        "lng": -66.8239072
+      },
+      {
+        "name": "산 페드로 데 아타카마 (San Pedro de Atacama)",
+        "lat": -23.3545489,
+        "lng": -67.9026571
+      },
+      {
+        "name": "바루로칌레 (San Carlos de Bariloche)",
+        "lat": -41.1334781,
+        "lng": -71.3101474
+      },
+      {
+        "name": "부에노스 아이레스 (Buenos Aires)",
+        "lat": -34.6095579,
+        "lng": -58.3887904
       }
     ],
     "departures": [
@@ -12299,7 +12894,7 @@
         "saleAmt": 34000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:31.070Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:49.182Z"
   },
   {
     "id": "hyecho-3162",
@@ -12413,7 +13008,7 @@
         "saleAmt": 2050000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:34.215Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:51.711Z"
   },
   {
     "id": "hyecho-3114",
@@ -12462,7 +13057,7 @@
         "saleAmt": 7500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:36.899Z"
+    "departuresUpdatedAt": "2026-05-22T02:12:53.330Z"
   },
   {
     "id": "hyecho-2010",
@@ -12475,8 +13070,38 @@
     "locations": [
       {
         "name": "델리 (Delhi)",
-        "lat": 28.61,
-        "lng": 77.21
+        "lat": 28.6138954,
+        "lng": 77.2090057
+      },
+      {
+        "name": "바라나시 (Varanasi)",
+        "lat": 25.3356491,
+        "lng": 83.0076292
+      },
+      {
+        "name": "카주라호 (Khajuraho)",
+        "lat": 24.8515132,
+        "lng": 79.9259786
+      },
+      {
+        "name": "오르차 (Orchha)",
+        "lat": 25.3528706,
+        "lng": 78.6402465
+      },
+      {
+        "name": "아그라 (Agra)",
+        "lat": 27.1752554,
+        "lng": 78.0098161
+      },
+      {
+        "name": "파테푸르시크리 (Fatehpur Sikri)",
+        "lat": 27.0911655,
+        "lng": 77.6623984
+      },
+      {
+        "name": "자이푸르 (Jaipur)",
+        "lat": 26.9154576,
+        "lng": 75.8189817
       }
     ],
     "departures": [
@@ -13111,21 +13736,46 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:47.073Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:14.848Z"
   },
   {
     "id": "hyecho-2019",
     "category": "culture",
-    "title": "560→545만원 [혜초인도기행5] 라다크/판공초/암리차르 11일",
+    "title": "[혜초인도기행5] 라다크/판공초/암리차르 11일",
     "price": "5,450,000",
     "duration": "11일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2019&eventSeq=41865",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2019/hyecho_cm9900_30001462.jpg",
     "locations": [
       {
-        "name": "레 (Leh, Ladakh)",
-        "lat": 34.16,
-        "lng": 77.58
+        "name": "델리 (Delhi)",
+        "lat": 28.6138954,
+        "lng": 77.2090057
+      },
+      {
+        "name": "암리차르 (Amritsar)",
+        "lat": 31.6356659,
+        "lng": 74.8787496
+      },
+      {
+        "name": "스리나가르 (Srinagar)",
+        "lat": 34.0747444,
+        "lng": 74.8204443
+      },
+      {
+        "name": "소나마르그 (Sonamarg)",
+        "lat": 34.302387,
+        "lng": 75.2965551
+      },
+      {
+        "name": "카르길 (Kargil)",
+        "lat": 34.5593048,
+        "lng": 76.1255767
+      },
+      {
+        "name": "알치 (Alchi)",
+        "lat": 34.2236334,
+        "lng": 77.1740631
       }
     ],
     "departures": [
@@ -13184,8 +13834,8 @@
         "startDay": "20260821",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 5,
-        "restCnt": 15,
+        "resvCnt": 3,
+        "restCnt": 17,
         "procCd": "00",
         "saleAmt": 5600000
       },
@@ -13200,7 +13850,7 @@
         "saleAmt": 5600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:50.703Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:23.008Z"
   },
   {
     "id": "hyecho-2007",
@@ -13213,8 +13863,43 @@
     "locations": [
       {
         "name": "카트만두 (Kathmandu)",
-        "lat": 27.71,
-        "lng": 85.32
+        "lat": 27.708317,
+        "lng": 85.3205817
+      },
+      {
+        "name": "치트동 (Chitwan)",
+        "lat": 27.618086,
+        "lng": 84.4536201
+      },
+      {
+        "name": "포카라 (Pokhara)",
+        "lat": 28.209538,
+        "lng": 83.991402
+      },
+      {
+        "name": "담풀스 (Dhampus)",
+        "lat": 28.300303,
+        "lng": 83.858681
+      },
+      {
+        "name": "사랑코트 (Sarangkot)",
+        "lat": 28.2445218,
+        "lng": 83.9476542
+      },
+      {
+        "name": "나가르코트 (Nagarkot)",
+        "lat": 27.718508,
+        "lng": 85.51973
+      },
+      {
+        "name": "나모부다 (Namobuddha)",
+        "lat": 27.5562733,
+        "lng": 85.6345507
+      },
+      {
+        "name": "패나우티 (Panauti)",
+        "lat": 27.5807347,
+        "lng": 85.5228573
       }
     ],
     "departures": [
@@ -13359,7 +14044,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:55.325Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:32.856Z"
   },
   {
     "id": "hyecho-2027",
@@ -13528,7 +14213,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:23:59.857Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:36.538Z"
   },
   {
     "id": "hyecho-2005",
@@ -13757,7 +14442,7 @@
         "saleAmt": 0
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:05.945Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:41.426Z"
   },
   {
     "id": "hyecho-1929",
@@ -13769,9 +14454,24 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2010/hyecho_cm9900_30002849.png",
     "locations": [
       {
-        "name": "백두산 (Changbai Mountain)",
-        "lat": 42,
-        "lng": 128.08
+        "name": "하얼빠\n (Harbin)",
+        "lat": 45.7593633,
+        "lng": 126.6276177
+      },
+      {
+        "name": "연길 (Yanji)",
+        "lat": 43.0718986,
+        "lng": 129.3755747
+      },
+      {
+        "name": "이도백하 (Erdaobaihe)",
+        "lat": 42.4203863,
+        "lng": 128.1095561
+      },
+      {
+        "name": "송강하 (Songjiang)",
+        "lat": 31.0344052,
+        "lng": 121.2232077
       }
     ],
     "departures": [
@@ -13780,19 +14480,9 @@
         "startDay": "20260616",
         "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 14,
-        "restCnt": 4,
+        "resvCnt": 13,
+        "restCnt": 5,
         "procCd": "01",
-        "saleAmt": 2500000
-      },
-      {
-        "eventSeq": 42068,
-        "startDay": "20260623",
-        "personCnt": 16,
-        "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 16,
-        "procCd": "00",
         "saleAmt": 2500000
       },
       {
@@ -13807,11 +14497,11 @@
       },
       {
         "eventSeq": 42378,
-        "startDay": "20260714",
+        "startDay": "20260715",
         "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 4,
-        "restCnt": 14,
+        "resvCnt": 6,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 2600000
       },
@@ -13820,8 +14510,8 @@
         "startDay": "20260723",
         "personCnt": 18,
         "minPersonCnt": 10,
-        "resvCnt": 1,
-        "restCnt": 17,
+        "resvCnt": 0,
+        "restCnt": 18,
         "procCd": "00",
         "saleAmt": 2600000
       },
@@ -13866,7 +14556,7 @@
         "saleAmt": 2600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:09.300Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:49.237Z"
   },
   {
     "id": "hyecho-1903",
@@ -14000,7 +14690,7 @@
         "saleAmt": 2950000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:13.688Z"
+    "departuresUpdatedAt": "2026-05-22T02:13:52.660Z"
   },
   {
     "id": "hyecho-1859",
@@ -14012,19 +14702,34 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1859/hyecho_cm9900_30002584.jpg",
     "locations": [
       {
-        "name": "사마르칸트 (Samarkand)",
-        "lat": 39.65,
-        "lng": 66.96
+        "name": "서안 (Xi'an)",
+        "lat": 34.261004,
+        "lng": 108.9423363
+      },
+      {
+        "name": "알타이 (Altay)",
+        "lat": 49.7995174,
+        "lng": 86.5788193
+      },
+      {
+        "name": "쿠이툐 (Kuytun)",
+        "lat": 44.551335,
+        "lng": 85.01358
+      },
+      {
+        "name": "이닝 (Yining)",
+        "lat": 43.9052027,
+        "lng": 81.2747797
       }
     ],
     "departures": [
       {
         "eventSeq": 41885,
         "startDay": "20260609",
-        "personCnt": 18,
+        "personCnt": 15,
         "minPersonCnt": 8,
-        "resvCnt": 17,
-        "restCnt": 1,
+        "resvCnt": 15,
+        "restCnt": 0,
         "procCd": "05",
         "saleAmt": 4700000
       },
@@ -14133,8 +14838,8 @@
         "startDay": "20260910",
         "personCnt": 18,
         "minPersonCnt": 8,
-        "resvCnt": 7,
-        "restCnt": 11,
+        "resvCnt": 10,
+        "restCnt": 8,
         "procCd": "01",
         "saleAmt": 4850000
       },
@@ -14149,7 +14854,7 @@
         "saleAmt": 4850000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:17.879Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:03.461Z"
   },
   {
     "id": "hyecho-1853",
@@ -14161,9 +14866,44 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1853/hyecho_cm9900_30002577.jpg",
     "locations": [
       {
-        "name": "사마르칸트 (Samarkand)",
-        "lat": 39.65,
-        "lng": 66.96
+        "name": "서안 (Xi'an)",
+        "lat": 34.261004,
+        "lng": 108.9423363
+      },
+      {
+        "name": "천수 (Tianshui)",
+        "lat": 34.6538841,
+        "lng": 105.8003895
+      },
+      {
+        "name": "평량 (Pingliang)",
+        "lat": 35.22678,
+        "lng": 106.495648
+      },
+      {
+        "name": "가욕관 (Jiayuguan)",
+        "lat": 39.7722294,
+        "lng": 98.2885388
+      },
+      {
+        "name": "돈황 (Dunhuang)",
+        "lat": 40.1411004,
+        "lng": 94.6607593
+      },
+      {
+        "name": "선선 (Shanshan)",
+        "lat": 42.291403,
+        "lng": 90.642302
+      },
+      {
+        "name": "투루판 (Turpan)",
+        "lat": 42.4561611,
+        "lng": 89.7283163
+      },
+      {
+        "name": "우루무치 (Urumqi)",
+        "lat": 43.8244074,
+        "lng": 87.6139038
       }
     ],
     "departures": [
@@ -14242,8 +14982,8 @@
         "startDay": "20260718",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 6,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 3850000
       },
@@ -14252,9 +14992,9 @@
         "startDay": "20260725",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 18,
-        "procCd": "00",
+        "resvCnt": 8,
+        "restCnt": 12,
+        "procCd": "01",
         "saleAmt": 3950000
       },
       {
@@ -14262,9 +15002,9 @@
         "startDay": "20260731",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 2,
-        "restCnt": 18,
-        "procCd": "00",
+        "resvCnt": 7,
+        "restCnt": 13,
+        "procCd": "01",
         "saleAmt": 3950000
       },
       {
@@ -14274,7 +15014,7 @@
         "minPersonCnt": 8,
         "resvCnt": 2,
         "restCnt": 18,
-        "procCd": "00",
+        "procCd": "01",
         "saleAmt": 3950000
       },
       {
@@ -14282,8 +15022,8 @@
         "startDay": "20260815",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 5,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 3950000
       },
@@ -14302,8 +15042,8 @@
         "startDay": "20260829",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 18,
-        "restCnt": 2,
+        "resvCnt": 19,
+        "restCnt": 1,
         "procCd": "01",
         "saleAmt": 3850000
       },
@@ -14312,8 +15052,8 @@
         "startDay": "20260905",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 1,
+        "restCnt": 19,
         "procCd": "00",
         "saleAmt": 3850000
       },
@@ -14339,11 +15079,11 @@
       },
       {
         "eventSeq": 42852,
-        "startDay": "20261010",
+        "startDay": "20261011",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 6,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 3850000
       },
@@ -14358,21 +15098,51 @@
         "saleAmt": 3850000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:24.127Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:17.820Z"
   },
   {
     "id": "hyecho-2247",
     "category": "culture",
     "title": "[차마고도 2편]운남에서 티벳까지 전장공로 10일",
-    "price": "5,900,000",
+    "price": "6,100,000",
     "duration": "10일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=2247&eventSeq=41358",
-    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2247/hyecho_cm9900_30000485.jpg",
+    "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2247/hyecho_cm9900_30000489.jpg",
     "locations": [
       {
+        "name": "서안 (Xi'an)",
+        "lat": 34.261004,
+        "lng": 108.9423363
+      },
+      {
+        "name": "샹그릴라 (Shangri-La)",
+        "lat": 27.8717021,
+        "lng": 99.8365499
+      },
+      {
+        "name": "옌징 (Yanjing)",
+        "lat": 27.4277511,
+        "lng": 101.5108277
+      },
+      {
+        "name": "좌공 (Zuogong)",
+        "lat": 28.4654462,
+        "lng": 99.2382917
+      },
+      {
+        "name": "바쑤 (Basu)",
+        "lat": 23.9371753,
+        "lng": 83.6592418
+      },
+      {
+        "name": "린즈 (Linzhi)",
+        "lat": 29.5487912,
+        "lng": 94.6384738
+      },
+      {
         "name": "라싸 (Lhasa)",
-        "lat": 29.65,
-        "lng": 91.17
+        "lat": 29.6542054,
+        "lng": 91.1173015
       }
     ],
     "departures": [
@@ -14437,7 +15207,7 @@
         "saleAmt": 6000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:30.173Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:31.086Z"
   },
   {
     "id": "hyecho-2268",
@@ -14491,7 +15261,7 @@
         "saleAmt": 5850000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:32.936Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:33.566Z"
   },
   {
     "id": "hyecho-2256",
@@ -14504,8 +15274,33 @@
     "locations": [
       {
         "name": "라싸 (Lhasa)",
-        "lat": 29.65,
-        "lng": 91.17
+        "lat": 29.6542054,
+        "lng": 91.1173015
+      },
+      {
+        "name": "시가체 (Shigatse)",
+        "lat": 29.1058406,
+        "lng": 86.8753983
+      },
+      {
+        "name": "듀녁그리 (Tingri)",
+        "lat": 28.5193852,
+        "lng": 87.0336887
+      },
+      {
+        "name": "지룁거우 (Zhangmu)",
+        "lat": 27.973045,
+        "lng": 85.9643829
+      },
+      {
+        "name": "트리슬리 (Trisuli)",
+        "lat": 27.8097807,
+        "lng": 84.8811462
+      },
+      {
+        "name": "카트만두 (Kathmandu)",
+        "lat": 27.708317,
+        "lng": 85.3205817
       }
     ],
     "departures": [
@@ -14530,7 +15325,7 @@
         "saleAmt": 4900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:35.052Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:40.520Z"
   },
   {
     "id": "hyecho-2270",
@@ -14629,7 +15424,7 @@
         "saleAmt": 5950000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:40.813Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:44.984Z"
   },
   {
     "id": "hyecho-1973",
@@ -14641,9 +15436,59 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1973/hyecho_cm9900_30002874.jpg",
     "locations": [
       {
+        "name": "벨파스트 (Belfast)",
+        "lat": 54.596391,
+        "lng": -5.9301829
+      },
+      {
+        "name": "스라이고 (Sligo)",
+        "lat": 54.2705151,
+        "lng": -8.4737122
+      },
+      {
+        "name": "골웨이 (Galway)",
+        "lat": 53.2744122,
+        "lng": -9.0490601
+      },
+      {
+        "name": "킬라니 (Killarney)",
+        "lat": 52.0595746,
+        "lng": -9.505322
+      },
+      {
+        "name": "코르크 (Cork)",
+        "lat": 51.8985136,
+        "lng": -8.4726423
+      },
+      {
+        "name": "킬케니 (Kilkenny)",
+        "lat": 52.6506255,
+        "lng": -7.2514438
+      },
+      {
+        "name": "자이언트 코즘웨이 (Giant's Causeway)",
+        "lat": 55.2407478,
+        "lng": -6.5115492
+      },
+      {
+        "name": "클리프 모험 (Cliffs of Moher)",
+        "lat": 52.9595342,
+        "lng": -9.4440647
+      },
+      {
+        "name": "링 오브 케리 (Ring of Kerry)",
+        "lat": 54.3013177,
+        "lng": 9.6641094
+      },
+      {
+        "name": "코브 (Cobh)",
+        "lat": 51.8502284,
+        "lng": -8.2950649
+      },
+      {
         "name": "더블린 (Dublin)",
-        "lat": 53.33,
-        "lng": -6.25
+        "lat": 53.3493795,
+        "lng": -6.2605593
       }
     ],
     "departures": [
@@ -14652,8 +15497,8 @@
         "startDay": "20260707",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 9,
-        "restCnt": 11,
+        "resvCnt": 7,
+        "restCnt": 13,
         "procCd": "00",
         "saleAmt": 10300000
       },
@@ -14668,7 +15513,7 @@
         "saleAmt": 10300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:43.183Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:52.880Z"
   },
   {
     "id": "hyecho-1978",
@@ -14722,7 +15567,7 @@
         "saleAmt": 10500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:47.244Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:55.922Z"
   },
   {
     "id": "hyecho-1990",
@@ -14766,7 +15611,7 @@
         "saleAmt": 12400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:49.135Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:57.518Z"
   },
   {
     "id": "hyecho-1991",
@@ -14792,11 +15637,11 @@
       {
         "eventSeq": 41801,
         "startDay": "20260610",
-        "personCnt": 13,
-        "minPersonCnt": 13,
+        "personCnt": 11,
+        "minPersonCnt": 11,
         "resvCnt": 11,
-        "restCnt": 2,
-        "procCd": "01",
+        "restCnt": 0,
+        "procCd": "40",
         "saleAmt": 11800000
       },
       {
@@ -14810,7 +15655,7 @@
         "saleAmt": 11800000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:51.929Z"
+    "departuresUpdatedAt": "2026-05-22T02:14:59.525Z"
   },
   {
     "id": "hyecho-30000072",
@@ -14822,9 +15667,89 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000072/hyecho_cm9900_30002772.jpg",
     "locations": [
       {
-        "name": "돌로미테 (Dolomites)",
-        "lat": 46.41,
-        "lng": 11.84
+        "name": "브레사노다 (Bressanone)",
+        "lat": 46.716413,
+        "lng": 11.657792
+      },
+      {
+        "name": "셋바 디 가르디나 (Selva di Gardena)",
+        "lat": 46.5760331,
+        "lng": 11.6483076
+      },
+      {
+        "name": "코르티나 담페초 (Cortina d'Ampezzo)",
+        "lat": 46.5685125,
+        "lng": 12.1323186
+      },
+      {
+        "name": "밀라노 (Milan)",
+        "lat": 45.4641943,
+        "lng": 9.1896346
+      },
+      {
+        "name": "컬다로 (Caldaro)",
+        "lat": 46.413467,
+        "lng": 11.2469106
+      },
+      {
+        "name": "카레자 호수 (Lago di Carezza)",
+        "lat": 46.4093109,
+        "lng": 11.5758682
+      },
+      {
+        "name": "알페 디 시우시 (Alpe di Siusi)",
+        "lat": 46.531056,
+        "lng": 11.6247091
+      },
+      {
+        "name": "오르티세이 (Ortisei)",
+        "lat": 46.5752077,
+        "lng": 11.6721382
+      },
+      {
+        "name": "세체다 (Seceda)",
+        "lat": 46.6005922,
+        "lng": 11.7257836
+      },
+      {
+        "name": "단테르체피스 (Dantercepies)",
+        "lat": 46.5556349,
+        "lng": 11.7676135
+      },
+      {
+        "name": "파쉼 포로도이 (Passo Pordoi)",
+        "lat": 46.4875517,
+        "lng": 11.8121935
+      },
+      {
+        "name": "라가주오이 (Lagazuoi)",
+        "lat": 46.5295958,
+        "lng": 12.0033383
+      },
+      {
+        "name": "친큐또리 (Cinque Torri)",
+        "lat": 46.5092242,
+        "lng": 12.0517929
+      },
+      {
+        "name": "트레치메 디 라바레도 (Tre Cime di Lavaredo)",
+        "lat": 46.6177504,
+        "lng": 12.2953929
+      },
+      {
+        "name": "브라이에스 호수 (Lago di Braies)",
+        "lat": 46.6947208,
+        "lng": 12.0858434
+      },
+      {
+        "name": "비체다 (Vicenza)",
+        "lat": 45.6348591,
+        "lng": 11.4063543
+      },
+      {
+        "name": "시르미오단 (Sirmione)",
+        "lat": 45.492869,
+        "lng": 10.6077258
       }
     ],
     "departures": [
@@ -14843,13 +15768,13 @@
         "startDay": "20260811",
         "personCnt": 16,
         "minPersonCnt": 10,
-        "resvCnt": 6,
-        "restCnt": 10,
+        "resvCnt": 8,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 9200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:54.512Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:07.245Z"
   },
   {
     "id": "hyecho-1962",
@@ -14861,9 +15786,89 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1962/hyecho_cm9900_30002855.jpg",
     "locations": [
       {
-        "name": "돌로미테 (Dolomites)",
-        "lat": 46.41,
-        "lng": 11.84
+        "name": "코르티나 담페초 (Cortina d'Ampezzo)",
+        "lat": 46.5685125,
+        "lng": 12.1323186
+      },
+      {
+        "name": "셋바 (Selva di Gardena)",
+        "lat": 46.5760331,
+        "lng": 11.6483076
+      },
+      {
+        "name": "비엔나 (Vienna)",
+        "lat": 48.2083537,
+        "lng": 16.3725042
+      },
+      {
+        "name": "크렉르스알데른도나우 (Krems an der Donau)",
+        "lat": 48.4108382,
+        "lng": 15.6003717
+      },
+      {
+        "name": "바트이스틈 (Bad Ischl)",
+        "lat": 47.7115299,
+        "lng": 13.6239333
+      },
+      {
+        "name": "젠암메제 (Zell am See)",
+        "lat": 47.3239636,
+        "lng": 12.7963165
+      },
+      {
+        "name": "다흑스타인 (Dachstein)",
+        "lat": 48.5608856,
+        "lng": 7.5318998
+      },
+      {
+        "name": "그로스글로커너 (Grossglockner)",
+        "lat": 47.0745464,
+        "lng": 12.6938826
+      },
+      {
+        "name": "트레치메 디 라바레도 (Tre Cime di Lavaredo)",
+        "lat": 46.6177504,
+        "lng": 12.2953929
+      },
+      {
+        "name": "미주리나 호수 (Lago di Misurina)",
+        "lat": 46.5821978,
+        "lng": 12.2537577
+      },
+      {
+        "name": "친큐또리 (Cinque Torri)",
+        "lat": 46.5092242,
+        "lng": 12.0517929
+      },
+      {
+        "name": "라가주오이 (Lagazuoi)",
+        "lat": 46.5295958,
+        "lng": 12.0033383
+      },
+      {
+        "name": "파쉼 포로도이 (Passo Pordoi)",
+        "lat": 46.4875517,
+        "lng": 11.8121935
+      },
+      {
+        "name": "오르티세이 (Ortisei)",
+        "lat": 46.5752077,
+        "lng": 11.6721382
+      },
+      {
+        "name": "세체다 (Seceda)",
+        "lat": 46.6005922,
+        "lng": 11.7257836
+      },
+      {
+        "name": "단테르체피스 (Dantercepies)",
+        "lat": 46.5556349,
+        "lng": 11.7676135
+      },
+      {
+        "name": "알페 디 시우시 (Alpe di Siusi)",
+        "lat": 46.531056,
+        "lng": 11.6247091
       }
     ],
     "departures": [
@@ -14918,7 +15923,7 @@
         "saleAmt": 11500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:57.727Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:15.516Z"
   },
   {
     "id": "hyecho-1819",
@@ -14942,17 +15947,227 @@
     ],
     "departures": [
       {
-        "eventSeq": 30000571,
-        "startDay": "20260617",
+        "eventSeq": 30002169,
+        "startDay": "20261014",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 4,
+        "restCnt": 16,
+        "procCd": "00",
+        "saleAmt": 2650000
+      },
+      {
+        "eventSeq": 30002171,
+        "startDay": "20261021",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2650000
+      },
+      {
+        "eventSeq": 30002172,
+        "startDay": "20261028",
         "personCnt": 20,
         "minPersonCnt": 8,
         "resvCnt": 0,
         "restCnt": 20,
         "procCd": "00",
         "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002173,
+        "startDay": "20261104",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002176,
+        "startDay": "20261118",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002177,
+        "startDay": "20261125",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002178,
+        "startDay": "20261202",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 6,
+        "restCnt": 14,
+        "procCd": "00",
+        "saleAmt": 2750000
+      },
+      {
+        "eventSeq": 30002179,
+        "startDay": "20261209",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2750000
+      },
+      {
+        "eventSeq": 30002182,
+        "startDay": "20261216",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002189,
+        "startDay": "20261223",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2900000
+      },
+      {
+        "eventSeq": 30002190,
+        "startDay": "20261230",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2900000
+      },
+      {
+        "eventSeq": 30002183,
+        "startDay": "20270106",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 2,
+        "restCnt": 18,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002184,
+        "startDay": "20270113",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002185,
+        "startDay": "20270120",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002186,
+        "startDay": "20270127",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002191,
+        "startDay": "20270203",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2900000
+      },
+      {
+        "eventSeq": 30002187,
+        "startDay": "20270210",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2800000
+      },
+      {
+        "eventSeq": 30002188,
+        "startDay": "20270217",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2750000
+      },
+      {
+        "eventSeq": 30002180,
+        "startDay": "20270303",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2750000
+      },
+      {
+        "eventSeq": 30002181,
+        "startDay": "20270310",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002174,
+        "startDay": "20270317",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2700000
+      },
+      {
+        "eventSeq": 30002175,
+        "startDay": "20270324",
+        "personCnt": 20,
+        "minPersonCnt": 8,
+        "resvCnt": 0,
+        "restCnt": 20,
+        "procCd": "00",
+        "saleAmt": 2650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:24:59.636Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:20.417Z"
   },
   {
     "id": "hyecho-1792",
@@ -15030,8 +16245,8 @@
         "startDay": "20260730",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 9,
+        "resvCnt": 13,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 4500000
       },
@@ -15126,41 +16341,56 @@
         "saleAmt": 4300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:05.024Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:24.586Z"
   },
   {
     "id": "hyecho-30000094",
     "category": "culture",
-    "title": "[신상품] 서말레이시아+싱가포르 종주 7일",
+    "title": "[유류할증료 인상분 0원][신상품] 서말레이시아+싱가포르 종주 7일",
     "price": "3,800,000",
     "duration": "7일",
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=30000094",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000094/hyecho_cm9900_30002656.jpg",
     "locations": [
       {
-        "name": "코타키나발루 (Kota Kinabalu)",
-        "lat": 5.98,
-        "lng": 116.07
+        "name": "페낭 (Penang)",
+        "lat": 5.4065013,
+        "lng": 100.2559077
+      },
+      {
+        "name": "쿨알라룸푸르 (Kuala Lumpur)",
+        "lat": 3.1516964,
+        "lng": 101.6942371
+      },
+      {
+        "name": "타만네가라 (Taman Negara)",
+        "lat": -7.3506447,
+        "lng": 112.691753
+      },
+      {
+        "name": "싱가포르 (Singapore)",
+        "lat": 1.357107,
+        "lng": 103.8194992
+      },
+      {
+        "name": "말라가 (Malacca)",
+        "lat": 2.3293744,
+        "lng": 102.2880962
+      },
+      {
+        "name": "제란툐트 (Jerantut)",
+        "lat": 4.2834137,
+        "lng": 102.5575232
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30001242,
-        "startDay": "20260617",
-        "personCnt": 20,
-        "minPersonCnt": 10,
-        "resvCnt": 5,
-        "restCnt": 15,
-        "procCd": "00",
-        "saleAmt": 3650000
-      },
       {
         "eventSeq": 30001248,
         "startDay": "20260708",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 5,
+        "restCnt": 15,
         "procCd": "00",
         "saleAmt": 3800000
       },
@@ -15179,8 +16409,8 @@
         "startDay": "20260805",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 20,
+        "resvCnt": 2,
+        "restCnt": 18,
         "procCd": "00",
         "saleAmt": 3800000
       },
@@ -15235,7 +16465,7 @@
         "saleAmt": 3650000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:10.407Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:33.961Z"
   },
   {
     "id": "hyecho-1767",
@@ -15389,7 +16619,7 @@
         "saleAmt": 7250000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:17.761Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:39.645Z"
   },
   {
     "id": "hyecho-1777",
@@ -15608,7 +16838,7 @@
         "saleAmt": 9500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:25.533Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:46.205Z"
   },
   {
     "id": "hyecho-1770",
@@ -15619,11 +16849,6 @@
     "url": "https://www.hyecho.com/goods/goods_view?goodSeq=1770&eventSeq=30001266",
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1770/hyecho_cm9900_30001458.jpg",
     "locations": [
-      {
-        "name": "아디스아바바",
-        "lat": 9,
-        "lng": 38.75
-      },
       {
         "name": "안타나나리보",
         "lat": -18.9100122,
@@ -15692,7 +16917,7 @@
         "saleAmt": 18000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:29.965Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:49.445Z"
   },
   {
     "id": "hyecho-1734",
@@ -15816,7 +17041,7 @@
         "saleAmt": 12500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:35.970Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:53.530Z"
   },
   {
     "id": "hyecho-1775",
@@ -15935,7 +17160,7 @@
         "saleAmt": 19700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:41.458Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:57.994Z"
   },
   {
     "id": "hyecho-1761",
@@ -15970,21 +17195,6 @@
         "name": "랄리벨라",
         "lat": 12.031,
         "lng": 39.047
-      },
-      {
-        "name": "안타나나리보",
-        "lat": -18.9100122,
-        "lng": 47.5255809
-      },
-      {
-        "name": "안치라베",
-        "lat": -19.871403,
-        "lng": 47.034667
-      },
-      {
-        "name": "모론다바",
-        "lat": -20.2951102,
-        "lng": 44.2786121
       }
     ],
     "departures": [
@@ -15999,7 +17209,7 @@
         "saleAmt": 12500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:43.290Z"
+    "departuresUpdatedAt": "2026-05-22T02:15:59.252Z"
   },
   {
     "id": "hyecho-2274",
@@ -16027,13 +17237,13 @@
         "startDay": "20260716",
         "personCnt": 20,
         "minPersonCnt": 15,
-        "resvCnt": 15,
-        "restCnt": 5,
+        "resvCnt": 16,
+        "restCnt": 4,
         "procCd": "01",
         "saleAmt": 17200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:44.744Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:00.554Z"
   },
   {
     "id": "hyecho-2276",
@@ -16048,6 +17258,11 @@
         "name": "밴프 (Banff)",
         "lat": 51.18,
         "lng": -115.57
+      },
+      {
+        "name": "밴쿠버 (Vancouver)",
+        "lat": 49.28,
+        "lng": -123.12
       }
     ],
     "departures": [
@@ -16082,7 +17297,7 @@
         "saleAmt": 8900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:47.701Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:07.498Z"
   },
   {
     "id": "hyecho-2277",
@@ -16094,9 +17309,49 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2277/hyecho_cm9900_30002142.jpg",
     "locations": [
       {
-        "name": "밴쿠버 (Vancouver)",
-        "lat": 49.28,
-        "lng": -123.12
+        "name": "보스턴 (Boston)",
+        "lat": 42.3588336,
+        "lng": -71.0578303
+      },
+      {
+        "name": "링컨 (Lincoln)",
+        "lat": 40.8088861,
+        "lng": -96.7077751
+      },
+      {
+        "name": "퀘백 (Quebec City)",
+        "lat": 46.8137431,
+        "lng": -71.2084061
+      },
+      {
+        "name": "카나타 (Kanata)",
+        "lat": 61.0666922,
+        "lng": -107.991707
+      },
+      {
+        "name": "무스코카 (Muskoka)",
+        "lat": 45.1307013,
+        "lng": -79.3839611
+      },
+      {
+        "name": "프랑코니아노치 (Franconia Notch)",
+        "lat": 44.1717502,
+        "lng": -71.6875136
+      },
+      {
+        "name": "몽트랑블랑 (Mont-Tremblant)",
+        "lat": 46.11588,
+        "lng": -74.5891426
+      },
+      {
+        "name": "오타와 (Ottawa)",
+        "lat": 45.4208777,
+        "lng": -75.6901106
+      },
+      {
+        "name": "알곤퀸 (Algonquin)",
+        "lat": 42.1655801,
+        "lng": -88.2942493
       }
     ],
     "departures": [
@@ -16115,13 +17370,13 @@
         "startDay": "20261004",
         "personCnt": 20,
         "minPersonCnt": 15,
-        "resvCnt": 17,
-        "restCnt": 3,
+        "resvCnt": 18,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 11200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:49.287Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:12.998Z"
   },
   {
     "id": "hyecho-2275",
@@ -16160,7 +17415,7 @@
         "saleAmt": 12200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:51.278Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:14.628Z"
   },
   {
     "id": "hyecho-2279",
@@ -16172,9 +17427,34 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2279/hyecho_cm9900_30000167.jpg",
     "locations": [
       {
-        "name": "쿠스코 (Cusco)",
-        "lat": -13.53,
-        "lng": -71.97
+        "name": "리우 (Rio de Janeiro)",
+        "lat": -22.9110137,
+        "lng": -43.2093727
+      },
+      {
+        "name": "이과수 (Iguazu Falls)",
+        "lat": -25.693905,
+        "lng": -54.4365376
+      },
+      {
+        "name": "부에노스아리래스 (Buenos Aires)",
+        "lat": -34.6095579,
+        "lng": -58.3887904
+      },
+      {
+        "name": "우수아이아 (Ushuaia)",
+        "lat": -54.807306,
+        "lng": -68.3084133
+      },
+      {
+        "name": "칼라파테 (El Calafate)",
+        "lat": -50.3387375,
+        "lng": -72.2737216
+      },
+      {
+        "name": "페리토모레노 (Perito Moreno)",
+        "lat": -46.5915874,
+        "lng": -70.925525
       }
     ],
     "departures": [
@@ -16203,8 +17483,8 @@
         "startDay": "20270107",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 7,
-        "restCnt": 13,
+        "resvCnt": 8,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 26000000
       },
@@ -16229,7 +17509,7 @@
         "saleAmt": 26000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:56.512Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:26.375Z"
   },
   {
     "id": "hyecho-2294",
@@ -16279,11 +17559,6 @@
         "name": "마나우스",
         "lat": -3.1316333,
         "lng": -59.9825041
-      },
-      {
-        "name": "상파울루",
-        "lat": -23.5506507,
-        "lng": -46.6333824
       }
     ],
     "departures": [
@@ -16298,7 +17573,7 @@
         "saleAmt": 22900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:25:58.489Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:27.861Z"
   },
   {
     "id": "hyecho-2303",
@@ -16310,9 +17585,19 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2303/hyecho_cm9900_30000161.jpg",
     "locations": [
       {
-        "name": "파타고니아 (Patagonia)",
-        "lat": -50.34,
-        "lng": -72.26
+        "name": "푸에르토바라스 (Puerto Varas)",
+        "lat": -41.317802,
+        "lng": -72.9829073
+      },
+      {
+        "name": "푸에르토나탈레스 (Puerto Natales)",
+        "lat": -51.7262003,
+        "lng": -72.5059982
+      },
+      {
+        "name": "토레스델파이네 (Torres del Paine)",
+        "lat": -51.0827249,
+        "lng": -72.9254451
       }
     ],
     "departures": [
@@ -16321,8 +17606,8 @@
         "startDay": "20261110",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 8,
-        "restCnt": 12,
+        "resvCnt": 10,
+        "restCnt": 10,
         "procCd": "00",
         "saleAmt": 17400000
       },
@@ -16367,7 +17652,7 @@
         "saleAmt": 17400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:03.971Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:40.034Z"
   },
   {
     "id": "hyecho-2286",
@@ -16500,8 +17785,8 @@
         "startDay": "20270220",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 9,
-        "restCnt": 11,
+        "resvCnt": 10,
+        "restCnt": 10,
         "procCd": "00",
         "saleAmt": 22200000
       },
@@ -16516,7 +17801,7 @@
         "saleAmt": 22200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:07.217Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:42.405Z"
   },
   {
     "id": "hyecho-30000053",
@@ -16569,8 +17854,8 @@
         "startDay": "20261019",
         "personCnt": 20,
         "minPersonCnt": 12,
-        "resvCnt": 15,
-        "restCnt": 5,
+        "resvCnt": 13,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 7400000
       },
@@ -16585,7 +17870,7 @@
         "saleAmt": 7400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:09.687Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:44.529Z"
   },
   {
     "id": "hyecho-1846",
@@ -16618,8 +17903,8 @@
         "startDay": "20260912",
         "personCnt": 20,
         "minPersonCnt": 10,
-        "resvCnt": 5,
-        "restCnt": 15,
+        "resvCnt": 6,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 7100000
       },
@@ -16644,7 +17929,7 @@
         "saleAmt": 7100000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:12.042Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:46.592Z"
   },
   {
     "id": "hyecho-1832",
@@ -16656,9 +17941,39 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2019/hyecho_cm9900_30001115.jpg",
     "locations": [
       {
-        "name": "두샨베 (Dushanbe)",
-        "lat": 38.56,
-        "lng": 68.77
+        "name": "알마티 (Almaty)",
+        "lat": 43.2363924,
+        "lng": 76.9457275
+      },
+      {
+        "name": "두샤낤비 (Dushanbe)",
+        "lat": 38.5762709,
+        "lng": 68.7863573
+      },
+      {
+        "name": "호로그 (Khorog)",
+        "lat": 37.4909171,
+        "lng": 71.548922
+      },
+      {
+        "name": "야댜그 (Yamg)",
+        "lat": 36.9827958,
+        "lng": 72.3176826
+      },
+      {
+        "name": "무르갑 (Murghab)",
+        "lat": 35.467372,
+        "lng": 63.472159
+      },
+      {
+        "name": "오시 (Osh)",
+        "lat": 40.1082848,
+        "lng": 73.1931447
+      },
+      {
+        "name": "비셔케크 (Bishkek)",
+        "lat": 42.8761424,
+        "lng": 74.6036724
       }
     ],
     "departures": [
@@ -16677,13 +17992,13 @@
         "startDay": "20260819",
         "personCnt": 12,
         "minPersonCnt": 8,
-        "resvCnt": 5,
-        "restCnt": 7,
+        "resvCnt": 6,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 6700000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:14.873Z"
+    "departuresUpdatedAt": "2026-05-22T02:16:53.876Z"
   },
   {
     "id": "hyecho-2142",
@@ -16695,22 +18010,17 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2142/hyecho_cm9900_30000417.jpg",
     "locations": [
       {
+        "name": "테르지 (Terelj)",
+        "lat": 47.993847,
+        "lng": 107.4588285
+      },
+      {
         "name": "울란바토르 (Ulaanbaatar)",
-        "lat": 47.92,
-        "lng": 106.91
+        "lat": 47.9184676,
+        "lng": 106.9177016
       }
     ],
     "departures": [
-      {
-        "eventSeq": 42063,
-        "startDay": "20260618",
-        "personCnt": 20,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 20,
-        "procCd": "00",
-        "saleAmt": 2300000
-      },
       {
         "eventSeq": 42064,
         "startDay": "20260625",
@@ -16892,7 +18202,7 @@
         "saleAmt": 2300000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:19.460Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:03.888Z"
   },
   {
     "id": "hyecho-2127",
@@ -16921,16 +18231,6 @@
     ],
     "departures": [
       {
-        "eventSeq": 42059,
-        "startDay": "20260616",
-        "personCnt": 20,
-        "minPersonCnt": 8,
-        "resvCnt": 6,
-        "restCnt": 14,
-        "procCd": "00",
-        "saleAmt": 3100000
-      },
-      {
         "eventSeq": 42058,
         "startDay": "20260627",
         "personCnt": 20,
@@ -16955,8 +18255,8 @@
         "startDay": "20260704",
         "personCnt": 20,
         "minPersonCnt": 8,
-        "resvCnt": 8,
-        "restCnt": 12,
+        "resvCnt": 11,
+        "restCnt": 9,
         "procCd": "01",
         "saleAmt": 3600000
       },
@@ -17111,7 +18411,7 @@
         "saleAmt": 3450000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:23.845Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:07.470Z"
   },
   {
     "id": "hyecho-2080",
@@ -17209,8 +18509,8 @@
         "startDay": "20261022",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 11,
-        "restCnt": 5,
+        "resvCnt": 13,
+        "restCnt": 3,
         "procCd": "01",
         "saleAmt": 3350000
       },
@@ -17245,7 +18545,7 @@
         "saleAmt": 3250000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:30.702Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:13.045Z"
   },
   {
     "id": "hyecho-2077",
@@ -17278,16 +18578,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 42007,
-        "startDay": "20260614",
-        "personCnt": 20,
-        "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 20,
-        "procCd": "00",
-        "saleAmt": 2150000
-      },
       {
         "eventSeq": 42247,
         "startDay": "20260712",
@@ -17339,7 +18629,7 @@
         "saleAmt": 2250000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:37.298Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:17.032Z"
   },
   {
     "id": "hyecho-2089",
@@ -17418,7 +18708,7 @@
         "saleAmt": 2550000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:41.529Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:20.592Z"
   },
   {
     "id": "hyecho-2079",
@@ -17453,7 +18743,7 @@
         "minPersonCnt": 12,
         "resvCnt": 17,
         "restCnt": 0,
-        "procCd": "01",
+        "procCd": "40",
         "saleAmt": 2900000
       },
       {
@@ -17461,8 +18751,8 @@
         "startDay": "20260820",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 9,
-        "restCnt": 7,
+        "resvCnt": 10,
+        "restCnt": 6,
         "procCd": "00",
         "saleAmt": 3000000
       },
@@ -17481,8 +18771,8 @@
         "startDay": "20261001",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 4,
+        "restCnt": 12,
         "procCd": "00",
         "saleAmt": 3250000
       },
@@ -17497,7 +18787,7 @@
         "saleAmt": 3150000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:45.618Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:24.477Z"
   },
   {
     "id": "hyecho-2081",
@@ -17555,13 +18845,13 @@
         "startDay": "20260729",
         "personCnt": 17,
         "minPersonCnt": 10,
-        "resvCnt": 15,
-        "restCnt": 2,
+        "resvCnt": 10,
+        "restCnt": 7,
         "procCd": "01",
         "saleAmt": 3200000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:48.327Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:26.188Z"
   },
   {
     "id": "hyecho-2054",
@@ -17634,8 +18924,8 @@
         "startDay": "20260920",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 4,
-        "restCnt": 12,
+        "resvCnt": 8,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 4250000
       },
@@ -17644,8 +18934,8 @@
         "startDay": "20261122",
         "personCnt": 16,
         "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 16,
+        "resvCnt": 2,
+        "restCnt": 14,
         "procCd": "00",
         "saleAmt": 3950000
       },
@@ -17660,7 +18950,7 @@
         "saleAmt": 3950000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:53.641Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:30.198Z"
   },
   {
     "id": "hyecho-2058",
@@ -17724,16 +19014,6 @@
     ],
     "departures": [
       {
-        "eventSeq": 41815,
-        "startDay": "20260614",
-        "personCnt": 16,
-        "minPersonCnt": 8,
-        "resvCnt": 0,
-        "restCnt": 16,
-        "procCd": "00",
-        "saleAmt": 3800000
-      },
-      {
         "eventSeq": 30001691,
         "startDay": "20260712",
         "personCnt": 16,
@@ -17784,7 +19064,7 @@
         "saleAmt": 3900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:26:59.735Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:33.948Z"
   },
   {
     "id": "hyecho-2144",
@@ -17796,9 +19076,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2144/hyecho_cm9900_30000860.jpg",
     "locations": [
       {
-        "name": "롱이어비엔 (Longyearbyen)",
-        "lat": 78.22,
-        "lng": 15.65
+        "name": "오슬로 (Oslo)",
+        "lat": 59.9133301,
+        "lng": 10.7389701
+      },
+      {
+        "name": "롤링지른 (Longyearbyen)",
+        "lat": 78.2231558,
+        "lng": 15.6463656
       }
     ],
     "departures": [
@@ -17823,7 +19108,7 @@
         "saleAmt": 17000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:02.195Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:40.906Z"
   },
   {
     "id": "hyecho-1830",
@@ -17835,9 +19120,39 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/1830/hyecho_cm9900_30002837.jpg",
     "locations": [
       {
-        "name": "퀸스타운 (Queenstown)",
-        "lat": -45.03,
-        "lng": 168.66
+        "name": "타우포 (Taupo)",
+        "lat": -38.6866197,
+        "lng": 176.0694773
+      },
+      {
+        "name": "통가리로 (Tongariro)",
+        "lat": -39.1298788,
+        "lng": 175.6353731
+      },
+      {
+        "name": "로토루아 (Rotorua)",
+        "lat": -38.136073,
+        "lng": 176.2525434
+      },
+      {
+        "name": "퀴스타운 (Queenstown)",
+        "lat": -45.0321923,
+        "lng": 168.661
+      },
+      {
+        "name": "테아나우 (Te Anau)",
+        "lat": -45.41449,
+        "lng": 167.717489
+      },
+      {
+        "name": "와나카 (Wanaka)",
+        "lat": -44.6941691,
+        "lng": 169.1364637
+      },
+      {
+        "name": "마운트쿡 (Mount Cook)",
+        "lat": -43.5950017,
+        "lng": 170.1421677
       }
     ],
     "departures": [
@@ -17846,8 +19161,8 @@
         "startDay": "20261108",
         "personCnt": 16,
         "minPersonCnt": 12,
-        "resvCnt": 2,
-        "restCnt": 14,
+        "resvCnt": 8,
+        "restCnt": 8,
         "procCd": "00",
         "saleAmt": 10400000
       },
@@ -17862,7 +19177,7 @@
         "saleAmt": 10400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:04.870Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:48.005Z"
   },
   {
     "id": "hyecho-2143",
@@ -17874,9 +19189,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2143/hyecho_cm9900_30000894.jpg",
     "locations": [
       {
+        "name": "파리 (Paris)",
+        "lat": 48.8534951,
+        "lng": 2.3483915
+      },
+      {
         "name": "롱이어비엔 (Longyearbyen)",
-        "lat": 78.22,
-        "lng": 15.65
+        "lat": 78.2231558,
+        "lng": 15.6463656
       }
     ],
     "departures": [
@@ -17891,7 +19211,7 @@
         "saleAmt": 54000000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:06.653Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:53.394Z"
   },
   {
     "id": "hyecho-2087",
@@ -17955,7 +19275,7 @@
         "saleAmt": 2500000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:11.332Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:56.629Z"
   },
   {
     "id": "hyecho-3364",
@@ -17994,7 +19314,7 @@
         "saleAmt": 7600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:12.863Z"
+    "departuresUpdatedAt": "2026-05-22T02:17:57.878Z"
   },
   {
     "id": "hyecho-3350",
@@ -18006,9 +19326,109 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/3350/hyecho_cm9900_30002881.jpg",
     "locations": [
       {
-        "name": "산티아고 데 콤포스텔라 (Santiago)",
-        "lat": 42.88,
-        "lng": -8.54
+        "name": "루르드 (Lourdes)",
+        "lat": 43.0940904,
+        "lng": -0.0464975
+      },
+      {
+        "name": "생장 (Saint-Jean-Pied-de-Port)",
+        "lat": 43.1629528,
+        "lng": -1.2380528
+      },
+      {
+        "name": "론세스바예스 (Roncesvalles)",
+        "lat": 43.0091669,
+        "lng": -1.3201731
+      },
+      {
+        "name": "수비리 (Zubiri)",
+        "lat": 42.9305828,
+        "lng": -1.5043222
+      },
+      {
+        "name": "팜플로나 (Pamplona)",
+        "lat": 42.815686,
+        "lng": -1.6522353
+      },
+      {
+        "name": "뿌엔테 라 레이나 (Puente la Reina)",
+        "lat": 42.6914331,
+        "lng": -1.8123198
+      },
+      {
+        "name": "에스텔라 (Estella)",
+        "lat": 42.6626058,
+        "lng": -2.022023
+      },
+      {
+        "name": "로스 아르코스 (Los Arcos)",
+        "lat": 42.5697418,
+        "lng": -2.1923085
+      },
+      {
+        "name": "로그로뇨 (Logroño)",
+        "lat": 42.4661196,
+        "lng": -2.4396676
+      },
+      {
+        "name": "나헤라 (Nájera)",
+        "lat": 42.416745,
+        "lng": -2.7336874
+      },
+      {
+        "name": "산토도밍고 데 라 칼사다 (Santo Domingo de la Calzada)",
+        "lat": 42.4406711,
+        "lng": -2.9536395
+      },
+      {
+        "name": "벨로라도 (Belorado)",
+        "lat": 42.4267072,
+        "lng": -3.1964952
+      },
+      {
+        "name": "부르고스 (Burgos)",
+        "lat": 42.3448498,
+        "lng": -3.6812477
+      },
+      {
+        "name": "온따나스 (Hontanas)",
+        "lat": 42.3126025,
+        "lng": -4.0444754
+      },
+      {
+        "name": "까리온 데 로스 꼰데스 (Carrión de los Condes)",
+        "lat": 42.3385404,
+        "lng": -4.6017128
+      },
+      {
+        "name": "테라디요스 데 로스 템플라리오스 (Terradillos de los Templarios)",
+        "lat": 42.3629914,
+        "lng": -4.8906159
+      },
+      {
+        "name": "베르시아노스 델 까미노 (Bercianos del Camino)",
+        "lat": 42.3873217,
+        "lng": -5.1347761
+      },
+      {
+        "name": "만시야 데 라스 물라스 (Mansilla de las Mulas)",
+        "lat": 42.4991013,
+        "lng": -5.4169163
+      },
+      {
+        "name": "레온 (León)",
+        "lat": 45.7578137,
+        "lng": 4.8320114
+      },
+      {
+        "name": "산마르틴 델 까미노 (San Martín del Camino)",
+        "lat": 42.4951315,
+        "lng": -5.809445
+      },
+      {
+        "name": "아스토르가 (Astorga)",
+        "lat": 42.455401,
+        "lng": -6.052924
       }
     ],
     "departures": [
@@ -18017,13 +19437,13 @@
         "startDay": "20260911",
         "personCnt": 25,
         "minPersonCnt": 20,
-        "resvCnt": 25,
-        "restCnt": 0,
+        "resvCnt": 23,
+        "restCnt": 2,
         "procCd": "01",
         "saleAmt": 5850000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:14.659Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:03.710Z"
   },
   {
     "id": "hyecho-30000117",
@@ -18035,9 +19455,9 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000117/hyecho_cm9900_30003057.jpg",
     "locations": [
       {
-        "name": "제주시 (Jeju)",
-        "lat": 33.5,
-        "lng": 126.53
+        "name": "제주도 (Jeju)",
+        "lat": 33.4887737,
+        "lng": 126.4987083
       }
     ],
     "departures": [
@@ -18062,7 +19482,7 @@
         "saleAmt": 590000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:17.531Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:10.830Z"
   },
   {
     "id": "hyecho-30000074",
@@ -18085,16 +19505,6 @@
       }
     ],
     "departures": [
-      {
-        "eventSeq": 30000021,
-        "startDay": "20260520",
-        "personCnt": 12,
-        "minPersonCnt": 8,
-        "resvCnt": 1,
-        "restCnt": 11,
-        "procCd": "00",
-        "saleAmt": 580000
-      },
       {
         "eventSeq": 30000022,
         "startDay": "20260524",
@@ -18126,7 +19536,7 @@
         "saleAmt": 580000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:19.094Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:12.218Z"
   },
   {
     "id": "hyecho-30000098",
@@ -18138,9 +19548,14 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/30000098/hyecho_cm9900_30002446.png",
     "locations": [
       {
+        "name": "제주도 (Jeju)",
+        "lat": 33.4887737,
+        "lng": 126.4987083
+      },
+      {
         "name": "가파도 (Gapa Island)",
-        "lat": 33.17,
-        "lng": 126.27
+        "lat": 33.1700999,
+        "lng": 126.2715769
       }
     ],
     "departures": [
@@ -18165,7 +19580,7 @@
         "saleAmt": 600000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:22.037Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:19.241Z"
   },
   {
     "id": "hyecho-30000063",
@@ -18209,7 +19624,7 @@
         "saleAmt": 8900000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:23.965Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:20.766Z"
   },
   {
     "id": "hyecho-2942",
@@ -18221,9 +19636,19 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2942/hyecho_cm9900_30001291.jpg",
     "locations": [
       {
-        "name": "센다이 (Sendai)",
-        "lat": 38.27,
-        "lng": 140.87
+        "name": "야마가타 (Yamagata)",
+        "lat": 38.4746705,
+        "lng": 140.083237
+      },
+      {
+        "name": "아키타 (Akita)",
+        "lat": 39.6898802,
+        "lng": 140.342608
+      },
+      {
+        "name": "아오모리 (Aomori)",
+        "lat": 40.886943,
+        "lng": 140.590121
       }
     ],
     "departures": [
@@ -18235,16 +19660,6 @@
         "resvCnt": 17,
         "restCnt": 5,
         "procCd": "01",
-        "saleAmt": 3000000
-      },
-      {
-        "eventSeq": 30000151,
-        "startDay": "20260623",
-        "personCnt": 17,
-        "minPersonCnt": 10,
-        "resvCnt": 0,
-        "restCnt": 17,
-        "procCd": "00",
         "saleAmt": 3000000
       },
       {
@@ -18308,6 +19723,6 @@
         "saleAmt": 3400000
       }
     ],
-    "departuresUpdatedAt": "2026-05-18T00:27:28.255Z"
+    "departuresUpdatedAt": "2026-05-22T02:18:30.538Z"
   }
 ]
