@@ -29,7 +29,7 @@ const GEOCODE_CACHE_PATH = resolve(__dirname, "../data/geocode-cache.json");
 const BODIES_DIR = "/tmp/crawl-bodies";
 
 const CHUNK_SIZE = 15;     // 호출 N번마다 새 session-id (context 안전 마진)
-const BODY_MAX_CHARS = 8000;
+const BODY_MAX_CHARS = 24000;
 const CLAUDE_TIMEOUT_MS = 90_000;
 
 const SYSTEM_PROMPT = `당신은 한국 여행사 패키지 페이지에서 실제 "방문 도시" 목록을 추출합니다.
@@ -163,11 +163,13 @@ function parseArgs() {
     ? parseInt(argv[argv.indexOf("--limit") + 1], 10)
     : Infinity;
   const all = argv.includes("--all");
-  return { limit, all };
+  const idsIdx = argv.indexOf("--ids");
+  const ids = idsIdx >= 0 ? new Set(argv[idsIdx + 1].split(",").map((s) => s.trim())) : null;
+  return { limit, all, ids };
 }
 
 async function main() {
-  const { limit, all } = parseArgs();
+  const { limit, all, ids } = parseArgs();
 
   if (!existsSync(BODIES_DIR)) {
     console.error(`No body cache at ${BODIES_DIR}. Run crawl-all-hyecho.ts first.`);
@@ -179,14 +181,15 @@ async function main() {
     ? JSON.parse(readFileSync(GEOCODE_CACHE_PATH, "utf-8"))
     : {};
 
-  // 대상: --all이면 전체, 기본은 locations.length <= 1 인 패키지
+  // 대상: --ids로 명시한 id만, 또는 --all이면 전체, 기본은 locations.length <= 1
   const targets = packages
     .map((p, idx) => ({ p, idx }))
-    .filter(({ p }) => all || (p.locations?.length ?? 0) <= 1)
+    .filter(({ p }) => ids ? ids.has(p.id) : (all || (p.locations?.length ?? 0) <= 1))
     .filter(({ p }) => existsSync(`${BODIES_DIR}/${p.id}.txt`))
     .slice(0, limit);
 
-  console.log(`Targets: ${targets.length} packages (총 ${packages.length}, ${all ? "all" : "single-location only"})`);
+  const mode = ids ? `ids=${[...ids].join(",")}` : (all ? "all" : "single-location only");
+  console.log(`Targets: ${targets.length} packages (총 ${packages.length}, ${mode})`);
 
   let sessionId = randomUUID();
   let callsInSession = 0;
