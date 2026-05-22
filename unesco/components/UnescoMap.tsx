@@ -266,16 +266,20 @@ export default function HyechoMap({
       if (!src) return;
       src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
       if (expandedGeoJSON.features.length === 1) {
-        // 단일 location: flyTo로 그 도시로 이동
+        // 단일 location: 살짝만 zoom-in (도시 단위가 아닌 region 단위)
         const coord = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
-        map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 6), duration: 800 });
+        map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 4), duration: 800 });
       } else if (expandedGeoJSON.features.length >= 2) {
         const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
         const bounds = new maplibregl.LngLatBounds(first, first);
         for (const f of expandedGeoJSON.features) {
           bounds.extend(f.geometry.coordinates as [number, number]);
         }
-        map.fitBounds(bounds, { padding: 80, maxZoom: 8, duration: 800 });
+        // maxZoom 8 → 5: 살짝만 zoom-in (대륙 보임)
+        map.fitBounds(bounds, { padding: 80, maxZoom: 5, duration: 800 });
+      } else {
+        // selectedProductId 해제됨 → 초기 globe view로 복귀
+        map.flyTo({ center: [30, 25], zoom: 2, duration: 800 });
       }
     };
     if (map.isStyleLoaded()) apply();
@@ -298,8 +302,8 @@ export default function HyechoMap({
 
         let opacity: number;
         if (selectedProductId) {
-          // Drill-in: 모든 centroid를 dim (expanded layer가 그 위에 표시됨)
-          opacity = 0.15;
+          // Drill-in: 다른 centroid는 살짝만 흐리게 (살짝 보이도록)
+          opacity = isSelected ? 1.0 : 0.4;
         } else if (selectedLocationProductIds) {
           // 위치 목록(ProductList): 해당 위치 상품들만 강조
           opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;

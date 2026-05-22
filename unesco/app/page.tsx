@@ -181,6 +181,27 @@ export default function Home() {
         onSelectMatch={(id) => { setSelectedProductId(id); setSelectedLocation(null); setSheetState("full"); setSearchQuery(""); }}
       />
       <RankingPanel products={products} onSelectProduct={handleRankingSelect} onPanelOpen={() => setSheetState("closed")} />
+      {selectedProductId && (
+        <button
+          onClick={() => {
+            setSelectedProductId(null);
+            setSelectedLocation(null);
+            setSheetState("closed");
+          }}
+          className="absolute z-30 px-3 py-1.5 serif-kr text-xs md:text-sm shadow-lg transition-opacity hover:opacity-90 flex items-center gap-1.5"
+          style={{
+            top: "16px",
+            right: "120px",
+            background: "var(--paper-100)",
+            color: "var(--ink-deep)",
+            borderRadius: "2px",
+            borderLeft: "3px solid var(--vermillion)",
+          }}
+        >
+          <span>🌍</span>
+          <span>전체 지도</span>
+        </button>
+      )}
       {sheetState !== "closed" && (
         <div className="absolute inset-0 z-[5]" onClick={() => setSheetState("closed")} />
       )}
