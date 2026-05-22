@@ -289,7 +289,7 @@ export default function HyechoMap({
     else map.once("load", apply);
   }, [expandedGeoJSON]);
 
-  // 필터/선택 상태 → 마커 opacity 업데이트
+  // 필터/선택 상태 → 마커 source data 갱신
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -298,30 +298,30 @@ export default function HyechoMap({
       const source = map.getSource("hyecho") as maplibregl.GeoJSONSource;
       if (!source) return;
 
+      // Drill-in: source에 selected feature만 포함 (다른 marker 완전 제거)
+      if (selectedProductId) {
+        const selected = data.features.find((f) => f.properties.productId === selectedProductId);
+        source.setData({
+          type: "FeatureCollection",
+          features: selected ? [{ ...selected, properties: { ...selected.properties, _opacity: 1.0, _selected: true } }] : [],
+        } as unknown as GeoJSON.FeatureCollection);
+        return;
+      }
+
       const features = data.features.map((f) => {
         const id = f.properties.productId;
         const isFiltered = filteredProductIds.has(id);
-        const isSelected = selectedProductId === id;
 
         let opacity: number;
-        if (selectedProductId) {
-          // Drill-in: 선택된 product 외 centroid는 완전히 숨김
-          opacity = isSelected ? 1.0 : 0;
-        } else if (selectedLocationProductIds) {
-          // 위치 목록(ProductList): 해당 위치 상품들만 강조
+        if (selectedLocationProductIds) {
           opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
         } else {
-          // 선택 없음: 검색/필터 결과 기반
           opacity = isFiltered ? 1.0 : 0.2;
         }
 
         return {
           ...f,
-          properties: {
-            ...f.properties,
-            _opacity: opacity,
-            _selected: isSelected,
-          },
+          properties: { ...f.properties, _opacity: opacity, _selected: false },
         };
       });
 
@@ -335,18 +335,17 @@ export default function HyechoMap({
     else map.once("load", apply);
   }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds]);
 
-  // multi-badge layer: drill-in 시 모두 숨김
+  // multi-badge: drill-in 시 source data를 비워서 모두 숨김
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
     const apply = () => {
       const src = map.getSource("hyecho-multi") as maplibregl.GeoJSONSource | undefined;
       if (!src) return;
-      const features = multiGeoJSON.features.map((f) => ({
-        ...f,
-        properties: { ...f.properties, _opacity: selectedProductId ? 0 : 1 },
-      }));
-      src.setData({ type: "FeatureCollection", features } as unknown as GeoJSON.FeatureCollection);
+      src.setData({
+        type: "FeatureCollection",
+        features: selectedProductId ? [] : multiGeoJSON.features,
+      } as unknown as GeoJSON.FeatureCollection);
     };
     if (map.isStyleLoaded()) apply();
     else map.once("load", apply);
