@@ -77,6 +77,10 @@ echo "--- 3b/4 enrich-locations.ts ---"
 npx tsx scripts/enrich-locations.ts
 
 echo ""
+echo "--- 3c/4 prune-outliers.ts ---"
+npx tsx scripts/prune-outliers.ts
+
+echo ""
 echo "--- 4/4 safety net ---"
 OLD=$(git show HEAD:unesco/data/hyecho-packages.json 2>/dev/null | jq 'length' 2>/dev/null || echo 0)
 NEW=$(jq 'length' data/hyecho-packages.json)
