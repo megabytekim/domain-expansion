@@ -185,20 +185,39 @@ export default function HyechoMap({
       });
       popupRef.current = popup;
 
+      let lastPopupProductId: string | null = null;
       map.on("mousemove", "markers", (e) => {
         // Drill-in 모드(상품 선택됨)에선 dim된 centroid의 popup 숨김 — 5개 expanded marker만 의미 있음
         if (selectedProductIdRef.current) return;
         const feature = e.features?.[0];
         if (!feature) return;
+        const productId = feature.properties?.productId as string;
         const title = feature.properties?.productTitle ?? "";
-        const span = document.createElement("span");
-        span.style.cssText = "font-size:12px;color:#e2e8f0;white-space:nowrap;max-width:200px;display:block;overflow:hidden;text-overflow:ellipsis";
-        span.textContent = title;
-        popup.setLngLat(e.lngLat).setDOMContent(span).addTo(map);
+        const imageUrl = feature.properties?.productImageUrl as string | undefined;
+
+        if (productId !== lastPopupProductId) {
+          const container = document.createElement("div");
+          container.style.cssText = "max-width:200px;display:flex;flex-direction:column;gap:6px";
+          if (imageUrl) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.loading = "lazy";
+            img.style.cssText = "width:100%;height:90px;object-fit:cover;border-radius:2px;display:block";
+            container.appendChild(img);
+          }
+          const span = document.createElement("span");
+          span.style.cssText = "font-size:12px;color:#e2e8f0;white-space:normal;line-height:1.3;display:block";
+          span.textContent = title;
+          container.appendChild(span);
+          popup.setDOMContent(container);
+          lastPopupProductId = productId;
+        }
+        popup.setLngLat(e.lngLat).addTo(map);
       });
 
       map.on("mouseleave", "markers", () => {
         popup.remove();
+        lastPopupProductId = null;
       });
 
       // Expanded marker(drill-in 모드의 도시 마커): hover 시 도시명 popup
