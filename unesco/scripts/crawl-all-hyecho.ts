@@ -5,6 +5,7 @@
 import { chromium } from "playwright";
 import { writeFileSync, readFileSync, existsSync, mkdirSync, rmSync } from "fs";
 import { resolve } from "path";
+import { hashBody } from "../lib/body-hash";
 
 const PRODUCT_LIST = [
   // === EXISTING 50 ===
@@ -345,6 +346,8 @@ async function main() {
 
       // Save bodyText for LLM-extract step (skipped if data is null)
       writeFileSync(`${BODIES_DIR}/${productId}.txt`, data.bodyText);
+      // body hash — incremental LLM extract용. lastLlmHash와 비교하여 변경 없으면 LLM skip.
+      const bodyHash = hashBody(data.bodyText);
 
       console.log(`  ${data.title}`);
       console.log(`  Price: ₩${data.price}, Duration: ${data.duration}`);
@@ -369,6 +372,8 @@ async function main() {
       const departures = await fetchDepartures(p.s);
       console.log(`  ✓ ${departures.length}개 출발일`);
 
+      // 기존 entry의 lastLlmHash/lastLlmAt은 보존 — llm-extract가 다음 단계에서 비교/갱신
+      const existing = resultsMap.get(productId);
       const product = {
         id: `hyecho-${p.s}`,
         category: p.c,
@@ -380,6 +385,9 @@ async function main() {
         locations,
         departures,
         departuresUpdatedAt: new Date().toISOString(),
+        bodyHash,
+        ...(existing?.lastLlmHash ? { lastLlmHash: existing.lastLlmHash } : {}),
+        ...(existing?.lastLlmAt ? { lastLlmAt: existing.lastLlmAt } : {}),
       };
       // Avoid duplicates: if id already in results (재크롤 case), update in place
       const existingIdx = results.findIndex((r: any) => r.id === product.id);

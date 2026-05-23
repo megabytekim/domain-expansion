@@ -163,13 +163,15 @@ function parseArgs() {
     ? parseInt(argv[argv.indexOf("--limit") + 1], 10)
     : Infinity;
   const all = argv.includes("--all");
+  const force = argv.includes("--force");         // bodyHash 비교 무시하고 모두 호출
+  const dryRun = argv.includes("--dry-run");      // LLM 호출 안 하고 skip/call 카운트만
   const idsIdx = argv.indexOf("--ids");
   const ids = idsIdx >= 0 ? new Set(argv[idsIdx + 1].split(",").map((s) => s.trim())) : null;
-  return { limit, all, ids };
+  return { limit, all, force, dryRun, ids };
 }
 
 async function main() {
-  const { limit, all, ids } = parseArgs();
+  const { limit, all, force, dryRun, ids } = parseArgs();
 
   if (!existsSync(BODIES_DIR)) {
     console.error(`No body cache at ${BODIES_DIR}. Run crawl-all-hyecho.ts first.`);
@@ -182,14 +184,35 @@ async function main() {
     : {};
 
   // 대상: --ids로 명시한 id만, 또는 --all이면 전체, 기본은 locations.length <= 1
-  const targets = packages
+  const candidates = packages
     .map((p, idx) => ({ p, idx }))
     .filter(({ p }) => ids ? ids.has(p.id) : (all || (p.locations?.length ?? 0) <= 1))
-    .filter(({ p }) => existsSync(`${BODIES_DIR}/${p.id}.txt`))
+    .filter(({ p }) => existsSync(`${BODIES_DIR}/${p.id}.txt`));
+
+  // Hash 기반 incremental: bodyHash === lastLlmHash면 본문 변경 없음 → skip
+  // --force / --ids로 명시한 id는 무조건 호출
+  let skippedByHash = 0;
+  const targets = candidates
+    .filter(({ p }) => {
+      if (force || ids) return true;
+      if (p.bodyHash && p.bodyHash === p.lastLlmHash) {
+        skippedByHash++;
+        return false;
+      }
+      return true;
+    })
     .slice(0, limit);
 
   const mode = ids ? `ids=${[...ids].join(",")}` : (all ? "all" : "single-location only");
-  console.log(`Targets: ${targets.length} packages (총 ${packages.length}, ${mode})`);
+  console.log(`Targets: ${targets.length} packages (총 ${packages.length}, ${mode}, hash-skipped ${skippedByHash}${dryRun ? ", DRY-RUN" : ""})`);
+  if (dryRun) {
+    console.log(`[dry-run] Would call LLM for ${targets.length} packages.`);
+    for (const { p } of targets.slice(0, 20)) {
+      const reason = !p.bodyHash ? "no bodyHash" : !p.lastLlmHash ? "never called" : "hash changed";
+      console.log(`  - ${p.id} (${reason})`);
+    }
+    return;
+  }
 
   let sessionId = randomUUID();
   let callsInSession = 0;
@@ -238,6 +261,12 @@ async function main() {
         skippedNoImprovement++;
         console.log(`  - skip (geocode 후 ${newLocations.length} <= 기존 ${p.locations.length})`);
       }
+    }
+
+    // LLM 호출 자체는 성공했으므로 hash 갱신 — 다음 주에 본문 안 바뀌면 skip
+    if (cities.length > 0 && p.bodyHash) {
+      packages[idx].lastLlmHash = p.bodyHash;
+      packages[idx].lastLlmAt = new Date().toISOString();
     }
 
     // Intermediate save every 10 (prevents data loss on interrupt)

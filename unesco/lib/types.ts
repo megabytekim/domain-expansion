@@ -26,6 +26,9 @@ export interface HyechoProduct {
   locations: HyechoLocation[];
   departures: Departure[];          // 향후 출발일 목록
   departuresUpdatedAt?: string;     // ISO timestamp
+  bodyHash?: string;                // 현재 본문 hash (crawl이 채움)
+  lastLlmHash?: string;             // 마지막 LLM 호출 시 bodyHash (llm-extract가 채움). bodyHash===lastLlmHash면 LLM skip
+  lastLlmAt?: string;               // 마지막 LLM 호출 ISO timestamp (디버깅용)
 }
 
 // GeoJSON feature for a single marker on the map
