@@ -3,7 +3,7 @@
  * Run: cd unesco && npx tsx scripts/crawl-all-hyecho.ts
  */
 import { chromium } from "playwright";
-import { writeFileSync, readFileSync, existsSync } from "fs";
+import { writeFileSync, readFileSync, existsSync, mkdirSync, rmSync } from "fs";
 import { resolve } from "path";
 
 const PRODUCT_LIST = [
@@ -219,7 +219,24 @@ async function geocode(city: string): Promise<{ lat: number; lng: number } | nul
   return null;
 }
 
+// Body text cache for LLM-extract step (cleared at the start of each crawl run)
+const BODIES_DIR = "/tmp/crawl-bodies";
+
 async function main() {
+  // --products N: 처음 N개만 처리 (dry-run / debugging)
+  const limitArgIdx = process.argv.indexOf("--products");
+  const PRODUCT_LIMIT = limitArgIdx >= 0
+    ? parseInt(process.argv[limitArgIdx + 1], 10)
+    : PRODUCT_LIST.length;
+  const targets = PRODUCT_LIST.slice(0, Math.min(PRODUCT_LIST.length, PRODUCT_LIMIT));
+  if (PRODUCT_LIMIT < PRODUCT_LIST.length) {
+    console.log(`--products ${PRODUCT_LIMIT}: 처음 ${targets.length}개 패키지만 처리`);
+  }
+
+  // Clear stale bodies dir from previous (possibly aborted) run
+  rmSync(BODIES_DIR, { recursive: true, force: true });
+  mkdirSync(BODIES_DIR, { recursive: true });
+
   console.log("Launching browser...");
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
@@ -233,11 +250,11 @@ async function main() {
     : [];
   const resultsMap = new Map(results.map((r: any) => [r.id, r]));
   const crawledIds = new Set(resultsMap.keys());
-  console.log(`Resuming: ${crawledIds.size} products already crawled, ${PRODUCT_LIST.length - crawledIds.size} remaining`);
+  console.log(`Resuming: ${crawledIds.size} products already crawled, ${targets.length - crawledIds.size} remaining`);
   let totalLocations = results.reduce((sum: number, r: any) => sum + (r.locations?.length ?? 0), 0);
 
-  for (let i = 0; i < PRODUCT_LIST.length; i++) {
-    const p = PRODUCT_LIST[i];
+  for (let i = 0; i < targets.length; i++) {
+    const p = targets[i];
     const url = p.e
       ? `https://www.hyecho.com/goods/goods_view?goodSeq=${p.s}&eventSeq=${p.e}`
       : `https://www.hyecho.com/goods/goods_view?goodSeq=${p.s}`;
@@ -252,20 +269,21 @@ async function main() {
         ? (Date.now() - new Date(lastUpdated).getTime()) / 3_600_000
         : Infinity;
       if (hoursAgo < 6) {
-        console.log(`[${i + 1}/${PRODUCT_LIST.length}] ${p.s} — skipped (departures updated ${Math.round(hoursAgo)}h ago)`);
+        console.log(`[${i + 1}/${targets.length}] ${p.s} — skipped (departures updated ${Math.round(hoursAgo)}h ago)`);
         continue;
       }
-      console.log(`\n[${i + 1}/${PRODUCT_LIST.length}] ${p.s} — departures 갱신 중...`);
+      console.log(`\n[${i + 1}/${targets.length}] ${p.s} — departures 갱신 중...`);
       const departures = await fetchDepartures(p.s);
       existing.departures = departures;
       existing.departuresUpdatedAt = new Date().toISOString();
       console.log(`  ✓ ${departures.length}개 출발일`);
-      // locations가 비어있으면 skip하지 않고 아래서 재추출
-      if (existing.locations && existing.locations.length > 0) continue;
-      console.log(`  locations 없음 — 페이지 재크롤로 위치 추출`);
+      // 단일 도시 이하면 LLM extract step이 본문을 쓸 수 있게 재크롤로 bodyText 저장.
+      // 2개 이상은 신뢰 가능 — 재크롤 skip (Playwright 시간 절약).
+      if (existing.locations && existing.locations.length > 1) continue;
+      console.log(`  locations 단일 — 페이지 재크롤로 bodyText 저장 (LLM extract 대상)`);
     }
 
-    console.log(`\n[${i + 1}/${PRODUCT_LIST.length}] ${p.s}...`);
+    console.log(`\n[${i + 1}/${targets.length}] ${p.s}...`);
 
     try {
       await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
@@ -317,13 +335,16 @@ async function main() {
           }
         }
 
-        return { title, price, duration, imageUrl, cities: Array.from(cities) };
+        return { title, price, duration, imageUrl, cities: Array.from(cities), bodyText };
       });
 
       if (!data) {
         console.log("  Skipped (no content)");
         continue;
       }
+
+      // Save bodyText for LLM-extract step (skipped if data is null)
+      writeFileSync(`${BODIES_DIR}/${productId}.txt`, data.bodyText);
 
       console.log(`  ${data.title}`);
       console.log(`  Price: ₩${data.price}, Duration: ${data.duration}`);
@@ -360,7 +381,13 @@ async function main() {
         departures,
         departuresUpdatedAt: new Date().toISOString(),
       };
-      results.push(product);
+      // Avoid duplicates: if id already in results (재크롤 case), update in place
+      const existingIdx = results.findIndex((r: any) => r.id === product.id);
+      if (existingIdx >= 0) {
+        results[existingIdx] = product;
+      } else {
+        results.push(product);
+      }
       resultsMap.set(product.id, product);
     } catch (e: any) {
       console.error(`  Error: ${e.message}`);
