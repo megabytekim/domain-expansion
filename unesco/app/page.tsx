@@ -185,6 +185,11 @@ export default function Home() {
           setSelectedProductId(null);
           setSelectedLocation(null);
           setSheetState("closed");
+          // 모든 마커 활성화 — 필터/검색도 함께 초기화
+          setSearchQuery("");
+          setCategories(new Set(["trekking", "culture", "walking", "event"]));
+          setPriceRange([0, 0]);
+          setDurationRange([0, 0]);
         };
         return (
           <>
