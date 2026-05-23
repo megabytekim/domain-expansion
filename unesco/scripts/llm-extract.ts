@@ -183,10 +183,12 @@ async function main() {
     ? JSON.parse(readFileSync(GEOCODE_CACHE_PATH, "utf-8"))
     : {};
 
-  // 대상: --ids로 명시한 id만, 또는 --all이면 전체, 기본은 locations.length <= 1
+  // 대상: --ids 명시 시 그 id만. 그 외엔 전체 (hash skip이 비용 통제).
+  // 기존 single-location only 정책은 폐기 — multi도 LLM 재추출이 더 정확한 도시 만들 수 있음
+  // (예: "페로제도" 광역 라벨 → 토르스하운/Reykjavik 등 실제 도시)
   const candidates = packages
     .map((p, idx) => ({ p, idx }))
-    .filter(({ p }) => ids ? ids.has(p.id) : (all || (p.locations?.length ?? 0) <= 1))
+    .filter(({ p }) => ids ? ids.has(p.id) : true)
     .filter(({ p }) => existsSync(`${BODIES_DIR}/${p.id}.txt`));
 
   // Hash 기반 incremental: bodyHash === lastLlmHash면 본문 변경 없음 → skip
@@ -203,7 +205,7 @@ async function main() {
     })
     .slice(0, limit);
 
-  const mode = ids ? `ids=${[...ids].join(",")}` : (all ? "all" : "single-location only");
+  const mode = ids ? `ids=${[...ids].join(",")}` : "all";
   console.log(`Targets: ${targets.length} packages (총 ${packages.length}, ${mode}, hash-skipped ${skippedByHash}${dryRun ? ", DRY-RUN" : ""})`);
   if (dryRun) {
     console.log(`[dry-run] Would call LLM for ${targets.length} packages.`);

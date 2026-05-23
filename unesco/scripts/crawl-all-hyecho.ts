@@ -278,10 +278,9 @@ async function main() {
       existing.departures = departures;
       existing.departuresUpdatedAt = new Date().toISOString();
       console.log(`  ✓ ${departures.length}개 출발일`);
-      // 단일 도시 이하면 LLM extract step이 본문을 쓸 수 있게 재크롤로 bodyText 저장.
-      // 2개 이상은 신뢰 가능 — 재크롤 skip (Playwright 시간 절약).
-      if (existing.locations && existing.locations.length > 1) continue;
-      console.log(`  locations 단일 — 페이지 재크롤로 bodyText 저장 (LLM extract 대상)`);
+      // multi-location skip 폐기 — bodyHash 갱신을 위해 매주 페이지 재크롤.
+      // hash 변경 없으면 llm-extract가 LLM 호출 skip하므로 비용 영향 작음.
+      console.log(`  bodyText 갱신 위해 페이지 재크롤`);
     }
 
     console.log(`\n[${i + 1}/${targets.length}] ${p.s}...`);
@@ -372,8 +371,12 @@ async function main() {
       const departures = await fetchDepartures(p.s);
       console.log(`  ✓ ${departures.length}개 출발일`);
 
-      // 기존 entry의 lastLlmHash/lastLlmAt은 보존 — llm-extract가 다음 단계에서 비교/갱신
+      // 기존 entry의 locations/lastLlmHash/lastLlmAt 보존 — llm-extract가 다음 단계에서
+      // 새 bodyHash와 비교해서 LLM 호출 + length 조건으로 update 결정
       const existing = resultsMap.get(productId);
+      const preservedLocations = (existing?.locations && existing.locations.length > 0)
+        ? existing.locations
+        : locations;  // 새 product만 naive cities로 초기화
       const product = {
         id: `hyecho-${p.s}`,
         category: p.c,
@@ -382,7 +385,7 @@ async function main() {
         duration: data.duration,
         url,
         imageUrl: data.imageUrl,
-        locations,
+        locations: preservedLocations,
         departures,
         departuresUpdatedAt: new Date().toISOString(),
         bodyHash,
