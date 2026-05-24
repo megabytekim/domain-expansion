@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import type { MarkerGeoJSON, SelectedLocation } from "@/lib/types";
 import type { HyechoProduct } from "@/lib/types";
@@ -47,6 +47,9 @@ export default function HyechoMap({
   const locationMapRef = useRef(locationMap);
   const popupRef = useRef<maplibregl.Popup | null>(null);
   const selectedProductIdRef = useRef<string | null>(null);
+  // map 'load' 이벤트는 첫 마운트 시 단 1회만 발화 — once("load", ...) 패턴은 두 번째 호출부터 stuck.
+  // 대신 마운트 useEffect의 load 콜백 끝에서 styleReady=true 설정, 다른 useEffect는 이 state를 기다린다.
+  const [styleReady, setStyleReady] = useState(false);
 
   useEffect(() => { onSelectRef.current = onLocationSelect; }, [onLocationSelect]);
   useEffect(() => { locationMapRef.current = locationMap; }, [locationMap]);
@@ -216,6 +219,9 @@ export default function HyechoMap({
         span.textContent = name;
         popup.setLngLat(e.lngLat).setDOMContent(span).addTo(map);
       });
+
+      // source/layer 추가 완료 — 다른 useEffect들이 즉시 setData 가능한 상태
+      setStyleReady(true);
     });
 
     mapRef.current = map;
@@ -230,88 +236,76 @@ export default function HyechoMap({
   // 도시 태그 클릭 → 해당 좌표로 flyTo
   useEffect(() => {
     if (!flyToTarget) return;
+    if (!styleReady) return;
     const map = mapRef.current;
     if (!map) return;
-    const apply = () =>
-      map.flyTo({ center: [flyToTarget.lng, flyToTarget.lat], zoom: Math.max(map.getZoom(), 6), duration: 600 });
-    if (map.isStyleLoaded()) apply();
-    else map.once("load", apply);
-  }, [flyToTarget]);
+    map.flyTo({ center: [flyToTarget.lng, flyToTarget.lat], zoom: Math.max(map.getZoom(), 6), duration: 600 });
+  }, [flyToTarget, styleReady]);
 
   // Drill-in: 선택 product의 expanded GeoJSON 갱신 + fitBounds
   useEffect(() => {
+    if (!styleReady) return;
     const map = mapRef.current;
     if (!map) return;
-    const apply = () => {
-      const src = map.getSource("hyecho-expanded") as maplibregl.GeoJSONSource | undefined;
-      if (!src) return;
-      src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
-      if (expandedGeoJSON.features.length === 1) {
-        // 단일 location: 살짝만 zoom-in (도시 단위가 아닌 region 단위)
-        const coord = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
-        map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 4), duration: 800 });
-      } else if (expandedGeoJSON.features.length >= 2) {
-        const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
-        const bounds = new maplibregl.LngLatBounds(first, first);
-        for (const f of expandedGeoJSON.features) {
-          bounds.extend(f.geometry.coordinates as [number, number]);
-        }
-        // maxZoom 8 → 5: 살짝만 zoom-in (대륙 보임)
-        map.fitBounds(bounds, { padding: 80, maxZoom: 5, duration: 800 });
-      } else {
-        // selectedProductId 해제됨 → 초기 globe view로 복귀
-        map.flyTo({ center: [30, 25], zoom: 2, duration: 800 });
+    const src = map.getSource("hyecho-expanded") as maplibregl.GeoJSONSource | undefined;
+    if (!src) return;
+    src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
+    if (expandedGeoJSON.features.length === 1) {
+      const coord = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
+      map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 4), duration: 800 });
+    } else if (expandedGeoJSON.features.length >= 2) {
+      const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
+      const bounds = new maplibregl.LngLatBounds(first, first);
+      for (const f of expandedGeoJSON.features) {
+        bounds.extend(f.geometry.coordinates as [number, number]);
       }
-    };
-    if (map.isStyleLoaded()) apply();
-    else map.once("load", apply);
-  }, [expandedGeoJSON]);
+      map.fitBounds(bounds, { padding: 80, maxZoom: 5, duration: 800 });
+    } else {
+      // selectedProductId 해제됨 → 초기 globe view로 복귀
+      map.flyTo({ center: [30, 25], zoom: 2, duration: 800 });
+    }
+  }, [expandedGeoJSON, styleReady]);
 
   // 필터/선택 상태 → 마커 source data 갱신
   useEffect(() => {
+    if (!styleReady) return;
     const map = mapRef.current;
     if (!map) return;
+    const source = map.getSource("hyecho") as maplibregl.GeoJSONSource | undefined;
+    if (!source) return;
 
-    const apply = () => {
-      const source = map.getSource("hyecho") as maplibregl.GeoJSONSource;
-      if (!source) return;
-
-      // Drill-in: source에 selected feature만 포함 (다른 marker 완전 제거)
-      if (selectedProductId) {
-        const selected = data.features.find((f) => f.properties.productId === selectedProductId);
-        source.setData({
-          type: "FeatureCollection",
-          features: selected ? [{ ...selected, properties: { ...selected.properties, _opacity: 1.0, _selected: true } }] : [],
-        } as unknown as GeoJSON.FeatureCollection);
-        return;
-      }
-
-      const features = data.features.map((f) => {
-        const id = f.properties.productId;
-        const isFiltered = filteredProductIds.has(id);
-
-        let opacity: number;
-        if (selectedLocationProductIds) {
-          opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
-        } else {
-          opacity = isFiltered ? 1.0 : 0.2;
-        }
-
-        return {
-          ...f,
-          properties: { ...f.properties, _opacity: opacity, _selected: false },
-        };
-      });
-
+    // Drill-in: source에 selected feature만 포함 (다른 marker 완전 제거)
+    if (selectedProductId) {
+      const selected = data.features.find((f) => f.properties.productId === selectedProductId);
       source.setData({
         type: "FeatureCollection",
-        features,
+        features: selected ? [{ ...selected, properties: { ...selected.properties, _opacity: 1.0, _selected: true } }] : [],
       } as unknown as GeoJSON.FeatureCollection);
-    };
+      return;
+    }
 
-    if (map.isStyleLoaded()) apply();
-    else map.once("load", apply);
-  }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds]);
+    const features = data.features.map((f) => {
+      const id = f.properties.productId;
+      const isFiltered = filteredProductIds.has(id);
+
+      let opacity: number;
+      if (selectedLocationProductIds) {
+        opacity = selectedLocationProductIds.has(id) ? 1.0 : 0.3;
+      } else {
+        opacity = isFiltered ? 1.0 : 0.2;
+      }
+
+      return {
+        ...f,
+        properties: { ...f.properties, _opacity: opacity, _selected: false },
+      };
+    });
+
+    source.setData({
+      type: "FeatureCollection",
+      features,
+    } as unknown as GeoJSON.FeatureCollection);
+  }, [data, filteredProductIds, selectedProductId, selectedLocationProductIds, styleReady]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} />;
 }
