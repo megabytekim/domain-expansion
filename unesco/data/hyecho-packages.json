@@ -20645,11 +20645,6 @@
     "imageUrl": "https://cdn-www.hyecho.com/upload/hyecho/image/goods/main/2143/hyecho_cm9900_30000894.jpg",
     "locations": [
       {
-        "name": "파리 (Paris)",
-        "lat": 48.8534951,
-        "lng": 2.3483915
-      },
-      {
         "name": "롱이어비엔 (Longyearbyen)",
         "lat": 78.2231558,
         "lng": 15.6463656
