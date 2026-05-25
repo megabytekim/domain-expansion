@@ -130,9 +130,7 @@ vercel --prod
     - 가격: hyecho-1777 시나이 ₩9.5M 정상
     - 랜드마크: 궁전/박물관/광장/모스크/사원/대성당 0건
     - 도시 누락: hyecho-1844 실크로드 11개 도시 정상 추출
-- **크롤 후 자동 검증 워크플로우** — 현재 `crawl.sh`에 safety net(상품 수 급감, 빈 location >50%) + `validate-and-report.ts` + `prune-outliers.ts` 내장. 추가 가능:
-    - 가격 sanity check (product.price vs min/max saleAmt 비교)
-    - GitHub Issue 자동 생성 (critical 이슈 발생 시)
+- [x] **크롤 후 자동 검증 워크플로우** ✅ 2026-05-25 — GitHub Actions에 `prune-outliers.ts` + `validate-and-report.ts` 스텝 추가. 가격 sanity check + 랜드마크 검출 + GitHub Issue 자동 발행 (`GITHUB_TOKEN` 사용)
 
 ### 챗봇 / UX
 - **혜초대사 채팅 영속화 (KV)** — 현재 in-memory라 Vercel serverless 콜드 스타트마다 사라짐. Upstash Redis 또는 Vercel KV 도입

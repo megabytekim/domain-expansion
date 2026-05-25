@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   crawl:
@@ -41,6 +42,9 @@ jobs:
         run: npx tsx scripts/enrich-locations.ts
         timeout-minutes: 3
 
+      - name: Prune geocode outliers
+        run: npx tsx scripts/prune-outliers.ts
+
       - name: Validate crawl results
         id: validate
         run: |
@@ -56,6 +60,12 @@ jobs:
             echo "OK: $NEW_COUNT products (was $OLD_COUNT)"
             echo "healthy=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Validate and report suspicious packages
+        if: steps.validate.outputs.healthy == 'true'
+        run: npx tsx scripts/validate-and-report.ts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for data changes
         id: changes
