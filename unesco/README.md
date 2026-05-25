@@ -125,16 +125,14 @@ vercel --prod
 
 ## 다음 라운드 후보
 
-### 데이터 신뢰성 (2026-05-21 샘플 검증 후 식별)
-- **크롤러 로직 fix** — `scripts/crawl-all-hyecho.ts` 점검:
-    - **가격 추출 오류**: hyecho-1777 시나이 → product.price ₩3.5M인데 실제 사이트 대표가 ₩9.5M (1/3로 표시됨). 다른 옵션의 가장 싼 saleAmt를 메인 가격으로 잘못 가져왔을 가능성
-    - **도시 vs 랜드마크 구분 안 됨**: "엘 바디 궁전", "바히아 궁전", "쿠투비아 모스크", "바르도 박물관", "문명 박물관", "소호 광장" 등이 도시로 추출됨. 키워드 필터(궁전/박물관/광장/모스크/사원/대성당 등) 또는 LLM 분류 도입
-    - **도시 누락**: hyecho-1844 실크로드 — 사이트엔 11개 도시, 우리 크롤은 3개만 (Almaty/Turkestan/Shymkent/Khiva/Issyk-Kul/Bishkek/Dushanbe/Ashgabat 누락)
-- **크롤 후 자동 검증 워크플로우** — `.github/workflows/crawl.yml`에 검증 step 추가:
-    - 가격 sanity check (product.price vs min/max saleAmt 비교, 70% 이하 차이면 fail)
-    - locations 노이즈 키워드 검출
-    - **심각도 분리 (옵션 E)**: Critical(가격 1/3 등)은 워크플로우 fail + 배포 차단 + GitHub Issue 자동 생성. Warning(노이즈 1-2개)은 log만 + 배포 진행
-    - 실패 시 production은 이전 데이터 유지 (안전)
+### 데이터 신뢰성 (2026-05-21 샘플 검증 → 05-25 재확인: 모두 해결됨)
+- [x] **크롤러 로직 fix** ✅ — LLM extract (`llm-extract.ts`) 도입 후 세 이슈 모두 해결:
+    - 가격: hyecho-1777 시나이 ₩9.5M 정상
+    - 랜드마크: 궁전/박물관/광장/모스크/사원/대성당 0건
+    - 도시 누락: hyecho-1844 실크로드 11개 도시 정상 추출
+- **크롤 후 자동 검증 워크플로우** — 현재 `crawl.sh`에 safety net(상품 수 급감, 빈 location >50%) + `validate-and-report.ts` + `prune-outliers.ts` 내장. 추가 가능:
+    - 가격 sanity check (product.price vs min/max saleAmt 비교)
+    - GitHub Issue 자동 생성 (critical 이슈 발생 시)
 
 ### 챗봇 / UX
 - **혜초대사 채팅 영속화 (KV)** — 현재 in-memory라 Vercel serverless 콜드 스타트마다 사라짐. Upstash Redis 또는 Vercel KV 도입
