@@ -72,7 +72,8 @@ uv run uvicorn api.index:app --host 0.0.0.0 --port 9999
   ├─ 시스템 프롬프트 prepend (매 요청)
   ├─ client history → Gemini Content 변환
   ├─ Gemini API 호출 (fallback chain: flash → flash-lite → latest)
-  └─ { reply } 반환 (서버 stateless, 히스토리 미저장)
+  ├─ stream=false → { reply } JSON 반환
+  └─ stream=true  → SSE (text/event-stream) 점진 출력
 ```
 
 **설계 결정 (2026-05-25):**
@@ -83,8 +84,6 @@ uv run uvicorn api.index:app --host 0.0.0.0 --port 9999
 - A2A 표준 endpoint(`POST /`)는 별도로 in-memory 유지 (SDK 호환)
 
 ## v2 후보 (미구현)
-
-- A2A SSE 스트리밍 + Gemini stream — UX
 - x402 결제 기반 콘텐츠 (paywall 가챠 등)
 
 ## 방명록 운영

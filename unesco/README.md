@@ -134,7 +134,7 @@ vercel --prod
 
 ### 챗봇 / UX
 - [x] **혜초대사 채팅 영속화** ✅ 2026-05-25 — 클라이언트 히스토리 방식 채택 (KV 대신). 서버 stateless, localStorage에 30턴 저장. 상세: `hyecho-master/README.md` 채팅 아키텍처 섹션
-- **혜초대사 채팅 스트리밍 (SSE)** — 긴 답변 점진 출력으로 체감 응답 속도 ↑
+- [x] **혜초대사 채팅 스트리밍 (SSE)** ✅ 2026-05-25 — Gemini stream + SSE, ChatWidget이 ReadableStream으로 점진 표시
 - **상품 상세에서 같은 패키지 마커 polyline 시각화** — 한 투어가 도는 도시들 지도에 곡선으로
 - **공유용 deep link** — 선택한 상품/위치를 URL에 반영 → 링크 공유 가능
 - **즐겨찾기 (localStorage)** — 별표 표시한 상품만 모아보기

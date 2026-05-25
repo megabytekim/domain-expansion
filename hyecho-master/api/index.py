@@ -31,7 +31,7 @@ from a2a.utils.errors import ServerError
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, StreamingResponse
 from starlette.routing import Mount, Route
 
 from api.guestbook import get_handler as guestbook_get_handler, post_handler as guestbook_post_handler
@@ -67,25 +67,8 @@ FINAL_FALLBACK_REPLY = (
 
 
 async def _generate_reply_stateless(client_history: list[dict], user_text: str) -> str:
-    """Stateless Gemini 호출 — 클라이언트가 보낸 히스토리 사용. /api/chat 전용."""
-    contents: list[genai_types.Content] = [
-        genai_types.Content(
-            role="user",
-            parts=[genai_types.Part(text=f"[시스템 지시]\n{SYSTEM_INSTRUCTION}\n\n위 지시를 따라 대화하게.")],
-        ),
-        genai_types.Content(
-            role="model",
-            parts=[genai_types.Part(text="자네가 왔구나. 길의 이야기라면 무엇이든 물어보게.")],
-        ),
-    ]
-
-    for turn in client_history[:-1]:
-        role = turn.get("role", "user")
-        text = turn.get("text", "")
-        if role in ("user", "model") and text:
-            contents.append(genai_types.Content(role=role, parts=[genai_types.Part(text=text)]))
-
-    contents.append(genai_types.Content(role="user", parts=[genai_types.Part(text=user_text)]))
+    """Stateless Gemini 호출 — 클라이언트가 보낸 히스토리 사용. /api/chat (non-stream) 전용."""
+    contents = _build_contents(client_history, user_text)
 
     last_exc: Exception | None = None
     for attempt, model_name in enumerate(MODEL_CANDIDATES):
@@ -102,6 +85,52 @@ async def _generate_reply_stateless(client_history: list[dict], user_text: str) 
 
     logger.error("all models failed (stateless): %s", last_exc)
     return FINAL_FALLBACK_REPLY
+
+
+def _build_contents(client_history: list[dict], user_text: str) -> list[genai_types.Content]:
+    """클라이언트 히스토리 + 새 메시지 → Gemini contents 조립."""
+    contents: list[genai_types.Content] = [
+        genai_types.Content(
+            role="user",
+            parts=[genai_types.Part(text=f"[시스템 지시]\n{SYSTEM_INSTRUCTION}\n\n위 지시를 따라 대화하게.")],
+        ),
+        genai_types.Content(
+            role="model",
+            parts=[genai_types.Part(text="자네가 왔구나. 길의 이야기라면 무엇이든 물어보게.")],
+        ),
+    ]
+    for turn in client_history[:-1]:
+        role = turn.get("role", "user")
+        text = turn.get("text", "")
+        if role in ("user", "model") and text:
+            contents.append(genai_types.Content(role=role, parts=[genai_types.Part(text=text)]))
+    contents.append(genai_types.Content(role="user", parts=[genai_types.Part(text=user_text)]))
+    return contents
+
+
+async def _generate_stream(client_history: list[dict], user_text: str):
+    """Gemini 스트리밍 — SSE용 async generator. 각 yield는 텍스트 chunk."""
+    contents = _build_contents(client_history, user_text)
+
+    last_exc: Exception | None = None
+    for attempt, model_name in enumerate(MODEL_CANDIDATES):
+        try:
+            response = await gemini_client.aio.models.generate_content_stream(
+                model=model_name,
+                contents=contents,
+            )
+            async for chunk in response:
+                text = chunk.text
+                if text:
+                    yield text
+            return
+        except Exception as exc:
+            last_exc = exc
+            logger.warning("stream: model %s failed (attempt %d): %s", model_name, attempt + 1, str(exc)[:200])
+            await asyncio.sleep(0.4 * (attempt + 1))
+
+    logger.error("all models failed (stream): %s", last_exc)
+    yield FINAL_FALLBACK_REPLY
 
 
 async def _generate_reply(ctx_id: str, user_text: str) -> str:
@@ -217,6 +246,16 @@ async def _chat_endpoint(request):
         return JSONResponse({"error": "message required"}, status_code=400)
 
     client_history = body.get("history") or []
+    stream = body.get("stream", False)
+
+    if stream:
+        async def sse_generator():
+            async for chunk in _generate_stream(client_history, message):
+                yield f"data: {json.dumps({'text': chunk}, ensure_ascii=False)}\n\n"
+            yield "data: [DONE]\n\n"
+
+        return StreamingResponse(sse_generator(), media_type="text/event-stream")
+
     reply = await _generate_reply_stateless(client_history, message)
     return JSONResponse({"reply": reply})
 

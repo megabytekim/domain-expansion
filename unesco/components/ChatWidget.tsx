@@ -59,11 +59,50 @@ export default function ChatWidget({ open, onOpenChange }: ChatWidgetProps) {
       const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, history }),
+        body: JSON.stringify({ message: text, history, stream: true }),
       });
-      const data = await res.json();
-      const reply = data.reply || "(답이 흩어졌네…)";
-      setMessages((m) => persistMessages([...m, { role: "agent", text: reply }]));
+
+      if (!res.body) {
+        const data = await res.json();
+        setMessages((m) => persistMessages([...m, { role: "agent", text: data.reply || "(답이 흩어졌네…)" }]));
+        return;
+      }
+
+      let accumulated = "";
+      setMessages((m) => [...m, { role: "agent", text: "" }]);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        const lines = buf.split("\n");
+        buf = lines.pop() || "";
+        for (const line of lines) {
+          if (!line.startsWith("data: ")) continue;
+          const payload = line.slice(6);
+          if (payload === "[DONE]") continue;
+          try {
+            const parsed = JSON.parse(payload);
+            accumulated += parsed.text || "";
+            setMessages((m) => {
+              const updated = [...m];
+              updated[updated.length - 1] = { role: "agent", text: accumulated };
+              return updated;
+            });
+          } catch { /* malformed chunk */ }
+        }
+      }
+
+      if (!accumulated) accumulated = "(답이 흩어졌네…)";
+      setMessages((m) => {
+        const updated = [...m];
+        updated[updated.length - 1] = { role: "agent", text: accumulated };
+        return persistMessages(updated);
+      });
     } catch {
       setMessages((m) => persistMessages([...m, { role: "agent", text: "(길에 바람이 거세어 답을 전하지 못하겠네…)" }]));
     } finally {
@@ -258,7 +297,7 @@ function ChatPanel({ messages, input, setInput, send, sending, handleKey, onClos
             </div>
           </div>
         ))}
-        {sending && (
+        {sending && messages[messages.length - 1]?.role !== "agent" && (
           <div className="flex justify-start">
             <div className="px-3 py-2 text-sm display-italic" style={{ background: "rgba(244,236,216,0.04)", color: "var(--paper-500)", borderRadius: "2px" }}>
               바람을 듣는 중…
