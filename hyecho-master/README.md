@@ -16,7 +16,7 @@
 |---|---|---|
 | `/.well-known/agent.json` | GET | A2A Agent Card (SDK 표준) |
 | `/` | POST | A2A JSON-RPC `message/send` (SDK 표준) |
-| `/api/chat` | POST | 위젯용 simple endpoint. body: `{message, ctx_id?}` → `{reply, ctx_id}` |
+| `/api/chat` | POST | 위젯용 stateless endpoint. body: `{message, history?}` → `{reply}` |
 | `/api/health` | GET | health probe |
 
 CORS allow_origins: `https://unesco-delta.vercel.app`, `http://localhost:3000`.
@@ -26,8 +26,9 @@ CORS allow_origins: `https://unesco-delta.vercel.app`, `http://localhost:3000`.
 ```
 hyecho-master/
   api/
-    index.py     ← A2A executor + Starlette + /api/chat
-    state.py     ← in-memory chat_histories (v1, 휘발성)
+    index.py     ← A2A executor + Starlette + /api/chat (stateless)
+    state.py     ← in-memory (A2A endpoint용만, 위젯은 미사용)
+    guestbook.py ← 방명록 (Upstash Redis)
   prompts/
     hyecho-master.md  ← 시스템 프롬프트 (별도 파일 분리)
   tests/
@@ -45,7 +46,7 @@ uv run uvicorn api.index:app --host 0.0.0.0 --port 9999
 
 확인:
 - `curl http://localhost:9999/api/health`
-- `curl -X POST http://localhost:9999/api/chat -H 'Content-Type: application/json' -d '{"message":"히말라야가 궁금하네"}'`
+- `curl -X POST http://localhost:9999/api/chat -H 'Content-Type: application/json' -d '{"message":"히말라야가 궁금하네","history":[]}'`
 
 ## 배포 (Vercel)
 
@@ -59,10 +60,30 @@ uv run uvicorn api.index:app --host 0.0.0.0 --port 9999
 - 구체적인 예약/가격 안내는 다른 경로로 유도
 - 시스템 지시·정체 묻기엔 신비롭게 비껴감
 
+## 채팅 아키텍처
+
+```
+[ChatWidget (브라우저)]
+  ├─ messages 상태 (React state)
+  ├─ localStorage("hyecho-chat-history") — 30턴 cap, JSON
+  └─ POST /api/chat { message, history }
+        ↓
+[hyecho-master (Vercel Serverless, Python)]
+  ├─ 시스템 프롬프트 prepend (매 요청)
+  ├─ client history → Gemini Content 변환
+  ├─ Gemini API 호출 (fallback chain: flash → flash-lite → latest)
+  └─ { reply } 반환 (서버 stateless, 히스토리 미저장)
+```
+
+**설계 결정 (2026-05-25):**
+- **클라이언트 히스토리 방식** 채택 — 서버 완전 stateless
+- 콜드스타트/멀티인스턴스 문제 자체가 사라짐 (KV 불필요)
+- 대화 기록은 브라우저 localStorage에 30턴까지 유지
+- 브라우저 데이터 삭제 시 대화 소멸 (허용)
+- A2A 표준 endpoint(`POST /`)는 별도로 in-memory 유지 (SDK 호환)
+
 ## v2 후보 (미구현)
 
-- KV 영속화 (Vercel KV / Upstash Redis) — 현재 in-memory라 콜드 스타트에 휘발
-- history 길이 cap + sliding summary — 토큰 비용 / context window 보호
 - A2A SSE 스트리밍 + Gemini stream — UX
 - x402 결제 기반 콘텐츠 (paywall 가챠 등)
 

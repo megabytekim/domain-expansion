@@ -1,4 +1,4 @@
-"""Shared in-memory state. v1: ephemeral (휘발). v2 후보: Vercel KV/Upstash."""
+"""Shared in-memory state. A2A endpoint용으로만 사용. 위젯(/api/chat)은 클라이언트 히스토리 방식으로 stateless."""
 
 from google import genai
 from google.genai import types as genai_types

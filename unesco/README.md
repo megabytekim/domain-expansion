@@ -133,7 +133,7 @@ vercel --prod
 - [x] **크롤 후 자동 검증 워크플로우** ✅ 2026-05-25 — GitHub Actions에 `prune-outliers.ts` + `validate-and-report.ts` 스텝 추가. 가격 sanity check + 랜드마크 검출 + GitHub Issue 자동 발행 (`GITHUB_TOKEN` 사용)
 
 ### 챗봇 / UX
-- **혜초대사 채팅 영속화 (KV)** — 현재 in-memory라 Vercel serverless 콜드 스타트마다 사라짐. Upstash Redis 또는 Vercel KV 도입
+- [x] **혜초대사 채팅 영속화** ✅ 2026-05-25 — 클라이언트 히스토리 방식 채택 (KV 대신). 서버 stateless, localStorage에 30턴 저장. 상세: `hyecho-master/README.md` 채팅 아키텍처 섹션
 - **혜초대사 채팅 스트리밍 (SSE)** — 긴 답변 점진 출력으로 체감 응답 속도 ↑
 - **상품 상세에서 같은 패키지 마커 polyline 시각화** — 한 투어가 도는 도시들 지도에 곡선으로
 - **공유용 deep link** — 선택한 상품/위치를 URL에 반영 → 링크 공유 가능

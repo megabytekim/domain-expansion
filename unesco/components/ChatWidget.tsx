@@ -8,7 +8,8 @@ interface Message {
 }
 
 const API_BASE = process.env.NEXT_PUBLIC_HYECHO_API || "http://localhost:9999";
-const STORAGE_KEY = "hyecho-master-ctx";
+const STORAGE_KEY = "hyecho-chat-history";
+const MAX_HISTORY_TURNS = 30;
 
 interface ChatWidgetProps {
   open: boolean;
@@ -19,17 +20,14 @@ export default function ChatWidget({ open, onOpenChange }: ChatWidgetProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
-  const [ctxId, setCtxId] = useState<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    let id = localStorage.getItem(STORAGE_KEY);
-    if (!id) {
-      id = "ctx-" + Math.random().toString(36).slice(2, 12);
-      localStorage.setItem(STORAGE_KEY, id);
-    }
-    setCtxId(id);
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) setMessages(JSON.parse(saved));
+    } catch { /* corrupted — start fresh */ }
   }, []);
 
   useEffect(() => {
@@ -40,22 +38,34 @@ export default function ChatWidget({ open, onOpenChange }: ChatWidgetProps) {
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  const persistMessages = (msgs: Message[]) => {
+    const trimmed = msgs.slice(-MAX_HISTORY_TURNS);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed)); } catch { /* quota */ }
+    return trimmed;
+  };
+
   const send = async () => {
     const text = input.trim();
     if (!text || sending) return;
-    setMessages((m) => [...m, { role: "user", text }]);
+    const withUser = persistMessages([...messages, { role: "user", text }]);
+    setMessages(withUser);
     setInput("");
     setSending(true);
     try {
+      const history = withUser.map((m) => ({
+        role: m.role === "user" ? "user" : "model",
+        text: m.text,
+      }));
       const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, ctx_id: ctxId }),
+        body: JSON.stringify({ message: text, history }),
       });
       const data = await res.json();
-      setMessages((m) => [...m, { role: "agent", text: data.reply || "(답이 흩어졌네…)" }]);
+      const reply = data.reply || "(답이 흩어졌네…)";
+      setMessages((m) => persistMessages([...m, { role: "agent", text: reply }]));
     } catch {
-      setMessages((m) => [...m, { role: "agent", text: "(길에 바람이 거세어 답을 전하지 못하겠네…)" }]);
+      setMessages((m) => persistMessages([...m, { role: "agent", text: "(길에 바람이 거세어 답을 전하지 못하겠네…)" }]));
     } finally {
       setSending(false);
     }

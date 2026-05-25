@@ -66,6 +66,44 @@ FINAL_FALLBACK_REPLY = (
 )
 
 
+async def _generate_reply_stateless(client_history: list[dict], user_text: str) -> str:
+    """Stateless Gemini 호출 — 클라이언트가 보낸 히스토리 사용. /api/chat 전용."""
+    contents: list[genai_types.Content] = [
+        genai_types.Content(
+            role="user",
+            parts=[genai_types.Part(text=f"[시스템 지시]\n{SYSTEM_INSTRUCTION}\n\n위 지시를 따라 대화하게.")],
+        ),
+        genai_types.Content(
+            role="model",
+            parts=[genai_types.Part(text="자네가 왔구나. 길의 이야기라면 무엇이든 물어보게.")],
+        ),
+    ]
+
+    for turn in client_history[:-1]:
+        role = turn.get("role", "user")
+        text = turn.get("text", "")
+        if role in ("user", "model") and text:
+            contents.append(genai_types.Content(role=role, parts=[genai_types.Part(text=text)]))
+
+    contents.append(genai_types.Content(role="user", parts=[genai_types.Part(text=user_text)]))
+
+    last_exc: Exception | None = None
+    for attempt, model_name in enumerate(MODEL_CANDIDATES):
+        try:
+            response = await gemini_client.aio.models.generate_content(
+                model=model_name,
+                contents=contents,
+            )
+            return response.text or "(답이 흩어졌네…)"
+        except Exception as exc:
+            last_exc = exc
+            logger.warning("model %s failed (attempt %d): %s", model_name, attempt + 1, str(exc)[:200])
+            await asyncio.sleep(0.4 * (attempt + 1))
+
+    logger.error("all models failed (stateless): %s", last_exc)
+    return FINAL_FALLBACK_REPLY
+
+
 async def _generate_reply(ctx_id: str, user_text: str) -> str:
     """Gemini 호출 + 멀티턴 히스토리 관리. executor와 /api/chat 양쪽이 공유."""
     if ctx_id not in chat_histories:
@@ -164,7 +202,11 @@ server = A2AStarletteApplication(agent_card=agent_card, http_handler=request_han
 
 
 async def _chat_endpoint(request):
-    """POST /api/chat — { message, ctx_id? } → { reply, ctx_id }."""
+    """POST /api/chat — { message, history? } → { reply }.
+
+    history: 클라이언트가 관리하는 대화 기록 (서버 stateless).
+    각 항목: { role: "user"|"model", text: "..." }
+    """
     try:
         body = await request.json()
     except Exception:
@@ -174,9 +216,9 @@ async def _chat_endpoint(request):
     if not message:
         return JSONResponse({"error": "message required"}, status_code=400)
 
-    ctx_id = (body.get("ctx_id") or "default").strip() or "default"
-    reply = await _generate_reply(ctx_id, message)
-    return JSONResponse({"reply": reply, "ctx_id": ctx_id})
+    client_history = body.get("history") or []
+    reply = await _generate_reply_stateless(client_history, message)
+    return JSONResponse({"reply": reply})
 
 
 async def _health(request):
