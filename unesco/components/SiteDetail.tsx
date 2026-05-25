@@ -84,9 +84,6 @@ export default function SiteDetail({ product, locationCount, onBack, onCityTagCl
         </div>
       )}
 
-      {/* 상품 이미지는 바텀시트에서 제거됨 (화면 절반 차지하던 문제).
-          TODO: 지도 마커 위 hover popup에 thumbnail로 부활 (별도 작업) */}
-
       {/* 제목 */}
       <h2 className="serif-kr text-xl font-bold leading-snug" style={{ color: "var(--paper-100)" }}>{product.title}</h2>
 

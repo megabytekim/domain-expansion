@@ -50,6 +50,7 @@ export default function HyechoMap({
   // map 'load' 이벤트는 첫 마운트 시 단 1회만 발화 — once("load", ...) 패턴은 두 번째 호출부터 stuck.
   // 대신 마운트 useEffect의 load 콜백 끝에서 styleReady=true 설정, 다른 useEffect는 이 state를 기다린다.
   const [styleReady, setStyleReady] = useState(false);
+  const hasEverSelectedRef = useRef(false);
 
   useEffect(() => { onSelectRef.current = onLocationSelect; }, [onLocationSelect]);
   useEffect(() => { locationMapRef.current = locationMap; }, [locationMap]);
@@ -60,11 +61,15 @@ export default function HyechoMap({
     if (!containerRef.current) return;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
+    const WELCOME_LNG = 118.17;
+    const WELCOME_LAT = 30.13;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: `https://api.maptiler.com/maps/streets-v2-dark/style.json?key=${key}`,
-      center: [30, 25],
-      zoom: 2,
+      center: [WELCOME_LNG, WELCOME_LAT],
+      zoom: isMobile ? 3.5 : 4,
     });
 
     map.addControl(new maplibregl.NavigationControl(), "top-right");
@@ -220,6 +225,43 @@ export default function HyechoMap({
         popup.setLngLat(e.lngLat).setDOMContent(span).addTo(map);
       });
 
+      // 웰컴 popup — 황산 패키지 이미지를 초기 표시, 지도 조작 시 자동 닫힘
+      const welcomeProduct = data.features.find((f) => f.properties.productId === "hyecho-2474");
+      if (welcomeProduct) {
+        const wp = welcomeProduct.properties;
+        const welcomePopup = new maplibregl.Popup({
+          closeButton: false,
+          closeOnClick: true,
+          offset: [0, -14],
+          className: "hyecho-tooltip",
+        });
+        const container = document.createElement("div");
+        container.style.cssText = "max-width:220px;display:flex;flex-direction:column;gap:4px;cursor:pointer";
+        if (wp.productImageUrl) {
+          const img = document.createElement("img");
+          img.src = wp.productImageUrl;
+          img.loading = "eager";
+          img.style.cssText = "width:100%;height:120px;object-fit:cover;border-radius:2px;display:block";
+          container.appendChild(img);
+        }
+        const caption = document.createElement("span");
+        caption.style.cssText = "font-size:10px;color:#9a9080;text-align:center;letter-spacing:0.12em;display:block";
+        caption.textContent = "자세히 보기";
+        container.appendChild(caption);
+        container.addEventListener("click", () => {
+          welcomePopup.remove();
+          const key = locKey(wp.lat, wp.lng);
+          const products = locationMapRef.current.get(key) ?? [];
+          onSelectRef.current({ lat: wp.lat, lng: wp.lng, products });
+        });
+        const center = map.getCenter();
+        welcomePopup.setLngLat([center.lng, center.lat]).setDOMContent(container).addTo(map);
+        const dismissWelcome = () => welcomePopup.remove();
+        map.once("mousedown", dismissWelcome);
+        map.once("touchstart", dismissWelcome);
+        map.once("wheel", dismissWelcome);
+      }
+
       // source/layer 추가 완료 — 다른 useEffect들이 즉시 setData 가능한 상태
       setStyleReady(true);
     });
@@ -251,17 +293,19 @@ export default function HyechoMap({
     if (!src) return;
     src.setData(expandedGeoJSON as unknown as GeoJSON.FeatureCollection);
     if (expandedGeoJSON.features.length === 1) {
+      hasEverSelectedRef.current = true;
       const coord = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
       map.flyTo({ center: coord, zoom: Math.max(map.getZoom(), 4), duration: 800 });
     } else if (expandedGeoJSON.features.length >= 2) {
+      hasEverSelectedRef.current = true;
       const first = expandedGeoJSON.features[0].geometry.coordinates as [number, number];
       const bounds = new maplibregl.LngLatBounds(first, first);
       for (const f of expandedGeoJSON.features) {
         bounds.extend(f.geometry.coordinates as [number, number]);
       }
       map.fitBounds(bounds, { padding: 80, maxZoom: 5, duration: 800 });
-    } else {
-      // selectedProductId 해제됨 → 초기 globe view로 복귀
+    } else if (hasEverSelectedRef.current) {
+      // selectedProductId 해제됨 → 초기 globe view로 복귀 (초기 로드 시에는 건너뜀)
       map.flyTo({ center: [30, 25], zoom: 2, duration: 800 });
     }
   }, [expandedGeoJSON, styleReady]);
