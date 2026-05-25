@@ -101,7 +101,7 @@ vercel --prod
 
 - [x] **CI/CD: Deploy 스텝 미실행 원인 조사** ✅ 2026-05-25 — 5/18, 5/25 크롤에서 commit→push→`vercel --prod` 전체 파이프라인 정상 동작 확인
 - [x] **GitHub 계정 권한 정리** ✅ — `megabytekim` 계정으로 워크플로우 정상 트리거 중
-- [ ] **Geocode 경계 케이스 모니터링** — 상파울루(-23.55, -46.63)이 콜롬비아+아마존 상품에 포함 (2686km, 임계값 미만이나 주시 필요)
+- [x] **Geocode 경계 케이스 모니터링** ✅ 2026-05-25 — 상파울루 이슈 해결됨. 천산남로 "아라어(Araer)" 오추출 제거 (쿠웨이트 좌표로 geocoding된 잘못된 도시). 남미4개국 이과수(2965km)는 정상
 - [ ] **Dev 환경 구성 검토** — 현재 개선 작업은 로컬 `npm run dev` + Playwright 자체 검토 후 `vercel --prod`. 향후 옵션:
     - (A) `vercel` (preview) → 일회성 URL
     - (B) preview + `vercel alias unesco-dev.vercel.app` → 고정 staging URL
