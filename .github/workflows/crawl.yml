@@ -1,8 +1,8 @@
 name: Weekly Data Crawl
 
+# Schedule 비활성화 (2026-05-28): unesco가 travel-map repo로 분리되어 lightsail systemd timer가
+# 일요일 19:00 UTC에 크롤 → 자동 deploy 담당. 이 workflow는 수동 트리거만 남김 (legacy 보존).
 on:
-  schedule:
-    - cron: '0 0 * * 1'
   workflow_dispatch:
 
 permissions:
