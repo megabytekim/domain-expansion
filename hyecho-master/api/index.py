@@ -48,14 +48,29 @@ import logging
 
 logger = logging.getLogger("hyecho-master")
 
-# 이 키의 free tier에서 작동 확인된 모델만 chain에 둠 (2026-05-20 probe 기준).
-# 순서는 품질 → 안정 → alias 순. 앞 모델이 5xx/429면 다음으로 fallback.
+# Gemma 4 31B IT 우선. 응답에 thought + answer 두 part 분리 → _extract_text가 필터링.
+# Gemma 응답 시 generationConfig.thinkingConfig 미지원이라 thought=True part는 후처리로 제거.
 MODEL_CANDIDATES = [
-    "gemini-2.5-flash",        # 품질 우선 (다만 503 잦음)
-    "gemini-2.5-flash-lite",   # 안정 fallback (1~2s)
-    "gemini-flash-latest",     # 마지막 alias (라우팅 다를 수 있음)
+    "gemma-4-31b-it",          # 목표 모델 (2026-06-05 swap)
+    "gemma-4-26b-a4b-it",      # 동급 fallback
+    "gemini-2.5-flash-lite",   # 최후 안정 fallback (gemma 모두 fail 시)
 ]
 MODEL = MODEL_CANDIDATES[0]  # Agent Card 노출용
+
+
+def _extract_text(response) -> str:
+    """Response에서 thought 제외한 실제 답만 추출.
+
+    Gemma 4는 thinking model — response.candidates[0].content.parts에
+    thought=True (사고 과정) + thought=False (실제 답) 두 종류 part가 옴.
+    response.text는 둘 다 join하므로, 깨끗한 답만 보려면 직접 filter 필요.
+    Gemini 2.5 Flash는 thought part 없음 → 동일 로직으로 OK.
+    """
+    if not getattr(response, "candidates", None):
+        return ""
+    parts = response.candidates[0].content.parts or []
+    visible = [p.text for p in parts if not getattr(p, "thought", False) and getattr(p, "text", None)]
+    return "".join(visible)
 
 # 모든 모델이 실패했을 때 사용자에게 보여줄 페르소나 메시지.
 # 기술 에러를 그대로 노출하지 않고 페르소나 톤 유지.
@@ -77,7 +92,7 @@ async def _generate_reply_stateless(client_history: list[dict], user_text: str) 
                 model=model_name,
                 contents=contents,
             )
-            return response.text or "(답이 흩어졌네…)"
+            return _extract_text(response) or "(답이 흩어졌네…)"
         except Exception as exc:
             last_exc = exc
             logger.warning("model %s failed (attempt %d): %s", model_name, attempt + 1, str(exc)[:200])
@@ -120,9 +135,15 @@ async def _generate_stream(client_history: list[dict], user_text: str):
                 contents=contents,
             )
             async for chunk in response:
-                text = chunk.text
-                if text:
-                    yield text
+                # Gemma 4 thinking chunk(thought=True) 제외, 실제 답 chunk만 stream
+                if not getattr(chunk, "candidates", None):
+                    continue
+                for part in chunk.candidates[0].content.parts or []:
+                    if getattr(part, "thought", False):
+                        continue
+                    text = getattr(part, "text", None)
+                    if text:
+                        yield text
             return
         except Exception as exc:
             last_exc = exc
@@ -160,7 +181,7 @@ async def _generate_reply(ctx_id: str, user_text: str) -> str:
                 model=model_name,
                 contents=history,
             )
-            text = response.text or "(답이 흩어졌네…)"
+            text = _extract_text(response) or "(답이 흩어졌네…)"
             history.append(
                 genai_types.Content(role="model", parts=[genai_types.Part(text=text)])
             )

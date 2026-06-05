@@ -6,7 +6,7 @@
 ## 스택
 
 - **A2A SDK** (공식) — Agent Card / Skill / Executor 표준 구조
-- **google-genai** — Gemma 3 27B IT (`gemma-3-27b-it`)
+- **google-genai** — **Gemma 4 31B IT** (`gemma-4-31b-it`). thinking model이라 response parts에 thought=True + thought=False가 섞여 옴 → `_extract_text()`가 후처리로 thought 제거. Fallback 체인: `gemma-4-31b-it` → `gemma-4-26b-a4b-it` → `gemini-2.5-flash-lite`.
 - **Starlette + CORS** — ASGI 라우팅, 위젯에서 cross-origin fetch 허용
 - **Vercel `@vercel/python`** — serverless 배포
 
